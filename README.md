@@ -1,2 +1,0 @@
-# vue-postcss
-postcss test
