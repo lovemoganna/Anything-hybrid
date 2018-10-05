@@ -5,11 +5,10 @@
             li(v-for="(item,index) of wallpapers" :key="index")
                 img(:src='getImg(item)',:alt='item')
                 p  {{item}}
-        .next_src
-            a(href="www.baidu.com") 百度
 
 </template>
 <script>
+    const imgPath = require('../../static/img')
     export default {
         name:'LittleSisters',
         data() {
@@ -17,13 +16,12 @@
                 wallpapers: ["w1", 'w2', 'w3', 'w4', 'w5', 'w6']
             }
         },
-        methods: {
+        methods:{
             getImg(name) {
                 name = name.toLowerCase().replace(/\s/g, '_')
-                return `/img/${name}.jpg`
+                return `imgPath/${name}.jpg`
             }
         }
-
     }
 </script>
 <style lang="postcss" scoped>
@@ -43,12 +41,6 @@
         margin-bottom: var(--space);
     }
 
-    /*@media (--md-up) {*/
-    /**/
-    /*}*/
-    /*@media (--lg-up) {*/
-    /*grid-template-columns: repeat(3,1fr);*/
-    /*}*/
     ul {
         list-style-type: none;
         margin: 0 auto;
@@ -71,10 +63,6 @@
 
     img:hover {
         filter: grayscale(0);
-    }
-
-    .next_src > a:hover {
-        color: red;
     }
 
 </style>

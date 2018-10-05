@@ -1,14 +1,14 @@
 <template lang="pug">
     .container
-        little-sisters
-
+        .tab
+            .tab-item
+                router-link(to='/littleSisters') 小姐姐
+            .tab-item
+                router-link(to='/test') 测试
+        router-view
 </template>
 <script type="text/ecmascript-6">
-    import LittleSisters from './components/LittleSisters'
     export default {
-        components:{
-            'little-sisters':LittleSisters
-        }
     }
 </script>
 <style>
