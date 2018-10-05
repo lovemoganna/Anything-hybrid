@@ -8,7 +8,6 @@
 
 </template>
 <script>
-    const imgPath = require('../../static/img')
     export default {
         name:'LittleSisters',
         data() {
@@ -18,8 +17,8 @@
         },
         methods:{
             getImg(name) {
-                name = name.toLowerCase().replace(/\s/g, '_')
-                return `imgPath/${name}.jpg`
+                name = name.toLowerCase().replace(/\s/g, '_');
+                return `/img/${name}.jpg`
             }
         }
     }
