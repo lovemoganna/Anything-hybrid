@@ -1,0 +1,104 @@
+* DONE webpack-dev-server
+  CLOSED: [2018-11-01 Thu 21:06] SCHEDULED: <2018-11-01 Thu 19:30>
+** avoid css refresh  
+   use liveReload or Brawsersync plugin 
+** build WDS 
+   - coulde use `npm run build -- --watch`
+   
+   - wds implements a watch mode 
+*
+   - wds supports HMR(Hot Module Replacement)
+**  emmit files from wds 
+   
+   - you can use `write-file-webpack-plugin`
+** getting started with wds 
+
+   - `npm install webpack-dev-server --save-dev`
+** attaching wds to the project 
+   - define npm script in package.json
+#+BEGIN_SRC package.json
+"scripts": {
+
+  "start": "webpack-dev-server --mode development",
+
+  "build": "webpack --mode production"
+},
+#+END_SRC      
+** configuring wds through webpack configuration 
+
+   - enable additional functionality as blew:
+
+   - attach to host ,port ,open ...etc options in `webpack.config.js`  
+
+#+BEGIN_SRC js
+module.exports = {
+
+  devServer: {
+    // Display only errors to reduce the amount of output.
+    stats: "errors-only",
+
+    // Parse host and port from env to allow customization.
+    //
+    // If you use Docker, Vagrant or Cloud9, set
+    // host: options.host || "0.0.0.0";
+    //
+    // 0.0.0.0 is available to all network devices
+    // unlike default `localhost`.
+    host: process.env.HOST, // Defaults to `localhost`
+    port: process.env.PORT, // Defaults to 8080
+    open: true, // Open the page in browser
+  },
+
+  ...
+};
+#+END_SRC
+    - need notice the question. if you connection browse with remote host. set the `host` value is `"0,0,0,0,"`
+** dotenv define environment path 
+   just config different host and port
+** enable  error overlay  
+   
+   - 捕获编译的错误.
+
+   - attach overlay to `webpack.config.js` as blew
+     
+#+BEGIN_SRC js
+module.exports = {
+  devServer: {
+    ...
+
+    overlay: true,
+
+  },
+  ...
+};
+#+END_SRC
+
+   get more and better error tips ,you should isntall `error -overlay-webpack-plugin`
+** use nodemon watch webpack config and restart wds on change 
+- install nodemon
+  + `npm install nodemon --save-dev`
+- package.json 
+#+BEGIN_SRC json
+"scripts": {
+  "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode development\"",
+  "build": "webpack --mode production"
+},
+#+END_SRC
+** replace the webpack-serve plugin 
+
+   - The official WDS middleware
+   - webpack-hot-middleware
+   - webpack-isomorphic-dev-middleware
+** output plugins 
+
+- system-bell-webpack-plugin  --build error have sound
+
+- webpack-notifier -- watch webpack state 
+
+- nyan-progress-webpack-plugin -- beautiful output 
+
+- friendly-errors-webpack-plugin -- show error report 
+
+- webpack-dashboard --commander most  love
+
+
