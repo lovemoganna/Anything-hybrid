@@ -1,0 +1,16 @@
+* TODO install webpack  
+  SCHEDULED: <2018-10-31 Wed 19:51>
+** install package 
+   `npm install webpack webpack-cli --save-dev # -D to type less`
+** check the webpack version  
+   `node_modules/.bin/webpack`
+** test webpack 
+
+  - set up src/index.js,echo >> `console.log("hello world!")`
+  - execute `node_modules/.bin/webpack --mode development`
+    + you find generate a name `dist` folder.like this 
+      #+BEGIN_SRC 
+       -- dist
+        -- main.js
+      #+END_SRC
+  - now we could use `--mode production`,the main.js since compressed  
