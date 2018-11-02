@@ -1,11 +1,12 @@
 #+TITLE: manage webpack configuration 
 #+STYLE: <link rel="stylesheet" type="text/css" href="" background="red" />
 
-* TODO [#B] Possible  ways to manage configuration 
+* DONE [#B] Possible  ways to manage configuration 
+  CLOSED: [2018-11-02 Fri 11:32]
 ** DONE i learn org-mode  
    CLOSED: [2018-11-02 Fri 08:55] SCHEDULED: <2018-11-01 Thu 06:49>
-** TODO Composing configuration by merging 
-   SCHEDULED: <2018-11-02 Fri 09:20>
+** DONE Composing configuration by merging 
+   CLOSED: [2018-11-02 Fri 11:33] SCHEDULED: <2018-11-02 Fri 09:20>
 
 - file merge example:08
 

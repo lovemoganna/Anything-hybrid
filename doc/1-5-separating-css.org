@@ -1,0 +1,22 @@
+* TODO separating CSS
+ 
+** background 
+you konw, complied css in js by webpack build behind.so now dpn't allow css cache.
+
+but you can get *Flash Of Unstyled Content (FOUC)*. 
+
+cause generate js file  need time to reload it .
+
+so we can separating css file avoid the problem,just let browser manage it.
+
+the plugin name is *MinCssExtractPlugin(MCEP)*,but it don't suit *HMR*
+
+** Setting 丿MinCssExtractPlugin 
+
+#+BEGIN_SRC 
+npm install mini-css-extract-plugin --save-dev
+#+END_SRC
+
+MiniCssExtractPlugin包括一个MiniCssExtractPlugin.loader标记要提取的资产的加载器。
+
+

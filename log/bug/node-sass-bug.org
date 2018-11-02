@@ -1,0 +1,18 @@
+* DONE install node-sass error 
+  CLOSED: [2018-11-02 Fri 15:11]
+
+- show error:
+#+BEGIN_SRC 
+gyp ERR! stack Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/node-sass/.node-gyp'
+gyp ERR! System Linux 4.19.0-1.el7.elrepo.x86_64
+gyp ERR! command "/usr/bin/node" "/usr/lib/node_modules/node-sass/node_modules/node-gyp/bin/node-gyp.js" "rebuild                                                                           " "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
+
+#+END_SR:100:C
+- fix error:
+#+BEGIN_SRC 
+npm install -g --unsafe-perm node-sass
+#+END_SRC
+
+userful_link:
+
+[[https://github.com/angular/angular-cli/issues/6848][R_S_link]]
