@@ -1,0 +1,18 @@
+* eliminating unused css
+** implement the function  tools
+ 1. Purify CSS
+ 2. Uncss
+** setting up Pure.css
+
+#+BEGIN_SRC 
+npm install purecss --save
+#+END_SRC
+** 
+** use PruifyCSS 
+   - Compress CSS file
+** R_S 
+   [[https://survivejs.com/webpack/styling/eliminating-unused-css/][消除不使用的CSS]]
+
+`1
+
+
