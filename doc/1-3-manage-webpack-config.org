@@ -30,4 +30,43 @@ we could use `webpack-chain` API con-fig webpack
 #+BEGIN_SRC text
 npm install webpack-merge --save-dev
 #+END_SRC
- 
+** Split per Configuration example
+#+BEGIN_SRC 
+.
+├── dist
+├── doc
+├── node_modules
+├── package.json
+├── package-lock.json
+├── src
+├── webpack.config.js
+ └── webpack.parts.js +
+#+END_SRC
+** more split example 
+
+#+BEGIN_SRC 
+.
+└── config
+    ├── webpack.common.js
+    ├── webpack.development.js
+    ├── webpack.parts.js
+    └── webpack.production.js
+
+#+END_SRC
+
+or 
+
+#+BEGIN_SRC 
+.
+└── config
+    ├── parts
+    │   ├── devserver.js
+    ...
+    │   ├── index.js
+    │   └── javascript.js
+    └── ...
+#+END_SRC
+
+** consume it across multiple projects
+ [[https://survivejs.com/maintenance/][SurviveJS] 
+
