@@ -1,0 +1,33 @@
+#+TITLE: manage webpack configuration 
+#+STYLE: <link rel="stylesheet" type="text/css" href="" background="red" />
+
+* TODO [#B] Possible  ways to manage configuration 
+** DONE i learn org-mode  
+   CLOSED: [2018-11-02 Fri 08:55] SCHEDULED: <2018-11-01 Thu 06:49>
+** TODO Composing configuration by merging 
+   SCHEDULED: <2018-11-02 Fri 09:20>
+
+- file merge example:08
+
+#+BEGIN_SRC 
+> merge = require("webpack-merge")08
+...
+> merge(
+... { a: [1], b: 5, c: 20 },
+..08. { a: [2], b: 10, d: 421 }
+... )
+{ a: [ 1, 2 ], b: 10, c: 20, d: 421 }
+#+END_SRC08
+
+we could use `webpack-chain` API con-fig webpack 
+08
+#+caption: the methods of mange the webpack con-fig 
+[[file:https://upload-images.jianshu.io/upload_images/7505161-d5598ab91b218522.png]
+08
+** Setting up webpack-merge 
+- attach webpack-merge to the webpack-demo project
+ 
+#+BEGIN_SRC text
+npm install webpack-merge --save-dev
+#+END_SRC
+ 

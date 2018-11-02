@@ -4,11 +4,9 @@
    use liveReload or Brawsersync plugin 
 ** build WDS 
    - coulde use `npm run build -- --watch`
-   
    - wds implements a watch mode 
-*
    - wds supports HMR(Hot Module Replacement)
-**  emmit files from wds 
+** emitting files from wds 
    
    - you can use `write-file-webpack-plugin`
 ** getting started with wds 
@@ -16,7 +14,7 @@
    - `npm install webpack-dev-server --save-dev`
 ** attaching wds to the project 
    - define npm script in package.json
-#+BEGIN_SRC package.json
+#+BEGIN_SRC json
 "scripts": {
 
   "start": "webpack-dev-server --mode development",
