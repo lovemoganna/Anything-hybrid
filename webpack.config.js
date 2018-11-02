@@ -1,9 +1,14 @@
+const path = require("path");
 const glob = require("glob");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const parts = require("./webpack.parts");
 
+// define work directory 
+const PATHS = {
+    app: path.join(__dirname, "src"),
+};
 
 // common config , there no config css
 const commonConfig = merge([{
@@ -38,6 +43,9 @@ const developmentConfig = merge([
 const productionConfig = merge([
     parts.extractCSS({
         use: "css-loader",
+    }),
+    parts.purifyCSS({
+        paths: glob.sync(`${PATHS.app}/**/*.js`, { nodir: true }),
     }),
 ]);
 
