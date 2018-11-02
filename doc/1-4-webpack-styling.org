@@ -1,0 +1,39 @@
+* styling
+** load styling 
+*** load CSS 
+    need special loader like as blew
+    - css-loader
+    - style-loader
+***  install package 
+
+#+BEGIN_SRC 
+npm install css-loader style-loader --save-dev
+#+END_SRC
+*** add configuration in webpack.part.js
+
+#+BEGIN_SRC js
+exports.loadCSS = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        include,
+        exclude,
+
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+});
+#+END_SRC
+*** import file from css-loader
+#+BEGIN_SRC scss
+@import "./variables.sass";
+#+END_SRC
+
+or use this method as blew
+
+#+BEGIN_SRC scss
+@import "~bootstrap/less/bootstrap";
+#+END_SRC
+*** install sass-loader & postcss-cssnext postcss-loader 
