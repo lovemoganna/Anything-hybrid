@@ -15,7 +15,7 @@ const PATHS = {
     app: path.join(__dirname, "src"),
 };
 
-// common config , there no config css
+// common config , there no config CSS
 const commonConfig = merge([{
     devtool: 'eval-source-map',
     plugins: [
@@ -42,7 +42,12 @@ const commonConfig = merge([{
             // add formatters and transformers (see below)
             additionalFormatters: [],
             additionalTransformers: []
-        })
+        }),
+        new webpack.LoaderOptionsPlugin({
+            // solve module build file: eslint
+            // refer_address https://github.com/webpack/webpack/issues/6556
+            options: {}
+        }),
     ],
     entry: {
         //this is a entry point,maybe have css sort problem.you should strict fllow css import rule in sequence
@@ -86,39 +91,16 @@ module.exports = mode => {
             mode,
             module: {
                 rules: [{
-                        // **Conditions** to match files using RegExp, function.
-                        test: /\.js$/,
+                    test: /\.js$/,
+                    include: PATHS.app,
 
-                        // **Restrictions**
-                        // Restrict matching to a directory. This
-                        // also accepts an array of paths or a function.
-                        // The same applies to `exclude`.
-                        include: path.join(__dirname, "c"),
-                        exclude(path) {
-                            // You can perform more complicated checks  as well.
-                            return path.match(/node_modules/);
+                    use: [{
+                        loader: "babel-loader",
+                        options: {
+                            presets: ["env"],
                         },
-
-                        // **Actions** to apply loaders to the matched files.
-                        use: "babel-loader",
-                    },
-                    {
-                        test: /\.css$/,
-                        use: "style-loader",
-                    },
-                    {
-                        test: /\.css$/,
-                        use: "css-loader",
-                    },
-                    {
-                        // Conditions
-                        test: /\.js$/,
-                        enforce: "pre", // "post" too
-
-                        // Actions
-                        use: "eslint-loader",
-                    },
-                ],
+                    }],
+                }],
             },
         });
     }
