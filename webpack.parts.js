@@ -2,7 +2,7 @@
 const PurifyCSSPlugin = require("purifycss-webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 exports.devServer = ({
-    host,  
+    host,
     port
 } = {}) => ({
     devServer: {
@@ -14,7 +14,7 @@ exports.devServer = ({
         overlay: true,
         // 禁止ifriendly-errors-webpack-plugin错误提示
         // quiet: true,             
-//        hotOnly: true, 1         
+        hot: true,
     },
 });
 
