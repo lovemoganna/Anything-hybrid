@@ -1,7 +1,8 @@
 // use separating css plugin 
 const PurifyCSSPlugin = require("purifycss-webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 exports.devServer = ({
-    host,
+    host,  
     port
 } = {}) => ({
     devServer: {
@@ -9,13 +10,24 @@ exports.devServer = ({
         host, // Defaults to `localhost`
         port, // Defaults to 8080
         open: true,
+        //控制台输出简单的错误提示
         overlay: true,
+        // 禁止ifriendly-errors-webpack-plugin错误提示
+        // quiet: true,             
+//        hotOnly: true, 1         
     },
 });
 
+
+// setting up npm-install-webpack-plugin for automatically to install & save missing dependencies
+
 // setting up purify css  
-exports.purifyCSS = ({ paths }) => ({
-    plugins: [new PurifyCSSPlugin({ paths })],
+exports.purifyCSS = ({
+    paths
+}) => ({
+    plugins: [new PurifyCSSPlugin({
+        paths
+    })],
 });
 // parser css assert 
 // add sass ,need install node-sass 
