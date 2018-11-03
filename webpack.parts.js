@@ -18,9 +18,13 @@ exports.devServer = ({
     },
 });
 
-
-// setting up npm-install-webpack-plugin for automatically to install & save missing dependencies
-
+// setting up autoprefix 
+exports.autoprefix = () => ({
+    loader: "postcss-loader",
+    options: {
+        plugins: () => [require("autoprefixer")()],
+    },
+});
 // setting up purify css  
 exports.purifyCSS = ({
     paths
