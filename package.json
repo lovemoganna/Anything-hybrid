@@ -12,6 +12,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "autoprefixer": "^9.3.1",
         "case-sensitive-paths-webpack-plugin": "^2.1.2",
         "css-loader": "^1.0.1",
         "dist": "^0.1.2",
@@ -20,6 +21,7 @@
         "html-webpack-plugin": "^3.2.0",
         "mini-css-extract-plugin": "^0.4.4",
         "npm-install-webpack-plugin": "^4.0.5",
+        "postcss-loader": "^3.0.0",
         "purify-css": "^1.2.5",
         "purifycss-webpack": "^0.7.0",
         "sass-loader": "^7.1.0",
@@ -30,10 +32,8 @@
         "webpack-merge": "^4.1.4"
     },
     "dependencies": {
-        "autoprefixer": "^9.3.1",
         "node-sass": "^4.9.4",
         "postcss-cssnext": "^3.1.0",
-        "postcss-loader": "^3.0.0",
         "precss": "^3.1.2",
         "purecss": "^1.0.0"
     }
