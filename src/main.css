@@ -1,8 +1,10 @@
-body {
+body
+{
     background: cornsilk;
 }
 
-.pure-button {
+.pure-button
+{
     -webkit-border-radius: 1em;
-    border-radius: 1em;
+     border-radius: 1em;
 }
