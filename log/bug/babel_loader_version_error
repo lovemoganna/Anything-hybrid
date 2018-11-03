@@ -1,0 +1,2 @@
+npm install --save-dev @babel/core
+https://stackoverflow.com/questions/35215461/error-in-cannot-find-module-babel-core-using-react-js-webpack-and-express-s
