@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require("webpack");
 
 module.exports = {
     entry: {
@@ -9,7 +10,10 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist/assets'),
+        // chunkFilename: "[id].chunk.js"
+        // 这是CDN的路径.
+        publicPath: "/"
     },
     module: {
         rules: [
@@ -46,10 +50,24 @@ module.exports = {
             }
         ]
     },
+    // 支持 source map
+    devtool: false,
+    devServer:{
+        contentBase: path.join(__dirname, "dist/assets"),
+        //gzip压缩
+        compress: true,
+        port: 9000
+    },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Output Management'
+        }),
+        new webpack.SourceMapDevToolPlugin({
+            filename: 'sourcemaps/[file].map',
+            publicPath: '/',
+            fileContext: 'assets'
         })
     ],
-};
+}
+;

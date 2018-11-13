@@ -4,7 +4,7 @@ meta:
   - name: manage-output
     content: manage-output
 prev: ./1-2-manage-assets
-next: false
+next: ./1-4-develop
 ---
 # manage output 
 
