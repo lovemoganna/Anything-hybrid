@@ -4,7 +4,7 @@ meta:
   - name: manage-assets
     content: manage-assets
 prev: ./1-1-setting-up
-next: false
+next: ./1-3-manage-output
 ---
 # manage assets 
 
