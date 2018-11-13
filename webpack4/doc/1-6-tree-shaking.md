@@ -4,7 +4,7 @@ meta:
   - name: tree-shaking
     content: tree-shaking
 prev: ./1-5-HRM
-next: false
+next: ./1-7-production-env
 ---
 
 ## tree-shaking 
