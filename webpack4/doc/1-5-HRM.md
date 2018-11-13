@@ -4,7 +4,7 @@ meta:
   - name: HRM
     content: HRM
 prev: ./1-4-develop
-next: false
+next: ./1-6-tree-shaking
 ---
 
 # HRM

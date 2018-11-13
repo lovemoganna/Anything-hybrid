@@ -1,6 +1,10 @@
 {
   "name": "webpack4",
   "version": "1.0.0",
+  "sideEffects": [
+    "./src/some-side-effectful-file.js",
+    "*.css"
+  ],
   "private": true,
   "license": "MIT",
   "scripts": {
