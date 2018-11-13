@@ -4,7 +4,7 @@ meta:
   - name: webpack setting up
     content: webpack setting up
 prev: false
-next: false
+next: ./1-2-manage-assets
 ---
 
 ## install webpack 

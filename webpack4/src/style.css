@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url("../asets/font/chinese.ttf") format('ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+.hello {
+    color: hotpink;
+    font-family: 'MyFont';
+    background: url('../asets/img/w2.jpg');
+}
