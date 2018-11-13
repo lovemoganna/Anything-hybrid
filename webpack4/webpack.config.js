@@ -56,7 +56,8 @@ module.exports = {
         contentBase: path.join(__dirname, "dist/assets"),
         //gzip压缩
         compress: true,
-        port: 9000
+        port: 9000,
+        hot: true
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
@@ -67,7 +68,10 @@ module.exports = {
             filename: 'sourcemaps/[file].map',
             publicPath: '/',
             fileContext: 'assets'
-        })
+        }),
+        // HMR
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
 }
 ;
