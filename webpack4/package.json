@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --open",
     "watch": "webpack --watch",
     "build": "webpack",
-    "server": "node server.js"
+    "server": "node server.js",
+    "dev:server":"node dev-server"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.0",
