@@ -12,7 +12,7 @@
     "watch": "webpack --watch",
     "build": "webpack",
     "server": "node server.js",
-    "dev:server":"node dev-server"
+    "dev:server": "node dev-server"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.0",
@@ -26,6 +26,7 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4",
     "xml-loader": "^1.2.1"
   },
   "dependencies": {

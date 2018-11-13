@@ -12,4 +12,4 @@ next: false
 
 `npm install --save-dev webpack-merge`
 
-
+将原先的`webpack-config`拆分为`webpack-common` & `webpack-dev` & `webpack-prod`
