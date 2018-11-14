@@ -7,13 +7,13 @@ module.exports = {
         app: './src/index.js'
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['dist/assets']),
         new HtmlWebpackPlugin({
             title: 'Production'
         })
     ],
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist/assets')
     }
 };
