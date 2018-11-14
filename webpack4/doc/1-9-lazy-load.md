@@ -1,3 +1,17 @@
+---
+sidebar: auto
+meta:
+  - name: lazy load
+    content: lazy load
+prev: ./1-8-code-separation
+next: false
+---
+
+# lazy load 
+
+## index.js
+
+```js
 import _ from 'lodash';
 
 function component() {
@@ -17,3 +31,7 @@ function component() {
     return element;
 }
 document.body.appendChild(component());
+```
+## 查看
+
+点击按钮,查看`network`,才会加载`print.bundle.js`.这就是懒加载.

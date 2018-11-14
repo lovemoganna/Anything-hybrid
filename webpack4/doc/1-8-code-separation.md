@@ -4,7 +4,7 @@ meta:
   - name: code separation 
     content: code separation
 prev: ./1-7-production-env
-next: false
+next: ./lazy-load
 ---
 # code separation 
 
@@ -56,7 +56,17 @@ getComponent().then(component => {
 `通过 async 函数简化代码`
 
 ```js
+async function getComponent() {
+    var element = document.createElement('div');
+    const _ = await import(/* webpackChunkName: "lodash" */ 'lodash');
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    return element;
 
+}
+
+getComponent().then(component => {
+    document.body.appendChild(component);
+});
 ```
 
 
