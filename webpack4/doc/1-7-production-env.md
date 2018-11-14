@@ -4,7 +4,7 @@ meta:
   - name: production environment build 
     content: 生产环境构建
 prev: ./1-6-tree-shaking 
-next: false
+next: ./1-8-code-separation
 ---
 # production environment build 
 

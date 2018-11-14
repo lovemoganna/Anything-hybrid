@@ -1,20 +1,17 @@
 {
   "name": "webpack4",
   "version": "1.0.0",
-  "sideEffects": [
-    "./src/some-side-effectful-file.js",
-    "*.css"
-  ],
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "watch": "webpack --watch",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack",
     "server": "node server.js",
     "dev:server": "node dev-server"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
     "csv-loader": "^3.0.2",
