@@ -1,0 +1,195 @@
+{
+  "html-webpack-plugin for \"index.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/html-webpack-plugin/lib/loader.js!node_modules/html-webpack-plugin/default_index.ejs": 0,
+          "node_modules/lodash/lodash.js": 1,
+          "node_modules/webpack/buildin/global.js": 2,
+          "node_modules/webpack/buildin/module.js": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      },
+      "prepreHash": "1996546b983622618a91",
+      "preHash": "ebf3b5f8b42316a22f64",
+      "hash": "7a0cdbec1469f6d9624b",
+      "moduleHashs": {
+        "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\html-webpack-plugin\\lib\\loader.js!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\html-webpack-plugin\\default_index.ejs": "8c26910f161b822eac2e570f428b30cd",
+        "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\lodash\\lodash.js": "8ffc302ab79e3bbd6321f70306a57e5b",
+        "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\webpack\\buildin\\global.js": "10fbb8026b7da7baba93c59ecc2b7d54",
+        "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\webpack\\buildin\\module.js": "53f2c2429b902d6daf84bc6258b303e1"
+      },
+      "chunkHashs": {
+        "0": "3f368fc3be30687966c666716258df91"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/postcss-loader/src/index.js??ref--4-2!src/main.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/index.js!node_modules/postcss-loader/src/index.js??ref--4-2!src/main.css": 0,
+          "node_modules/css-loader/lib/url/escape.js": 1,
+          "node_modules/css-loader/lib/css-base.js": 2,
+          "node_modules/url-loader/dist/cjs.js??ref--5!src/logo.png": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      },
+      "prepreHash": "0ffc6b4872f9ece95cab",
+      "preHash": "fd3f89e7407c0df3b46a",
+      "hash": "aa8082f18fbaceca1e0e",
+      "moduleHashs": {
+        "c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\index.js!c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\postcss-loader\\src\\index.js??ref--4-2!c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\src\\main.css": "e149fdebd0f801ee6facc6b8f5099960",
+        "c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\lib\\url\\escape.js": "5d0ec15fb6a0572e022805e356471c0f",
+        "c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\lib\\css-base.js": "90158261e444568f8b383cf870d955bb",
+        "c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\url-loader\\dist\\cjs.js??ref--5!c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\src\\logo.png": "75e2f74c909ba0e820f1729cc8c1dc4d"
+      },
+      "chunkHashs": {
+        "0": "6f697a0b45cb965048d9a1cc1862b926"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/postcss-loader/src/index.js??ref--4-2!node_modules/purecss/build/pure-min.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/index.js!node_modules/postcss-loader/src/index.js??ref--4-2!node_modules/purecss/build/pure-min.css": 0,
+          "node_modules/css-loader/lib/css-base.js": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      },
+      "prepreHash": "f7d8041a7385fb8e095a",
+      "preHash": "7444196baabdb8b8ebc9",
+      "hash": "60a448839eb9b13450cc",
+      "moduleHashs": {
+        "c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\index.js!c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\postcss-loader\\src\\index.js??ref--4-2!c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\purecss\\build\\pure-min.css": "182ec2cce91f48b802250dfdde81994f",
+        "c:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\lib\\css-base.js": "69114ac0ff101ae609a82727592bc335"
+      },
+      "chunkHashs": {
+        "0": "ae10211cc3d5466e2930df6c000f6759"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "modules": {
+    "byIdentifier": {
+      "node_modules/mini-css-extract-plugin/dist/loader.js!node_modules/css-loader/index.js!node_modules/postcss-loader/src/index.js??ref--4-2!node_modules/purecss/build/pure-min.css": 0,
+      "node_modules/mini-css-extract-plugin/dist/loader.js!node_modules/css-loader/index.js!node_modules/postcss-loader/src/index.js??ref--4-2!src/main.css": 1,
+      "src/index.js 0de100f58180c27904049b182db85736": 2,
+      "src/lazy.js": 3,
+      "multi ./src": 4,
+      "src/index.js 8eec0ecdbdfd0b2dc8e77d7190b4351e": 2
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4
+    }
+  },
+  "chunks": {
+    "byName": {
+      "main": 0,
+      "manifest": 1,
+      "vendor": 3,
+      "app": 4
+    },
+    "bySource": {
+      "0 src/component.js ./lazy": 2
+    },
+    "usedIds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "prepreHash": "9e143706105551c968ce",
+  "preHash": "cb1ab92c6e0d4ded9437",
+  "hash": "746f08a58330a0cb238d",
+  "moduleHashs": {
+    "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\mini-css-extract-plugin\\dist\\loader.js!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\index.js!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\postcss-loader\\src\\index.js??ref--4-2!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\purecss\\build\\pure-min.css": "af1843681717f292d101bc73ef68cf8f",
+    "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\mini-css-extract-plugin\\dist\\loader.js!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\index.js!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\postcss-loader\\src\\index.js??ref--4-2!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\src\\main.css": "ba5d6938e1e102733ddd1d5e8c538e11",
+    "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\src\\index.js 0de100f58180c27904049b182db85736": "36619649286bd8b652c723c528aa5608",
+    "C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\src\\lazy.js": "8568a38af61dbb20300ece5eec23444a",
+    "css C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\index.js!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\postcss-loader\\src\\index.js??ref--4-2!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\purecss\\build\\pure-min.css 0": "e46cb91caeacad11f0654fd5307dd18b",
+    "css C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\css-loader\\index.js!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\node_modules\\postcss-loader\\src\\index.js??ref--4-2!C:\\Users\\Administrator\\Desktop\\polymer\\webpack-4\\src\\main.css 0": "5c8ff4b5ef763e11edd5e4ab37b8c492"
+  },
+  "chunkHashs": {
+    "0": "130e4bcd3a321162ea8ec141154bd377",
+    "1": "77758e76797a8d2b620dbae015c2e757",
+    "2": "2ee4055826cb43e0f3f37cefa0e0f0fe"
+  },
+  "chunkModuleIds": {
+    "0": [
+      0,
+      "",
+      "",
+      1,
+      2
+    ],
+    "1": [],
+    "2": [
+      3
+    ]
+  }
+}

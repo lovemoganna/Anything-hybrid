@@ -1,2 +1,6 @@
+- bable error
 npm install --save-dev @babel/core
 https://stackoverflow.com/questions/35215461/error-in-cannot-find-module-babel-core-using-react-js-webpack-and-express-s
+
+- TypeError: Cannot read property 'bindings' of null
+https://stackoverflow.com/questions/52092739/upgrade-to-babel-7-cannot-read-property-bindings-of-null/52092788
