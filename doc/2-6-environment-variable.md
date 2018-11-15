@@ -57,11 +57,11 @@ set file path
 ```text
 .
 └── store
-    ├── index.js
+    ├── ssr.js
     ├── store.dev.js
     └── store.prod.js
 ```
-`index.js`
+`ssr.js`
 ```js
 if (process.env.NODE_ENV === "production") {
   module.exports = require("./store.prod");

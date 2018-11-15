@@ -1,3 +1,0 @@
-/*! f24ab7d */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[function(n,e,t){},function(n,e,t){},function(n,e,t){"use strict";t.r(e);t(0),t(1);document.body.appendChild(((n="Hello Purecss!")=>{const e=document.createElement("div");return e.className="pure-button",e.innerHTML=n,e.onclick=(()=>t.e(2).then(t.bind(null,3)).then(n=>{e.textContent=n.default}).catch(n=>{console.error(n)})),e})())}],[[2,1]]]);
-//# sourceMappingURL=main.746f.js.map

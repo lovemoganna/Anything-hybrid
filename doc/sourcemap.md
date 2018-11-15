@@ -34,7 +34,7 @@ optimization.splitChunks.cacheGroups
 
 现在`main.js`有点大.下面我们就给他进行捆绑拆分.分离很久都不会改变的`react`依赖.
 
-webpack.config.js
+webpack.config.js.bak
 
 ```js
 const productionConfig = merge([
@@ -66,7 +66,7 @@ const productionConfig = merge([
 
 可以使用针对node_modules的显式测试重写上面的配置
 
-webpack.config.js
+webpack.config.js.bak
 ```js
 const productionConfig = merge([
   ...

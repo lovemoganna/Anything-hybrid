@@ -1,16 +1,16 @@
-#+TITLE: manage webpack configuration 
+#+TITLE: manage webpack configuration
 #+STYLE: <link rel="stylesheet" type="text/css" href="" background="red" />
 
-* DONE [#B] Possible  ways to manage configuration 
+* DONE [#B] Possible  ways to manage configuration
   CLOSED: [2018-11-02 Fri 11:32]
-** DONE i learn org-mode  
+** DONE i learn org-mode
    CLOSED: [2018-11-02 Fri 08:55] SCHEDULED: <2018-11-01 Thu 06:49>
-** DONE Composing configuration by merging 
+** DONE Composing configuration by merging
    CLOSED: [2018-11-02 Fri 11:33] SCHEDULED: <2018-11-02 Fri 09:20>
 
 - file merge example:08
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 > merge = require("webpack-merge")08
 ...
 > merge(
@@ -20,19 +20,19 @@
 { a: [ 1, 2 ], b: 10, c: 20, d: 421 }
 #+END_SRC08
 
-we could use `webpack-chain` API con-fig webpack 
+we could use `webpack-chain` API con-fig webpack
 08
-#+caption: the methods of mange the webpack con-fig 
+#+caption: the methods of mange the webpack con-fig
 [[file:https://upload-images.jianshu.io/upload_images/7505161-d5598ab91b218522.png]
 08
-** Setting up webpack-merge 
+** Setting up webpack-merge
 - attach webpack-merge to the webpack-demo project
- 
+
 #+BEGIN_SRC text
 npm install webpack-merge --save-dev
 #+END_SRC
 ** Split per Configuration example
-#+BEGIN_SRC 
+#+BEGIN_SRC
 .
 ├── dist
 ├── doc
@@ -40,34 +40,34 @@ npm install webpack-merge --save-dev
 ├── package.json
 ├── package-lock.json
 ├── src
-├── webpack.config.js
- └── webpack.parts.js +
+├── webpack.config.js.bak
+ └── webpack.parts.js.bak +
 #+END_SRC
-** more split example 
+** more split example
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 .
 └── config
     ├── webpack.common.js
     ├── webpack.development.js
-    ├── webpack.parts.js
+    ├── webpack.parts.js.bak
     └── webpack.production.js
 
 #+END_SRC
 
-or 
+or
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 .
 └── config
     ├── parts
     │   ├── devserver.js
     ...
-    │   ├── index.js
+    │   ├── ssr.js
     │   └── javascript.js
     └── ...
 #+END_SRC
 
 ** consume it across multiple projects
- [[https://survivejs.com/maintenance/][SurviveJS] 
+ [[https://survivejs.com/maintenance/][SurviveJS]
 

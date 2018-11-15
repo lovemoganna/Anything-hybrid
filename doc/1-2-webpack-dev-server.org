@@ -1,18 +1,18 @@
 * DONE webpack-dev-server
   CLOSED: [2018-11-01 Thu 21:06] SCHEDULED: <2018-11-01 Thu 19:30>
-** avoid css refresh  
-   use liveReload or Brawsersync plugin 
-** build WDS 
+** avoid css refresh
+   use liveReload or Brawsersync plugin
+** build WDS
    - coulde use `npm run build -- --watch`
-   - wds implements a watch mode 
+   - wds implements a watch mode
    - wds supports HMR(Hot Module Replacement)
-** emitting files from wds 
-   
+** emitting files from wds
+
    - you can use `write-file-webpack-plugin`
-** getting started with wds 
+** getting started with wds
 
    - `npm install webpack-dev-server --save-dev`
-** attaching wds to the project 
+** attaching wds to the project
    - define npm script in package.json
 #+BEGIN_SRC json
 "scripts": {
@@ -21,12 +21,12 @@
 
   "build": "webpack --mode production"
 },
-#+END_SRC      
-** configuring wds through webpack configuration 
+#+END_SRC
+** configuring wds through webpack configuration
 
    - enable additional functionality as blew:
 
-   - attach to host ,port ,open ...etc options in `webpack.config.js`  
+   - attach to host ,port ,open ...etc options in `webpack.config.js.bak`
 
 #+BEGIN_SRC js
 module.exports = {
@@ -51,14 +51,14 @@ module.exports = {
 };
 #+END_SRC
     - need notice the question. if you connection browse with remote host. set the `host` value is `"0,0,0,0,"`
-** dotenv define environment path 
+** dotenv define environment path
    just config different host and port
-** enable  error overlay  
-   
+** enable  error overlay
+
    - 捕获编译的错误.
 
-   - attach overlay to `webpack.config.js` as blew
-     
+   - attach overlay to `webpack.config.js.bak` as blew
+
 #+BEGIN_SRC js
 module.exports = {
   devServer: {
@@ -72,30 +72,30 @@ module.exports = {
 #+END_SRC
 
    get more and better error tips ,you should isntall `error -overlay-webpack-plugin`
-** use nodemon watch webpack config and restart wds on change 
+** use nodemon watch webpack config and restart wds on change
 - install nodemon
   + `npm install nodemon --save-dev`
-- package.json 
+- package.json
 #+BEGIN_SRC json
 "scripts": {
-  "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode development\"",
+  "start": "nodemon --watch webpack.config.js.bak --exec \"webpack-dev-server --mode development\"",
   "build": "webpack --mode production"
 },
 #+END_SRC
-** replace the webpack-serve plugin 
+** replace the webpack-serve plugin
 
    - The official WDS middleware
    - webpack-hot-middleware
    - webpack-isomorphic-dev-middleware
-** output plugins 
+** output plugins
 
 - system-bell-webpack-plugin  --build error have sound
 
-- webpack-notifier -- watch webpack state 
+- webpack-notifier -- watch webpack state
 
-- nyan-progress-webpack-plugin -- beautiful output 
+- nyan-progress-webpack-plugin -- beautiful output
 
-- friendly-errors-webpack-plugin -- show error report 
+- friendly-errors-webpack-plugin -- show error report
 
 - webpack-dashboard --commander most  love
 

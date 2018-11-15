@@ -2,50 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9293e605-1e0a-4d6f-9912-4a30a8339dcf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/2-3-clean-build-path.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/2-4-webpack-optimizing.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/2-5-tree-shaking.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/2-6-environment-variable.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/2-7-separating-manifest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/2-8-build-analysis.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/2-9-performance.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/code-splitting.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/sourcemap.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lazy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shake.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/store.dev.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/store.prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ *NeoTree*" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.browserslistrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bul.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dev.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.projectile" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/1-1-install-webpack.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/1-2-webpack-dev-server.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/1-3-manage-webpack-config.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/1-4-webpack-styling.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/1-5-separating-css.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/1-6-eliminating-unused-css.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/all-plugin.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/webpack.parts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/bug/babel_loader_version_error" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/bug/node-sass-bug.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.tern-port" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/another.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ssr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack.ssr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/1996546b983622618a91.hot-update.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/2.746f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/2.746f.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/9e143706105551c968ce.hot-update.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.746f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.746f.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/manifest.746f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/manifest.746f.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/undefined" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/1-1-install-webpack.org" beforeDir="false" afterPath="$PROJECT_DIR$/doc/1-1-install-webpack.org" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/1-2-webpack-dev-server.org" beforeDir="false" afterPath="$PROJECT_DIR$/doc/1-2-webpack-dev-server.org" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/1-3-manage-webpack-config.org" beforeDir="false" afterPath="$PROJECT_DIR$/doc/1-3-manage-webpack-config.org" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/2-6-environment-variable.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/2-6-environment-variable.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/sourcemap.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/sourcemap.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.parts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.parts.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.parts.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -69,11 +53,12 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="babel_loader_version_error" value="1" />
-          <entry key="babelrc" value="2" />
+          <entry key="babelrc" value="3" />
+          <entry key="bak" value="1" />
           <entry key="css" value="2" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="4" />
-          <entry key="js" value="43" />
+          <entry key="js" value="49" />
           <entry key="json" value="10" />
           <entry key="md" value="14" />
           <entry key="mmd" value="1" />
@@ -86,21 +71,22 @@
           <entry key="CSS" value="2" />
           <entry key="Git file" value="1" />
           <entry key="HTML" value="4" />
-          <entry key="JSON" value="12" />
-          <entry key="JavaScript" value="43" />
+          <entry key="JSON" value="13" />
+          <entry key="JavaScript" value="49" />
           <entry key="Markdown" value="14" />
           <entry key="NB Mind Map" value="1" />
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="babel_loader_version_error" value="23" />
-          <entry key="babelrc" value="9" />
+          <entry key="babelrc" value="12" />
+          <entry key="bak" value="13" />
           <entry key="css" value="1" />
           <entry key="html" value="23" />
-          <entry key="js" value="2111" />
-          <entry key="json" value="61" />
+          <entry key="js" value="2238" />
+          <entry key="json" value="74" />
           <entry key="md" value="2390" />
         </counts>
       </usages-collector>
@@ -108,10 +94,10 @@
         <counts>
           <entry key="CSS" value="1" />
           <entry key="HTML" value="23" />
-          <entry key="JSON" value="70" />
-          <entry key="JavaScript" value="2111" />
+          <entry key="JSON" value="86" />
+          <entry key="JavaScript" value="2238" />
           <entry key="Markdown" value="2390" />
-          <entry key="PLAIN_TEXT" value="23" />
+          <entry key="PLAIN_TEXT" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -127,23 +113,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
+        <entry file="file://$PROJECT_DIR$/src/ssr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="159">
+              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#45#62#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.ssr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="151" column="33" lean-forward="true" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
+            <state relative-caret-position="207">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -151,71 +136,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webpack.parts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+            <state relative-caret-position="92">
+              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+            <state relative-caret-position="230">
+              <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/2-8-build-analysis.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="138">
-                <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/2-7-separating-manifest.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="138">
-                <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shake.js">
+        <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+            <state relative-caret-position="343">
+              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/store.dev.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/store.prod.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -239,7 +181,6 @@
         <option value="$PROJECT_DIR$/doc/code-splitting.md" />
         <option value="$PROJECT_DIR$/doc/2-3-clean-build-path.md" />
         <option value="$PROJECT_DIR$/src/main.css" />
-        <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/log/bug/babel_loader_version_error" />
         <option value="$PROJECT_DIR$/src/shake.js" />
         <option value="$PROJECT_DIR$/doc/2-4-webpack-optimizing.md" />
@@ -247,7 +188,6 @@
         <option value="$PROJECT_DIR$/doc/2-5-tree-shaking.md" />
         <option value="$PROJECT_DIR$/store/store.prod.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/component.js" />
         <option value="$PROJECT_DIR$/doc/2-6-environment-variable.md" />
         <option value="$PROJECT_DIR$/doc/2-7-separating-manifest.md" />
@@ -256,9 +196,15 @@
         <option value="$PROJECT_DIR$/doc/2-9-performance.md" />
         <option value="$PROJECT_DIR$/store/index.js" />
         <option value="$PROJECT_DIR$/store/store.dev.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/webpack.parts.js" />
+        <option value="$PROJECT_DIR$/webpack.config.js.bak" />
+        <option value="$PROJECT_DIR$/src/another.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/.babelrc" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/webpack.ssr.js" />
+        <option value="$PROJECT_DIR$/webpack.parts.js" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -279,9 +225,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="183" />
+    <option name="x" value="13" />
     <option name="width" value="1161" />
-    <option name="height" value="728" />
+    <option name="height" value="743" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -299,6 +245,16 @@
             <path>
               <item name="webpack-4" type="b2602c69:ProjectViewProjectNode" />
               <item name="webpack-4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webpack-4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webpack-4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webpack-4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webpack-4" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -346,23 +302,23 @@
       <option name="presentableId" value="Default" />
       <updated>1542185556660</updated>
       <workItem from="1542185561938" duration="3200000" />
-      <workItem from="1542189102033" duration="36092000" />
+      <workItem from="1542189102033" duration="42716000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39292000" />
+    <option name="totallyTimeSpent" value="45916000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991453" visible="true" weight="0.21486989" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991453" visible="true" weight="0.17918216" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.50085473" side_tool="true" weight="0.27975586" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3284553" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32899022" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -479,13 +435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.babelrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -645,38 +594,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
+    <entry file="file://$PROJECT_DIR$/store/store.dev.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.parts.js.bak">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="1334">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ssr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#45#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/store.dev.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/webpack.ssr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+        <state relative-caret-position="207">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.parts.js">
+    <entry file="file://$PROJECT_DIR$/static/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.babelrc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        <state relative-caret-position="46">
+          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="151" column="33" lean-forward="true" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
+        <state relative-caret-position="345">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js.bak">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/another.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.parts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
         </state>
       </provider>
     </entry>
