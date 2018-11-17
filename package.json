@@ -1,0 +1,56 @@
+{
+  "name": "learn-more",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "b:build": "babel --delete-dir-on-start src --out-dir lib",
+    "build": "babel src/ -d lib/",
+    "prepublish": "yarn run build",
+    "bundle:build": "microbundle",
+    "lint:js": "eslint . --fix",
+    "format": "prettier --write '**/*.{js,css,md}'",
+    "test": "jest",
+    "commit": "git-cz",
+    "commitmsg": "validate-commit-msg"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-flow": "^6.23.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-vue": "^4.7.1",
+    "flow-bin": "^0.86.0",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "cz-emoji": {}
+    },
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100,
+      "subjectPattern": "^[A-Z]+-[0-9]+ - .*",
+      "subjectPatternErrorMsg": "Subject must be in format 'CMS-123 - Commit message'",
+      "helpMessage": ""
+    }
+  }
+}
