@@ -32,4 +32,8 @@ https://github.com/commitizen/cz-cli
 
 https://mijingo.com/blog/how-to-create-git-aliases
 
+## git文档
+
+https://www.atlassian.com/git/tutorials/merging-vs-rebasing
+
 
