@@ -1,0 +1,13 @@
+# ignore node isntalled package
+node_modules/
+
+# ignore build success file 
+dist/ 
+
+# yarn 
+yarn*
+
+# log
+logs
+
+*.log
