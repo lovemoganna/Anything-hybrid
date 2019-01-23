@@ -1,0 +1,45 @@
+* Lisp Processing 
+** Lisp list 
+*** word list
+ #+BEGIN_SRC emacs-lisp
+   '(rose
+     violet 
+     daisy
+     buttercup)
+ #+END_SRC
+
+ #+RESULTS:
+ | rose | violet | daisy | buttercup |
+*** number lisp
+#+BEGIN_SRC emacs-lisp
+(+ 2 2)
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+#+BEGIN_SRC emacs-lisp
+'(this list has (a list inside of it)(two))
+#+END_SRC
+
+#+RESULTS:
+| this | list | has | (a list inside of it) | (two) |
+*** Lisp Atoms 
+Lisp中,上面的一个个单词 又叫做 =Atom= (原子).它的意义就是"不可分割的"
+
+就 =lisp= 而言,我们在列表中使用的单词不能分成任何较小的部分.
+
+在列表中, /Atom/ 通过空格彼此分开.他们可以在括号旁边.
+
+#+BEGIN_SRC emacs-lisp
+() ;;称为Atom和List
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC emacs-lisp
+'(this list includes "text btwwen quotation marks.")
+#+END_SRC
+
+#+RESULTS:
+| this | list | includes | text btwwen quotation marks. |

@@ -1,0 +1,130 @@
+* DONE Evaluation method 
+  CLOSED: [2019-01-23 Wed 17:27]
+=C-x C-e=
+
+** buffer name 
+=buffer-name= & =buffer-file-name= is file & cache 
+
+buffer-name 返回的名称与其引用的文件名相同.
+
+buffer-file-name 返回的名称是文件的完整路径名.
+
+文件和缓冲区是两个不同的实体.
+
+文件是永久记录在计算机中的信息.只要你不删除,就没事.
+
+缓冲区是emacs内部的信息,它将会在编辑回话结束的时候消失.或者在你=kill buffer=的时候
+
+你不保存缓冲区,对缓冲区的更改并不会更改文件.
+
+#+BEGIN_SRC emacs-lisp
+(buffer-name);;在这里执行 C-c C-e就会印证上面的理论
+(buffer-file-name)
+#+END_SRC
+
+** buffer exist meaning 
+在早期的计算机当中,缓冲区缓冲了文件与计算机中央的处理单元之间交互.
+
+拿着文件的鼓或带和中央处理单元是彼此非常不同的设备，以自己的速度，以喷射的方式工作。
+
+缓冲区使它们能够有效地协同工作。最终，缓冲区从一个中间人，一个临时的控制地点发展成为工作的地方。
+
+=*scratch*= & =*help*= 不访问任何文件.
+
+if you write behind content in *scratch* buffer 
+
+execute command is =C-u C-x C-e=
+
+#+begin_src emacs-lisp
+(buffer-name)"*scratch*"
+#+end_src
+
+** Getting buffer 
+=current buffer=,如果在代码中使用此函数,则获得是缓冲区本身.
+
+名称和名称所引用的对象彼此不同.
+
+name - value
+
+比如说,你是一个大明星.叫 =lucky=,偏偏有狗仔给你来一张卡片叫 =L U C K Y=.你知道,这个狗仔说的就是你.为什么?你的名字(name)能够和狗仔的卡片的value能够对应上.
+
+所以我们可以扯到 =缓冲区= 上来,暂存缓冲区的名称是 =scratch=,但是名称不是缓冲区.
+
+要获得缓冲区本身,需要使用 =current-buffer= 函数
+
+#+BEGIN_SRC 
+(other-buffer) ;;这将会返回最近访问的一个buffer的名字
+#+END_SRC
+
+in =scratch= buffer test 
+
+#+begin_src emacs-lisp
+(current-buffer)#<buffer *scratch*>
+#+end_src
+
+** Switching buffer 
+   =SPC b b= or =C-x b= 这两个键都可以快速的切换buffer.相当于lisp解释器中的 =practicing evaluation= =switch-to-buffer=
+   
+在当前的buffer和上一个buffer之间来回跳转.
+
+#+BEGIN_SRC emacs-lisp
+(switch-to-buffer (other-buffer))
+#+END_SRC
+
+=switch-to=buffer= 是list的第一个元素,所以lisp解释器会将其视为一个函数并执行附加到它的指令.
+
+**注意函数运行的顺序**
+
+但是在此之前,解释器会注意到他的括号中的 =other-buffer=符号,并首先处理该符号.
+
+=C-x o RET y= 
+
+#+BEGIN_SRC emacs-lisp
+  (switch-to-buffer (other-buffer (current-buffer)t))
+#+END_SRC
+
+#+RESULTS:
+: #<buffer *Org Babel Results*>
+
+** Buffer Size and the Location of point 
+
+#+BEGIN_SRC emacs-lisp
+(buffer-size);;当前缓冲区的大小
+#+END_SRC
+
+#+RESULTS:
+: 1734
+
+#+BEGIN_SRC emacs-lisp
+  (point);;缓冲区point的字符数
+#+END_SRC
+
+#+RESULTS:
+: 1783
+#+BEGIN_SRC emacs-lisp
+  (point-min);;当前缓冲区point的最小允许值的值
+#+END_SRC
+
+#+RESULTS:
+: 1
+#+BEGIN_SRC emacs-lisp
+  (point-max)
+#+END_SRC
+
+#+RESULTS:
+: 1926
+
+** exercise
+   找到您正在使用的文件并向中间移动。在文件中查找其缓冲区名称，文件名，长度和位置。
+
+   #+BEGIN_SRC emacs-lisp
+     (current-buffer)
+     (buffer-name)
+     (buffer-file-name)
+     (buffer-size)
+     (point-min)
+     ;;(point-max) 
+   #+END_SRC
+
+   #+RESULTS:
+   : 1
