@@ -43,3 +43,57 @@ Lisp中,上面的一个个单词 又叫做 =Atom= (原子).它的意义就是"�
 
 #+RESULTS:
 | this | list | includes | text btwwen quotation marks. |
+
+如你所见,lisp也支持字符串.
+*** WhiteSpace in list 
+
+    #+BEGIN_SRC emacs-lisp
+      '(this list
+             looks like this)
+    #+END_SRC
+
+    #+RESULTS:
+    | this | list | looks | like | this |
+    |      |      |       |      |      |
+    这个 ='=的意思是,单引号在列表之前的时候,他告诉lisp不对列表做任何事情,除了在写入的时把他拿走.
+    
+    #+BEGIN_SRC emacs-lisp
+      (this list
+            looks like this)
+    #+END_SRC
+
+    如list前面不加 ='= ,只对 =list= 的第一项有作用.但是没结果.没什么毛用.之前我们测试过一个
+
+    #+BEGIN_SRC emacs-lisp
+      (+ 2 2)
+    #+END_SRC
+
+    #+RESULTS:
+    : 4
+    
+    上面的这种写法等价于下面的这种写法
+
+    #+BEGIN_SRC emacs-lisp
+      '(this list looks like this)
+    #+END_SRC
+
+    #+RESULTS:
+    | this | list | looks | like | this |
+
+    空格的存在只是为了人民便于阅读.
+*** 缩进的控制
+
+    一般情况下我们使用 =TAB=,但是我们应该喜欢 =C-M \= ,这样会使全部的代码块进行格式化.
+*** generate error message 
+    #+BEGIN_SRC emacs-lisp
+      (this is an unquoted list)
+    #+END_SRC
+    
+=C-x C-e= test the block ,you should jump =*Backtrace*= see detail content.
+[[https://upload-images.jianshu.io/upload_images/7505161-d595add80d142981.png?imageMogr2/auto-orient/strip%257CimageView2/2/w/1240][img]]
+
+https://upload-images.jianshu.io/upload_images/7505161-d595add80d142981.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240
+
+这个 =function= 是一个非常重要的词,我们可以说一个函数是计算机的一组指令来定义它.来告诉计算机做什么事.
+
+我们可以从=void-function= ,功能（即单词'this'）没有计算机执行的任何指令集的定义
