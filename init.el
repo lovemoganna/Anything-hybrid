@@ -72,8 +72,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(yasnippet-snippets nodejs-repl vue-mode stylus-mode ob-async youdao-dictionary ob-sql graphviz-dot
-                                                  )
+   dotspacemacs-additional-packages '(yasnippet-snippets nodejs-repl vue-mode stylus-mode ob-async youdao-dictionary) 
+                                                  
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -145,9 +145,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-nord
-                         spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(doom-molokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -330,6 +328,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  
   ;; configuration prettier
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
@@ -343,8 +342,12 @@ you should place your code here."
                            ))
   (setq powerline-default-separator 'arrow)
   (evil-set-initial-state 'ivy-occur-grep-mode 'normal)
+  
   ;; first load todo org file when startup emacs
   (find-file "~/todo.org")
+
+  ;;first load show org agenda
+  (org-agenda nil "a")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -374,7 +377,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files (quote ("~/todo.org")))
- '(org-todo-keywords (quote ((sequence "WARING(w)" "IN-PROGRESSING(i)" "TODO(t)" "DONE(d)"))))
+ '(org-todo-keywords
+   (quote
+    ((sequence "WARING(w)" "IN-PROGRESSING(i)" "TODO(t)" "DONE(d)"))))
  '(package-selected-packages
    (quote
     (xterm-color web-mode unfill tagedit smeargle slim-mode shell-pop scss-mode sass-mode rainbow-mode rainbow-identifiers pug-mode orgit mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow less-css-mode haml-mode gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-popup flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor eshell-z eshell-prompt-extras esh-help emmet-mode diff-hl company-web web-completion-data company-statistics company color-identifiers-mode auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy))))
