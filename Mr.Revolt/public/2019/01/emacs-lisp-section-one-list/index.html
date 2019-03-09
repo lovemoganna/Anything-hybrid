@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Mr.Revolt">
+<meta name="keywords" content="">
+<meta name="description" content="Section one &mdash; list">
+
+
+<meta property="og:description" content="Section one &mdash; list">
+<meta property="og:type" content="article">
+<meta property="og:title" content="emacs-lisp-section-one-list">
+<meta name="twitter:title" content="emacs-lisp-section-one-list">
+<meta property="og:url" content="103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+<meta property="twitter:url" content="103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+<meta property="og:site_name" content="Mr.Revolt">
+<meta property="og:description" content="Section one &mdash; list">
+<meta name="twitter:description" content="Section one &mdash; list">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-01-27T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-02-03T20:13:32">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="EMACS-LISP">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@luoyupiaoshang">
+
+
+  <meta name="twitter:creator" content="@luoyupiaoshang">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/84eb13f826e281235cc2a60eda437201?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/84eb13f826e281235cc2a60eda437201?s=640">
+
+
+    <title>emacs-lisp-section-one-list</title>
+
+    <link rel="icon" href="103.224.142.219/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="103.224.142.219/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="103.224.142.219/">Mr.Revolt</a>
+  </div>
+  
+    
+      <a class="header-right-icon open-algolia-search"
+         href="103.224.142.219/#about">
+    
+    
+      <i class="fa fa-lg fa-search"></i>
+    
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="103.224.142.219/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/84eb13f826e281235cc2a60eda437201?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">Mr.Revolt</h4>
+        
+          <h5 class="sidebar-profile-bio">Stay away from the money society and explore the value of self</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+    
+      
+      
+      <span class="sidebar-button-desc">emacs-lisp-section-one-list</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/2019/01/org-mode-uml-test/">
+    
+      
+      
+      <span class="sidebar-button-desc">org-mode-uml-test</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="103.224.142.219/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      emacs-lisp-section-one-list
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-01-27T00:00:00&#43;08:00">
+        
+  一月 27, 2019
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Section one &mdash; list</p>
+
+<h2 id="lisp">Lisp</h2>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#lisp">Lisp</a>
+<ul>
+<li><a href="#word-list">word list</a></li>
+<li><a href="#number-lisp">number lisp</a></li>
+<li><a href="#lisp-atoms">Lisp Atoms</a></li>
+<li><a href="#whitespace-in-list">WhiteSpace in list</a></li>
+<li><a href="#缩进的控制">缩进的控制</a></li>
+<li><a href="#generate-error-message">generate error message</a></li>
+<li><a href="#symbol-names-and-function-definitions">Symbol Names and Function Definitions</a></li>
+<li><a href="#lisp-intercepter">Lisp Intercepter</a>
+<ul>
+<li><a href="#并发症-complications">并发症-Complications</a></li>
+<li><a href="#字节编译-byte-compiling">字节编译-Byte Compiling</a></li>
+</ul></li>
+<li><a href="#evaluation">Evaluation</a>
+<ul>
+<li><a href="#lisp解释器是如何干活的">Lisp解释器是如何干活的?</a></li>
+<li><a href="#评估list">评估List</a></li>
+</ul></li>
+<li><a href="#variable">Variable</a>
+<ul>
+<li><a href="#fill-column-示例变量">fill-column 示例变量</a></li>
+<li><a href="#void-function">void function</a></li>
+<li><a href="#error-message-for-a-symbol-without-a-value">Error Message for a Symbol without a Value</a></li>
+</ul></li>
+<li><a href="#arguments">Arguments</a>
+<ul>
+<li><a href="#参数的数据类型">参数的数据类型</a></li>
+<li><a href="#变量作为变量或列表的值">变量作为变量或列表的值</a></li>
+<li><a href="#可变参数数量">可变参数数量</a></li>
+<li><a href="#使用错误的类型对象作为参数">使用错误的类型对象作为参数</a></li>
+<li><a href="#message-功能">Message 功能</a></li>
+</ul></li>
+<li><a href="#设置变量的值">设置变量的值</a>
+<ul>
+<li><a href="#using-set">Using set</a></li>
+<li><a href="#using-setq">Using setq</a></li>
+<li><a href="#counting">Counting</a></li>
+</ul></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h3 id="word-list">word list</h3>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="o">&#39;</span><span class="p">(</span><span class="nv">rose</span>
+  <span class="nv">violet</span>
+  <span class="nv">daisy</span>
+  <span class="nv">buttercup</span><span class="p">)</span></code></pre></div>
+<h3 id="number-lisp">number lisp</h3>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="o">&#39;</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">has</span> <span class="p">(</span><span class="nv">a</span> <span class="nf">list</span> <span class="nv">inside</span> <span class="nv">of</span> <span class="nv">it</span><span class="p">)(</span><span class="nv">two</span><span class="p">))</span></code></pre></div>
+<h3 id="lisp-atoms">Lisp Atoms</h3>
+
+<p>Lisp中,上面的一个个单词 又叫做 <code>Atom</code> (原子).它的意义就是&rdquo;不可分割的&rdquo;</p>
+
+<p>就 <code>lisp</code> 而言,我们在列表中使用的单词不能分成任何较小的部分.</p>
+
+<p>在列表中, <em>Atom</em> 通过空格彼此分开.他们可以在括号旁边.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">()</span> <span class="c1">;;称为Atom和List</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="o">&#39;</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">includes</span> <span class="s">&#34;text btwwen quotation marks.&#34;</span><span class="p">)</span></code></pre></div>
+<p>如你所见,lisp也支持字符串.</p>
+
+<h3 id="whitespace-in-list">WhiteSpace in list</h3>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="o">&#39;</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span>
+       <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span></code></pre></div>
+<p>这个 =&lsquo;=的意思是,单引号在列表之前的时候,他告诉lisp不对列表做任何事情,除了在写入的时把他拿走.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span>
+      <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span></code></pre></div>
+<p>如list前面不加 <code>'</code> ,只对 <code>list</code> 的第一项有作用.但是没结果.没什么毛用.之前我们测试过一个</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span></code></pre></div>
+<p>上面的这种写法等价于下面的这种写法</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="o">&#39;</span><span class="p">(</span><span class="nv">this</span> <span class="nf">list</span> <span class="nv">looks</span> <span class="nv">like</span> <span class="nv">this</span><span class="p">)</span></code></pre></div>
+<p>空格的存在只是为了人们便于阅读.</p>
+
+<h3 id="缩进的控制">缩进的控制</h3>
+
+<p>一般情况下我们使用 <code>TAB</code>,但是我们应该喜欢 <code>C-M \</code> ,这样会使全部的代码块进行格式化.</p>
+
+<h3 id="generate-error-message">generate error message</h3>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">this</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">unquoted</span> <span class="nf">list</span><span class="p">)</span></code></pre></div>
+<p><code>C-x C-e</code> test the block ,you should jump <code>*Backtrace*</code> see detail content.</p>
+
+<figure>
+    <img src="https://upload-images.jianshu.io/upload%5Fimages/7505161-63cb12679ba6581d.png"/> 
+</figure>
+
+
+<p><code>eval</code> 是 <code>evolutiona</code> 的缩写, <code>eval-last-sexp=的意思是 =symbolic expression</code> 的缩写,也就是评估最后一个符号表达式.</p>
+
+<p>emacs评估代码的行为是自下而上的,也就是最上面的结果是最终评估的结果.</p>
+
+<figure>
+    <img src="https://upload-images.jianshu.io/upload%5Fimages/7505161-c4b800430333454c.png"/> 
+</figure>
+
+
+<p>Lisp解释器试图评估 <code>list</code> 的第一个 <code>Atom</code>, 也就是 <code>this</code>,正是这个行产生了错误信息 <code>void-function this</code>.</p>
+
+<p>The message contains the words <em>void-function</em> and <em>this</em></p>
+
+<p>这个 <code>function</code> 是一个非常重要的词,我们可以说一个函数是计算机的一组指令来定义它.来告诉计算机做什么事.</p>
+
+<p>我们可以从 <code>void-function this</code> 这个错误来理解错误信息 ,功能（即单词&rsquo;this&rsquo;）没有计算机执行的任何指令集的定义. 现在 <code>this</code> 就是一个  <code>funciton</code>,该指令无效.</p>
+
+<p><code>void-function</code> 涵盖了 =emacs-lisp=的实现方式,当附加的函数定义没有对应的可识别的符号(例如 <code>`</code>),那么包含指令的位置就会无效.</p>
+
+<p>再比如说,由于可以成功的执行 <code>(+ 2 2)</code> ,通过评估它,我们可以推断出 <code>+</code> 这个符号可以被 <code>emacs-lisp</code> 解释器识别,并且可以防止Emacs进入调试器.</p>
+
+<p>我们可能会看到下面这段错误.</p>
+<div class="highlight"><pre class="chroma"><code class="language-nil" data-lang="nil">Symbol&#39;s function definition is void: this</code></pre></div>
+<p>其中这个 <code>Symbol</code> ,它指的是 <code>list</code> 中的第一个原子 <code>this</code>,单词 <code>function</code> 告诉计算机该执行什么指令.</p>
+
+<p>所以上面的错误信息可以理解为 <code>this这个Symbol的函数定义是无效的</code> ,Symbol(即 <code>this</code>)缺乏计算机执行的指令.</p>
+
+<h3 id="symbol-names-and-function-definitions">Symbol Names and Function Definitions</h3>
+
+<p>emacs-lisp中的一个特性: Symbol就像计算机执行的指令集本身一样.
+这个Symbol 可能暂时用作定位定义指令集的方式.
+但是我们人看到的是可以找到指令的名称.</p>
+
+<p>下面的解释可能会抽象.</p>
+
+<p>假设我叫&rdquo;Bob&rdquo;,但是我的名字不是&rdquo;B&rdquo;,&ldquo;o&rdquo;,&ldquo;b&rdquo;.但是他又和我的名字相关,所以可以用来指向我.
+类似于搜索,你输入&rdquo;落雨&rdquo;,就会出现&rdquo;落雨飘殇&rdquo;的选项.</p>
+
+<p>所以还是那个键值对的道理. (key-value)</p>
+
+<ul>
+<li>在lisp当中,一组指令可以附加到多个名称,比如说,用于计算数字相加的Symbol <code>+</code> ,可以链接到 Symbol <code>plus</code> 和 <code>+</code> .</li>
+<li>Symbol一次只能附加一个函数定义,否则,计算机将混淆使用那个定义. 要是人,世界上只有一个我,我所拥有的一切都可以轻易的改变.</li>
+<li>通常以 <code>标识函数</code> 所属的Emacs部分的方式命名Symbol.</li>
+</ul>
+
+<h3 id="lisp-intercepter">Lisp Intercepter</h3>
+
+<p>Lisp解释器首先检查 <code>list</code> 前面是否有引号,如果前面有引号,解释器就会返回我们一个 <code>list</code>.
+如果没有引号,解释器会查看 <code>list</code> 中的第一个元素并检查它是否具有函数意义. 如果有意义,则解释器执行函数定义中的指令.否则,解释器会输出错误信息.</p>
+
+<h4 id="并发症-complications">并发症-Complications</h4>
+
+<p>这一点我们稍后再进行测试,先看看有什么问题存在.</p>
+
+<ul>
+<li>lisp解释器还可以评估未引用的符号,并且没有围绕他的括号.lisp解释器将尝试将符号的值确定为变量.</li>
+<li>某些功能不常见而且不能以通常的方式工作.没有被调用( <code>called</code> )的称之为特殊形式.</li>
+<li><code>宏</code> 的出现,宏是lisp中定义的构造,它与函数的不同之处在于它将lisp表达式转换为另一个要用来代替原始表达式 <code>求值</code> 的表达式.
+
+<ul>
+<li><code>if</code> 是一种特殊形式,但是有时候也是一个 <code>宏</code></li>
+<li><code>defun</code> 是一种特殊形式,但现在他是一个 <code>宏</code></li>
+</ul></li>
+</ul>
+
+<p>如果Lisp解释器正在查看的函数如果是 <code>list</code> 的一部分,并且这个函数不是特殊形式,则lisp解释器会查看 <code>list</code> 中是否有 <code>list</code>.</p>
+
+<p>如果有一个内部的 <code>list</code> ,lisp解释器首先会找出它应该对内部的 <code>list</code> 做什么,然后它在外部的 <code>list</code> 上工作.</p>
+
+<p>如果内部的 <code>list</code> 中嵌入了另一个 <code>list</code>,则它应该在另一个 <code>list</code> 上先工作. 也就是说 <code>lisp解释器总是首先在最里面的list上工作</code>.</p>
+
+<p>否则,lisp解释器将会从一个表达式到一个表达式从左到右的工作.</p>
+
+<h4 id="字节编译-byte-compiling">字节编译-Byte Compiling</h4>
+
+<ul>
+<li>专门用来处理代码的速度.</li>
+</ul>
+
+<p>首先,Lisp解释器能够解释两种实体: 1.人类可读的代码. 2.特殊处理的代码-字节编译代码.这是人类无法读取的代码.</p>
+
+<p>后者要比人类可读的代码的运行速度要快.</p>
+
+<p>我们可以手工将人工可读的代码转换成字节编译的代码.</p>
+<div class="highlight"><pre class="chroma"><code class="language-nil" data-lang="nil">M-x byte-compile-file</code></pre></div>
+<p>字节编译的代码通常存储在以 <code>.elc</code> 为后缀的文件中.但是最终要读取的文件是以 ~.el~为后缀的文件.</p>
+
+<h3 id="evaluation">Evaluation</h3>
+
+<p>当Lisp解释器处理表达式的时候,激活这个行为的术语称为评估(也就是缩写的Eval)</p>
+
+<h4 id="lisp解释器是如何干活的">Lisp解释器是如何干活的?</h4>
+
+<p>在评估表达式之前,Lisp解释器很可能通过执行函数定义中找到指令返回计算机生成的值,如果这个函数表达式有错误,那肯定会出现错误信息的提示.</p>
+
+<p>反正正常情况下,你在运行 <code>s表达式</code> 的时候,解释器会返回一个值.</p>
+
+<h4 id="评估list">评估List</h4>
+
+<p>就像我们之前所说的,Lisp解释器在评估 <code>List</code> 的时候,如果这个 <code>List</code> 内部还存在一个 <code>list</code>,那么Lisp解释器肯定会先评估内部的 <code>list</code> ,并且把内部 <code>List</code> 的评估结果,作为评估外部 <code>list</code> 的评估信息.</p>
+
+<p>也就是说,他们返回的值由外部表达式使用.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="p">(</span><span class="nf">+</span> <span class="mi">3</span> <span class="mi">3</span><span class="p">))</span></code></pre></div>
+<p>下面是上面这段代码的解释:</p>
+
+<p>Lisp解释器首先计算内部表达式(+ 3 3)，为其返回值6; 然后它评估外部表达式，就像它被写入一样(+ 2 6)，返回值8.由于没有更多的封闭表达式要进行求值，解释器会在echo区域中打印该值。</p>
+
+<p>再说一下下面这个快捷键的意思</p>
+<div class="highlight"><pre class="chroma"><code class="language-nil" data-lang="nil">C-x C-e</code></pre></div>
+<p>全称就是 <code>eval-last-sexp</code>,该命令是评估最后一个符号表达式的.</p>
+
+<p>如果你将光标放在紧跟在表达式后面的空白行的开头,键入 <code>C-x C-e</code>,会出现结果8. 如果你将光标放在最里面的括号后面.会出现结果 6.这是因为该命令会先计算表达式 (+ 3 3)</p>
+
+<h3 id="variable">Variable</h3>
+
+<p>Emacs lisp中,符号可以附加一个值,就像它可以附加一个函数定义一样.</p>
+
+<p>但是这二者是不一样的.</p>
+
+<ul>
+<li>函数定义: 计算机将遵循的一组指令.</li>
+<li>值: 可以变化.</li>
+</ul>
+
+<p>Symbol 的值可以是Lisp中的任何表达式: Symbol,math,list,String.</p>
+
+<p>具有值的Symbol通常称为变量.</p>
+
+<p>Symbol 可以同时具有函数定义和附加值.</p>
+
+<p>北京,可以称之为 首都.也可以附加一个名称: 打工者的无聊之地.</p>
+
+<p>另外一个角度来讲,可以将 Symbol 想象为 抽屉柜.函数定义放在一个抽屉中,值放在一个抽屉中.</p>
+
+<p>可以在不影响保持功能定义的抽屉内容的情况下更改保持值的抽屉中的内容.</p>
+
+<p>也就是说 你不能改变 北京 是 &ldquo;首都&rdquo;的功能,但是你可以改变 北京 是&rdquo;打工者的无聊之地&rdquo;的值. 你有一天发达了,还可以把北京 改成 &ldquo;有钱人的钱滚钱梦想圣地&rdquo;.基本就是这么个事.</p>
+
+<ul>
+<li>fill-column</li>
+<li>void-function 没有 <code>function</code> 的Symbol的错误消息</li>
+<li>void variables 没有值的 Symbol的错误消息</li>
+</ul>
+
+<h4 id="fill-column-示例变量">fill-column 示例变量</h4>
+
+<p>该变量 <code>fill-column</code> 说明了一个附加了值的 Symbol:</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="nv">fill-column</span></code></pre></div>
+<h4 id="void-function">void function</h4>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">fill-column</span><span class="p">)</span></code></pre></div>
+<p>当我们评估 <code>fill-column</code> 的时候,将它的值作为变量的时候,我们没有在括号周围放置括号.</p>
+
+<p>这是因为我们不打算将它用作函数名.</p>
+
+<p>如果fill-column是list的第一个或者唯一的元素,Lisp解释器将尝试找到附加到它的函数定义.</p>
+
+<p>但是 <code>fill-column</code> 没有 <code>function</code> 定义.</p>
+
+<h4 id="error-message-for-a-symbol-without-a-value">Error Message for a Symbol without a Value</h4>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span></code></pre></div>
+<p>如果你把光标放在第一个 2 的前面,就会遇到 Error错误提示信息.</p>
+
+<figure>
+    <img src="https://upload-images.jianshu.io/upload%5Fimages/7505161-9cb1a03d34121e01.png"/> 
+</figure>
+
+
+<p>这与我们之前遇到的错误 <code>Debugger entered--Lisp error: (void-function this)</code> 不同.</p>
+
+<p>在这种情况下，函数没有值作为变量; 而在另一个错误消息中，函数（单词&rsquo;this&rsquo;）没有定义。</p>
+
+<p>在这个实验中，我们所做的是让Lisp解释器评估 <code>+</code>,并查找变量的值而不是函数定义。</p>
+
+<p>我们是将光标放在Symbol后面的,并非直接放在最后面的封闭括号之后来评估代码的.</p>
+
+<p>Lisp解释器评估了前面的S表达式,在这种情况下, <code>+</code> 本身就是这样.</p>
+
+<p>由于 <code>+</code> 没有绑定到它的值,只有函数定义,错误消息报告Symbol的值作为变量是无效的.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>还是那个简单的例子</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span></code></pre></div>
+<p>Lisp解释器的作用就是添加 <code>+</code> 这个Symbol后面的两个数字.</p>
+
+<p><code>+</code> 后面的数字就是函数的参数,这些数字就是赋予或者传递给函数的信息.</p>
+
+<p><code>Argument</code> 在英文里面指的就是两个人争论,但是在编程世界里面指的是提供函数的信息,在现在的情况下,指的是 <code>+</code>.</p>
+
+<p>在Lisp中,函数的参数指的就是函数后面的 <code>Atom</code> 或者 <code>List</code>.</p>
+
+<p>评估这些原子或列表返回的值将传递给函数.</p>
+
+<ul>
+<li>Data Types 传递给函数的数据类型</li>
+<li>Args as variable or list 参数可以是变量或者列表的值</li>
+<li>variable number of Arguments 某些函数可能采用可变数量的参数</li>
+<li>Wrong Type of Argument 将错误类型的参数传递给函数</li>
+<li>message 发送有用功能的消息</li>
+</ul>
+
+<h4 id="参数的数据类型">参数的数据类型</h4>
+
+<p>传递给函数的数据类型取决于它使用的信息类型.</p>
+
+<ul>
+<li>拼接字符串</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;abc&#34;</span> <span class="s">&#34;def&#34;</span><span class="p">)</span></code></pre></div>
+<ul>
+<li>切割字符串</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">substring</span> <span class="s">&#34;hello world&#34;</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">)</span></code></pre></div>
+<p>也就是截取从索引位置从3到5 的值.注意,空格也是字符串的一部分.</p>
+
+<h4 id="变量作为变量或列表的值">变量作为变量或列表的值</h4>
+
+<p>参数可以是在评估时返回值的符号.</p>
+
+<p>由上面我们知道, <code>fill-column</code> 评估结果返回的是一个数字.</p>
+
+<p>所以,我们可以做下面的测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="nv">fill-column</span><span class="p">)</span></code></pre></div>
+<p>参数可以是评估时返回值的Symbol.</p>
+
+<p>下面进行表达式的测试:</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;The &#34;</span> <span class="p">(</span><span class="nv">int-to-string</span> <span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="nv">fill-column</span><span class="p">))</span> <span class="s">&#34; red foxes.&#34;</span><span class="p">)</span></code></pre></div>
+<p>我们知道 <code>fill-column</code> 评估结果是 &ldquo;number&rdquo; 类型,所以 <code>+2</code> ,再转换为 字符串类型.然后拼接就好了.</p>
+
+<p>数字转为字符串可以用 <code>number-to-string</code> (也可以使用 <code>int-to-string</code> ),二者一样.</p>
+
+<h4 id="可变参数数量">可变参数数量</h4>
+
+<p>上面提及到的这些,都属于函数,eg: <code>concat</code>, <code>+</code>, <code>*</code>.只要取任意数量的参数你就可以干活了.</p>
+
+<p>我们来痛痛快快的测试一下吧.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">*</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">3</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">*</span> <span class="mi">3</span><span class="p">)</span></code></pre></div>
+<h4 id="使用错误的类型对象作为参数">使用错误的类型对象作为参数</h4>
+
+<p>当函数传递错误类型的参数的时候,Lisp解释器会生成错误消息.</p>
+
+<p>比如下面这个鬼.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="ss">&#39;hello</span><span class="p">)</span></code></pre></div>
+<p>you will see this error</p>
+
+<figure>
+    <img src="https://upload-images.jianshu.io/upload%5Fimages/7505161-1dffea1639cfcfa0.png"/> 
+</figure>
+
+
+<p>也就是错误的类型参数,关于 <code>number-or-marker-p</code> ,主要告诉你 <code>+</code> 期望的 <code>argument</code> 是什么类型.</p>
+
+<p>Symbol <code>number-or-marker-p</code> 表示Lisp解释器正在尝试确定呈现它的信息(参数的值)是数字还是 <code>标记</code>.</p>
+
+<p>标记表示缓冲区位置的特殊对象.</p>
+
+<p>Lisp解释器测试是否 要给添加的数字进行 <code>+</code> 操作.还要测试查看该参数是否被 标记.</p>
+
+<p>Emacs中,缓冲区中的位置记录为标记.</p>
+
+<p>我们可以测试一下标记功能. 也就是 <code>Market Set</code> ,使用 <code>C-@</code> 就可以了.</p>
+
+<p>标记可以视为数字-位置从开头到结尾的字符数缓冲区.</p>
+
+<p>Emacs-lisp中, <code>+</code> 可以用来将标记位置的数值添加为数字.</p>
+
+<p><code>number-or-marker-p</code> 中的 &ldquo;p&rdquo;,是Lisp编程早期开始的实践,&ldquo;p&rdquo;代表&rdquo;谓词&rdquo;.谓词指的是确定某些属性是真还是假的函数.</p>
+
+<p>所以&rdquo;p&rdquo;告诉我们&rdquo;number-or-marker-p&rdquo;是一个函数的名称,他确定所提供的参数是数字还是标记是真还是假.</p>
+
+<p>以&rsquo;p&rsquo;结尾的其他Lisp符号包括zerop，一个测试其参数是否具有零值的函数，以及listp，一个测试其参数是否为 <code>list</code> 的函数。</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">quote</span> <span class="nv">hello</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="o">&#39;</span><span class="p">(</span><span class="nv">hello</span><span class="p">)</span></code></pre></div>
+<p>前者的写法是后者的缩写.</p>
+
+<h4 id="message-功能">Message 功能</h4>
+
+<p>可以打印message.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;The message will appers in the echo area&#34;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;The name of this buffer is: %s.&#34;</span> <span class="p">(</span><span class="nf">buffer-name</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;The value of fill-column is: %d&#34;</span> <span class="nv">fill-column</span><span class="p">)</span></code></pre></div>
+<ul>
+<li>简单的字符串拼接</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;There are %d %s in the office!&#34;</span>
+       <span class="p">(</span><span class="nf">-</span> <span class="nv">fill-column</span> <span class="mi">14</span><span class="p">)</span> <span class="s">&#34;pink elephants&#34;</span><span class="p">)</span></code></pre></div>
+<p><code>(- fill-column 14)</code> 指代的就是 <code>%d</code> 中的值</p>
+
+<ul>
+<li>测试一个更加复杂的例子</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;He saw %d %s&#34;</span>
+       <span class="p">(</span><span class="nf">-</span> <span class="nv">fill-column</span> <span class="mi">32</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;red&#34;</span>
+             <span class="p">(</span><span class="nf">substring</span> <span class="s">&#34;The quic brown foxes jumped.&#34;</span> <span class="mi">16</span> <span class="mi">21</span><span class="p">)</span> <span class="s">&#34; leaping.&#34;</span><span class="p">))</span></code></pre></div>
+<p><code>concat</code> 与 <code>substring</code> 截取的都是字符串.所以可以自由拼接.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;the math is %s&#34;</span> <span class="mf">12.020</span><span class="p">)</span></code></pre></div>
+<p>所以我们也可以使用 &ldquo;%s&rdquo; 来打印 number类型的值.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;the math is %d&#34;</span> <span class="mf">12.020</span><span class="p">)</span></code></pre></div>
+<p>&rdquo;%d&rdquo; 只显示number类型的整数部分,小数部分并不显示.</p>
+
+<h3 id="设置变量的值">设置变量的值</h3>
+
+<p>可以使用 <code>set</code> 或者 <code>setq</code> 来赋予变量值.还可以使用 <code>let</code>.</p>
+
+<ul>
+<li>set 设置值</li>
+<li>setq 设置引用值</li>
+<li>counting 使用setq用来计算</li>
+</ul>
+
+<h4 id="using-set">Using set</h4>
+
+<p>我们先将Symbol的值设置为 <code>flowers</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">set</span> <span class="ss">&#39;flowers</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rose</span> <span class="nv">violet</span> <span class="nv">daisy</span> <span class="nv">buttercup</span><span class="p">))</span></code></pre></div>
+<p>我们可以通过评估 <code>flowers</code> ,来返回刚才设置的值.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="nv">flowers</span></code></pre></div>
+<p>如果你在之前 <code>flowers</code> 之前添加了 <code>'</code>,你将在 echo区域看到的是symbol本身. <code>flowers</code> 是引用的Symbol本身.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="ss">&#39;flowers</span></code></pre></div>
+<h4 id="using-setq">Using setq</h4>
+
+<p><code>setq</code> 中的 <code>q</code> 是 <code>quote</code> 的意思.</p>
+
+<p>set引用的第一个参数的组合很常见,他有自己的名称: the special form <code>setq</code>.</p>
+
+<p>setq 允许你将多个不同的变量设置为不同的值,这些都可以在一个表达式当中.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">carnivores</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">lion</span> <span class="nv">tiger</span> <span class="nv">leopard</span><span class="p">))</span></code></pre></div>
+<p>再看看之前的 <code>set</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nf">set</span> <span class="ss">&#39;carnivores</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">lion</span> <span class="nv">tiger</span> <span class="nv">leopard</span><span class="p">))</span></code></pre></div>
+<p>区别就是 <code>setq</code> 中的 <code>q</code> 具有引用的意思.</p>
+
+<p>我们看一下, <code>setq</code> 为不同的变量分配不同的值.</p>
+
+<p>所以你会发现,我们将第一个参数绑定到第二个参数的,第三个参数绑定到第四个参数的值.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">trees</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">pine</span> <span class="nv">fir</span> <span class="nv">oak</span> <span class="nv">maple</span><span class="p">)</span>
+    <span class="nv">herbivores</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">gazelle</span> <span class="nv">antelope</span> <span class="nv">zabra</span><span class="p">))</span></code></pre></div>
+<p>现在我们尝试引用上面定义的变量.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="nv">herbivores</span></code></pre></div>
+<h4 id="counting">Counting</h4>
+
+<p>这玩意可以用来计算程序的一部分重复的次数.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">counter</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">;;初始化器</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">counter</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">counter</span> <span class="mi">1</span><span class="p">))</span> <span class="c1">;;增量器</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="nv">counter</span></code></pre></div>
+<p>也就是先初始化一个变量,然后每次给这个变量递增1,再次评估这个变量.从而获得变量的值.</p>
+
+<p>还是老规矩. 当进行下面的操作的时候.</p>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">counter</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">counter</span> <span class="mi">1</span><span class="p">))</span></code></pre></div>
+<p>Lisp解释器首先会评估最里面的 <code>list</code>,为了评估里面的 <code>list</code> ,他必须评估变量 <code>counter</code> 和数字 1.</p>
+
+<p>在评估变量 <code>counter</code> 的时候,lisp解释器会收到当前值(0),将这个值和数字1传递给 Symbol( <code>+</code> ),让这个Symbol来完成相加的操作.</p>
+
+<p>然后总和作为内部 <code>List</code> 的值返回并传递给 <code>setq</code> 将该变量 <code>counter</code> 设置为新的值.至此,变量的值 <code>counter</code> 被改变.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>希望Lisp为我带来力量.</p>
+
+<ul>
+<li>lisp程序由表达式组成,这些表达式是 <code>list</code> 或者单个 <code>Atom</code>.</li>
+<li>list 由0个 或者多个Atom或内部的list组成,由空格分隔并用括号括起来,list可以为空.</li>
+<li>Atom是多字符的Symbol,eg: forward-paragraph , <code>+</code> 是单个字符Symbol,</li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="103.224.142.219/tags/emacs-lisp/">EMACS-LISP</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="103.224.142.219/2019/01/org-mode-uml-test/" data-tooltip="org-mode-uml-test">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 <a href="https://github.com/lovemoganna">Mr.Revolt</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="103.224.142.219/2019/01/org-mode-uml-test/" data-tooltip="org-mode-uml-test">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=103.224.142.219%2F2019%2F01%2Femacs-lisp-section-one-list%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=103.224.142.219%2F2019%2F01%2Femacs-lisp-section-one-list%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=103.224.142.219%2F2019%2F01%2Femacs-lisp-section-one-list%2F">
+          <i class="fa fa-google-plus"></i><span>分享到 Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/84eb13f826e281235cc2a60eda437201?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">Mr.Revolt</h4>
+    
+      <div id="about-card-bio">Stay away from the money society and explore the value of self</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        kill fish
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        CN
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="103.224.142.219/2019/01/org-mode-uml-test/">
+                <h3 class="media-heading">org-mode-uml-test</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"> simple case   时序图   多个参与者的测试 现在有下面几个参与者:
+ actor boundary control entity database    活动图   </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="103.224.142.219/2019/01/emacs-lisp-section-one-list/">
+                <h3 class="media-heading">emacs-lisp-section-one-list</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Section one &mdash; list</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         2 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('103.224.142.219/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="103.224.142.219/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '103.224.142.219\/2019\/01\/emacs-lisp-section-one-list\/';
+          
+            this.page.identifier = '\/2019\/01\/emacs-lisp-section-one-list\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'tranquilpeak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

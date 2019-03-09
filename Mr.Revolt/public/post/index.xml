@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Mr.Revolt</title>
+    <link>103.224.142.219/post/</link>
+    <description>Recent content in Posts on Mr.Revolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 30 Jan 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="103.224.142.219/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>org-mode-uml-test</title>
+      <link>103.224.142.219/2019/01/org-mode-uml-test/</link>
+      <pubDate>Wed, 30 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>103.224.142.219/2019/01/org-mode-uml-test/</guid>
+      <description> simple case   时序图   多个参与者的测试 现在有下面几个参与者:
+ actor boundary control entity database    活动图   </description>
+    </item>
+    
+    <item>
+      <title>emacs-lisp-section-one-list</title>
+      <link>103.224.142.219/2019/01/emacs-lisp-section-one-list/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>103.224.142.219/2019/01/emacs-lisp-section-one-list/</guid>
+      <description>&lt;p&gt;Section one &amp;mdash; list&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

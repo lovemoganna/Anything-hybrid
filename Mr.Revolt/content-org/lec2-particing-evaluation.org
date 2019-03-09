@@ -1,0 +1,19 @@
+#+TITLE: Practicing Evaluation
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: ./post
+#+HUGO_CATEGORIES: buffer
+#+HUGO_TAGS: emacs lisp
+#+DATE:<2019-02-06 Wed>  
+#+HUGO_WEIGHT: 2001
+#+HUGO_MENU: :menu "main" "weight 2001
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_CUSTOM_FRONT_MATTER: :foo bar
+
+运行几个小程序.
+
+<!--more-->
+<!--toc-->
+
+** How to Evaluation 
+   
+   than  

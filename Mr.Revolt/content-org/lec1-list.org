@@ -1,0 +1,630 @@
+#+TITLE: emacs-lisp-section-one-list
+#+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: ./post
+#+HUGO_CATEGORIES: 
+#+HUGO_TAGS: EMACS-LISP
+#+DATE:<2019-01-27 Sun> 
+#+HUGO_WEIGHT: 2001
+#+HUGO_MENU: :menu "main" "weight 2001
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_CUSTOM_FRONT_MATTER: :foo bar
+
+Section one --- list
+
+<!--more-->
+
+** Lisp 
+
+<!--toc-->
+*** word list
+ #+BEGIN_SRC emacs-lisp
+   '(rose
+     violet 
+     daisy
+     buttercup)
+ #+END_SRC
+
+ #+RESULTS:
+ | rose | violet | daisy | buttercup |
+*** number lisp
+#+BEGIN_SRC emacs-lisp
+(+ 2 2)
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+#+BEGIN_SRC emacs-lisp
+'(this list has (a list inside of it)(two))
+#+END_SRC
+
+#+RESULTS:
+| this | list | has | (a list inside of it) | (two) |
+*** Lisp Atoms 
+Lisp中,上面的一个个单词 又叫做 =Atom= (原子).它的意义就是"不可分割的"
+
+就 =lisp= 而言,我们在列表中使用的单词不能分成任何较小的部分.
+
+在列表中, /Atom/ 通过空格彼此分开.他们可以在括号旁边.
+
+#+BEGIN_SRC emacs-lisp
+() ;;称为Atom和List
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC emacs-lisp
+'(this list includes "text btwwen quotation marks.")
+#+END_SRC
+
+#+RESULTS:
+| this | list | includes | text btwwen quotation marks. |
+
+如你所见,lisp也支持字符串.
+*** WhiteSpace in list 
+
+    #+BEGIN_SRC emacs-lisp
+      '(this list
+             looks like this)
+    #+END_SRC
+
+    #+RESULTS:
+    | this | list | looks | like | this |
+    |      |      |       |      |      |
+    这个 ='= 的意思是,单引号在列表之前的时候,他告诉lisp不对列表做任何事情,除了在写入的时把他拿走.
+    
+    #+BEGIN_SRC emacs-lisp
+      (this list
+            looks like this)
+    #+END_SRC
+
+    如list前面不加 ='= ,只对 =list= 的第一项有作用.但是没结果.没什么毛用.之前我们测试过一个
+
+    #+BEGIN_SRC emacs-lisp
+      (+ 2 2)
+    #+END_SRC
+
+    #+RESULTS:
+    : 4
+    
+    上面的这种写法等价于下面的这种写法
+
+    #+BEGIN_SRC emacs-lisp
+      '(this list looks like this)
+    #+END_SRC
+
+    #+RESULTS:
+    | this | list | looks | like | this |
+
+    空格的存在只是为了人们便于阅读.
+*** 缩进的控制
+
+    一般情况下我们使用 =TAB=,但是我们应该喜欢 =C-M \= ,这样会使全部的代码块进行格式化.
+*** generate error message 
+    #+BEGIN_SRC emacs-lisp
+      (this is an unquoted list)
+    #+END_SRC
+    
+    =C-x C-e= test the block ,you should jump =*Backtrace*= see detail content.
+
+    [[https://upload-images.jianshu.io/upload_images/7505161-63cb12679ba6581d.png]]
+
+    ~eval~ 是 =evolutiona= 的缩写, =eval-last-sexp= 的意思是 =symbolic expression= 的缩写,也就是评估最后一个符号表达式.
+
+    emacs评估代码的行为是自下而上的,也就是最上面的结果是最终评估的结果.
+
+    [[https://upload-images.jianshu.io/upload_images/7505161-c4b800430333454c.png]]
+
+    Lisp解释器试图评估 ~list~ 的第一个 ~Atom~, 也就是 ~this~,正是这个行产生了错误信息 =void-function this=.
+
+    The message contains the words /void-function/ and /this/
+
+    这个 =function= 是一个非常重要的词,我们可以说一个函数是计算机的一组指令来定义它.来告诉计算机做什么事.
+
+    我们可以从 =void-function this= 这个错误来理解错误信息 ,功能（即单词'this'）没有计算机执行的任何指令集的定义. 现在 =this= 就是一个  =funciton=,该指令无效.
+
+    =void-function= 涵盖了 =emacs-lisp= 的实现方式,当附加的函数定义没有对应的可识别的符号(例如 ~`~),那么包含指令的位置就会无效.
+
+    再比如说,由于可以成功的执行 =(+ 2 2)= ,通过评估它,我们可以推断出 =+= 这个符号可以被 =emacs-lisp= 解释器识别,并且可以防止Emacs进入调试器.
+
+    我们可能会看到下面这段错误.
+
+#+BEGIN_SRC 
+  Symbol's function definition is void: this
+#+END_SRC
+
+    其中这个 =Symbol= ,它指的是 =list= 中的第一个原子 =this=,单词 =function= 告诉计算机该执行什么指令.
+
+    所以上面的错误信息可以理解为 =this这个Symbol的函数定义是无效的= ,Symbol(即 ~this~)缺乏计算机执行的指令.
+*** Symbol Names and Function Definitions
+    emacs-lisp中的一个特性: Symbol就像计算机执行的指令集本身一样.
+    这个Symbol 可能暂时用作定位定义指令集的方式. 
+    但是我们人看到的是可以找到指令的名称.
+
+    下面的解释可能会抽象.
+
+    假设我叫"Bob",但是我的名字不是"B","o","b".但是他又和我的名字相关,所以可以用来指向我.
+    类似于搜索,你输入"落雨",就会出现"落雨飘殇"的选项.
+    
+    所以还是那个键值对的道理. (key-value)
+    
+    - 在lisp当中,一组指令可以附加到多个名称,比如说,用于计算数字相加的Symbol =+= ,可以链接到 Symbol =plus= 和 =+= .
+    - Symbol一次只能附加一个函数定义,否则,计算机将混淆使用那个定义. 要是人,世界上只有一个我,我所拥有的一切都可以轻易的改变.
+    - 通常以 =标识函数= 所属的Emacs部分的方式命名Symbol.
+*** Lisp Intercepter
+   Lisp解释器首先检查 ~list~ 前面是否有引号,如果前面有引号,解释器就会返回我们一个 ~list~.
+   如果没有引号,解释器会查看 ~list~ 中的第一个元素并检查它是否具有函数意义. 如果有意义,则解释器执行函数定义中的指令.否则,解释器会输出错误信息.
+**** 并发症-Complications
+     这一点我们稍后再进行测试,先看看有什么问题存在.
+
+     - lisp解释器还可以评估未引用的符号,并且没有围绕他的括号.lisp解释器将尝试将符号的值确定为变量.
+     - 某些功能不常见而且不能以通常的方式工作.没有被调用( ~called~ )的称之为特殊形式.
+     - =宏= 的出现,宏是lisp中定义的构造,它与函数的不同之处在于它将lisp表达式转换为另一个要用来代替原始表达式 ~求值~ 的表达式.
+       + ~if~ 是一种特殊形式,但是有时候也是一个 ~宏~
+       + ~defun~ 是一种特殊形式,但现在他是一个 ~宏~
+     
+ 如果Lisp解释器正在查看的函数如果是 ~list~ 的一部分,并且这个函数不是特殊形式,则lisp解释器会查看 =list= 中是否有 =list=.
+
+如果有一个内部的 =list= ,lisp解释器首先会找出它应该对内部的 =list= 做什么,然后它在外部的 =list= 上工作.
+
+如果内部的 =list= 中嵌入了另一个 =list=,则它应该在另一个 =list= 上先工作. 也就是说 =lisp解释器总是首先在最里面的list上工作=.
+
+否则,lisp解释器将会从一个表达式到一个表达式从左到右的工作.
+**** 字节编译-Byte Compiling
+- 专门用来处理代码的速度.
+ 
+首先,Lisp解释器能够解释两种实体: 1.人类可读的代码. 2.特殊处理的代码-字节编译代码.这是人类无法读取的代码.
+
+后者要比人类可读的代码的运行速度要快.
+
+我们可以手工将人工可读的代码转换成字节编译的代码.
+
+#+BEGIN_SRC 
+M-x byte-compile-file
+#+END_SRC
+
+字节编译的代码通常存储在以 ~.elc~ 为后缀的文件中.但是最终要读取的文件是以 ~.el~为后缀的文件.
+*** Evaluation 
+当Lisp解释器处理表达式的时候,激活这个行为的术语称为评估(也就是缩写的Eval)
+**** Lisp解释器是如何干活的?
+在评估表达式之前,Lisp解释器很可能通过执行函数定义中找到指令返回计算机生成的值,如果这个函数表达式有错误,那肯定会出现错误信息的提示.
+
+反正正常情况下,你在运行 ~s表达式~ 的时候,解释器会返回一个值.
+**** 评估List
+
+就像我们之前所说的,Lisp解释器在评估 =List= 的时候,如果这个 =List= 内部还存在一个 =list=,那么Lisp解释器肯定会先评估内部的 =list= ,并且把内部 =List= 的评估结果,作为评估外部 =list= 的评估信息.
+
+也就是说,他们返回的值由外部表达式使用.
+
+#+BEGIN_SRC emacs-lisp
+(+ 2 (+ 3 3))
+#+END_SRC
+
+#+RESULTS:
+: 8
+
+下面是上面这段代码的解释:
+
+Lisp解释器首先计算内部表达式(+ 3 3)，为其返回值6; 然后它评估外部表达式，就像它被写入一样(+ 2 6)，返回值8.由于没有更多的封闭表达式要进行求值，解释器会在echo区域中打印该值。
+
+再说一下下面这个快捷键的意思
+
+#+BEGIN_SRC 
+C-x C-e 
+#+END_SRC
+全称就是 =eval-last-sexp=,该命令是评估最后一个符号表达式的.
+
+如果你将光标放在紧跟在表达式后面的空白行的开头,键入 ~C-x C-e~,会出现结果8. 如果你将光标放在最里面的括号后面.会出现结果 6.这是因为该命令会先计算表达式 (+ 3 3)
+*** Variable
+Emacs lisp中,符号可以附加一个值,就像它可以附加一个函数定义一样.
+
+但是这二者是不一样的.
+
+- 函数定义: 计算机将遵循的一组指令.
+- 值: 可以变化.
+
+Symbol 的值可以是Lisp中的任何表达式: Symbol,math,list,String.
+
+具有值的Symbol通常称为变量.
+
+Symbol 可以同时具有函数定义和附加值.
+
+北京,可以称之为 首都.也可以附加一个名称: 打工者的无聊之地.
+
+另外一个角度来讲,可以将 Symbol 想象为 抽屉柜.函数定义放在一个抽屉中,值放在一个抽屉中.
+
+可以在不影响保持功能定义的抽屉内容的情况下更改保持值的抽屉中的内容.
+
+也就是说 你不能改变 北京 是 "首都"的功能,但是你可以改变 北京 是"打工者的无聊之地"的值. 你有一天发达了,还可以把北京 改成 "有钱人的钱滚钱梦想圣地".基本就是这么个事.
+- fill-column
+- void-function 没有 =function= 的Symbol的错误消息
+- void variables 没有值的 Symbol的错误消息
+**** fill-column 示例变量
+该变量 ~fill-column~ 说明了一个附加了值的 Symbol:
+#+BEGIN_SRC emacs-lisp
+fill-column
+#+END_SRC
+
+#+RESULTS:
+: 80
+**** void function 
+
+     #+BEGIN_SRC emacs-lisp
+       (fill-column)
+     #+END_SRC
+
+当我们评估 ~fill-column~ 的时候,将它的值作为变量的时候,我们没有在括号周围放置括号.
+
+这是因为我们不打算将它用作函数名.
+
+如果fill-column是list的第一个或者唯一的元素,Lisp解释器将尝试找到附加到它的函数定义.
+
+但是 =fill-column= 没有 =function= 定义.
+**** Error Message for a Symbol without a Value 
+
+#+BEGIN_SRC emacs-lisp
+(+ 2 2)
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+如果你把光标放在第一个 2 的前面,就会遇到 Error错误提示信息.
+
+[[https://upload-images.jianshu.io/upload_images/7505161-9cb1a03d34121e01.png]]
+
+这与我们之前遇到的错误 ~Debugger entered--Lisp error: (void-function this)~ 不同.
+
+在这种情况下，函数没有值作为变量; 而在另一个错误消息中，函数（单词'this'）没有定义。
+
+在这个实验中，我们所做的是让Lisp解释器评估 ~+~,并查找变量的值而不是函数定义。
+
+我们是将光标放在Symbol后面的,并非直接放在最后面的封闭括号之后来评估代码的.
+
+Lisp解释器评估了前面的S表达式,在这种情况下, ~+~ 本身就是这样.
+
+由于 ~+~ 没有绑定到它的值,只有函数定义,错误消息报告Symbol的值作为变量是无效的.
+*** Arguments  
+
+还是那个简单的例子
+#+BEGIN_SRC emacs-lisp
+(+ 2 2)
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+Lisp解释器的作用就是添加 ~+~ 这个Symbol后面的两个数字.
+
+~+~ 后面的数字就是函数的参数,这些数字就是赋予或者传递给函数的信息.
+
+~Argument~ 在英文里面指的就是两个人争论,但是在编程世界里面指的是提供函数的信息,在现在的情况下,指的是 ~+~.
+
+在Lisp中,函数的参数指的就是函数后面的 ~Atom~ 或者 ~List~.
+
+评估这些原子或列表返回的值将传递给函数.
+- Data Types 传递给函数的数据类型
+- Args as variable or list 参数可以是变量或者列表的值
+- variable number of Arguments 某些函数可能采用可变数量的参数
+- Wrong Type of Argument 将错误类型的参数传递给函数
+- message 发送有用功能的消息
+**** 参数的数据类型
+传递给函数的数据类型取决于它使用的信息类型.
+- 拼接字符串
+#+BEGIN_SRC emacs-lisp
+(concat "abc" "def")
+#+END_SRC
+
+#+RESULTS:
+: abcdef
+- 切割字符串
+#+BEGIN_SRC emacs-lisp
+(substring "hello world" 3 5)
+#+END_SRC
+
+#+RESULTS:
+: lo
+
+也就是截取从索引位置从3到5 的值.注意,空格也是字符串的一部分.
+**** 变量作为变量或列表的值
+参数可以是在评估时返回值的符号.
+
+由上面我们知道, ~fill-column~ 评估结果返回的是一个数字.
+
+所以,我们可以做下面的测试
+
+#+BEGIN_SRC emacs-lisp
+(+ 2 fill-column)
+#+END_SRC
+
+#+RESULTS:
+: 82
+
+参数可以是评估时返回值的Symbol.
+
+下面进行表达式的测试:
+
+#+BEGIN_SRC emacs-lisp
+(concat "The " (int-to-string (+ 2 fill-column)) " red foxes.")
+#+END_SRC
+
+#+RESULTS:
+: The 82 red foxes.
+
+我们知道 ~fill-column~ 评估结果是 "number" 类型,所以 =+2= ,再转换为 字符串类型.然后拼接就好了.
+
+数字转为字符串可以用 =number-to-string= (也可以使用 ~int-to-string~ ),二者一样.
+**** 可变参数数量
+
+上面提及到的这些,都属于函数,eg: ~concat~, ~+~, ~*~.只要取任意数量的参数你就可以干活了.
+
+我们来痛痛快快的测试一下吧.
+
+#+BEGIN_SRC emacs-lisp
+(+)
+#+END_SRC
+
+#+RESULTS:
+: 0
+#+BEGIN_SRC emacs-lisp
+(*)
+#+END_SRC
+
+#+RESULTS:
+: 1
+
+#+BEGIN_SRC emacs-lisp
+(+ 3)
+#+END_SRC
+
+#+RESULTS:
+: 3
+#+BEGIN_SRC emacs-lisp
+(* 3)
+#+END_SRC
+
+#+RESULTS:
+: 3
+**** 使用错误的类型对象作为参数
+当函数传递错误类型的参数的时候,Lisp解释器会生成错误消息.
+
+比如下面这个鬼.
+
+#+BEGIN_SRC emacs-lisp
+(+ 2 'hello)
+#+END_SRC
+
+you will see this error 
+
+[[https://upload-images.jianshu.io/upload_images/7505161-1dffea1639cfcfa0.png]]
+
+也就是错误的类型参数,关于 =number-or-marker-p= ,主要告诉你 =+= 期望的 =argument= 是什么类型.
+
+Symbol ~number-or-marker-p~ 表示Lisp解释器正在尝试确定呈现它的信息(参数的值)是数字还是 ~标记~.
+
+标记表示缓冲区位置的特殊对象.
+
+Lisp解释器测试是否 要给添加的数字进行 =+= 操作.还要测试查看该参数是否被 标记.
+
+Emacs中,缓冲区中的位置记录为标记.
+
+我们可以测试一下标记功能. 也就是 =Market Set= ,使用 =C-@= 就可以了.
+
+标记可以视为数字-位置从开头到结尾的字符数缓冲区.
+
+Emacs-lisp中, =+= 可以用来将标记位置的数值添加为数字.
+
+~number-or-marker-p~ 中的 "p",是Lisp编程早期开始的实践,"p"代表"谓词".谓词指的是确定某些属性是真还是假的函数.
+
+所以"p"告诉我们"number-or-marker-p"是一个函数的名称,他确定所提供的参数是数字还是标记是真还是假.
+
+以'p'结尾的其他Lisp符号包括zerop，一个测试其参数是否具有零值的函数，以及listp，一个测试其参数是否为 ~list~ 的函数。
+
+#+BEGIN_SRC emacs-lisp
+(quote hello)
+#+END_SRC
+
+#+RESULTS:
+: hello
+
+#+BEGIN_SRC emacs-lisp
+'(hello)
+#+END_SRC
+
+#+RESULTS:
+| hello |
+
+前者的写法是后者的缩写.
+**** Message 功能
+ 可以打印message.
+
+ #+BEGIN_SRC emacs-lisp
+ (message "The message will appers in the echo area")
+ #+END_SRC
+
+ #+RESULTS:
+ : The message will appers in the echo area
+
+ #+BEGIN_SRC emacs-lisp
+ (message "The name of this buffer is: %s." (buffer-name))
+ #+END_SRC
+
+ #+RESULTS:
+ : The name of this buffer is: lec1-list.org.
+
+ #+BEGIN_SRC emacs-lisp :result
+ (message "The value of fill-column is: %d" fill-column)
+ #+END_SRC
+
+ #+RESULTS:
+ : The value of fill-column is: 80
+
+ - 简单的字符串拼接
+
+ #+BEGIN_SRC emacs-lisp :result result
+   (message "There are %d %s in the office!"
+          (- fill-column 14) "pink elephants")
+ #+END_SRC
+
+ #+RESULTS:
+ : There are 66 pink elephants in the office!
+
+ =(- fill-column 14)= 指代的就是 =%d= 中的值
+
+ - 测试一个更加复杂的例子
+
+ #+BEGIN_SRC emacs-lisp
+   (message "He saw %d %s"
+          (- fill-column 32)
+          (concat "red"
+                (substring "The quic brown foxes jumped." 16 21) " leaping."))
+ #+END_SRC
+
+ #+RESULTS:
+ : He saw 48 redoxes  leaping.
+
+ =concat= 与 ~substring~ 截取的都是字符串.所以可以自由拼接.
+
+ #+BEGIN_SRC emacs-lisp
+ (message "the math is %s" 12.020)
+ #+END_SRC
+
+ #+RESULTS:
+ : the math is 12.02
+
+ 所以我们也可以使用 "%s" 来打印 number类型的值.
+
+
+ #+BEGIN_SRC emacs-lisp
+ (message "the math is %d" 12.020)
+ #+END_SRC
+
+ #+RESULTS:
+ : the math is 12
+
+ "%d" 只显示number类型的整数部分,小数部分并不显示.
+*** 设置变量的值
+可以使用 =set= 或者 =setq= 来赋予变量值.还可以使用 =let=.
+- set 设置值
+- setq 设置引用值
+- counting 使用setq用来计算
+**** Using set
+
+我们先将Symbol的值设置为 =flowers= 
+#+BEGIN_SRC emacs-lisp
+(set 'flowers '(rose violet daisy buttercup))
+#+END_SRC
+
+#+RESULTS:
+| rose | violet | daisy | buttercup |
+
+我们可以通过评估 =flowers= ,来返回刚才设置的值.
+#+BEGIN_SRC emacs-lisp
+flowers
+#+END_SRC
+
+#+RESULTS:
+| rose | violet | daisy | buttercup |
+
+如果你在之前 =flowers= 之前添加了 ~'~,你将在 echo区域看到的是symbol本身. =flowers= 是引用的Symbol本身.
+#+BEGIN_SRC emacs-lisp
+'flowers
+#+END_SRC
+
+#+RESULTS:
+: flowers
+**** Using setq
+
+~setq~ 中的 ~q~ 是 ~quote~ 的意思.
+
+set引用的第一个参数的组合很常见,他有自己的名称: the special form ~setq~.
+
+setq 允许你将多个不同的变量设置为不同的值,这些都可以在一个表达式当中.
+
+#+BEGIN_SRC emacs-lisp
+(setq carnivores '(lion tiger leopard))
+#+END_SRC
+
+#+RESULTS:
+| lion | tiger | leopard |
+
+再看看之前的 ~set~
+
+#+BEGIN_SRC emacs-lisp
+(set 'carnivores '(lion tiger leopard))
+#+END_SRC
+
+#+RESULTS:
+| lion | tiger | leopard |
+
+区别就是 ~setq~ 中的 ~q~ 具有引用的意思.
+
+
+我们看一下, ~setq~ 为不同的变量分配不同的值.
+
+所以你会发现,我们将第一个参数绑定到第二个参数的,第三个参数绑定到第四个参数的值.
+#+BEGIN_SRC emacs-lisp
+  (setq trees '(pine fir oak maple)
+      herbivores '(gazelle antelope zabra))
+#+END_SRC
+
+#+RESULTS:
+| gazelle | antelope | zabra |
+
+现在我们尝试引用上面定义的变量.
+
+#+BEGIN_SRC emacs-lisp
+herbivores
+#+END_SRC
+
+#+RESULTS:
+| gazelle | antelope | zabra |
+**** Counting
+这玩意可以用来计算程序的一部分重复的次数.
+#+BEGIN_SRC emacs-lisp
+(setq counter 0) ;;初始化器
+#+END_SRC
+
+#+RESULTS:
+: 0
+
+#+BEGIN_SRC emacs-lisp
+(setq counter (+ counter 1)) ;;增量器
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+#+BEGIN_SRC emacs-lisp
+counter
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+也就是先初始化一个变量,然后每次给这个变量递增1,再次评估这个变量.从而获得变量的值.
+
+还是老规矩. 当进行下面的操作的时候.
+
+#+BEGIN_SRC emacs-lisp
+(setq counter (+ counter 1))
+#+END_SRC
+
+Lisp解释器首先会评估最里面的 =list=,为了评估里面的 =list= ,他必须评估变量 =counter= 和数字 1.
+
+在评估变量 =counter= 的时候,lisp解释器会收到当前值(0),将这个值和数字1传递给 Symbol( ~+~ ),让这个Symbol来完成相加的操作.
+
+然后总和作为内部 =List= 的值返回并传递给 =setq= 将该变量 =counter= 设置为新的值.至此,变量的值 =counter= 被改变.
+
+*** Summary
+    
+- lisp程序由表达式组成,这些表达式是 =list= 或者单个 =Atom=.
+- list 由0个 或多个Atom或内部的list组成,由空格分隔并用括号括起来,list可以为空.
+- Atom是多字符的Symbol,eg: forward-paragraph , ~+~ 是单个字符Symbol,双引号标记的字符串,或者数字.
+- 数字是评估自己本身.
+- 双引号之间的字符串也会计算本身.
+- 单独评估Symbol的时候,将返回其值.
+- 当您评估列表的时候,Lisp解释器会查看到列表中的第一个符号,然后查看绑定到符号的函数定义,再去执行函数定义中的指令.
+- 参数是传递给函数的信息.函数的参数是通过计算函数的第一个元素的列表其余元素来计算的.
+- 单引号 ='= 告诉Lisp 解释器它应该返回下面的表达式,而不是单引号不存在还正确评估下面的表达式
+- 函数在计算的时候总是返回一个值,当然这是在不出错的情况下.

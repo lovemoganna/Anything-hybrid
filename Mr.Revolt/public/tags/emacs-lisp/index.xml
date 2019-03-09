@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs Lisp on Mr.Revolt</title>
+    <link>103.224.142.219/tags/emacs-lisp/</link>
+    <description>Recent content in Emacs Lisp on Mr.Revolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="103.224.142.219/tags/emacs-lisp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>emacs-lisp-section-one-list</title>
+      <link>103.224.142.219/2019/01/emacs-lisp-section-one-list/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0800</pubDate>
+      
+      <guid>103.224.142.219/2019/01/emacs-lisp-section-one-list/</guid>
+      <description>&lt;p&gt;Section one &amp;mdash; list&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
