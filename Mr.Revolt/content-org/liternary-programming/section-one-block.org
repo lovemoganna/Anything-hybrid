@@ -1,0 +1,24 @@
+#+TITLE: section-one-block
+#+HUGO_BASE_DIR: ../../
+#+HUGO_SECTION: ./post
+#+HUGO_CATEGORIES: org-mode
+#+HUGO_TAGS: literary programming
+#+DATE:<2019-03-12 Tue> 
+#+HUGO_WEIGHT: 2001
+#+HUGO_MENU: :menu "main" "weight 2001
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_CUSTOM_FRONT_MATTER: :foo bar
+* Block
+
+- 执行本页所有的代码块 ~C-c C-v C-b~ ,更简单的方式是 ~, b b~
+- 跳转下一个代码块, ~, b n~
+** 代码块的基本格式
+
+#+BEGIN_SRC 
+#+name: <LABLE>
+#+begin_src <LANGUAGE> <HEADER-ARGS>
+<BODY>
+#+end_src
+#+END_SRC
+
+

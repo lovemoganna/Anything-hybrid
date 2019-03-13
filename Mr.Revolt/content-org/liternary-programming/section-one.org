@@ -1,0 +1,171 @@
+#+TITLE: literary programming
+#+HUGO_BASE_DIR: ../../
+#+HUGO_SECTION: ./post
+#+HUGO_CATEGORIES: org-mode
+#+HUGO_TAGS: literary programming
+#+DATE:<2019-03-12 Tue> 
+#+HUGO_WEIGHT: 2001
+#+HUGO_MENU: :menu "main" "weight 2001
+#+HUGO_AUTO_SET_LASTMOD: t
+
+文学变成的起步测试
+
+<!--more-->
+<!--toc-->
+
+** literary programming startup
+   
+#+BEGIN_SRC emacs-lisp
+  (directory-files ".")
+#+END_SRC
+
+#+RESULTS:
+| . | .#section-one.org | .. | section-one.org |
+
+一般情况下, ~C-c C-c~ 就可以执行操作了.
+
+但是我们想专心与代码的编写,可以使用 ~C-c '~ ,利用 ~, c~ 来保存来我们的编写结果,这样更加直观一些.
+
+*** 从上一个块转到下一个块
+
+#+BEGIN_SRC python
+  a =1 
+  b =2
+  return a+b 
+#+END_SRC
+
+#+RESULTS:
+: 3
+
+
+- 从上面一个块跳到下面一个块 ~C-c M-f~ 
+- 从下面一个块跳到上面一个块 ~C-c M-b~
+
+
+*** 干掉烦人的提示:你是否要执行代码块
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-confirm-babel-evaluate nil
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t)
+#+END_SRC
+
+#+RESULTS:
+: t
+
+把他装在 ~user-config~ ~SPC f e R~ 会生效. 
+
+*** c-c++ code 环境搭建
+    
+https://gist.github.com/zarzen/6218683614c9a645ad5b
+
+*** org-mode中的参数头
+
+**** :dir
+#+BEGIN_SRC sh :dir /usr/local
+ls
+#+END_SRC
+
+#+RESULTS:
+| bin             |
+| c-paramming     |
+| double-space.rb |
+| electron        |
+| etc             |
+| evm             |
+| games           |
+| go              |
+| GWY             |
+| include         |
+| Latex-html      |
+| lib             |
+| lib64           |
+| libexec         |
+| L-mocha         |
+| org-mode        |
+| primes.txt      |
+| sbin            |
+| share           |
+| src             |
+| test.md         |
+| var             |
+| vue             |
+| win             |
+
+这个参数就是用来确定一个目录的.
+
+#+BEGIN_SRC sh
+hostname -f
+
+#+END_SRC
+
+#+RESULTS:
+: localhost
+
+#+BEGIN_SRC sh :dir /luoyupiaoshang.com:
+hostname -f
+#+END_SRC
+
+*** 设置参数的位置
+
+org-mode 的参数位置可以设置在很多地方
+
+- 内联标题或者标题块上
+- 一个块上
+- 整个文档中块的默认值
+- 每个文档的默认值
+
+**** 块的头参数内联设置
+
+#+BEGIN_SRC sh :dir /etc :var USER="revolt"
+grep $USER passwd
+#+END_SRC
+
+#+RESULTS:
+: revolt:x:1000:1000::/home/revolt:/bin/bash
+
+#+HEADER: :dir /etc
+#+BEGIN_SRC sh :var USER="revolt"
+  grep $USER passwd
+#+END_SRC
+
+#+RESULTS:
+: revolt:x:1000:1000::/home/revolt:/bin/bash
+
+#+HEADER: :dir /etc
+#+HEADER: :var USER="revolt"
+#+BEGIN_SRC sh
+  grep $USER passwd
+#+END_SRC
+
+#+RESULTS:
+: revolt:x:1000:1000::/home/revolt:/bin/bash
+
+从上面的例子可以看出我们可以将多余的参数给当做 ~头参数~ 来添加,这样显得不是那么乱套.
+
+**** 部分默认的参数
+相同的参数可以放在 ~property drawer~ 中,你可以认为他是一个属性集合.
+
+具体应该按照下面的步骤来编写:
+
+- 在 org-file 中创建一个 ~header section~
+- ~C-c C-x p~
+- 选择 ~Property~
+- 输入对应的 ~value~
+
+下面来测试一下:
+
+***** 测试
+      :PROPERTIES:
+      :header-args: dir /etc
+      :END:
+     
+#+BEGIN_SRC ruby
+  File.absolute_path(".")
+#+END_SRC
+
+#+RESULTS:
+: /usr/local/org-mode/Mr.Revolt/content-org/liternary-programming
+
+现在添加属性的快捷方法是 ~, i p~,我们好像测试的有问题.下面再测试别的来试一下.
+

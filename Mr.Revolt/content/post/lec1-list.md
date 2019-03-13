@@ -2,7 +2,7 @@
 title = "emacs-lisp-section-one-list"
 author = ["root"]
 date = 2019-01-27T00:00:00+08:00
-lastmod = 2019-03-09T11:13:54+08:00
+lastmod = 2019-03-09T12:08:30+08:00
 tags = ["EMACS-LISP"]
 draft = false
 weight = 2001
@@ -191,7 +191,7 @@ Lisp解释器首先检查 `list` 前面是否有引号,如果前面有引号,解
 M-x byte-compile-file
 ```
 
-字节编译的代码通常存储在以 `.elc` 为后缀的文件中.但是最终要读取的文件是以 ~.el~为后缀的文件.
+字节编译的代码通常存储在以 `.elc` 为后缀的文件中.但是最终要读取的文件是以 `.el` 为后缀的文件.
 
 
 ### Evaluation {#evaluation}
@@ -430,7 +430,7 @@ Emacs-lisp中, `+` 可以用来将标记位置的数值添加为数字.
 
 `number-or-marker-p` 中的 "p",是Lisp编程早期开始的实践,"p"代表"谓词".谓词指的是确定某些属性是真还是假的函数.
 
-所以"p"告诉我们"number-or-marker-p"是一个函数的名称,他确定所提供的参数是数字还是标记是真还是假.
+所以 `"p"` 告诉我们 `"number-or-marker-p"` 是一个函数的名称,他确定所提供的参数是数字还是标记是真还是假.
 
 以'p'结尾的其他Lisp符号包括zerop，一个测试其参数是否具有零值的函数，以及listp，一个测试其参数是否为 `list` 的函数。
 

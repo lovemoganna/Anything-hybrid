@@ -1,4 +1,4 @@
-#+TITLE: Practicing Evaluation
+#+TITLE: How to evaluation 
 #+HUGO_BASE_DIR: ../
 #+HUGO_SECTION: ./post
 #+HUGO_CATEGORIES: buffer
@@ -15,5 +15,61 @@
 <!--toc-->
 
 ** How to Evaluation 
+   - ~C-c C-c~ 需要在S表达式的末尾执行
+   - ~C-x C-e~ 需要在已经写好的表达式后面的括号中执行.
+
+
    
-   than  
+*** 缓冲区的名称
+
+- 显示文件的名字
+#+BEGIN_SRC emacs-lisp
+(buffer-name)
+#+END_SRC
+
+- 显示文件缓存的名字,一般是绝对路径
+#+BEGIN_SRC emacs-lisp
+(buffer-file-name)
+#+END_SRC
+
+所以这就引出了2个概念: ~文件~ 和 ~缓冲区~.
+
+缓冲区的作用:在早期的计算机中,缓冲区缓冲了文件和计算机中央处理单元之间的交互. , ~处理文件~ 的特定设备和 ~中央处理单元~ 的特定设备是不同的,他们以自己习惯的速度来工作.
+
+所以他们工作的速度不一样,所以交互过程中效率就会堪忧,所以会有 ~缓冲区~ 来作为一个中间人,就像一个中转站.这样,文件和中央处理单元的设备都高效的被利用起来.
+
+**并非所有的缓冲区都与文件相关**
+
+当你不命名任何文件的时候,启动EMACS,EMACS将会从屏幕上面的 **scratch** 缓冲区开始,这个缓冲区不会访问任何文件.
+
+**help** 缓冲区也与任何文件都没有关联.
+
+**** 切换到 Scratch缓冲区的方法
+     ~SPC b b~ 直接可以进入 ~scratch~ 缓冲区.
+
+     然后你写入 ~(buffer-name)~ 即可得到当前缓冲区的名字.
+     
+     但是写入 ~(buffer-file-name)~ 却无法得到当前缓冲区的绝对路径.这说明当前缓冲区与任何文件都没有关联.
+
+     在 ~scratch~ 缓冲区执行代码块的时候,命令是 ~C-u C-x C-e~
+
+
+*** 获取缓冲区本身
+    
+ -  获取缓冲区本身的方法
+#+BEGIN_SRC emacs-lisp
+(current-buffer)
+#+END_SRC
+
+#+RESULTS:
+: #<buffer lec2-particing-evaluation.org>
+ - 最近一次打开的buffer
+#+BEGIN_SRC emacs-lisp
+(other-buffer)
+#+END_SRC
+
+#+RESULTS:
+: #<buffer *scratch*>
+
+*** 切换缓冲器
+
