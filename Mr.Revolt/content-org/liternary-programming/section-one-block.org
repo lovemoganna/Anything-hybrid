@@ -15,10 +15,503 @@
 ** 代码块的基本格式
 
 #+BEGIN_SRC 
-#+name: <LABLE>
-#+begin_src <LANGUAGE> <HEADER-ARGS>
-<BODY>
-#+end_src
+  #+name: <LABLE>
+  #+begin_src <LANGUAGE> <HEADER-ARGS>
+  <BODY>
+  #+end_src 
+** 设置代码高亮
+
+#+BEGIN_SRC 
+(setq org-confirm-babel-evaluate nil
+      org-src-fontify-natively t
+      org-src-tab-acts-natively t)
+#+END_SRC
+** 测试代码
+   #+BEGIN_SRC ruby
+     Dir.entries('.')
+
+   #+END_SRC
+
+   #+RESULTS:
+   | .. | . | section-one-block.org | section-one.org | .#section-one-block.org |
+   
+
+#+BEGIN_SRC python
+  from os import listdir
+  return listdir(".")
 #+END_SRC
 
+#+RESULTS:
+| section-one-block.org | section-one.org | .#section-one-block.org |
+
+#+BEGIN_SRC sh
+  ls -l
+#+END_SRC
+
+#+RESULTS:
+| total      | 8 |      |      |      |     |    |       |                       |
+| -rw-r--r-- | 1 | root | root |  680 | Mar | 13 | 13:46 | section-one-block.org |
+| -rw-r--r-- | 1 | root | root | 3368 | Mar | 12 | 19:26 | section-one.org       |
+** 代码块的设置
+#+BEGIN_SRC sh :dir /etc
+  ls
+#+END_SRC
+
+#+RESULTS:
+| acpi                     |
+| adjtime                  |
+| aliases                  |
+| aliases.db               |
+| alternatives             |
+| anacrontab               |
+| asound.conf              |
+| at.deny                  |
+| audisp                   |
+| audit                    |
+| bash_completion.d        |
+| bashrc                   |
+| binfmt.d                 |
+| centos-release           |
+| centos-release-upstream  |
+| chkconfig.d              |
+| chrony.conf              |
+| chrony.keys              |
+| chrony.keys.rpmnew       |
+| cron.d                   |
+| cron.daily               |
+| cron.deny                |
+| cron.hourly              |
+| cron.monthly             |
+| crontab                  |
+| cron.weekly              |
+| crypttab                 |
+| csh.cshrc                |
+| csh.login                |
+| dbus-1                   |
+| dconf                    |
+| default                  |
+| depmod.d                 |
+| dhcp                     |
+| DIR_COLORS               |
+| DIR_COLORS.256color      |
+| DIR_COLORS.lightbgcolor  |
+| dnf                      |
+| dnsmasq.conf             |
+| dnsmasq.d                |
+| dracut.conf              |
+| dracut.conf.d            |
+| e2fsck.conf              |
+| environment              |
+| ethertypes               |
+| exports                  |
+| favicon.png              |
+| filesystems              |
+| firewalld                |
+| fonts                    |
+| fstab                    |
+| gconf                    |
+| gcrypt                   |
+| gdbinit                  |
+| gdbinit.d                |
+| GeoIP.conf               |
+| GeoIP.conf.default       |
+| ghostscript              |
+| gnupg                    |
+| gpm-root.conf            |
+| gpm-syn.conf             |
+| gpm-twiddler.conf        |
+| GREP_COLORS              |
+| groff                    |
+| group                    |
+| group-                   |
+| grub2.cfg                |
+| grub.d                   |
+| gshadow                  |
+| gshadow-                 |
+| gss                      |
+| host.conf                |
+| hostname                 |
+| hosts                    |
+| hosts.allow              |
+| hosts.deny               |
+| ImageMagick              |
+| init.d                   |
+| init_gw_arp              |
+| inittab                  |
+| inputrc                  |
+| iproute2                 |
+| issue                    |
+| issue.net                |
+| java                     |
+| jvm                      |
+| jvm-commmon              |
+| kdump.conf               |
+| kernel                   |
+| krb5.conf                |
+| krb5.conf.d              |
+| ld.so.cache              |
+| ld.so.conf               |
+| ld.so.conf.d             |
+| libaudit.conf            |
+| libnl                    |
+| libreport                |
+| libuser.conf             |
+| locale.conf              |
+| localtime                |
+| login.defs               |
+| logrotate.conf           |
+| logrotate.d              |
+| lsb-release.d            |
+| machine-id               |
+| magic                    |
+| mail.rc                  |
+| makedumpfile.conf.sample |
+| man_db.conf              |
+| maven                    |
+| mke2fs.conf              |
+| modprobe.d               |
+| modules-load.d           |
+| mongod.conf              |
+| motd                     |
+| mtab                     |
+| my.cnf                   |
+| my.cnf.d                 |
+| nanorc                   |
+| NetworkManager           |
+| networks                 |
+| nsswitch.conf            |
+| nsswitch.conf.bak        |
+| nsswitch.conf.rpmnew     |
+| openldap                 |
+| opt                      |
+| os-release               |
+| pam.d                    |
+| passwd                   |
+| passwd-                  |
+| pkcs11                   |
+| pki                      |
+| plymouth                 |
+| pm                       |
+| polkit-1                 |
+| popt.d                   |
+| postfix                  |
+| ppp                      |
+| prelink.conf.d           |
+| printcap                 |
+| profile                  |
+| profile.d                |
+| protocols                |
+| python                   |
+| rc0.d                    |
+| rc1.d                    |
+| rc2.d                    |
+| rc3.d                    |
+| rc4.d                    |
+| rc5.d                    |
+| rc6.d                    |
+| rc.d                     |
+| rc.local                 |
+| rdma                     |
+| redhat-lsb               |
+| redhat-release           |
+| resolv.conf              |
+| rpc                      |
+| rpm                      |
+| rsyncd.conf              |
+| rsyslog.conf             |
+| rsyslog.d                |
+| rwtab                    |
+| rwtab.d                  |
+| sasl2                    |
+| securetty                |
+| security                 |
+| selinux                  |
+| services                 |
+| sestatus.conf            |
+| shadow                   |
+| shadow-                  |
+| shells                   |
+| skel                     |
+| ssh                      |
+| ssl                      |
+| statetab                 |
+| statetab.d               |
+| subgid                   |
+| subuid                   |
+| subversion               |
+| sudo.conf                |
+| sudoers                  |
+| sudoers.d                |
+| sudo-ldap.conf           |
+| sysconfig                |
+| sysctl.conf              |
+| sysctl.d                 |
+| systemd                  |
+| system-release           |
+| system-release-cpe       |
+| tcsd.conf                |
+| terminfo                 |
+| tmpfiles.d               |
+| tuned                    |
+| udev                     |
+| unbound                  |
+| vconsole.conf            |
+| vimrc                    |
+| virc                     |
+| wgetrc                   |
+| wpa_supplicant           |
+| X11                      |
+| xdg                      |
+| xinetd.d                 |
+| yum                      |
+| yum.conf                 |
+| yum.repos.d              |
+| zlogin                   |
+| zlogout                  |
+| zprofile                 |
+| zshenv                   |
+| zshrc                    |
+| zshrc.rpmsave            |
+
+#+BEGIN_SRC sh
+  hostname -f 
+#+END_SRC
+
+#+RESULTS:
+: localhost
+** 头参数的设置
+#+BEGIN_SRC sh :dir /etc :var USER="revolt"
+  grep $USER passwd
+#+END_SRC
+
+#+RESULTS:
+: revolt:x:1000:1000::/home/revolt:/bin/bash
+
+#+HEADER: :dir /etc
+#+BEGIN_SRC sh :var USER="revolt"
+ grep $USER passwd
+#+END_SRC
+
+#+RESULTS:
+: revolt:x:1000:1000::/home/revolt:/bin/bash
+
+#+HEADER: :dir /etc
+#+HEADER: :var USER="revolt"
+#+BEGIN_SRC sh
+  grep $USER passwd
+#+END_SRC
+
+#+RESULTS:
+: revolt:x:1000:1000::/home/revolt:/bin/bash
+
+** 将头参数添加到标题上
+   :PROPERTIES:
+   :header-args: :dir /etc
+   :END:
+- ~, i p~ 来设置默认头参数
+
+#+BEGIN_SRC ruby
+  File.absolute_path(".")
+#+END_SRC
+
+#+RESULTS:
+: /etc
+
+** Another Section
+   :PROPERTIES:
+   :header-args:sh: :dir /etc
+   :header-args:ruby: :dir /
+   :END:
+
+#+BEGIN_SRC sh
+  ls -d $(pwd)
+#+END_SRC
+
+#+RESULTS:
+: /etc
+
+#+BEGIN_SRC ruby
+  File.absolute_path('.')
+#+END_SRC
+
+#+RESULTS:
+: /
+
+** 制定特定语言的默认头参数
+   :PROPERTIES:
+   :header-args:sh: :dir /etc
+   :header-args:ruby: :dir /
+   :END:
+
+#+BEGIN_SRC sh
+  ls -d $(pwd)
+#+END_SRC
+
+#+RESULTS:
+: /etc
+
+** 为文档内所有的代码块设置默认参数
+#+PROPERTY: dir ~/Work
+#+PROPERTY: header-args:sh :tangle no
+
+** 头参数的类型
+
+- 执行类参数
+  + ~dir~ 这类参数会影响代码块的执行
+- 导出类参数
+  + 这类参数会把org文件导出成HTML或其他格式的时候,影响代码块以及代码块的执行
+- 文学编程类参数
+  + 将代码块连接起来,可能会改变实际的源代码
+- 变脸类参数
+  + 通过不同方式设置代码块中的变脸
+- 杂类 输出输入
+  + 其他参数
+
+
+
+*** results 参数
+
+- 如果不加  ~:results~ 参数,那么返回的将是输出结果.
+#+BEGIN_SRC ruby
+  puts 'hello world' ## 代码的返回值
+  5*6 ## 代码的输出结果
+#+END_SRC
+
+#+RESULTS:
+: 30
+
+- 如果添加 ~:results~ 参数,那么返回的将是代码的返回值.   
+#+BEGIN_SRC ruby :results output
+  puts 'hello world' ## 代码的返回值
+  5*6 ## 代码的输出结果
+#+END_SRC
+
+#+RESULTS:
+: hello world
+
+*** 影响输出格式的结果
+
+代码的执行结果会插入到文档中,它可能以以下几种格式出入.
+- table
+  - 如果结果是单个数组,则插入一行,若结果是数组的数组,则插入一个表格.
+- list
+  - 按照普通org-mode列表的格式插入一个无序列表
+- verbatim
+  - 原样输出
+- file
+  - 将结果写入到文件当中
+- html
+  - 认为执行的结果是HTML代码,导出时原样导出
+- code
+  - 认为执行的结果还是原语言的代码
+- silent
+  - 只在 ~mini-buffer~ 中显示执行的结果
+
+*** 内容测试
+
+**** session的例子
+
+sion 输出成列表
+#+BEGIN_SRC ruby :results list
+  Dir.entries('.').sort.select do |file|
+    file[0] != '.'
+  end
+#+END_SRC
+
+#+RESULTS:
+- section-one-block.org
+- section-one.org
+
+**** session的例子
+
+ shell 命令和日志输出比较适合使用原样输出
+
+ #+BEGIN_SRC sh :results verbatim :exports both
+   ssh -v root@23.105.223.211 -p 27653
+ #+END_SRC
+
+ #+RESULTS:
+
+**** session的例子
+
+ session
+默认的情况下,每个代码块在每次运行时都会重启自己的一个解释器.
+
+我们可以通过设置头参数 ~:session~ 来设置一个标签值,则所有拥有统一标签的代码块在运行时都在同一个解释器Session中.
+
+之所以这么做事因为,每次重启一个解释器:
+
+- 有的解释器启动时间很长,像 ~clojure~ 
+- 使用Tramp登录远程机器很慢
+- 代码块共享函数定义与状态
+
+#+BEGIN_SRC python
+  avar = 42
+  return avar
+#+END_SRC
+
+#+RESULTS:
+: 42
+
+#+BEGIN_SRC python
+  return avar /2 
+#+END_SRC
+
+#+RESULTS:
+
+此时就会报错.
+
+如果我们采用一个基于 ~:session~ 的解释器
+
+#+BEGIN_SRC python :session kill9 :results output
+  a = "hello world"
+  print(a)
+#+END_SRC
+
+#+RESULTS:
+: hello world
+#+BEGIN_SRC python :session kill9
+  a
+#+END_SRC
+
+#+RESULTS:
+: hello world
+
+~:session~ 常常设置为标题属性,你其实可以切换到 /kill9/ 这个buffer中直接与解释器进行交互.
+
+可以在那里设置变量以及其他状态,然后在执行代码块.
+
+**** session的例子
+     :PROPERTIES:
+     :session:  stateful
+     :END:
+
+     #+BEGIN_SRC sh :results silent
+     NUM_USERS=$(grep 'revolt' /etc/passwd | wc -l --)
+     #+END_SRC
+     
+#+BEGIN_SRC sh
+  echo $NUM_USERS
+#+END_SRC
+
+#+RESULTS:
+
+
+**** 将结果写到文件中
+
+#+BEGIN_SRC ruby :results output :file primes.txt
+  require 'prime'
+  Prime.each(5000) do |prime|
+    p prime
+  end
+#+END_SRC
+
+#+RESULTS:
+[[file:primes.txt]]
+
+此时你会发现执行的结果是插入了一个指向文件的链接,点击该连接会在 ~buffer~ 中加载该文件.
+
+注意: ~:file~ 参数需要与 ~:results output~ 共用,因为他不知道以哪种格式输出内部值.
+
+** 文学编程
 
