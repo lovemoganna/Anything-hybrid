@@ -2,14 +2,9 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("core"
- (filename . "~/.emacs.d/init.el")
- (front-context-string)
- (rear-context-string . "e special words\n")
- (position . 1180))
-("current-work"
- (filename . "~/.emacs-snippent/region/word-definition-lookup.el")
- (front-context-string . "(defun word-defi")
- (rear-context-string)
- (position . 1))
+(("keybind"
+ (filename . "~/.emacs.d/lisp/init-keybindings.el")
+ (front-context-string . "\n\n(require 'helm")
+ (rear-context-string . ") 'bookmark-set)")
+ (position . 1953))
 )

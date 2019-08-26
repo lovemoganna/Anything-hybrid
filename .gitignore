@@ -2,3 +2,7 @@ abbrev_defs/
 elpa/
 auto-save-list/
 .cask/
+bookmarks/
+eshell/
+recentf/
+test/

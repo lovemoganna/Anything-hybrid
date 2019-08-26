@@ -5,7 +5,6 @@
 
 (require 'init-packages)
 (require 'init-major-mode)
-(require 'init-ui)
 (require 'init-org)
 (require 'init-keybindings)
 (require 'init-customization)

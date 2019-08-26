@@ -48,8 +48,12 @@
 	(?\< . ?\>)))
 
 ;; active evil mode
+(require 'evil)
 (evil-mode 1)
 
+;;
+(require 'nyan-mode)
+(nyan-mode 1)
 ;; auto load outside changed file
 (global-auto-revert-mode 1)
 
@@ -110,6 +114,29 @@
   (interactive)
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
+
+;; linemode configuration
+(setq display-time-mode 1)
+(setq column-number-mode 1)
+(setq size-indication-mode 1)
+
+;; enable ffap
+(setq ffap-bindings t)
+
+;; active semantic
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match t)
+
+;; helm man and woman
+(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+;; helm locate
+(setq helm-locate-fuzzy-match t)
+;; helm apropos
+(setq helm-apropos-fuzzy-match t)
+(setq helm-lisp-fuzzy-completion t)
+
+(require 'helm-descbinds)
+(helm-descbinds-mode)
 
 (provide 'init-better-default)
 

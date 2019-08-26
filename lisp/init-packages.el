@@ -22,12 +22,18 @@
 		js2-mode
 		web-mode
 		helm
+		helm-projectile
+		helm-descbinds
 		;; --- Minor Mode ---
 		nodejs-repl
 		exec-path-from-shell
 		;; --- Themes ---
 		monokai-theme
-		;; solarized-theme
+		doom-themes
+		doom-modeline
+		;; --- Evil Mode ---
+		evil
+		nyan-mode
 		) "Default packages")
 
 ;; config emacs package source
