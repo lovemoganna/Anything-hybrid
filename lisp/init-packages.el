@@ -1,4 +1,4 @@
-(when (>= emacs-major-version 24)
+(when (version< emacs-version "27.0")
   (require 'package)
   (package-initialize)
   (setq package-archives '(("gnu" ."http://elpa.emacs-china.org/gnu/")

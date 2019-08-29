@@ -116,9 +116,14 @@
   (while (search-forward "\r" nil t) (replace-match "")))
 
 ;; linemode configuration
-(setq display-time-mode 1)
-(setq column-number-mode 1)
+;; (setq display-time-format "%I:%M:%S")	
+
+(display-time-mode 1)
+
 (setq size-indication-mode 1)
+
+;; show column lines
+(setq column-number-mode 1)
 
 ;; enable ffap
 (setq ffap-bindings t)

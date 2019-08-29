@@ -34,14 +34,8 @@
 #+END_SRC
 
 
-**add helm config**
-
-#+BEGIN_SRC emacs-lisp
-(require 'helm-config)
-(helm-mode 1)
-#+END_SRC
-
 **set language environment**
+
 #+BEGIN_SRC emacs-lisp
 (set-language-environment "UTF-8")
 #+END_SRC

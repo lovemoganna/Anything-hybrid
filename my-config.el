@@ -31,7 +31,4 @@
  ;; If there is more than one, they won't work right.
  )
 
-(require 'helm-config)
-(helm-mode 1)
-
 (set-language-environment "UTF-8")

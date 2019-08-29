@@ -4,6 +4,8 @@
        '(("\\.js\\'" . js2-mode)
 	 ("\\.html\\'" . web-mode)
 	 ("\\.el\\'" . emacs-lisp-mode)
+	 ("\\.rst\\'" . rst-mode)
+	 ("\\.rest\\'" . rst-mode)
 	 )
        auto-mode-alist))
 
@@ -16,7 +18,7 @@
 (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
 
 ;; toggle 4 indent & 2 indent
-(defun my-toggle-web-indent ()
+(defun my-toggle-web-indent ()		
   (interactive)
   ;; web development
   (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))

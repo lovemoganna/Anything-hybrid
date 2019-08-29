@@ -48,5 +48,4 @@
 ;; Close Scroll bar
 (scroll-bar-mode 1)
 
-
 (provide 'init-ui)
