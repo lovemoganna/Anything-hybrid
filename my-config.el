@@ -32,3 +32,12 @@
  )
 
 (set-language-environment "UTF-8")
+
+;; Enable transient mark mode
+(transient-mark-mode 1)
+
+(require 'org)
+
+;; set org workflow state 
+(setq org-todo-keybindings
+'((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))

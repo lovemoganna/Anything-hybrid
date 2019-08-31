@@ -16,21 +16,20 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" default))
+   (quote
+    ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" default)))
  '(evil-auto-indent t)
  '(evil-mode t)
- '(initial-frame-alist '((fullscreen . maximized)))
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(org-agenda-files
+   (quote
+    ("~/.emacs.d/test/demo.org" "/home/revolt/org/a.org")))
  '(package-selected-packages
-   '(spaceline-all-the-icons helm-descbinds helm-projectile wgrep nyan-mode el-get evil doom-modeline doom-themes company)))
+   (quote
+    (ace-jump-mode yasnippet-classic-snippets evil-collection youdao-dictionary yasnippet paradox spaceline-all-the-icons helm-descbinds helm-projectile wgrep nyan-mode el-get evil doom-modeline doom-themes company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;; Set default font
-(set-face-attribute 'default nil
-                    :family "Source Code Pro"
-		    :height 100
-                    :weight 'normal
-                    :width 'normal)
  )

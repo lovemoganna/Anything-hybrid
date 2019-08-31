@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("keybind"
+(("Elisp.org"
+ (filename . "~/.emacs.d/test/Elisp.org")
+ (front-context-string . "   one by pressi")
+ (rear-context-string . " each group for\n")
+ (position . 1983))
+("keybind"
  (filename . "~/.emacs.d/lisp/init-keybindings.el")
  (front-context-string . "\n\n(require 'helm")
  (rear-context-string . ") 'bookmark-set)")

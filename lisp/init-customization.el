@@ -1,4 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/ui")
+(add-to-list 'load-path "~/.emacs.d/lisp/dictionary")
+(add-to-list 'load-path "~/.emacs.d/lisp/evil")
 (require 'init-ui)
 (require 'doom-modeline-config)
 ;; fast open configuration file
@@ -55,4 +57,12 @@
 (add-hook 'eshell-mode-hook
           #'(lambda ()
               (define-key eshell-mode-map (kbd "C-c C-l")  'helm-eshell-history)))
+
+(require 'init-dictionary)
+(require 'init-evil)
+
+;; ace-jump
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
 (provide 'init-customization)

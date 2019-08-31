@@ -6,6 +6,7 @@
 	 ("\\.el\\'" . emacs-lisp-mode)
 	 ("\\.rst\\'" . rst-mode)
 	 ("\\.rest\\'" . rst-mode)
+	 ("\\.org\\'" . org-mode)
 	 )
        auto-mode-alist))
 

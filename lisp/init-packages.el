@@ -1,5 +1,6 @@
 (when (>= emacs-major-version 24)
   (require 'package)
+  (package-initialize)
   (setq package-archives '(("gnu" ."http://elpa.emacs-china.org/gnu/")
 			   ("melpa" . "http://elpa.emacs-china.org/melpa/")
 			   ))
@@ -32,7 +33,15 @@
 		doom-modeline
 		;; --- Evil Mode ---
 		evil
+		evil-collection
+
+		;; --- ace jump ---
+		ace-jump-mode
 		nyan-mode
+		;; --- package manage---
+		paradox
+		;; --- dictionary ---
+		youdao-dictionary
 		) "Default packages")
 
 ;; config emacs package source

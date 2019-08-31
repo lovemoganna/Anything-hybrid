@@ -143,5 +143,33 @@
 (require 'helm-descbinds)
 (helm-descbinds-mode)
 
+;; package manage tools
+(require 'paradox)
+(paradox-enable)
+
+;; close menu
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; config auto-fill-mode
+(auto-fill-mode 1)
+
+;; yasnippet config
+
+;; set yasnippet
+;; (setq yas-snippet-dirs
+;;       '("~/.emacs.d/snippets"                 ;; personal snippets
+;;         "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+;;         "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+;;         ))
+;; setup yasnippet 
+(yas-global-mode 1)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB" nil)
+(define-key yas-minor-mode-map (kbd "SPC" yas-maybe-expand)
+(define-key yas-minor-mode-map (kbd "C-c C-y" #'yas-expand)
+
 (provide 'init-better-default)
 
