@@ -1,0 +1,37 @@
+* Typing is not the bottleneck
+  
+  - =dw=
+  - =.=
+    
+* Verbs in vim 
+  - d
+  - c
+  - >
+  - v
+  - y
+    
+  hello
+
+  world
+  
+  use the =cw= delete the /hello/, and input word =meow=,then move to beginning the word
+  "world",type =dot= ,you will find the word =world= change to /meow/.
+
+* Indent 
+
+  =S-> 3= move 3 lines to right.
+#+BEGIN_SRC python
+def barbarbarbarbarbarinitialize(bar)
+@bar = bar
+#+END_SRC
+
+* Nouns in Vim - Text Objects
+- =iw= need =d= or =c=
+  + world world welcome in goto shanghai
+- =it=
+  + world world welcome in goto shanghai
+- =i=
+- =ip=
+- =as=
+  
+

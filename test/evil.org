@@ -1,0 +1,174 @@
+* Evil Mode
+
+** Eslip
+   
+   #+BEGIN_SRC emacs-lisp
+   (+ 1 3 1)
+   
+   (apply #'+ '(1 3 1))
+   
+   (apply '+ 1 2)
+   #+END_SRC
+
+   #+RESULTS:
+   : 3
+
+   if you don't want a function argument to be treated as a
+   varibale,you must quote it since functions evaluate their
+   arguments. This applies to symbols and not literals(etc:
+   string,number).
+
+*** Keybings and States 
+    
+    As a Evil User,you should know binding keys is
+    ~evil-define-key~. but you should know other keybings.
+    - ~global-set-key~
+    - ~evil-global-set-key~
+    - ~evil-local-set-key~
+    - ~evil-define-minor-mode-key~
+
+    but ~evil-define-key~ can be used instead of any of these.
+    
+    high recommand read [[https://github.com/noctuid/general.el][general.el]]. There have a unified wrapper
+    for all function keybindings.
+
+   
+*** Key Precedence
+    Evil keymaps could be found in ~emulation-mode-map-alists~,which
+    puts them close to the top in terms of precedence.
+
+    Here is the orders of precedence of evil's keymaps as explained in
+    ~evil-core.el~.
+    
+    1) Intercept Keymaps =evil-make-intercept-map=
+    2) Local state keymap =evil-local-set-key=
+    3) Minor-mode keymaps =evil-define-minor-mode-key=
+    4) Auxiliary keymaps =evil-define-key=
+    5) Overriding keymaps =evil-make-overriding-map=
+    6) Global state keymap =evil=global-set-key=
+   
+*** Global Keybindings and Evil States 
+    To make global keybindings in emacs without evil,one would
+    normally use =global-set-key=,it's just a small wrapper function
+    around =define-key= that defines a key in the current global map
+    and signals a error when the key isn't a string or vector.
+    
+    Evil provides several of global keymaps as follows:
+    - =evil-insert-state-map=
+    - =evil-emacs-state-map=
+    - =evil-normal-state-map=
+    - =evil-visual-state-map=
+    - =evil-motion-state-map=
+    - =evil-operator-state-map=
+    - =evil-outer-text-objects-map=
+    - =evil-inner-text-objects-map=
+    - =evil-replace-state-map=
+
+      There are also buffer local versions of these.eg:
+      =eval-normal-state-local-map=
+      
+      *Use C-z toggle eamcs-mode & Evil-mode*
+      
+      Motion state is a bit strange.You could try to open Help mode
+      use =F1-m=,you will find mation state is default mode for
+      =help-mode=.
+      
+      =Evil-Command= bind =C-w= prefix,since =define-key= is the basic
+      for key definition in emacs.The basic format of =define-key= is
+      =(define-key <keymap> <key> <definition>)=.The specified key can
+      be a string (or something that evaluates to a string) or a
+      vector.You probably won't to use a vector of characters instead
+      of a string,but you can use a vector to remap a keymap or a
+      string.A key bound to a keymap is a prefix key.Binding a key to
+      a sting will cause emacs to execute that string as a keyboard
+      macro.So,you should know what is keyboard macro,just press =F1-f
+      define-key RET= for more information on vaild definitions.
+
+      evil provides a convenience function called
+      =eval-global-set-key= that allows you to simply specify the name
+      of the state as opposed to the full keymap name:
+
+      #+BEGIN_SRC emacs-lisp
+      (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+      (evil-global-set-key 'motion "k" 'evil-pervious-visual-line)
+      #+END_SRC
+      
+      #+BEGIN_SRC emacs-lisp
+      (defvar my-leader-map (make-sparse-keymap)
+      "Keymap for \"leader key\" shortcuts.")
+      ;; bind ", b"
+      (define-key my-leader-map "b" 'list-buffers)
+      (define-key evil-normal-state-map "," 'evil-repeat-find-char-reverse)
+      (define-key evil-normal-state-map (kbd "SPC") my-leader-map)    
+      #+END_SRC
+
+      #+RESULTS:
+      : (keymap (98 . list-buffers))
+      
+      #+BEGIN_SRC emacs-lisp
+      ;; set a prefix keymap used by evil.
+      (define-prefix-command 'evil-window-map)
+      (define-key evil-window-map "b" 'evil-window-bottom-right)
+      (define-key evil-window-map "c" 'evil-window-delete)
+      (define-key evil-motion-state-map "\C-w" 'evil-window-map)
+      #+END
+
+      #+RESULTS:
+      : evil-window-map
+     
+      
+
+**** Mode Specific KeyBindings
+     =evil-define-key= can be used to define keys in specific states
+     for specific modes.
+     
+     Unlike with =define-key=, =evil-define-key= can be used to define
+     multiple keys at once.
+     
+     #+BEGIN_SRC emacs-lisp
+     (evil-define-key 'normal org-mode-map
+     (kbd "TAB") 'org-cycle
+     ">" 'org-shiftmetaright
+     "<" 'org-shiftmetaleft)
+     #+END_SRC
+
+     #+RESULTS:
+
+**** Buffer Local KeyBings
+     
+     ~evil-local-set-key~ could creating buffer local keybindings,
+
+     for example:
+     #+BEGIN_SRC emacs-lisp
+     (evil-local-set-key 'normal key def)
+
+     ;; is the same as 
+     (define-key evil-normal-state-local-map key def)
+     
+     ;; is the same as 
+     (evil-define-key 'normal 'local key def)
+     #+END_SRC
+
+     #+BEGIN_SRC emacs-lisp
+     (defun my-setup-org-edit-src-exit ()
+     (evil-local-set-key 'normal (kbd "SPC '") 'org-edit-src-exit))
+     
+     (add-hook 'org-src-mode-hook #'my-setup-org-edit-src-exit)
+     #+END_SRC
+
+     #+RESULTS:
+     | my-setup-org-edit-src-exit | org-src-babel-configure-edit-buffer | org-src-mode-configure-edit-buffer |
+
+     
+**** Binding Keys to Keys(Keyboard Macros)
+     #+BEGIN_SRC emacs-lisp
+     (evil-define-key 'normal 'global
+     ;; selected the previously pasted text
+     "gp" "`[v`]"
+     ;; run the macro in the q register
+     "Q" "@q")
+     #+END_SRC
+
+     #+RESULTS:
+
+

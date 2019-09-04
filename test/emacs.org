@@ -1,0 +1,72 @@
+* emacs glossary
+
+** TODO Agenda :Task Manager:
+   
+*** Defination
+    - filtered views,select you want to see item
+    - view your schedule
+    - lists of your todos
+    - query results(tags,regex)
+  
+
+*** Details
+    - Agenda
+    - TODO entries
+    - Match
+    - TimeLine for current line
+    - Search
+    - multi-occur
+    - < view current the tree
+    - << view subtree
+    
+
+*** Uses
+    - day planner system
+    - GTD system (Getting Things Done)
+    - powerful task manager / search tools
+   
+
+*** Configure
+    
+**** Use Scene                                                    :Important:
+     - search all TODO by named tag "@computer"
+     - combined ~@work~ & ~computer~ tags's all TODO item
+     - change sort /view /use file
+     - set up automatic export of custom agenda views (html/ps/txt)
+     - call user-defined functions from the agenda-dsipatcher
+       
+All of these things can be accomplished with the variable org-agenda-custoom-commands. ~C-c a C~
+
+**** How To Create Agenda Command
+     
+    - [[https://orgmode.org/manual/Custom-agenda-views.html#Custom-agenda-views][Custom agenda views]]
+    - oen methods: ~M-x customize-variable RET org-agenda-custom-commands~
+** Agenda Files
+   
+** Archiving
+
+** Attachment
+
+** Category
+
+** DEADLINE
+
+** Docstring
+
+** Drawers
+
+** Entry
+
+** HeadLine
+
+** Inheritance
+
+** Property
+
+** Tag
+
+** Tree(subtree)
+   
+** Todo Keywords
+
+** TODO Awaiting definations

@@ -1,0 +1,82 @@
+* Elisp Concepts
+  In eamcs,every user interactive is a function execution. There are two
+types of functions in emacs:
+- Normal Emacs: common funciton,just as implementing features in
+  emacs.
+- Commands: Commands are like funciton.but interactive.could directly
+  use it.
+
+
+** Emacs keys remember
+   - ~C-x~ prefix is for default and global binding that come with
+     eamcs.
+   - ~C-c~ prefix is for users to define.
+   - ~C-u~ for altering behaviors of commands.That is ,one command can
+     behave differently depending on how many ~C-u~ you pressed first
+     before executing a command.
+   - ~C-<number>~ passing a number to a command.Usually,the number
+     specifies how many times you want to repeated a command.
+
+** Emacs manual
+   
+*** Man
+    - ~man~ : get a Unix manual page and put it i a buffer.
+    - ~woman~ : you can view man page without having the man program installed.
+   
+
+
+** TODO Opening Files
+   use /Wildcard expression/ to select more than one file.If you
+   dictnory contains these file:
+   - file_a_1.c
+   - file_a_2.c
+   - file_a_3.c
+   - file_a_1.h
+   - file_a_2.c
+
+   another command is =find-file-at-point=, What this function does is
+   that if you ave a point to a directory or file under point.just
+   run =M-x ffap=.
+
+** IDO Mode
+   ~IDO Mode~ ,short for ~Interactive do anything~.
+   
+   ~C-x C-d~ find-current-dir-file
+   
+
+** Major Mode
+   Major Mode provide specialized facilities for working on a
+   particular file type.
+
+   Major Mode are mutually exclusive,each buffer has one and only one
+   major mode at any time.
+
+   
+** Minor Mode 
+   Minor Modes are optional features which you can turn on or off,not
+   necessarily specific to a type or file or buffer.
+
+   =Auto-fill-mode= is a minor mode in which SPC breaks lines between
+   words as you type.
+
+   Minor modes are independent of one another,and of the selected
+   major mode.
+
+** Buffer
+   
+   =M-x Ibuffer=
+
+   enter =C-mode= and =emacs-lisp-mode=,You can create each group for
+   one by pressing ~/g~ and give the group a name. 
+     
+** Dynamic Abbreviations 
+   thisisaveryveryberyverylongward thisisaveryveryberyverylongward
+
+   randomWord randomWord
+   
+   just add a whitespace,emacs could remember you input word.
+
+** Kill ring
+
+   
+

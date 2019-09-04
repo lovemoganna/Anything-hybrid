@@ -1,0 +1,96 @@
+#+TODO: TODO IN-PROGRESS WAITING DONE
+#+STARTUP: showall
+
+o_mode
+* Mr.Revolt Anti-RoteLearning 
+
+** This is a headline,it starts with one or more stars
+   
+   A heading has one star, a sub-heading two,etc
+
+** Working with lists
+
+*** Moving around in our outline
+
+*** Moving around headlines
+
+*** Lord Of the Rings
+    My favorites scenes are (in this order)
+    1. The attack of the Rohirrim
+    2. Eowyn's fight with the witch king
+       + this was already my favorite scenes in the book
+       + I really like Miranda Otto.
+    3. Peter Jackson Being shot by Legolas
+       - on DVD only
+    He makes a really funny face when it happens
+    But in the end,on individual scenes matter but the film as a whole.
+    Important actors in this film are:
+    - **Elijah** :: He Plays Frodo
+    - **Sean Austin** :: He plays Sam
+	 Him very well from his role as Mikey Walsh in the goonies.
+
+    You can make words *bold*, /italic/, _underlined_, =code= and
+    ~verbatim~, and, if you must, +strike-through+.
+
+
+*** WAITING Buy AirPlane
+    
+*** Agendas
+    New shortcuts in this chapter:
+    
+- ~C-c a~ - agenda
+- ~C-c [~ - add document to the list of agenda files
+- ~C-c ]~ - remove document from the list of agenda file
+- ~C-c .~ - add date
+- ~C-u C-c .~ - add time and date
+- ~C-g~ -stop doing what you are trying to do,escape.
+
+<2019-08-29 Thu>
+
+<2019-08-29 Thu 19:45>
+
+*** Creating lists of all active TODOs
+    repeated previous command 
+    
+*** Appointments and deadlines <2019-08-29 Thu 20:03>
+    when a task is time related.then we usually put it in our
+    calendar.This can also be done in Org Mode.
+
+    And agenda can then show us a time-based list of our TODOs.This is
+    done in the following way.
+
+**** Control Time 
+     two concepts: punching-in & punching-out,just for clock work.
+     
+     - Punch in (start the clock)
+       + This clocks in a predefined task by ~org-id~ that is the
+         default task to clock in whenever the clock normally stops.
+     - Clocks in tasks normally,and let moving to a DONE state clock
+       out.
+       + clocking out automatically clocks time on a parent task or
+         moves back to predefined default task if no parent exists.
+     - Continue clocking whatever tasks you work on
+     - Punch out (stop the clock)
+     
+
+     It's free to change the default task multiple time during the day
+     but with the clock moving up the project tree on clock out i no
+     longer need to do this.
+
+     #+BEGIN_SRC 
+     if have a ~projet x~ task:
+         task automatically becomes the default task,all clocked time goes on that project
+	 
+        when punch out the task
+	     leave that project,assign time give another task
+	     
+        or punch in another task
+	     leave that project,assign time give another task
+     #+END_SRC
+     
+**** Attach a file to this location  :ATTACH:
+     :PROPERTIES:
+     :Attachments: todo.org
+     :ID:       c719e41b-6bd1-4bbd-98df-8d0a168f7339
+     :END:
+     
