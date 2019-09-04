@@ -58,6 +58,8 @@
 (global-set-key (kbd "C-x r l") 'helm-bookmarks)
 (global-set-key (kbd "C-x r m") 'bookmark-set)
 
+;; youdao dictionary voice at point
+(global-set-key (kbd "C-c v") 'youdao-dictionary-play-voice-at-point)
 (require 'helm-eshell)
 
 (add-hook 'eshell-mode-hook

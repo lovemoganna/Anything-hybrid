@@ -6,7 +6,7 @@
 (require 'org-install)
 
 (require 'ob-tangle)
-
+;;; Code:
 (org-babel-load-file (expand-file-name "my-config.org" user-emacs-directory))
 
 (put 'downcase-region 'disabled nil)
@@ -20,13 +20,15 @@
     ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" default)))
  '(evil-auto-indent t)
  '(evil-mode t)
+ '(ido-mode (quote both) nil (ido))
  '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(org-agenda-files
-   (quote
-    ("~/.emacs.d/test/demo.org" "/home/revolt/org/a.org")))
+ '(nyan-wavy-trail t)
+ '(org-html-htmlize-output-type (quote css))
  '(package-selected-packages
    (quote
-    (ace-jump-mode yasnippet-classic-snippets evil-collection youdao-dictionary yasnippet paradox spaceline-all-the-icons helm-descbinds helm-projectile wgrep nyan-mode el-get evil doom-modeline doom-themes company))))
+    (py-autopep8 elpy format-all python-info python-mode org-preview-html org-babel-eval-in-repl helm-flyspell helm-ispell auto-dictionary yasnippet-snippets yasnippet flycheck eval-in-repl company hungry-delete swiper counsel smartparens js2-mode web-mode helm helm-projectile helm-descbinds nodejs-repl exec-path-from-shell monokai-theme doom-themes doom-modeline evil evil-collection ace-jump-mode nyan-mode paradox youdao-dictionary use-package)))
+ '(tramp-mode nil nil (tramp))
+ '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

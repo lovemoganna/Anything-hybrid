@@ -1,4 +1,8 @@
+;;; init-better-default.el --- default configuration:
+;;; Commentary:
+;;; Code:
 ;; Open Company for Automatic completion
+
 (global-company-mode 1)
 
 ;; Aginst make backup file
@@ -24,7 +28,7 @@
 ;; Hightlight Brackets ()[]{}
 (show-paren-mode 1)
 
-;;(progn					
+;;(progn
 ;; (show-paren-mode 1)
 ;; (setq show-paren-style 'expression))
 
@@ -78,13 +82,12 @@
 	(indent-buffer)
 	(message "Indent buffer.")))))
 
-;; abbreviation table completion 
+;; abbreviation table completion
 (setq-default abbrev-mode t)
 (define-abbrev-table 'global-abbrev-table '(
 					    ;; me
-					    ("8r" "revolt")
+					    ("me" "revolt")
 					    ))
-
 ;;Hippie Completion
 
 ;; use C-x C-j enter current dir list
@@ -110,13 +113,13 @@
   (aset buffer-display-table ?\^M []))
 
 (defun remove-dos-eol ()
-  "Replace DOS eolns CR LF with Unix eolns CR"
+  "Replace DOS eolns CR LF with Unix eolns CR."
   (interactive)
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
 ;; linemode configuration
-;; (setq display-time-format "%I:%M:%S")	
+;; (setq display-time-format "%I:%M:%S")
 
 (display-time-mode 1)
 
@@ -124,24 +127,6 @@
 
 ;; show column lines
 (setq column-number-mode 1)
-
-;; enable ffap
-(setq ffap-bindings t)
-
-;; active semantic
-(setq helm-semantic-fuzzy-match t
-      helm-imenu-fuzzy-match t)
-
-;; helm man and woman
-(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
-;; helm locate
-(setq helm-locate-fuzzy-match t)
-;; helm apropos
-(setq helm-apropos-fuzzy-match t)
-(setq helm-lisp-fuzzy-completion t)
-
-(require 'helm-descbinds)
-(helm-descbinds-mode)
 
 ;; package manage tools
 (require 'paradox)
@@ -154,8 +139,7 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; config auto-fill-mode
-(auto-fill-mode 1)
-
+(setq-default auto-fill-function 'do-auto-fill)
 ;; yasnippet config
 
 ;; set yasnippet
@@ -164,12 +148,25 @@
 ;;         "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
 ;;         "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
 ;;         ))
-;; setup yasnippet 
-(yas-global-mode 1)
-(define-key yas-minor-mode-map (kbd "<tab>") nil)
-(define-key yas-minor-mode-map (kbd "TAB" nil)
-(define-key yas-minor-mode-map (kbd "SPC" yas-maybe-expand)
-(define-key yas-minor-mode-map (kbd "C-c C-y" #'yas-expand)
 
+
+;; set default font
+(set-frame-font "Source Code Pro 12" t)
+
+;; enable auto dictionary
+(require 'auto-dictionary)
+(add-hook 'flyspell-mode-hook (lambda () (auto-dictionary-mode 1)))
+
+;; active org-bebel-eval-in-repl
+(with-eval-after-load "ob"
+  (require 'org-babel-eval-in-repl)
+  (define-key org-mode-map (kbd "M-<return>") 'ober-eval-block-in-repl))
+
+(with-eval-after-load "eval-in-repl"
+  (setq eir-jump-after-eval nil))
+
+;; org mode syntax highlight
+(setq org-src-fontify-natively t)
+;;; init-better-default.el ends here
 (provide 'init-better-default)
 

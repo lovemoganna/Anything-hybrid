@@ -39,7 +39,6 @@
 
 
 ** set language environment
-
    #+BEGIN_SRC emacs-lisp
    (set-language-environment "UTF-8")
    #+END_SRC

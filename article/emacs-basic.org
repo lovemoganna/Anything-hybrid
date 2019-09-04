@@ -1,0 +1,1 @@
+/home/revolt/.emacs.d/article/file-link.org

@@ -1,0 +1,44 @@
+* Emacs Basic 
+  - Change Configure file dir: =mv ~/.emacs.d ~/.emacs.d.old~
+  - Set startup font: ~emacs --font "Source Code Pro 12"~
+  - Read Manual
+    + u: back to the dir
+    + L: History of the visited nodes
+    + n: next node
+    + p: previous node
+    + =C-s= search char,just press =C-a= goto the beginning to the char.
+  - Play Text game: =animate-birthday=
+
+* Emacs Customize 
+  - =M-x customize=
+  - enter =environment= find =frame= and into it.
+  - =M-x customize-themes= select you favorite themes.
+  - you could set default font in =Default face= in ~Customize-face~,in this case that
+  could overview anything themes config.
+* Installing Packages and Extensions
+  - =packages-list=,you could use =S-u= upgrade you packages.
+  - use =M-x customize-group Enter package= set packages install from source.
+  - use =M-x package-autoremove= delete old packages.
+* Exploring the FileSystem and Extensions
+  - if you can't see new create file,could use =g= update file in the dir.
+  - use =S-c= copy a file.
+  - use =m= mark more file. then press =!=,input =firefox=,you will see
+marked multiple file.
+  - use =* /= mark select all file.
+  - use =* t= mark select all file.
+  - use =* T= toggle mark file and folder .
+  - use =S= set a file link.
+  - use =S-a= search you want to search text in mark file.this is very
+  powerful feature.use =M-,= jump.then RET could goto next slect text.
+  - use =* <F1>= search more mark information.
+  - use =C= copy file,then use =s= sort new created file.
+  - use =C-x C-q= toggle file whether only-read status that could use
+  =M-%= replace you want to replace file. then press =!= finished
+  replace all.
+* Managing and Finding Buffers
+  - =Ido Mode=
+    - use =C-f= return Normal search
+    - use =C-r= will behind search
+    - use =C-s= will next search
+  
+

@@ -1,0 +1,75 @@
+#+title: Emacs Lisp Basic
+#+BEGIN_SRC python :preamble "# -*- coding: utf-8 -*-" :var data=unicode_str
+return data
+#+END_SRC
+#+author: Mr.revolt
+
+#+begin_src python :results file :exports both
+import matplotlib, numpy
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+fig=plt.figure(figsize=(4,2))
+x=numpy.linspace(-15,15)
+plt.plot(numpy.sin(x)/x)
+fig.tight_layout()
+plt.savefig('images/python-matplot-fig.png')
+return 'images/python-matplot-fig.png' # return filename to org-mode
+#+end_src
+
+#+RESULTS:
+[[file:images/python-matplot-fig.png]]
+
+#+name: unicode_str
+#+begin_example
+"this string is not ascii!"
+#+end_example
+
+#+NAME: error-in-passing-var
+#+BEGIN_SRC python :var data=unicode_str
+return data
+#+END_SRC
+
+#+RESULTS: error-in-passing-var
+: this string is not ascii!
+
+#+NAME: ok-in-passing-var
+#+BEGIN_SRC python :preamble "# -*- coding: utf-8 -*-" :var data=unicode_str
+return data
+#+END_SRC
+
+#+RESULTS: ok-in-passing-var
+: this string is not ascii!
+** basic html
+
+#+name: banner
+#+begin_export html
+  <div id="subtitle" style="float: center; text-align: center;">
+  <p>
+  Org Mode support for <a href="http://python.org/">Python</a>
+  </p>
+  <p>
+  <a href="http://python.org/">
+  <img src="http://www.python.org/images/python-logo.gif"/>
+  </a>
+  </p>
+  </div>
+#+end_export
+
+** Template Checklist [12/14]                                      :noexport:
+  - [X] Revise #+TITLE:
+  - [X] Indicate #+AUTHOR:
+  - [X] Add #+EMAIL:
+  - [X] Revise banner source block [3/3]
+    - [X] Add link to a useful language web site
+    - [X] Replace "Language" with language name
+    - [X] Find a suitable graphic and use it to link to the language
+  - [X] Write an Introduction
+  - [X] Describe Requirements and Setup
+  - [X] Replace "Language" with language name in Org Mode Features for Language Source Code Blocks
+  - [X] Describe Header Arguments
+  - [X] Describe support for Sessions
+  - [ ] Describe Result Types
+  - [ ] Describe Other differences from supported languages
+  - [X] Provide brief Examples of Use
+  - [X] Add caveats about utf-8 in strings
+  - [X] Add caveats about utf-8 in tables

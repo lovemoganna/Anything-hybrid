@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: el_pg
+# key: el_pg
+# --
+;;; `(insert (buffer-name))` --- $1
+;;; Author: Mr.Revolt
+;;; Created: `(insert (current-time-string))`
+;;; Commentary:
+;;; Code:
+$2
+;;; `(insert (buffer-name))` ends here

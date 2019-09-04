@@ -1,8 +1,13 @@
+;;; CostomizePackage --- Summary:
+;;; Commentary:
+
+;;; Code:
 (add-to-list 'load-path "~/.emacs.d/lisp/ui")
 (add-to-list 'load-path "~/.emacs.d/lisp/dictionary")
 (add-to-list 'load-path "~/.emacs.d/lisp/evil")
+
 (require 'init-ui)
-(require 'doom-modeline-config)
+
 ;; fast open configuration file
 (defun open-init-file()
   (interactive)
@@ -46,6 +51,22 @@
 
 (helm-mode 1)
 
+;; active semantic
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match t)
+
+;; helm man and woman
+(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+;; helm locate
+(setq helm-locate-fuzzy-match t)
+;; helm apropos
+(setq helm-apropos-fuzzy-match t)
+(setq helm-lisp-fuzzy-completion t)
+
+(require 'helm-descbinds)
+(helm-descbinds-mode)
+
+
 ;; active helm grep,just use C-s will have pattern,just like helm-occur
 (when (executable-find "ack-grep")
   (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
@@ -65,4 +86,47 @@
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
+;; use eval-in-repl
+(require 'eval-in-repl)
+;; Place REPL on the left of the script window when spliting
+(setq eir-repl-placement 'left)
+;; ielm support
+(require 'eval-in-repl-ielm)
+;; Evaluation expression in the current buffer.
+(setq eir-ielm-eval-in-current-buffer t)
+;; for .el files
+(define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+;; for *scratch*
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+;; for M-x info
+(define-key Info-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+
+;; use flycheck
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+;; use yasnippet
+(use-package yasnippet
+  :init
+  :config (yas-global-mode 1))
+
+;; config org-babel
+(eval-after-load 'org
+  (lambda()
+    (require 'ob-python)
+    (require 'ob-org)
+    ))
+
+;; active elpy for python
+(use-package elpy
+  :ensure
+  :init
+  (elpy-enable))
+
+;; use py_autopep8
+
+(require 'py-autopep8)
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+
+;;; init-customization.el ends here
 (provide 'init-customization)
