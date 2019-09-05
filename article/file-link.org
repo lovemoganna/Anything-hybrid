@@ -24,7 +24,7 @@
   - use =S-c= copy a file.
   - use =m= mark more file. then press =!=,input =firefox=,you will see
 marked multiple file.
-  - use =* /= mark select all file.
+  - use =* /= mark select all dictionary.
   - use =* t= mark select all file.
   - use =* T= toggle mark file and folder .
   - use =S= set a file link.
@@ -40,5 +40,9 @@ marked multiple file.
     - use =C-f= return Normal search
     - use =C-r= will behind search
     - use =C-s= will next search
-  
-
+* Beyond ASCII
+  - =M-x set-input-method= you could select one input methods
+  - =M-x describe-input-method= you could see detail use methods.
+#+begin_example
+    this is á methods nige foó you.
+#+end_example

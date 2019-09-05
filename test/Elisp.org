@@ -6,7 +6,6 @@ types of functions in emacs:
 - Commands: Commands are like funciton.but interactive.could directly
   use it.
 
-
 ** Emacs keys remember
    - ~C-x~ prefix is for default and global binding that come with
      eamcs.
@@ -43,7 +42,6 @@ types of functions in emacs:
    
    ~C-x C-d~ find-current-dir-file
    
-
 ** Major Mode
    Major Mode provide specialized facilities for working on a
    particular file type.
@@ -51,7 +49,6 @@ types of functions in emacs:
    Major Mode are mutually exclusive,each buffer has one and only one
    major mode at any time.
 
-   
 ** Minor Mode 
    Minor Modes are optional features which you can turn on or off,not
    necessarily specific to a type or file or buffer.

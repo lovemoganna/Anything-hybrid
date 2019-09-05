@@ -3,7 +3,6 @@
 
 o_mode
 * Mr.Revolt Anti-RoteLearning 
-
 ** This is a headline,it starts with one or more stars
    
    A heading has one star, a sub-heading two,etc
@@ -33,7 +32,7 @@ o_mode
     ~verbatim~, and, if you must, +strike-through+.
 
 
-*** WAITING Buy AirPlane
+*** IN-PROGRESS Buy AirPlane
     
 *** Agendas
     New shortcuts in this chapter:

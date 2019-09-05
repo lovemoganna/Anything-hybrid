@@ -160,7 +160,7 @@
 ;; active org-bebel-eval-in-repl
 (with-eval-after-load "ob"
   (require 'org-babel-eval-in-repl)
-  (define-key org-mode-map (kbd "M-<return>") 'ober-eval-block-in-repl))
+  (define-key org-mode-map (kbd "M-S <return>") 'ober-eval-block-in-repl))
 
 (with-eval-after-load "eval-in-repl"
   (setq eir-jump-after-eval nil))
