@@ -1,0 +1,1091 @@
+* Emacs Configure File
+  group emacs init file in a org file.
+
+** config single file sign_id                                       :sign_id:
+    #+BEGIN_SRC emacs-lisp
+      (defconst revolt-init-version "$Id: revolt-rebuild-init.el,v 1.0 2019/09/06 20:30:18 Anti-RoteLearning$")
+    #+END_SRC
+** Package Settings
+*** config emacs install packages sources
+    #+BEGIN_SRC emacs-lisp
+   (require 'package)
+   ;; unactive auto install package when emacs startup
+   (setq package-enable-at-startup nil)
+   ;; Enable Melpa
+   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                            ("melpa" . "http://melpa.org/packages/")))
+                           ;; ("melpa-stable" . "https://melpa-stable.milkbox.net/packages/")
+   (package-initialize)
+  #+END_SRC
+*** fix emacs install package error
+ #+BEGIN_SRC emacs-lisp
+   ;; Fix Emacs's unknown and untrusted anthirity TLS error
+   ;; link: https://blog.vifortech.com/posts/emacs-tls-fix/
+   ;; libressl link: http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/
+
+   (require 'gnutls)
+   (add-to-list 'gnutls-trustfiles "/usr/loca/etc/ssl/cert.pem")
+ #+END_SRC
+*** DONE manage your installed packages
+    CLOSED: [2019-09-19 四 13:18]
+#+BEGIN_SRC emacs-lisp
+;; need common lisp replay
+(require 'cl)
+;; manage all installed packages
+(defvar revolt/packages '(
+                          ;; --- python support ---
+                          elpy
+                          ;; --- org mode support ---
+                          org-bullets
+                          ;; --- inhence your ability
+                          yasnippet
+                          undo-tree
+                          ;; --- fast select text ---
+                          expand-region
+                          ;; --- better replace text ---
+                          anzu
+                          ;; --- clean all white space line ---
+                          whitespace-cleanup-mode
+                          ;; --- remove current cursor white space
+                          shrink-whitespace
+                          ;; --- Themes ---
+                          doom-modeline
+                          doom-themes
+                          ;; --- manage package methods ---
+                          use-package
+                          ;; --- auto-completion ---
+                          company
+                          auto-complete
+                          ;; --- better editor ---
+                          swiper
+                          multiple-cursors
+                          smartparens
+                          easy-kill
+                          ;; --- helm-mode ---
+                          helm
+                          helm-descbinds
+                          ;; --- youdao-dictionary ---
+                          youdao-dictionary
+                          ;; --- aggressive-indent ---
+                          aggressive-indent
+                          ;; --- use package ---
+                          use-package
+                          ;; --- literary programming ---
+                          adaptive-wrap
+                          ;; --- emacs emojj ---
+                          emojify
+                          ;; --- plantuml---
+                          plantuml-mode
+                          )"Default Packages")
+
+(setq package-selected-packages revolt/packages)
+
+;; datemine the packages state
+(defun revolt/packages-installed-p ()
+  (loop for pkg in revolt/packages
+        when (not (package-installed-p pkg)) do (return nil)
+        finally (return t)))
+
+;; install package by package installed state
+(unless (revolt/packages-installed-p)
+     (message "%s" "Refreshing package melpa database...")
+     (package-refresh-contents)
+     (dolist (pkg revolt/packages)
+       (when (not (package-installed-p pkg))
+         (package-install pkg))))
+#+END_SRC
+*** use **use-package** manage emacs startup package status
+ #+BEGIN_SRC emacs-lisp
+   ;; use-package
+   ;; manually.It will do automagic installation.delayed loading and things.
+   (unless (package-installed-p 'use-package)
+     (package-refresh-contents)
+     (package-install 'use-package))
+
+   (require 'use-package)
+   (setq use-package-always-ensure t)
+ #+END_SRC
+** open init file                                                :initialize:
+#+BEGIN_SRC emacs-lisp
+  ;; open init file
+  (defun revolt/open-my-init-file()
+    "Open the user's init.el file"
+    (interactive)
+    (find-file (expand-file-name "~/.emacs.d/init.el")))
+#+END_SRC
+** auto save,backup,session                         :backup:session:autosave:
+*** auto save
+  #+BEGIN_SRC emacs-lisp
+    ;; auto save often
+    ;; save evary 20 characters typed(minium char numbers)
+    (setq auto-save-interval 16)
+  #+END_SRC
+*** backup settings
+**** Emacs's built-in backup settings
+
+     see here: [[https://www.emacswiki.org/emacs/BackupDirectory][BackupDirectory]]
+
+        1. we use Emacs's built in backup settings
+        2. Use `ForceBackups`
+        3. emacs never backs up versioned files,we want to backup
+           versioned file. so we use `vc-make-backup-files` backup
+           versioned file.
+        4. next, **we configure emacs to handle multiple backups**:
+
+     #+BEGIN_SRC emacs-lisp
+       (setq
+        backup-by-copying t     ; copy all files,don't rename them.
+        kept-new-versions 10    ; keep 10 latest versions
+        kept-old-versions 0     ; don't bother with old versions
+        delete-old-versions t   ; don't ask to delete excess backup versions.
+        version-control t       ; number backups
+        vc-make-backup-files t) ; backup version controlled files
+     #+END_SRC
+
+     1. if you want to avoid `backup-by-copying`,you can instead use
+        =(setq backup-by-copying-when-linked t)=
+        1) but that makes the second,"per save”backup below not
+           run,since buffers with no backing file on disk are not backed
+           up,and renaming removes the backing file.
+        2) The "per session" backup will happen in any case,you'll just
+           have less consistent numbering of per-save backups.
+        3) only the second and subsquent save will result in per-save
+           backups.
+     2. if you want to avoid backing up some files,e.g. large files
+        1) try setting =backup-enable-predicate=
+        2) you'll want to extends =normal-backup-enable-predicate=,which
+           already avoids things like backing up file in ~/tmp~.
+*****    **backup file size limit**
+          #+BEGIN_SRC emacs-lisp
+            (defvar revolt/backup-file-size-limit (* 5 1024 1024)
+              "Maximum size of a file (in bytes) that should be copied at each savepoint.")
+          #+END_SRC
+**** Emacs backup on each save
+     1. we make two kinds of backups
+        - per-session backups,once on the first save of each emacs
+          session.
+        - per-save backups,once on every save.
+     2. emacs creates the backup dirs automatically if they don't exit
+     3. **my own backups directory**
+        #+BEGIN_SRC emacs-lisp
+          ;; base directory for backup files.
+          (defvar revolt/backup-location (expand-file-name "~/emacs-backups"))
+          ;; unwanted backups directory
+          (defvar revolt/backup-trash-dir (expand-file-name "~/.Trash"))
+          ;; don't backup when matching this regexp
+          ;; files whose full name matches this regexp backup to `revolt/backup-trash-dir`
+          ;; set to nil to disable this.
+          (defvar revolt/backup-exclude-regexp nil)
+        #+end_SRC
+     4. **Default Per-save backups**
+        - eg：`(("" . ,(expand-file-name "per-save" "~/.emacs.d")))
+          ;; the results is `(("" . "/home/revolt/.emacs.d/per-save"))`
+           #+BEGIN_SRC emacs-lisp
+             ;; default per save backups directory
+             (setq backup-directory-alist
+                   `(("" . ,(expand-file-name "per-save" revolt/backup-location))))
+             ;; trash dir
+             (if revolt/backup-exclude-regexp
+                 (add-to-list 'back-directory-alist `(,revolt/backup-exclude-regexp . ,revolt/backup-trash-dir)))
+           #+END_SRC
+     5. **backup every save**
+        backup files every time when they are saved.
+        - files are backup to `revolt/backup-location` in
+          subdirectories once per emacs session. "per save" every time
+          when a file is saved.
+        - files whose name match the REGEXP in
+          `revolt/backup-exclude-regexp` are copied to
+          `revolt/backup-trash-dir` instead of the normal backup
+          directory.
+        - files larger than `revolt/backup-file-size-limit` are not
+          backed.
+
+         #+BEGIN_SRC emacs-lisp
+           (defun revolt/backup-every-save()
+             ;; make a special "per session" backup at the first save of each
+             ;; emacs session
+             (when (not buffer-backed-up)
+               ;; overrid the default parameters for per-session backups.
+               (let ((backup-directory-alist
+                      `(("." . ,(expand-file-name "per-session" revolt/backup-location))))
+                     (kept-new-versions 3))
+                 ;; add trash dir if needed
+                 (if revolt/backup-exclude-regexp
+                     (add-to-list
+                      'backup-directory-alist
+                      `(,revolt/backup-exclude-regexp . ,revolt/backup-trash-dir)))
+                 ;; the file too large
+                 (if (<= (buffer-size) revolt/backup-file-size-limit)
+                     (progn
+                       (message "Made per session backup of %s" (buffer-name))
+                       (backup-buffer))
+                   (message "WARING: File %s too large to backup -increase value of revolt/backup-file-size-limit" (buffer-name))))))
+         #+END_SRC
+     6. add to save hook
+        #+BEGIN_SRC emacs-lisp
+          (add-hook 'before-save-hook 'revolt/backup-every-save)
+        #+END_SRC
+     7. save various mode - revert buffer if file changes on disk
+        #+BEGIN_SRC emacs-lisp
+          (global-auto-revert-mode 1)
+        #+END_SRC
+**** config session
+     1. save various settings between session,and lighter version of desktop
+        #+BEGIN_SRC emacs-lisp
+          (use-package session
+            :init
+            (add-hook 'after-init-hook 'session-initialize))
+        #+END_SRC
+**** config recent files list
+     1. save recent files list
+        #+BEGIN_SRC emacs-lisp
+          (use-package recentf
+            :config
+            (progn
+              ;; save every 10 minutes
+              (run-at-time nil (* 10 60) 'recentf-save-list)
+              ;; recentf file maxnumber set 1000
+              (setq recentf-max-saved-items 1000
+                    recentf-auto-cleanup 'never
+                    recentf-exclude '("/ssh:"))
+              (recentf-mode t)))
+        #+END_SRC
+** customize face                                                      :face:
+   config emacs themes,font,startup,etc..
+*** use doom themes
+ #+BEGIN_SRC emacs-lisp
+   ;; (use-package doom-themes
+   ;;   :ensure t
+   ;;   :config
+   ;;   (load-theme 'doom-dracula t))
+   (setq doom-themes-enable-bold t
+         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+   ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+   ;; may have their own settings.
+   (load-theme 'doom-moonlight t)
+
+   ;; Enable flashing mode-line on errors
+   (doom-themes-visual-bell-config)
+
+   ;; Enable custom neotree theme (all-the-icons must be installed!)
+   (doom-themes-neotree-config)
+   ;; or for treemacs users
+   (doom-themes-treemacs-config)
+
+   ;; Corrects (and improves) org-mode's native fontification.
+   (doom-themes-org-config)
+ #+END_SRC
+*** use doom mode-line
+#+BEGIN_SRC emacs-lisp
+  ;; use doom-modeline
+  (require 'doom-modeline)
+  (doom-modeline-mode 1)
+
+  (global-hl-line-mode 1)
+
+  ;;show line numbers
+  (global-linum-mode t)
+
+  ;; Close Tool Bar
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  ;;Close startup help screen
+  (setq inhibit-splash-screen 1)
+
+  ;; Set Cursor Style
+  (setq-default cursor-type 'bar)
+#+END_SRC
+*** no start message
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+#+END_SRC
+
+*** echo command keys more quickly
+#+BEGIN_SRC emacs-lisp
+  (setq echo-keystrokes 0.5)
+#+END_SRC
+
+*** diminish minor modes from mode lines to save space
+    you could find =use-package= paramter in here: [[https://jwiegley.github.io/use-package/keywords/][use-package-parameter-link]]
+#+BEGIN_SRC emacs-lisp
+  (use-package diminish
+    ;; use-package make diminish mode load package from elpa
+    ;; `ensure keywords` causes the packages to be installed automatically
+    ;; if you wish this behavior to be glbal for all packages.you should set
+    ;; (setq use-package-always-ensure t)
+
+    ;; diminish keys,it's purpose is to remove minior mode string in your mode line.
+    ;; demand keys,prevent defered loading in all cases.
+    :ensure t
+    :demand t
+    :diminish abbrev-mode
+    :diminish auto-fill-funcition)
+#+END_SRC
+
+*** highlight current line
+#+BEGIN_SRC emacs-lisp
+  (global-hl-line-mode +1)
+#+END_SRC
+*** visualise whitespace
+#+BEGIN_SRC emacs-lisp
+  (use-package whitespace
+    :diminish whitespace-mode)
+#+END_SRC
+**** turn off highlight long lines
+ #+BEGIN_SRC emacs-lisp
+   (setq whitespace-line-column 10000)
+ #+END_SRC
+*** volatile highlights - highlight changes from pasting etc.
+#+BEGIN_SRC emacs-lisp
+  (use-package volatile-highlights
+    :diminish volatile-highlights-mode
+    :config
+    (volatile-highlights-mode t))
+#+END_SRC
+*** youdao dictionary
+#+BEGIN_SRC emacs-lisp
+  (require 'youdao-dictionary)
+  (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
+  (global-set-key (kbd "C-c v") 'youdao-dictionary-play-voice-at-point)
+  (global-set-key (kbd "C-c s") 'youdao-dictionary-search)
+#+END_SRC
+*** meaningful names for buffers with the same name
+    you could see here: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html][uniquify refer link]]
+
+    when several buffers visit identically-named files,emacs must give the
+    buffers distinct names.
+
+    the default methods add a suffix based on the names of the directories
+    that contain the file.
+
+    you could open =init.el= files in =~/.emacs.d= and =.emacs.bak= see different.
+
+    You can choose from several different styles for constructing unique
+    buffer names, by customizing the option =uniquify-buffer-name-style=.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'forward)
+  (setq uniquify-separator "/")
+  (setq uniquify-after-kill-buffer-p t)         ;rename after kill uniquify buffer
+  (setq uniquify-ignore-buffers-re "^\\*")	;don't muck with special buffers
+#+END_SRC
+*** more useful frame title,that show either a file or a buffer
+refer link: [[https://www.emacswiki.org/emacs/FrameTitle][Frame title]]
+
+- frame title is changed by changing the value of the variable
+  =frame-title-format=.
+- the ~icon~ title can be changed with =icon-title-format=.
+#+BEGIN_SRC emacs-lisp
+  ;; invocation name: program name,is `emacs`
+    ;; (setq frame-title-format
+    ;;  '("" invocation-name " - "
+    ;;    (:eval (if (buffer-file-name)
+    ;;               (abbreviate-file-name (buffer-file-name))
+    ;;             "%b"))))
+  (setq frame-title-format
+        '((:eval (if (buffer-file-name)
+                     (abbreviate-file-name (buffer-file-name))
+                   "%b"))
+          (:eval (if (buffer-modified-p)
+                     " •"))
+          " - Emacs")
+        )
+#+END_SRC
+*** rainbow-mode
+#+BEGIN_SRC emacs-lisp
+;;  (use-package rainbow-mode)
+#+END_SRC
+*** rainbow delimiters - show matching brackets etc
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters)
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+#+END_SRC
+*** show page breaks
+#+BEGIN_SRC emacs-lisp
+  (use-package page-break-lines
+  :diminish page-break-lines-mode
+  :config
+    (global-page-break-lines-mode 1)
+    (setq page-break-lines-modes '(emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode org-mode ess-mode latex-mode)))
+#+END_SRC
+*** scroll buffer of cursor is this many lines from the top or bottom
+#+BEGIN_SRC emacs-lisp
+(setq scroll-mavrgin 3)
+#+END_SRC
+*** restore window configurations
+#+BEGIN_SRC emacs-lisp
+(winner-mode t)
+#+END_SRC
+*** emacs-emojj
+   #+BEGIN_SRC emacs-lisp
+   (add-hook 'after-init-hook #'global-emojify-mode)
+   #+END_SRC
+
+** auto completion
+#+BEGIN_SRC emacs-lisp
+  ;; active company mode
+  (add-hook 'after-init-hook 'global-company-mode)
+
+  ;; immediately display advice
+  (setq company-idle-delay 0)
+  ;; Show suggestions after entering one character.
+  (setq company-minimum-prefix-length 1)
+  (setq company-selection-wrap-around t)
+
+  ;; Use tab key to cycle through suggestions.
+  ;; ('tng' means 'tab and go')
+  (company-tng-configure-default)
+#+END_SRC
+** better default
+*** auto-fill mode
+    #+BEGIN_SRC emacs-lisp
+    (add-hook 'text-mode-hook 'turn-on-auto-fill)
+    (add-hook 'org-mode-hook 'turn-on-auto-fill)
+    (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+#+END_SRC
+*** fill or unfill paragraph from endless parentheses
+    #+BEGIN_SRC emacs-lisp
+      (defun endless/fill-or-unfill ()
+        "Like `fill-paragraph', but unfill if used twice."
+        (interactive)
+        (let ((fill-column
+               (if (eq last-command 'endless/fill-or-unfill)
+                   (progn (setq this-command nil)
+                          (point-max))
+                 fill-column)))
+          (call-interactively #'fill-paragraph)))
+
+      (global-set-key [remap fill-paragraph]
+                      #'endless/fill-or-unfill)
+     #+END_SRC
+**** releated to unfill - join following lines                   :keybinding:
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-j")
+                  (lambda ()
+                    (interactive)
+                    (join-line -1)))
+#+END_SRC
+*** smart mode
+    #+BEGIN_SRC emacs-lisp
+      (require 'smartparens-config)
+      (add-hook 'js-mode-hook #'smartparens-mode)
+      (add-hook 'python-mode-hook #'smartparens-mode)
+      (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+      ;; by M-x sp-cheat-sheet
+    #+END_SRC
+*** neotree mode
+    #+BEGIN_SRC emacs-lisp
+      (use-package neotree
+        :bind (("<f8>" . neotree-toggle)))
+    #+END_SRC
+*** aggressive-indent
+#+BEGIN_SRC emacs-lisp
+(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+(add-hook 'css-mode-hook #'aggressive-indent-mode)
+(add-hook 'plantuml-mode-hook #'aggressive-indent-mode)
+(add-hook 'python-mode-hook #'aggressive-indent-mode)
+
+
+
+;; global active aggressive indent
+(global-aggressive-indent-mode 1)
+
+#+END_SRC
+*** TODO set timestamps
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+*** highlight matching parentheses
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+    #+END_SRC
+*** comment tools
+    comment lines easily
+ #+BEGIN_SRC emacs-lisp
+   (global-set-key (kbd "M-;") 'comment-dwim-2)
+ #+END_SRC
+*** spelling
+#+BEGIN_SRC emacs-lisp
+  (use-package flyspell
+    :diminish (flyspell-mode . "spell")
+    :config
+    (set-face-attribute 'flyspell-incorrect nil
+                        :background "selectedKnobColor"
+                        :underline '(:color "red")
+                        :weight 'bold))
+#+END_SRC
+**** turn on flyspell in desired modes
+1. install human dictionary =en_US= ,you could find in here [[https://github.com/hunspell/hunspell][hunspell#Usage]]
+   =en_GB= correspond is ~british=, maybe you should install =aspell-en=.
+2. see this blog,see hunspell usage [[http://gromnitsky.blogspot.com/2016/09/emacs-251-hunspell.html][hunspell]]
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  (setq ispell-dictionary "american")
+  (setq ispell-check-comments t)
+  (setq ispell-really-hunspell t)
+  (setq ispell-program-name "hunspell")
+  (setq ispell-local-dictionary-alist
+        `(("american" "[[:alpha:]]" "[^[:alpha:]]" "[']" t ("-d" "en_US") nil
+           utf-8)))
+#+END_SRC
+**** flyspell in windows settings
+#+BEGIN_EXAMPLE
+;; CUSTOMISE - hunspell
+;;
+;; comment the two lines above and uncomment the lines below to set up
+;; hunspell on windows. You'll need to edit the path to the hunspell
+;; directory in both of the following lines - i.e. replace "Users/ben"
+;; and "Users\\ben" with the path to your hunspell directory
+;;
+;; (setq ispell-program-name "C:/Users/ben/hunspell/bin/hunspell.exe")
+;; (setq ispell-local-dictionary-alist
+;;       `(("british" "[[:alpha:]]" "[^[:alpha:]]" "[']" t ("-d" "en_GB"
+;; "-p" "C:\\Users\\ben\\hunspell\\share\\hunspell\\en_GB") nil
+;; utf-8)))
+#+END_EXAMPLE
+*** change case of letters
+#+BEGIN_SRC emacs-lisp
+  (defun toggle-letter-case ()
+    "Toggle the letter case of current word or text selection.
+  Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
+    (interactive)
+    (let (p1 p2 (deactivate-mark nil) (case-fold-search nil))
+      (if (region-active-p)
+          (setq p1 (region-beginning) p2 (region-end))
+        (let ((bds (bounds-of-thing-at-point 'word) ) )
+          (setq p1 (car bds) p2 (cdr bds)) ) )
+
+      (when (not (eq last-command this-command))
+        (save-excursion
+          (goto-char p1)
+          (cond
+           ((looking-at "[[:lower:]][[:lower:]]") (put this-command 'state "all lower"))
+           ((looking-at "[[:upper:]][[:upper:]]") (put this-command 'state "all caps") )
+           ((looking-at "[[:upper:]][[:lower:]]") (put this-command 'state "init caps") )
+           ((looking-at "[[:lower:]]") (put this-command 'state "all lower"))
+           ((looking-at "[[:upper:]]") (put this-command 'state "all caps") )
+           (t (put this-command 'state "all lower") ) ) )
+        )
+
+      (cond
+       ((string= "all lower" (get this-command 'state))
+        (upcase-initials-region p1 p2) (put this-command 'state "init caps"))
+       ((string= "init caps" (get this-command 'state))
+        (upcase-region p1 p2) (put this-command 'state "all caps"))
+       ((string= "all caps" (get this-command 'state))
+        (downcase-region p1 p2) (put this-command 'state "all lower")) )
+      )
+    )
+  ;;set this to M-c
+  (global-set-key "\M-c" 'toggle-letter-case)
+#+END_SRC
+** search and move                                              :search:move:
+*** mark ring navigation
+#+BEGIN_SRC emacs-lisp
+(setq set-mark-command-repeat-pop t)
+#+END_SRC
+** editing                                                             :edit:
+*** improved text expansion with M-/
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-/") 'hippie-expand)
+  (setq hippie-expand-try-functions-list
+        '(try-expand-dabbrev
+          try-expand-dabbrev-all-buffers
+          try-expand-dabbrev-from-kill
+          try-complete-file-name-partially
+          try-complete-file-name
+          try-expand-all-abbrevs
+          try-expand-list
+          try-expand-line
+          try-complete-lisp-symbol-partially
+          try-complete-lisp-symbol))
+#+END_SRC
+
+*** abbreviations
+#+BEGIN_SRC emacs-lisp
+  (setq-default abbrev-mode t)
+  (setq save-abbrrevs 'silently)                ;; save abbreviations upon exiting emacs
+  (if (file-exists-p abbrev-file-name)
+    (quitely-read-abbrev-file))                 ;; read the abbreviations file on startup
+#+END_SRC
+
+*** use space instead of tabs
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+#+END_SRC
+
+*** delete the selectiosn with a keypress
+#+BEGIN_SRC emacs-lisp
+(delete-selection-mode t)
+#+END_SRC
+
+*** cpoy with eamcs
+#+BEGIN_SRC emacs-lisp
+(setq mouse-drag-copy-region t)
+#+END_SRC
+
+*** save wahtever's in the current system clipboard before replacing it with then emacs's text
+#+BEGIN_SRC emacs-lisp
+  (setq save-interprogram-paste-before-kill t)
+#+END_SRC
+
+*** cua-mode for rectangle
+    cua mode info link: [[https://www.emacswiki.org/emacs/CuaMode][cua mode]] , just imitate win =C-x= , =C-v= control text.so we don't use it.
+    #+BEGIN_SRC emacs-lisp
+      (use-package cua-base
+        :init
+        (progn
+          (cua-mode 1)
+          (cua-selection-mode t))
+        :config
+        (progn
+          (setq cua-enable-cua-keys nil)		;;only for rectangles
+          (setq cua-auto-tabify-rectangles nil)))     ;; don't tabify after rectangles commands
+    #+END_SRC
+
+*** anzu for nicer query replace
+#+BEGIN_SRC emacs-lisp
+  (use-package anzu
+    :diminish anzu-mode
+    :bind (("M-%" . anzu-query-replace)
+           ("C-M-%" . anzu-query-replace-regexp))
+    :config
+    (global-anzu-mode))
+#+END_SRC
+*** multiple cursors
+#+BEGIN_SRC emacs-lisp
+;; multiple cursors
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C-c m c" . mc/edit-lines)
+         ("C-S-c C-S-c" . mc/edit-lines)
+         ("M-." . mc/mark-next-like-this)
+         ("M-," . mc/unmark-next-like-this)
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click)
+         ("C-'" . mc-hide-unmatched-lines)))
+
+#+END_SRC
+
+*** expand region with a key
+#+BEGIN_SRC emacs-lisp
+;; expand region with a key
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+#+END_SRC
+
+*** use undo tree mode - powerful undo /redo visualization
+    #+BEGIN_SRC emacs-lisp
+      (setq undo-tree-mode t)
+    #+END_SRC
+*** yasnippet to insert text template
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :diminish yas-minor-mode
+    :config
+    (yas-global-mode 1)
+    (setq yas-indent-line nil))
+#+END_SRC
+*** shrink whitespace,cycling through amount
+#+BEGIN_SRC emacs-lisp
+  (use-package shrink-whitespace
+    :ensure t
+    :bind (("M-s SPC" . shrink-whitespace)))
+#+END_SRC
+**** clean whitespace upon saving
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+#+END_SRC
+*** copy line if no region selected
+#+BEGIN_SRC emacs-lisp
+    (use-package easy-kill
+      :ensure t
+      :bind (([remap kill-ring-save] . easy-kill)))
+#+END_SRC
+*** add the ability yo cut the current line,without marking it   :wonderful:
+
+    from prelude,this should be after volatile-highlights is required.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'rect)
+  (defadvice kill-region (before smart-cut activate compile)
+    "when called interactively with no active region,kill a single line instead."
+  (interactive
+  (if mark-active (list (region-beginning) (region-end) rectangle-mark-mode)
+    (list (line-beginning-position)
+          (line-beginning-position 2)))))
+#+END_SRC
+** TODO file management
+   see this  link: [[https://oremacs.com/2015/01/13/dired-options/][emacs-dired-refer]]
+
+*** set dired listing styles
+ #+BEGIN_SRC emacs-lisp
+   (setq dired-listing-switches "-alh --group-directories-first")
+   ;; l: Is the only mandatory one.
+   ;; a: Means to list invisible files.
+   ;; G: Don't show group information. These days, when there are more laptops than people, the group info is rarely useful.
+   ;; h: Human readable sizes, such as M for mebibytes.
+   ;; 1v: Affects the sorting of digits, hopefully in a positive way.
+   ;; --group-directories-first: self-explanatory, I like to have the directories on the top, separate from the files.
+ #+END_SRC
+
+** recentf
+oepn recent file keybinds
+
+#+BEGIN_SRC emacs-lisp
+  (recentf-mode 1)
+  (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+#+END_SRC
+** helm mode
+   #+BEGIN_SRC emacs-lisp
+   ;; helm setting
+   (helm-mode 1)
+   (require 'helm)
+   (require 'helm-config)
+
+   (when (executable-find "curl")
+     (setq helm-google-suggest-use-curl-p t))
+
+   (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+         helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+         helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+         helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+         helm-ff-file-name-history-use-recentf t
+         helm-echo-input-in-header-line t)
+
+   (defun spacemacs//helm-hide-minibuffer-maybe ()
+     "Hide minibuffer in Helm session if we use the header line as input field."
+     (when (with-helm-buffer helm-echo-input-in-header-line)
+       (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+         (overlay-put ov 'window (selected-window))
+         (overlay-put ov 'face
+                      (let ((bg-color (face-background 'default nil)))
+                        `(:background ,bg-color :foreground ,bg-color)))
+         (setq-local cursor-type nil))))
+
+
+   (add-hook 'helm-minibuffer-set-up-hook
+             'spacemacs//helm-hide-minibuffer-maybe)
+
+   (setq helm-autoresize-max-height 0)
+   (setq helm-autoresize-min-height 40)
+   (helm-autoresize-mode 1)
+   (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
+
+
+   ;; active semantic
+   (setq helm-semantic-fuzzy-match t
+         helm-imenu-fuzzy-match t)
+
+   ;; helm man and woman
+   (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+   ;; helm locate
+   (setq helm-locate-fuzzy-match t)
+   ;; helm apropos
+   (setq helm-apropos-fuzzy-match t)
+   (setq helm-lisp-fuzzy-completion t)
+
+   (require 'helm-descbinds)
+   (helm-descbinds-mode)
+
+
+   ;; active helm grep,just use C-s will have pattern,just like helm-occur
+   (when (executable-find "ack-grep")
+     (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
+           helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f"))
+
+   ;; helm eshell history
+   (require 'helm-eshell)
+
+   (add-hook 'eshell-mode-hook
+             #'(lambda ()
+                 (define-key eshell-mode-map (kbd "C-c C-l")  'helm-eshell-history)))
+
+#+END_SRC
+
+*** helm keybindings
+   #+BEGIN_SRC emacs-lisp
+   ;; helm key bind
+
+   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+   ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+   ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+
+   (global-set-key (kbd "C-c h") 'helm-command-prefix)
+   (global-unset-key (kbd "C-x c"))
+
+   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+   (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+   (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+   (global-set-key (kbd "M-x") #'helm-M-x)
+   (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+   (global-set-key (kbd "C-x C-f") #'helm-find-files)
+
+   ;; insert-buffer
+   (global-set-key (kbd "C-c C-i") 'insert-buffer)
+
+   ;; helm-show-kill-ring
+   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+   ; helm-mini
+   (global-set-key (kbd "C-x b") 'helm-mini)
+   (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+
+   ;; enable fuzzy matching
+   (setq helm-buffers-fuzzy-matching t
+         helm-recentf-fuzzy-match t)
+
+   ;; helm occur
+   (global-set-key (kbd "C-c h o") 'helm-occur)
+
+   ;; helm all mark rings
+   (global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
+
+   ;; helm register
+   (global-set-key (kbd "C-c h x") 'helm-register)
+
+   ;;helm  google suggest
+   (global-set-key (kbd "C-c h g") 'helm-google-suggest)
+
+   ;; helm eval expression with eldoc
+   (global-set-key (kbd "C-c h M-:") 'helm-eval-expression-with-eldoc)
+
+   ;;helm-calcul-expression
+   (global-set-key (kbd "C-c h C-c") 'helm-calcul-expression)
+   (global-set-key (kbd "C-x r l") 'helm-bookmarks)
+   (global-set-key (kbd "C-x r m") 'bookmark-set)
+#+END_SRC
+** project manage
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+#+END_SRC
+** programming configurations
+*** TODO python
+**** elpa
+     #+BEGIN_SRC emacs-lisp
+       (use-package elpy
+         :ensure t
+         :init
+         (advice-add 'python-mode :before 'elpy-enable))
+     #+END_SRC
+*** TODO html
+**** htmlize
+ #+BEGIN_SRC emacs-lisp
+   ;; syntax highlighting for html export
+   (use-package htmlize
+   :ensure t)
+ #+END_SRC
+
+** org mode                                                        :org_mode:
+*** org-mode config                                       :org_base_configre:
+**** org mode key binding
+     #+BEGIN_SRC emacs-lisp
+     (require 'org)
+     (use-package org
+       :bind (("C-c l" . org-store-link)
+              ("C-c a" . org-agenda)
+              ("C-c c" . org-capture))
+              :config
+              (setq org-log-done t))
+     #+END_SRC
+
+     you should focus on these powerful key:
+     - org-narrow-to-block ~C-c n s~
+     - org-narrow-to-subtree ~C-c n w~
+     - org-narrow-to-element ~C-c n e~
+     - show-inline-image ~C-c C-x C-v~
+
+**** org highlight syntax
+     #+BEGIN_SRC emacs-lisp
+     (require 'org)
+     ;; ignore evaluate message
+     (setq org-edit-src-content-indentation 0
+           org-src-tab-acts-natively t
+           org-src-fontify-natively t
+           org-confirm-babel-evaluate nil
+           )
+     #+END_SRC
+**** control aspell check region
+     #+BEGIN_SRC emacs-lisp
+       (defun endless/org-ispell ()
+         "Configure `ispell-skip-region-alist' for `org-mode'."
+         (make-local-variable 'ispell-skip-region-alist)
+         (add-to-list 'ispell-skip-region-alist '(org-property-drawer-re))
+         (add-to-list 'ispell-skip-region-alist '("~" "~"))
+         (add-to-list 'ispell-skip-region-alist '("=" "="))
+         (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_SRC" . "^#\\+END_SRC")))
+       (add-hook 'org-mode-hook #'endless/org-ispell)
+
+     #+END_SRC
+**** auto push todo file in todolist when save files
+     #+BEGIN_SRC emacs-lisp
+       ;; Tangle Org files when we save them
+       (defun tangle-on-save-org-mode-file()
+         (when (string= (message "%s" major-mode) "org-mode")
+           (org-babel-tangle)))
+
+       (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
+
+       ;; Enable the auto-revert mode globally. This is quite useful when you have
+       ;; multiple buffers opened that Org-mode can update after tangling.
+       ;; All the buffers will be updated with what changed on the disk.
+       (global-auto-revert-mode)
+
+       ;; Add Org files to the agenda when we save them
+       (defun to-agenda-on-save-org-mode-file()
+         (when (string= (message "%s" major-mode) "org-mode")
+           (org-agenda-file-to-front)))
+
+       (add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
+     #+END_SRC
+**** inline images display
+     #+BEGIN_SRC emacs-lisp
+     ;; you could use `C-c C-x C-v` toggle enable inline image
+     (defun turn-on-org-show-all-inline-images()
+       (org-display-inline-images t))
+     (add-hook 'org-mode-hook 'turn-on-org-show-all-inline-images)
+     #+END_SRC
+*** literary configure
+   #+BEGIN_SRC emacs-lisp
+     ;; Remove the markup characters, i.e., "/text/" becomes (italized) "text"
+     (setq org-hide-emphasis-markers t)
+
+     ;; turn on visual-line-mode for org-mode only
+     ;; also install "adaptive-wrap" from epla
+     (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+   #+END_SRC
+*** latex config
+*** add html head css
+    #+BEGIN_SRC emacs-lisp
+      ;; CUSTOMISE - you could put a different css file here
+      ;; or nothing at all
+      (setq org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.star.bris.ac.uk/bjm/css/bjm.css\" />
+      <link rel=\"stylesheet\" type=\"text/css\" href=\"bjm.css\" />")
+
+      ;; short-cuts for common tags
+      (setq org-tag-alist '(("export" . ?e) ("noexport" . ?n)))
+    #+END_SRC
+*** org babel                                          :org_support_language:
+
+    #+BEGIN_SRC emacs-lisp
+    ;; use tcsh for shell scripts
+    ;; customize - replace with sh, zsh if you prefer
+    ;;(setq org-babel-sh-command "/bin/tcsh")
+
+    ;; display results in a block instead of prefixed with :
+    (setq org-babel-min-lines-for-block-output 1)
+
+    ;; Some initial languages we want org-babel to support
+
+    ;; see link: https://github.com/tkf/org-mode/blob/master/lisp/ob-python.el
+    ;; config org-babel
+    (eval-after-load 'org
+      (lambda()
+        (require 'ob-python)
+        (require 'ob-org)
+        (require 'ob-shell)
+        (require 'ob-dot)
+        (require 'ob-plantuml)
+        ))
+    #+END_SRC
+*** org agenda configuration
+    #+BEGIN_SRC emacs-lisp
+    ;; parse tree when you frequently search specified string
+    (setq org-agenda-custom-commands
+          '(("g" occur-tree "revolt")))
+
+    (setq org-agenda-files '("~/org/inbox.org"
+                             "~/org/gtd.org"
+                             "~/org/tickler.org"))
+    #+END_SRC
+*** org capture
+   #+BEGIN_SRC emacs-lisp
+   (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                                  (file+headline "~/org/inbox.org" "Tasks")
+                                  "* TODO %i%?")
+                                 ("T" "Tickler" entry
+                                  (file+headline "~/org/tickler.org" "Tickler")
+                                  "* %i%? \n %U")))
+
+   #+END_SRC
+
+*** org image size
+    #+BEGIN_SRC emacs-lisp
+    (setq org-image-actual-width t)
+    #+END_SRC
+*** org-bullets
+    #+BEGIN_SRC emacs-lisp
+    (use-package org-bullets
+      :config
+      (setq org-bullets-bullet-list '("◉" "◎" "✽" "✽" "♡" "❀"))
+      (add-hook 'org-mode-hook
+                (lambda () (org-bullets-mode 1))))
+    #+END_SRC
+*** enable utf coding
+   #+BEGIN_SRC emacs-lisp
+   ;; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+   (setq utf-translate-cjk-mode nil)
+
+   (set-language-environment 'utf-8)
+   (setq locale-coding-system 'utf-8)
+
+   ;; set the default encoding system
+   (prefer-coding-system 'utf-8)
+   (setq default-file-name-coding-system 'utf-8)
+   (set-default-coding-systems 'utf-8)
+   (set-terminal-coding-system 'utf-8)
+   (set-keyboard-coding-system 'utf-8)
+   ;; backwards compatibility as default-buffer-file-coding-system
+   ;; is deprecated in 23.2.
+   (if (boundp buffer-file-coding-system)
+       (setq buffer-file-coding-system 'utf-8)
+     (setq default-buffer-file-coding-system 'utf-8))
+
+   ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
+   #+END_SRC
+*** footnote mode
+    #+BEGIN_SRC emacs-lisp
+    (autoload 'footnote-mode "footnote" nil t)
+    ;; Example for Gnus. If you use an other mailer you will replace the hook with the appropriated hook of your mailer.
+    (add-hook 'message-mode-hook 'footnote-mode)
+    #+END_SRC
+*** Orgtbl Minor Mode
+    #+BEGIN_SRC emacs-lisp
+    (add-hook 'message-mode-hook 'turn-on-orgtbl)
+    #+END_SRC
+** graphviz
+
+   =M-x package-install RET graphviz-dot-mode RET=, add org-babel
+
+   =(require 'ob-dot)=
+
+** plantuml
+   #+BEGIN_SRC emacs-lisp
+   ;; install plantuml-mode
+   ;; load plantuml
+   (setq org-plantuml-jar-path (expand-file-name "~/org/.plantuml/plantuml.jar"))
+   ;; helper function
+   (defun my-org-confirm-babel-evaluate (lang body)
+     "Do not ask for confirmation to evaluate code for specified languages。"
+     (member lang '("plantuml")))
+
+   ;; trust certain code as being safe
+   (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+
+   ;; automatically show the resulting image
+   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
+   #+END_SRC
+   
