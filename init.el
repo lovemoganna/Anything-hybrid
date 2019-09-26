@@ -36,11 +36,11 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#000000" "#525254"))
  '(org-agenda-files
    (quote
-    ("~/org/org-mode" "~/.emacs.d/.lisp/my-org-configuration.org" "~/org/GTD.org" "~/org/a.org")))
+    ("~/.emacs.d/.lisp/my-org-configuration.org" "~/org/org-mode" "~/org/org-mode_archive" "~/org/wangyin/programming" "~/org/GTD.org" "~/org/a.org")))
  '(org-src-tab-acts-natively t)
  '(package-selected-packages
    (quote
-    (flycheck-plantuml emojify plantuml-mode graphviz-dot-mode helm-org adaptive-wrap projectile htmlize elpy org-bullets yasnippet undo-tree expand-region anzu whitespace-cleanup-mode shrink-whitespace doom-modeline doom-themes use-package company auto-complete swiper multiple-cursors smartparens easy-kill helm helm-descbinds youdao-dictionary aggressive-indent)))
+    (gnuplot-mode flycheck-plantuml emojify plantuml-mode graphviz-dot-mode helm-org adaptive-wrap projectile htmlize elpy org-bullets yasnippet undo-tree expand-region anzu whitespace-cleanup-mode shrink-whitespace doom-modeline doom-themes use-package company auto-complete swiper multiple-cursors smartparens easy-kill helm helm-descbinds youdao-dictionary aggressive-indent)))
  '(session-use-package t nil (session))
  '(vc-annotate-background "#1c1e1f")
  '(vc-annotate-color-map

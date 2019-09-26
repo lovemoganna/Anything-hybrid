@@ -74,8 +74,10 @@
                           adaptive-wrap
                           ;; --- emacs emojj ---
                           emojify
-                          ;; --- plantuml---
+                          ;; --- plantuml ---
                           plantuml-mode
+                          ;; --- org mode ---
+                          gnuplot
                           )"Default Packages")
 
 (setq package-selected-packages revolt/packages)
@@ -683,14 +685,17 @@ refer link: [[https://www.emacswiki.org/emacs/FrameTitle][Frame title]]
       (setq undo-tree-mode t)
     #+END_SRC
 *** yasnippet to insert text template
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :ensure t
-    :diminish yas-minor-mode
-    :config
-    (yas-global-mode 1)
-    (setq yas-indent-line nil))
-#+END_SRC
+    #+BEGIN_SRC emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :diminish yas-minor-mode
+      :bind(("C-c ( C-n" . yas-new-snippet)
+            ("C-c ( C-s " . yas-insert-snippet)
+            ("C-c ( C-v" . yas-visit-snippet-file))
+      :config
+      (yas-global-mode 1)
+      (setq yas-indent-line nil))
+    #+END_SRC
 *** shrink whitespace,cycling through amount
 #+BEGIN_SRC emacs-lisp
   (use-package shrink-whitespace
@@ -1062,11 +1067,20 @@ oepn recent file keybinds
     ;; Example for Gnus. If you use an other mailer you will replace the hook with the appropriated hook of your mailer.
     (add-hook 'message-mode-hook 'footnote-mode)
     #+END_SRC
-*** Orgtbl Minor Mode
+*** orgtbl minor mode
     #+BEGIN_SRC emacs-lisp
     (add-hook 'message-mode-hook 'turn-on-orgtbl)
     #+END_SRC
+*** org plot
+    #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "M-C-g") 'org-plot/gnuplot)
+    #+END_SRC
+*** org-mark-ring
+    #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "C-c &") 'org-mark-ring-goto)
+    #+END_SRC
 ** graphviz
+
 
    =M-x package-install RET graphviz-dot-mode RET=, add org-babel
 

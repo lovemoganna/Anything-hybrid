@@ -61,8 +61,10 @@
                           adaptive-wrap
                           ;; --- emacs emojj ---
                           emojify
-                          ;; --- plantuml---
+                          ;; --- plantuml ---
                           plantuml-mode
+                          ;; --- org mode ---
+                          gnuplot
                           )"Default Packages")
 
 (setq package-selected-packages revolt/packages)
@@ -455,6 +457,9 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
+  :bind(("C-c ( C-n" . yas-new-snippet)
+        ("C-c ( C-s " . yas-insert-snippet)
+        ("C-c ( C-v" . yas-visit-snippet-file))
   :config
   (yas-global-mode 1)
   (setq yas-indent-line nil))
@@ -751,6 +756,10 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 (add-hook 'message-mode-hook 'footnote-mode)
 
 (add-hook 'message-mode-hook 'turn-on-orgtbl)
+
+(global-set-key (kbd "M-C-g") 'org-plot/gnuplot)
+
+(global-set-key (kbd "C-c &") 'org-mark-ring-goto)
 
 ;; install plantuml-mode
 ;; load plantuml
