@@ -1,0 +1,38 @@
+;-*-Emacs-lisp-*-
+(add-to-list 'load-path "~/.emacs.d/lisp/utils/")
+;; evil mode
+(require 'init-evil "./evil/init-evil")
+
+;; helm mode
+(require 'init-helm"./helm/init-helm")
+
+;; projectile mode
+(require 'init-projectile "./projectile/init-projectile")
+
+;; ox-hugo exporter
+(require 'init-hugo "./hugo/init-hugo")
+
+;; mode line
+(require 'init-mode-line "./mode-line/init-mode-line")
+
+;; yasnippet
+(require 'init-yasnippet "./yasnippet/init-yasnippet")
+
+;; circe --- the IRC inhance client in emacs
+(require 'init-circe "./circe/init-circe")
+
+;; wolfram --- a kind of math program language,but run script export result need latex support 
+(require 'init-wolfram "./wolfram/init-wolfram")
+
+;;; latex --- latex need to more configuration,so we must slowly step by step test.
+;; 1.How to create LaTex documents with Emacs
+;; Link: https://opensource.com/article/18/4/how-create-latex-documents-emacs
+
+;; slime-mode: Superior lisp interaction mode for Emacs
+(require 'init-slime "./slime/init-slime")
+
+;; pdf-tools - in emacs view / annation pdf file
+(require 'init-pdf-tools "./pdftools/init-pdf-tools")
+
+(provide 'init-utils)
+

@@ -1,0 +1,12 @@
+;-*-emacs-lisp-*-
+;-*-lexical-binding: t;-*-
+(load-theme 'monokai t)
+
+;;(load-theme 'doom-dracula t)
+
+;; Nice,the answer in here
+;; https://stackoverflow.com/questions/18684579/how-do-i-change-the-highlight-color-for-selected-text-with-emacs-deftheme 
+(set-face-attribute 'region nil :background "#666")
+(provide 'init-global-themes)
+
+

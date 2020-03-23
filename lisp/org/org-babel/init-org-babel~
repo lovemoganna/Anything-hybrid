@@ -1,0 +1,17 @@
+;-*-emacs-lisp-*-
+
+;;; active Babel language
+;; ref link: http://archive.3zso.com/archives/orgmode-babel.html
+(require 'http)
+(org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+      	(shell . t)
+	(scheme . t)
+	(http . t)
+        (python . t)))
+;; (defun my-org-confirm-babel-evaluate (lang body)
+;;   (not (string= lang "emacs-lisp")))  ;don't ask for ditaa
+;; (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
+
+(provide 'init-org-babel)

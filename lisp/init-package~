@@ -1,0 +1,35 @@
+;-*-emacs-lisp-*-
+
+;; Emacs package source
+(require 'package)
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+(package-initialize) ;; You might already have this line
+(add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/"))
+(package-refresh-contents)
+
+;; load another setting path
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
+;; org setting
+(require 'init-org "./org/init-org")
+
+;; customize
+(require 'customize "./customize/customize.el")
+
+;; utils settings
+(require 'init-utils "./utils/init-utils")
+
+;; customize keyboard macro
+(fset 'helloa
+   (kmacro-lambda-form [?\( ?m ?e ?s ?s ?a ?g ?e ?  ?\" ?h ?e ?l ?l ?o ?\" ?\)] 0 "%d"))
+
+;; my-command-line macro
+(fset 'my-comment-line
+      (kmacro-lambda-form [?» ?\C-u ?5 ?0 ?-] 0 "%d"))
+
+
+;; convenient
+(defalias 'rs 'replace-string)
+
+(provide 'init-package)

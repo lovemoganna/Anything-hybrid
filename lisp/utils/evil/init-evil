@@ -1,0 +1,10 @@
+;-*-emacs-lisp-*-
+;; Download Evil
+(with-eval-after-load
+    (unless (package-installed-p 'evil)
+      (package-install 'evil))
+  ;; Enable Evil
+  (require 'evil)
+  )
+(evil-mode 1)
+(provide 'init-evil)

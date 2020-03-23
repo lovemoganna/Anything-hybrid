@@ -1,0 +1,16 @@
+;; -*-Emacs-lisp-*-
+
+(require 'slime-autoloads)
+
+(setq inferior-lisp-program "/usr/bin/sbcl")
+
+;; starting slime,the commands of both packages should be available
+(setq slime-contribs '(slime-scratch slime-editing-commands))
+
+;; slime-fancy is a meta package which loads a combination of the most popular packages.
+;;(setq slime-contribs '(slime-fancy))
+
+;;(setq slime-contribs '(slime-repl))  ;repl only
+
+
+(provide 'init-slime)

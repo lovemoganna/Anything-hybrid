@@ -1,0 +1,16 @@
+;-*-Emacs-lisp-*-
+;; org babel
+(add-to-list 'load-path "~/.emacs.d/lisp/org/")
+
+(require 'init-org-babel "./org-babel/init-org-babel")
+
+;; org bullets
+(require 'init-org-bullet "./org-bullets/init-org-bullet")
+
+;; org capture
+(require 'init-org-capture "./org-capture/init-org-capture")
+
+;; org keybinding
+(require 'init-org-key "./org-key/init-org-key")
+
+(provide 'init-org)

@@ -1,0 +1,5 @@
+; -*- lexical-binding: t; -*-
+(load-theme 'monokai t)
+(provide 'init-global-themes)
+
+

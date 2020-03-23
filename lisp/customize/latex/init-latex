@@ -1,0 +1,21 @@
+;;; -*-Emacs-lisp-*-
+
+;; set latex environment path
+(setenv "PATH"
+	(concat
+	 "/usr/local/sbin" ":"
+	 "/usr/local/bin" ":"
+	 "/usr/bin" ":"
+	 "/usr/bin/site_perl" ":"
+	 "/usr/bin/vendor_perl" ":"
+	 "/usr/bin/core_perl" ":"
+	 "/usr/local/texlive/2019/bin/x86_64-linux" ":"))
+
+;;使用XeLaTeX编译
+(require 'ox-latex)
+(setq org-export-latex-listings t)
+(setq org-latex-pdf-process
+      '("xelatex -interaction nonstopmode %b"
+	"xelatex -interaction nonstopmode %b"))
+
+(provide 'init-latex)
