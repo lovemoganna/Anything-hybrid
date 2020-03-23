@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: elisp-header
+# key: 
+# --
+;; -*-Emacs-lisp-*-
+$1
