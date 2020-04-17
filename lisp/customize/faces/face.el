@@ -1,10 +1,3 @@
-;; _*_ coding: utf-8;lexical-binding: t; _*_
-
-;;; load initial setting file 
-;; https://stackoverflow.com/questions/7252793/importing-files-in-emacs-lisp-emacs-configuration-file-in-the-same-directoyr
-;; (load-file "~/.emacs.d/lisp/init-package")
-(require 'ob-tangle)
-(org-babel-load-file "~/.emacs.d/lisp/init-package.org")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,7 +30,7 @@
  '(org-hugo-auto-set-lastmod t)
  '(org-hugo-section "post")
  '(package-selected-packages
-   '(yasnippet-snippets perl6-mode inf-ruby helm-ag helm doom-themes doom-modeline shrink-path all-the-icons memoize mermaid-mode f dash youdao-dictionary names chinese-word-at-point pos-tip yasnippet wolfram slime quelpa pdf-tools ox-hugo org-bullets ob-http monokai-theme helm-circe evil company))
+   '(mermaid-mode f dash youdao-dictionary names chinese-word-at-point pos-tip yasnippet wolfram slime quelpa pdf-tools ox-hugo org-bullets ob-http monokai-theme helm-circe evil company))
  '(pdf-view-midnight-colors (cons "#f8f8f2" "#282a36"))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")

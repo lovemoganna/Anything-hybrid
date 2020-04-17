@@ -1,0 +1,40 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/revolt/.emacs.d/lisp/private/revolt-private-configuration
+
+
+* Autologin
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-04-04 Sat 23:50
+  :ARCHIVE_FILE: ~/.emacs.d/lisp/private/revolt-private-configuration
+  :ARCHIVE_OLPATH: System setting/SDDM
+  :ARCHIVE_CATEGORY: revolt-private-configuration
+  :END:
+     
+  check avaliable session types.
+  #+header: :dir "/usr/share/xsessions/" :results verbatim
+  #+begin_src shell
+    ls
+  #+end_src
+
+  #+RESULTS:
+  : openbox.desktop
+  : openbox-kde.desktop
+  : plasma.desktop
+  : stumpwm.desktop
+  : xfce.desktop
+
+  setting automatic login through configuration file:
+     
+  #+header: :tangle "/etc/sddm.conf/autologin.conf" :results verbatim
+  #+begin_src shell
+    [Autologin]
+    User = revolt
+    Session = stumpwm.desktop
+  #+end_src
+     
+     
+     
+     
+     

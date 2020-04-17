@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: test_dir
+# key: t_dir
+# --
+:PROPERTIES:
+:PRJ-DIR:  ~/.revolt/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/test/
+:END:
+$1 
+ 

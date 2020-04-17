@@ -7,11 +7,23 @@
       '((emacs-lisp . t)
       	(shell . t)
 	(scheme . t)
+	(js . t)
+	(dot . t)
+	(css . t)
 	(http . t)
 	(latex .t)
+	(mermaid . t)
+	(org . t)
+	(perl . t)
+	(ruby . t)
         (python . t)))
 ;; (defun my-org-confirm-babel-evaluate (lang body)
 ;;   (not (string= lang "emacs-lisp")))  ;don't ask for ditaa
 ;; (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
+
+;; import inf-ruby
+(autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
 
 (provide 'init-org-babel)

@@ -1,5 +1,6 @@
 ;-*-Emacs-lisp-*-
 (add-to-list 'load-path "~/.emacs.d/lisp/utils/")
+
 ;; evil mode
 (require 'init-evil "./evil/init-evil")
 
@@ -33,6 +34,27 @@
 
 ;; pdf-tools - in emacs view / annation pdf file
 (require 'init-pdf-tools "./pdftools/init-pdf-tools")
+
+;; chart-tools - in emacs use meimaid make flows image.
+(require 'init-mermaid "./mermaid/init-mermaid")
+
+;; html support
+(require 'init-web-mode "./web/init-web-mode")
+
+;; web-beaufify
+(require 'init-web-beautify "./web-beautify/init-web-beautify")
+
+;; web emmet
+(require 'init-emmet "./emmet/init-emmet")
+
+;; neotree
+(require 'init-neotree "./neotree/init-neotree")
+
+;; all-the-icons
+(require 'init-all-the-icons "./all-the-icons/init-all-the-icons")
+
+;; company mode
+(require 'init-company "./company/init-company")
 
 (provide 'init-utils)
 

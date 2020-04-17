@@ -1,9 +1,8 @@
-;-*-Emacs-lisp-*-
-(with-eval-after-load 'doom-modeline
-  (require 'all-the-icons)
-  (setq doom-modeline-minor-modes t)
-  (setq doom-modeline-indent-info t)
-  (setq inhibit-compacting-font-caches t)
-  (doom-modeline-mode 1)
-  )
+;;-*-Emacs-lisp-*-
+(require 'doom-modeline)
+(require 'all-the-icons)
+(setq doom-modeline-minor-modes t)
+(setq doom-modeline-indent-info t)
+(setq inhibit-compacting-font-caches t)
+(doom-modeline-mode 1)
 (provide 'init-mode-line)

@@ -63,3 +63,14 @@
 ** TODO [#B] add log for slove problem
    [2020-03-24 Tue]
    [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/git/git::*how to remove all file in git working stage][how to remove all file in git working stage]]
+** TODO fix mermaid mode error
+   [2020-03-26 Thu]
+   [[file:~/.revolt/aa Dropbox/piaoshang luoyu/revolt-blog/bak/tools/Chart-mermaid/mermaid::*Flowchart][Flowchart]]
+** TODO [[https://orgmode.org/worg/org-tutorials/images-and-xhtml-export.html][Images and XHTML export]]
+   [2020-03-26 Thu]
+   [[file:~/.revolt/aa Dropbox/piaoshang luoyu/revolt-blog/bak/tools/Chart-mermaid/mermaid::*Sequence diagrams][Sequence diagrams]]
+** TODO Tufte CSS & ET-BOOK Font integate with Emacs org mode
+   [2020-04-05 Sun]
+** TODO learn more emacs keybind knowledge
+   [2020-04-08 Wed]
+   [[file:~/.emacs.d/lisp/utils/emmet/init-emmet][file:~/.emacs.d/lisp/utils/emmet/init-emmet]]
