@@ -1,0 +1,21 @@
+;-*-emacs-lisp-*-
+
+;; 快速打开配置文件
+(defun open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el")
+  (eval-buffer)
+  )
+
+(global-set-key (kbd "<f2>") 'open-init-file)
+
+;; recentf open file
+(defun open-recentf-files()
+  (interactive)
+  (recentf-mode)
+  (recentf-open-files))
+
+(global-set-key (kbd "C-x C-r") 'open-recentf-files)
+
+
+(provide 'init-key-binding)

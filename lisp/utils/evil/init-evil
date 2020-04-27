@@ -1,0 +1,43 @@
+;-*-emacs-lisp-*-
+
+(require 'evil)
+(require 'evil-leader)
+
+(global-evil-leader-mode)
+(evil-mode 1)
+
+;; 快速打开配置文件
+(defun open-my-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el")
+  (eval-buffer)
+  (find-file "~/.emacs.d/lisp/init-package.org")
+  )
+
+;; need install general.el package from melpa
+(general-define-key
+:keymaps '(normal insert emacs)
+:prefix "SPC"
+:non-normal-prefix "M-SPC"
+"b" '(:ignore t :which-key "buffers")
+"f" '(:ignore t :which-key "files")
+"n" '(:ignore t :which-key "neotree")
+"n t" 'neotree-toggle
+"n d" 'neotree-dir
+"f e d" 'open-my-init-file
+"b k" 'buf-move-up
+"b j" 'buf-move-down
+"b h" 'buf-move-left
+"b l" 'buf-move-right
+"b d" 'kill-buffer-and-window)
+
+;; test the super key.
+(general-define-key
+ :prefix "s-c"
+ "a" 'org-agenda
+ "c" 'org-capture
+ )
+
+(global-set-key (kbd "H-b") 'backward-word) ; H is for hyper(global-set-key (kbd "s-b") 'ba)
+
+(provide 'init-evil)

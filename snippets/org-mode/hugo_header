@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: hugo_header
+# key: 
+# --
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: $1
+#+hugo_tags: $2
+#+hugo_categories: $3
