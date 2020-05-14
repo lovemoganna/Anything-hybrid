@@ -1,0 +1,7 @@
+;; -*-Emacs-lisp-*-
+;; Cask could is a single file that declares a list of dependencies.
+
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
+(provide 'init-cask)

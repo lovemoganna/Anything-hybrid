@@ -1,0 +1,6 @@
+;; -*-Emacs-lisp-*-
+(require 'ob-mermaid)
+;; (setq mermaid-mmdc-location "~/.npm_module/node_modules/.bin/mmdc")
+(setq ob-mermaid-cli-path "~/.npm_module/node_modules/.bin/mmdc")
+
+(provide 'init-mermaid)

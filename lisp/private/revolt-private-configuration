@@ -1,0 +1,866 @@
+#+-*-mode: org;-*-
+#+title: Revolt's private configuration in arch linux
+#+startup: showall
+** Windows Tools 
+*** stumpwm login start
+     #+header: :results verbatim
+     #+begin_src shell :tangle "/sudo::/home/revolt/.xinitrc"
+       xrandr --setprovideroutputsource modesetting NVIDIA-0
+       xrandr --auto
+       xrandr --dpi 100
+
+       !load xterm  setting
+       xrdb -I$HOME "/.Xresources"
+       !exec /usr/bin/stumpwm
+     #+end_src
+
+*** COMMENT stumpwm config
+    #+header: :tangle "~/.stumpwm.d/init.lisp"
+    #+begin_src common-lisp 
+      ;; -*-Emacs-lisp-*-
+
+      (load "~/quicklisp/setup.lisp")
+      ;;change cursor from defalut X shape
+      (stumpwm:run-shell-command "xsetroot -cursor_name left_ptr")
+      ;; default start input methods
+      (stumpwm:run-shell-command "fcitx-autostart")
+
+      (stumpwm:run-shell-command "xsetroot -cursor_name left_ptr")
+
+      ;; Change stumpwm prefix key to Super key
+      (set-prefix-key (kbd "s-RET"))
+
+      ;; Binging keys
+      (stumpwm:define-key stumpwm:*root-map* (stumpwm:kbd "C-z") "echo NICE,WELL DONE")
+
+      ;; if you want to reload stumpwm,could type =s-ERT ;= then input =loadrc=
+
+      ;; Create myself owm keymap.
+
+      (defvar *my-frame-bindings*
+	(let ((m (stumpwm:make-sparse-keymap)))
+	  (stumpwm:define-key m (stumpwm:kbd "c") "curframe")
+	  (Stumpwm:Define-key m (stumpwm:kbd "M-b") "move-focus left")
+	  (stumpwm:define-key m (stumpwm:kbd "f") "exec firefox")
+	  (stumpwm:define-key m (stumpwm:kbd "r") "loadrc")
+	  (stumpwm:define-key m (stumpwm:kbd "l") "reload")
+	  m
+	  ))
+
+      (stumpwm:define-key stumpwm:*root-map* (stumpwm:kbd "RET") '*my-frame-bindings*)
+
+      ;; 2-modifier
+      ;; slove "Super" key not work.
+      ;;(stumpwm:run-shell-command "feh --bg-scale ~/.emacs.d/image-dired/bk_image/bizhi.png")
+
+      ;; test Hyper command
+      (define-key *top-map* (kbd "H-RET") "fullscreen")
+      (define-key *top-map* (kbd "H-Left") "gprev")
+      (define-key *top-map* (kbd "H-Right") "gnext")
+      (define-key *top-map* (kbd "H-TAB") "other")
+
+      ;; command
+      (define-key *root-map* (kbd "[") "exchange-direction left")
+      (define-key *root-map* (kbd "]") "exchange-direction right")
+
+      ;; writing Commands
+      (defcommand here_we_are(name location)
+	  ((:string "Enter your name:")
+	   (:string "Enter your location:")
+	   )					;
+	(message "~a,now your location is ~a" name location)
+	)
+
+      (define-key *root-map* (kbd "L") "here_we_are revolt")
+
+      ;; define emacs
+      (defcommand emacs () ()  "run-or-raise emacs"  (run-or-raise "emacsclient -ca emacs" '(:class "Emacs" :title "Emacs")))
+      (define-key *root-map* (kbd "e") "emacs")
+      ;; (stumpwm:run-shell-command "emacs --daemon")
+      ;;(stumpwm:run-shell-command "pulseaudio --start")
+
+      (setf *mode-line-timeout* 1)
+
+      ;; turn on/off the mode line for the current head only
+      (stumpwm:toggle-mode-line (stumpwm:current-screen)
+				(stumpwm:current-head))
+
+      ;; disable startup message.
+      (setf *startup-message* nil)
+
+      ;; default border style
+      (setq *window-border-style* :thin)
+
+      ;; test stumpwm modules
+      (setf *module-dir* "~/.stumpwm.d/modules/")
+
+      (init-load-path *module-dir*)
+
+      (load-module "cpu")
+      (load-module "net")
+      (load-module "surfraw")
+      (load-module "command-history")
+
+      ;; setting default font
+      ;;(load-module "ttf-fonts")
+      ;;(load-module "clx-truetype")
+     
+      ;;(make-instance 'xft:font :family "Iosevka Fixed SS14" :subfamily "Regular" :size 10)
+
+      ;;(load-module "screenshot")
+      ;; Set font for messages and modeline
+
+      ;;(set-font (make-instance 'xft:font :family "DejaVu Sans Mono" :subfamily "Book" :size 12))""""'))
+      ;; display the windows list and the current date on the modeline.
+      (setf stumpwm:*screen-mode-line-format*
+	    (list "%v | CG: %n%u | %C | %l"
+
+		  "^>"
+		  " ^7*"
+		  '(:eval (stumpwm:run-shell-command "date" t))
+		  ))
+
+      (setf stumpwm:*mode-line-background-color* "#FBD7CF")
+
+      (enable-mode-line (current-screen) (current-head) t)
+      ;;(define-key *root-map* (kbd "C-f f") "exec firefox")
+      ;; change Window focus on mouse click
+      ;;(setf *mouse-focus-policy* :click)
+
+      (setf *window-format* "%m%n%s%c")
+      (setf *group-format* "%n%s%t")
+
+      ;; setting time format
+      ;; (setf *time-modeline-string* "%a %b %e %k:%M") 
+
+      ;; test
+    #+end_src
+*** stumpm login manager
+    #+begin_src shell :tangle "/sudo::/usr/share/xsessions/stumpwm.desktop"
+      [Desktop Entry]
+      Encoding=UTF-8
+      Name=StumpWM
+      Comment=Login using StumpWM
+      Exec=/usr/bin/stumpwm
+      Type=XSession
+    #+end_src
+** Shell setting
+*** zsh setting
+**** use key short
+     #+begin_example
+       - C-r :: search history command
+       - r :: remake the last command
+
+       # install bat replace cat
+       # bat xx_file
+     #+end_example
+**** Check default shell
+     #+begin_src shell
+       echo $SHELL
+     #+end_src
+
+     #+RESULTS:
+     : /usr/bin/zsh
+
+**** Setting Default shell
+    #+begin_src shell :dir "/sudo::" :results verbatim
+      chsh -s /bin/zsh
+    #+end_src
+
+     #+RESULTS:
+     : Changing shell for root.
+
+    #+header: :results verbatim :exports both
+    #+begin_src shell :tangle "/sudo::/home/revolt/.zshrc"
+      # If you come from bash you might have to change your $PATH.
+      export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+      # Path to your oh-my-zsh installation.
+      export ZSH="/home/revolt/.oh-my-zsh"
+
+      # Set name of the theme to load --- if set to "random", it will
+      # load a rndom theme each time oh-my-zsh is loaded, in which case,
+      # to know which specific one was loaded, run: echo $RANDOM_THEME
+      # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+      ZSH_THEME="robbyrussell"
+
+      # Set list of themes to pick from when loading at random
+      # Setting this variable when ZSH_THEME=random will cause zsh to load
+      # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+      # If set to an empty array, this variable will have no effect.
+      # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+      # Uncomment the following line to use case-sensitive completion.
+      # CASE_SENSITIVE="true"
+
+      # Uncomment the following line to use hyphen-insensitive completion.
+      # Case-sensitive completion must be off. _ and - will be interchangeable.
+      # HYPHEN_INSENSITIVE="true"
+
+      # Uncomment the following line to disable bi-weekly auto-update checks.
+      # DISABLE_AUTO_UPDATE="true"
+
+      # Uncomment the following line to automatically update without prompting.
+      # DISABLE_UPDATE_PROMPT="true"
+
+      # Uncomment the following line to change how often to auto-update (in days).
+      # export UPDATE_ZSH_DAYS=13
+
+      # Uncomment the following line if pasting URLs and other text is messed up.
+      # DISABLE_MAGIC_FUNCTIONS=true
+
+      # Uncomment the following line to disable colors in ls.
+      # DISABLE_LS_COLORS="true"
+
+      # Uncomment the following line to disable auto-setting terminal title.
+      # DISABLE_AUTO_TITLE="true"
+
+      # Uncomment the following line to enable command auto-correction.
+      # ENABLE_CORRECTION="true"
+
+      # Uncomment the following line to display red dots whilst waiting for completion.
+      # COMPLETION_WAITING_DOTS="true"
+
+      # Uncomment the following line if you want to disable marking untracked files
+      # under VCS as dirty. This makes repository status check for large repositories
+      # much, much faster.
+      # DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+      # Uncomment the following line if you want to change the command execution time
+      # stamp shown in the history command output.
+      # You can set one of the optional three formats:
+      # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+      # or set a custom format using the strftime function format specifications,
+      # see 'man strftime' for details.
+      HIST_STAMPS="mm/dd/yyyy"
+
+      # Would you like to use another custom folder than $ZSH/custom?
+      # ZSH_CUSTOM=/path/to/new-custom-folder
+
+      # Which plugins would you like to load?
+      # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+      # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+      # Example format: plugins=(rails git textmate ruby lighthouse)
+      # Add wisely, as too many plugins slow down shell startup.
+      plugins=(
+	  git
+	  autojump
+	  zsh-autosuggestions
+	  zsh-syntax-highlighting
+      )
+
+      # autojump config
+      [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+
+      # autojump binding key
+      bindkey ',' autosuggest-accept
+
+      source $ZSH/oh-my-zsh.sh
+
+      # User configuration
+
+      export MANPATH="/usr/local/man:$MANPATH"
+
+      # You may need to manually set your language environment
+      export LANG=en_US.UTF-8
+
+      # Preferred editor for local and remote sessions
+      if [[ -n $SSH_CONNECTION ]]; then
+	 export EDITOR='vim'
+      else
+	export EDITOR='mvim'
+      fi
+
+      # Compilation flags
+      export ARCHFLAGS="-arch x86_64"
+
+      # Set personal aliases, overriding those provided by oh-my-zsh libs,
+      # plugins, and themes. Aliases can be placed here, though oh-my-zsh
+      # users are encouraged to define aliases within the ZSH_CUSTOM folder.
+      # For a full list of active aliases, run `alias`.
+      #
+      # Example aliases
+      # alias zshconfig="mate ~/.zshrc"
+      # alias ohmyzsh="mate ~/.oh-my-zsh"
+      alias et="emacs -nw"
+      alias rm ="trash"
+
+      export LANG="zh_CN.UTF-8"
+
+      # proxy settings
+      set http_proxy=http://127.0.0.1:1080
+      set https_proxy=http://127.0.0.1:1080
+    #+end_src
+
+    #+RESULTS:
+
+    #+begin_src shell :tangle "/sudo::/home/revolt/.xinitrc"
+    #+end_src
+** System setting
+*** COMMENT read xinitrc setting
+    #+header: :results verbatim
+    #+begin_src shell
+      cat ~/.xinitrc 
+    #+end_src
+
+    #+RESULTS:
+    : xrandr --setprovideroutputsource modesetting NVIDIA-0
+    : xrandr --auto
+    : xrandr --dpi 100
+    : 
+    : !load xterm  setting
+    : xrdb -I$HOME "/.Xresources"
+    : exec /usr/bin/stumpwm
+    : 
+    : 
+*** Locale set
+    
+    ref link: [[https://www.cnblogs.com/xlmeng1988/archive/2013/01/16/locale.html][locale description]].
+
+    #+begin_src shell :results verbatim :tangle "/sudo::/etc/locale.conf"
+      LC_CTYPE=zh_CN.UTF-8
+      LANG=en_US.UTF-8
+    #+end_src
+
+*** COMMENT Computer driver identify and install
+***** check your laptop what's kinds of graphics card
+      
+        #+begin_src shell :results verbatim
+	  lspci -k | grep -A 2 -E "(VGA|3D)"
+	#+end_src
+
+	#+RESULTS:
+	: 00:02.0 VGA compatible controller: Intel Corporation Device 3e90
+	: 	DeviceName: Onboard - Video
+	: 	Subsystem: CLEVO/KAPOK Computer Device 55a1
+	: --
+	: 01:00.0 VGA compatible controller: NVIDIA Corporation GP107M [GeForce GTX 1050 Mobile] (rev a1)
+	: 	Subsystem: CLEVO/KAPOK Computer GP107M [GeForce GTX 1050 Mobile]
+	: 	Kernel driver in use: nouveau
+
+	
+	- install nvidia drive
+	  #+begin_example
+	    sudo pacman -S --noconfirm nvidia
+	  #+end_example
+
+	  #+header: :dir "/sudo::/usr/etc/X11/xorg.conf.d/"
+	  #+begin_src shell :results verbatim
+	  ls -ll
+	  #+end_src
+
+        - Note
+	
+	1.For NVIDIA Optimus enabled laptop which uses an integrated
+        video combined with a dedicated GPU.So more care about
+        the [[*NVIDIA Optimus][NVIDIA Optimus]].
+***** now checkout your nvidia graphic card version
+      [[https://nouveau.freedesktop.org/wiki/CodeNames/][Check your graphic card version]]
+      
+      - GTX 1050 --> NV137(GP107)
+	
+      #+begin_example
+	sudo pacman -S lib32-nvidia-utils lib32-nvidia-libgl lib32-mesa-demos libva-vdpau-driver
+      #+end_example
+      
+      1. install nvidia setting
+       #+begin_example
+	sudo pacman -S nvidia-settings
+       #+end_example
+      2. persistence enable nvidia service
+       #+begin_example
+	  systemctl enable nvidia-persistenced.service
+        #+end_example
+***** download nvidia driver	
+      https://www.nvidia.com/Download/driverResults.aspx/159360/en-us
+***** forbidden nouveau
+      #+header: :dir "/sudo::/etc/modprobe.d/"
+      #+begin_src shell :results silent
+	echo "blacklist nouveau" >> nouveau_blacklist.conf
+	echo "options nouveau modeset=0" >> blacklist-nvidia-nouveau.conf
+      #+end_src
+***** generate nvidia X11 config file
+      #+begin_example
+	sudo nvidia-xconfig
+	# generate file in /etc/X11/xorg.conf
+      #+end_example
+***** check nvidia use state 
+      #+begin_src shell :results verbatim
+	nvidia-smi
+      #+end_src
+
+      #+RESULTS:
+      #+begin_example
+      Mon May 11 00:15:02 2020       
+      +-----------------------------------------------------------------------------+
+      | NVIDIA-SMI 440.82       Driver Version: 440.82       CUDA Version: 10.2     |
+      |-------------------------------+----------------------+----------------------+
+      | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+      | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+      |===============================+======================+======================|
+      |   0  GeForce GTX 1050    Off  | 00000000:01:00.0 Off |                  N/A |
+      | N/A   43C    P0    N/A /  N/A |      0MiB /  4040MiB |      0%      Default |
+      +-------------------------------+----------------------+----------------------+
+
+      +-----------------------------------------------------------------------------+
+      | Processes:                                                       GPU Memory |
+      |  GPU       PID   Type   Process name                             Usage      |
+      |=============================================================================|
+      |  No running processes found                                                 |
+      +-----------------------------------------------------------------------------+
+      #+end_example
+
+*** NVIDIA Optimus
+    NVIDIA Optimus is a technology that allows an intel integrated GPU
+    and discrete NVIDIA GPU to be built into and accessed by a laptop.
+**** Use NVIDIA graphics only
+     The proprietary NVIDIA drive can be configured to be the primary
+     rendering provider.It also has notable screen-tearing(屏幕撕裂) issues
+     unless you enable prime sync by enabling [[*DRM Kernel mode setting][DRM Kernel mode setting]].
+ 
+     - Install the NVIDIA driver and =xorg-xrandr=.
+     - configure =/etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf=
+       the options of which will be combined with the package provided
+       =/usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf= to
+       provide compatibility with this setup.
+
+     #+header: :dir "/usr/share/X11/xorg.conf.d/"
+     #+begin_src shell :results verbatim
+       cat 10-nvidia-drm-outputclass.conf
+     #+end_src
+
+     #+RESULTS:
+     
+     #+header: :tangle "/sudo::/etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf"
+     #+begin_src text
+       Section "OutputClass"
+       Identifier "intel"
+       MatchDriver "3e90"
+       Driver "modesetting"
+       EndSection
+
+       Section "OutputClass"
+       Identifier "nvidia"
+       MatchDriver "nvidia-drm"
+       Driver "nvidia"
+       Option "AllowEmptyInitialConfiguration"
+       Option "PrimaryGPU" "yes"
+       ModulePath "/usr/lib/nvidia/xorg"
+       ModulePath "/usr/lib/xorg/modules"
+       EndSection
+     #+end_src
+     
+     now put the above content into =/usr/share/sddm/scripts/Xsetup=
+     if you use =SDDM= as your start desktop display manager.
+     
+*** SDDM
+**** Configuration
+     The default configuration file for SDDM can be found at
+     =/usr/lib/sddm/sddm.conf.d/default.conf=.
+     
+     For any changes,create configuration files in =/etc/sddm.conf.d/=
+     
+     #+header: :dir "/usr/lib/sddm/sddm.conf.d/" :results verbatim
+     #+begin_src shell
+       cat default.conf
+     #+end_src
+**** COMMENT Autologin
+     
+     check avaliable session types.
+     #+header: :dir "/usr/share/xsessions/" :results verbatim
+     #+begin_src shell
+       ls
+     #+end_src
+
+     #+RESULTS:
+     : plasma.desktop
+     : stumpwm.desktop
+
+     setting automatic login through configuration file:
+     
+     #+header: :tangle "/sudo::/etc/sddm.conf.d/autologin.conf"
+     #+begin_src shell
+       [Autologin]
+       User = revolt
+       Session = stumpwm.desktop
+     #+end_src
+**** intergrate with nvidia graphic card
+
+    #+begin_src shell :tangle "/sudo::/usr/share/sddm/scripts/Xsetup"
+      xrandr --setprovideroutputsource modesetting NVIDIA-0
+      xrandr --auto
+    #+end_src
+*** Grub setting
+    
+** A kinds of X Setting 
+***  X serve kinds of setting
+    :PROPERTIES:
+    :header-args: :results verbatim :exports none
+    :END:
+   - show X setting
+    #+header: :results verbatim
+    #+begin_src shell
+      cat ~/.xinitrc
+    #+end_src
+
+    #+RESULTS:
+    : xrandr --setprovideroutputsource modesetting NVIDIA-0
+    : xrandr --auto
+    : xrandr --dpi 100
+    : 
+    : !load xterm  setting
+    : xrdb -merge -I$HOME "/.Xresources"
+    : /usr/bin/stumpwm
+    : 
+    : 
+
+***  Xmodmap
+   I need Super key and Hyper key.
+**** How to know what is super key?
+  
+    #+header: :results verbatim
+    #+begin_src shell
+      xmodmap -pm
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    xmodmap:  up to 3 keys per modifier, (keycodes in parentheses):
+
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock        Caps_Lock (0x42)
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Super_R (0x6c),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3      
+    mod4        Super_L (0x85),  Super_L (0xce)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+    #+end_example
+
+    now,run shell command =xev=,click =Super_L= key,show the content
+    of the following is:
+    
+    #+begin_example
+      KeyRelease event, serial 37, synthetic NO, window 0x4000001,
+      root 0x75, subw 0x0, time 2014984514, (70,-18), root:(82,60),
+      state 0   x50, keycode 115 (keysym 0xffeb, Super_L), same_screen YES,
+      XLookupString gives 0 bytes: 
+      XFilterEvent returns: False
+    #+end_example
+    
+    you will see,Keycode is 115. but my Super_L keycode is 133,Super_R
+    keycode is 108.
+**** check Hyper key's KeyCodes
+    
+    #+begin_src shell :results verbatim
+      xmodmap -pke | egrep '(Hyper|Super)'
+    #+end_src
+
+    #+RESULTS:
+    : keycode 108 = Super_R NoSymbol Super_R
+    : keycode 133 = Super_L NoSymbol Super_L
+    : keycode 134 = Super_R NoSymbol Super_R
+    : keycode 206 = NoSymbol Super_L NoSymbol Super_L
+    : keycode 207 = NoSymbol Hyper_L NoSymbol Hyper_L
+**** maintain xmodmap setting
+
+    cause we no SuperL and Super_R,so we could run the following
+    xmodmap commands add:
+    
+    #+header: :tangle "~/.Xmodmap"
+    #+begin_src shell 
+      clear mod4
+      add mod4 = Super_L
+      remove Lock = Caps_Lock
+      remove Control = Control_L
+      remove mod1 = Alt_R
+
+      keysym Control_L = Caps_Lock
+      keysym Caps_Lock = Control_L
+      keysym Alt_R = Caps_Lock
+
+      keycode 108 = Caps_Lock
+      keycode 37 = Hyper_L
+
+      add Lock = Caps_Lock
+      add Control = Control_L
+      clear mod5
+      add mod5 = Hyper_L
+    #+end_src
+***  Xresources module config
+     #+begin_src shell :tangle "/sudo::/home/revolt/.Xresources"
+       #include ".Xresources.d/xterm"
+     #+end_src
+***  Xterm
+    #+begin_src shell :tangle "/sudo::/home/revolt/.Xresources.d/xterm"
+      !support chinese fonts
+      !中文测试
+      XTerm.vt100.faceName: Hack:style=Regular:size=9:antialias=True:pixelsize=12
+      XTerm.vt100.faceNameDoublesize: Wenquanyi Zen Hei:style=Regular,Bold,Italic:size=10:antialias=True:pixelsize=12
+      XTerm*scaleHeight: 1.01
+      XTerm*locale: en_US.UTF-8
+
+      !backrgound color settings
+      XTerm*foreground: white
+      XTerm*background: black
+
+      !use mouse select text color is yellow,not evil select color,so sadness.
+      !about Xterm select,you can see here: https://jonasjacek.github.io/colors/
+
+      XTerm*highlightColor: yellow
+      XTerm*highlightTextColor: yellow
+      XTerm*highlightColorMode: true
+      XTerm*cursorColor: LightGoldenrod3
+      XTerm*pointerShape: arrow
+      XTerm*pointerColor: blue
+
+      !init window size
+      XTerm*geometry:100x32
+
+      !input method
+      XTerm*inputMethod: fcitx
+
+      !dynamic color
+      XTerm*dynamicColors:true
+
+      !xterm M key configuration
+      XTerm*metaSendsEscape: true
+
+      !TERM Environmental variable			 
+      XTerm*termName: xterm-256color
+
+      !Ensure that your locale is set up for UTF-8.you may need to force xterm to more strictly follow you locale by setting.
+      XTerm.vt100.locale: true
+
+
+      !Make 'Alt' key behave as on other terminal emulators
+      XTerm.vt100.metaSendsEscape: true
+
+      !Fix the backspace key, This breaks the Ctrl+H key combination on Emacs. now fix it.
+      XTerm.vt100.backarrowKey: false
+      XTerm.ttyModes: erase ^?
+
+
+      !key binding
+      !#override indicates that these bindings should override any existing ones
+      !Each binding must be separated by the escape sequence \n. If you want
+      !to insert a literal newline, it also needs to be escaped (hence \n\).)
+
+      !XTerm.vt100.translations: #override \n\
+      !    Ctrl <Key>M: maximize() \n\
+      !    Ctrl <Key>R: restore()
+
+      !鼠标左键CLICK，即可向浏览器粘贴.
+      !从浏览器往XTERM中粘贴,C-S t.或者Linux自带的C-;
+
+      !Xterm could copy clipboard
+      XTerm*selectToClipboard: true
+
+      !下面是Xterm自定义键
+      ,*VT100*translations:      #override \n\
+	  Ctrl Shift <Key>C:  copy-selection(SELECT) \n\
+	  Ctrl Shift <Key>V:  insert-selection(CLIPBOARD)
+
+      !Scrolling, i dont want to fix it.Cause I use Emacs evil mode.
+
+      !enable Xterm Menus
+      XTerm.vt100.geometry: 80x32
+   #+end_src
+** COMMENT Emacs Daemon
+   #+header: :tangle "/sudo::/home/revolt/.config/systemd/user/emacs.service"
+   #+begin_src emacs-lisp 
+     [Unit]
+     Description=Emacs text editor
+     Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+     [Service]
+     Type=forking
+     ExecStart=/usr/bin/emacs --daemon
+     ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+     Environment=SSH_AUTH_SOCK=%t/keyring/ssh
+     Restart=on-failure
+
+     [Install]
+     WantedBy=default.target
+   #+end_src
+** Basic Setting
+*** config pacman mirrors
+**** use archlinux offical mirrors
+
+    #+begin_src shell :dir "/sudo::/":exports all :results silent
+      sudo wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
+    #+end_src
+
+    #+begin_src shell :dir "/sudo::/" :results list
+      bat /etc/pacman.d/mirrorlist 
+    #+end_src
+
+
+**** COMMENT force overwrite pacman mirrors address
+    #+begin_src shell :dir "/sudo::/":results verbatim :tangle "/etc/pacman.d/mirrorlist"
+      ##
+      ## Arch Linux repository mirrorlist
+      ## Filtered by mirror score from mirror status page
+      ##
+      #
+      Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+    #+end_src
+
+     #+RESULTS:
+
+*** Pacman 
+*** COMMENT List of installed packages
+    #+begin_src shell :results verbatim
+      pacman -Qqe
+    #+end_src
+
+*** Check System
+   #+begin_src shell :results verbatim
+     df -hT
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   Filesystem     Type      Size  Used Avail Use% Mounted on
+   dev            devtmpfs  3.8G     0  3.8G   0% /dev
+   run            tmpfs     3.8G  1.6M  3.8G   1% /run
+   /dev/sdb4      ext4      243G   18G  214G   8% /
+   tmpfs          tmpfs     3.8G  137M  3.7G   4% /dev/shm
+   tmpfs          tmpfs     3.8G     0  3.8G   0% /sys/fs/cgroup
+   tmpfs          tmpfs     3.8G  4.4M  3.8G   1% /tmp
+   /dev/sdb3      ext4       30G  5.9G   23G  22% /home
+   /dev/sdb2      vfat      511M   54M  458M  11% /boot/EFI
+   tmpfs          tmpfs     769M   16K  769M   1% /run/user/1000
+   #+end_example
+*** COMMENT Chinese Input methods
+   #+begin_src shell :dir "/sudo::/":results verbatim
+     sudo pacman -S --noconfirm fcitx-im fcitx-configtool
+   #+end_src
+   
+   - =C-S f= 繁体切换
+   - xterm 下可以设置输入法与中文编码，以便于显示中文，和使用 =C-;= 插
+     入复制的东西。
+
+*** COMMENT proxy config
+    当前的socks 5代理GG l，不知道啥原因，目前替代的方式就是直接在zsh里
+    面的设置写入代理方式。有机会再试一试。
+    
+**** V2ray setting
+     v2ray 里面有个致命的问题：服务端的时间需要和客户端的时间保持一致。
+     才可以正常运行。
+     
+     解决方式，让其自动校验。
+     
+     #+begin_example
+       设置时区: sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
+       安装openNTPD: sudo pacman -S openntpd
+       重启openNTPD: systemctl restart openntpd
+       设置开机启动: systemctl enable openntpd
+     #+end_example
+     
+     **config client demo**
+     
+     #+begin_example
+	{
+	       "outbounds": [
+		 {
+		   "protocol": "vmess",
+		   "settings": {
+		     "vnext": [
+		       {
+			 "address": "IP",
+			 "port": port,
+			 "users": [
+			   {
+			     "id": "xxx",
+			     "alterId": xxx,
+			     "security": "auto"
+			   }
+			 ]
+		       }
+		     ]
+		   }
+		 },
+		 {
+		   "protocol": "freedom",
+		   "settings": null,
+		   "tag": "direct"
+		 },
+		 {
+		   "protocol": "blackhole",
+		   "settings": null,
+		   "tag": "blocked"
+		 },
+		 {
+		   "protocol": "dns",
+		   "tag": "dns-out"
+		 }
+	       ],
+	       "inbounds": [
+		{
+		   "port": 1080,
+		   "protocol": "socks",
+		   "listen": "127.0.0.1",
+		   "settings": {
+		     "auth": "noauth",
+		     "udp": true
+		   }
+		 }
+	       ],
+	       "routing": {
+		 "domainStrategy": "IPOnDemand",
+		 "rules": [
+		   {
+		     "type": "field",
+		     "inboundTag": [
+		       "dns-in"
+		     ],
+		     "outboundTag": "dns-out"
+		   },
+		   {
+		     "type": "field",
+		     "ip": [
+		       "geoip:private"
+		     ],
+		     "outboundTag": "blocked"
+		   },
+		   {
+		     "type": "field",
+		     "ip": [
+		       "geoip:cn"
+		     ],
+		     "outboundTag": "direct"
+		   },
+		   {
+		     "type": "field",
+		     "domain": [
+		       "geosite:cn"
+		     ],
+		     "outboundTag": "direct"
+		   }
+		 ]
+	       }
+	     }
+     #+end_example
+     
+**** install proxychains package
+    #+begin_src shell :dir "/sudo::/"
+      sudo pacman -S --noconfirm proxychains
+    #+end_src
+**** setting proxychains
+     [[https://blog.fazero.me/2015/08/31/%E5%88%A9%E7%94%A8proxychains%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8socks5%E4%BB%A3%E7%90%86/][ref link]]
+
+     #+begin_src shell :dir "/etc/" :results verbatim
+       cat proxychains.conf
+     #+end_src
+
+     如果要走socks代理的话，前面加个命令 =proxychains4 wget xxx=,比如
+     ping google.
+     
+     #+begin_src shell :results verbatim
+       proxychains4 ping -c 3 google.com
+     #+end_src
+
+     #+RESULTS:
+
+     

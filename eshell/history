@@ -1,0 +1,11 @@
+cd ~
+cd .font
+cd .fonts/
+ls
+cat font-cache.sexp 
+cat font-cache.sexp 
+exit
+v2ray info
+systemctl status v2ray
+vim /etc/v2ray/config.json
+xterm

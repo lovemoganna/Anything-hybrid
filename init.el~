@@ -1,0 +1,7 @@
+;; _*_ coding: utf-8;lexical-binding: t; _*_
+
+;;; load initial setting file 
+;; https://stackoverflow.com/questions/7252793/importing-files-in-emacs-lisp-emacs-configuration-file-in-the-same-directoyr
+;; (load-file "~/.emacs.d/lisp/init-package")
+(require 'ob-tangle)
+(org-babel-load-file "~/.emacs.d/lisp/init-package.org")

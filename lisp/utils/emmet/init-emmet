@@ -1,0 +1,22 @@
+;; -*-Emacs-lisp-*-
+
+(require 'emmet-mode)
+
+;; you should know how to use html abbreviations and css abbreviations
+;; https://github.com/smihica/emmet#html
+;; https://github.com/smihica/emmet#css
+
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
+
+;; set indent 2 space.
+(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
+(setq emmet-move-cursor-between-quotes t)
+
+;; change expand key
+(global-unset-key (kbd "C-j"))
+(global-set-key (kbd "<tab>") 'emmet-expand-line)
+
+(provide 'init-emmet)

@@ -1,0 +1,16 @@
+;; -*-Emacs-lisp-*-
+;; 开启全局 Company 补全
+(require 'company)
+(require 'company-web-html)
+(require 'company-web-jade)
+(require 'company-web-slim)
+(define-key web-mode-map (kbd "C-'") 'company-web-html)
+
+(setq company-tooltip-limit 20)                      ; bigger popup window
+(setq company-tooltip-align-annotations 't)          ; align annotations to the right tooltip border
+(setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
+(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+(global-set-key (kbd "C-c /") 'company-files) 
+(global-company-mode 1)
+
+(provide 'init-company)

@@ -1,0 +1,29 @@
+;-*-Emacs-lisp-*-
+;; org babel
+(add-to-list 'load-path "~/.emacs.d/lisp/org/")
+
+(require 'init-org-babel "./org-babel/init-org-babel")
+
+;; org bullets
+(require 'init-org-bullet "./org-bullets/init-org-bullet")
+
+;; org capture
+(require 'init-org-capture "./org-capture/init-org-capture")
+
+;; org keybinding
+(require 'init-org-key "./org-key/init-org-key")
+
+;; org image setting
+;;(setq org-image-actual-width nil)
+
+;; org redisplay inline images
+(add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+
+;; syntax highlight code
+(setq org-confirm-babel-evaluate nil
+      org-src-fontify-natively t
+      org-src-tab-acts-natively t)
+
+;; default hidden org block
+(setq org-hide-block-startup t)
+(provide 'init-org)
