@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-02-25 Tue 15:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs Macros</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs Macros</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4a3f1ef">1. Simple Macro</a></li>
+<li><a href="#org94308c3">2. Expansion of a Macro Call</a></li>
+<li><a href="#orgcd5bf75">3. 快速定位并解决问题。</a></li>
+</ul>
+</div>
+</div>
+<p>
+Macro允许你定义新的控制结构和其他的语言功能。
+</p>
+
+<p>
+Macro的定义很像函数。我们调用的这个Macro扩展的表达式,解释了如何去计算其
+他的Lisp表达式，从而进一步计算值。而不是解释如何去计算一个值。
+</p>
+
+<p>
+&lt;!&#x2013;more&#x2013;&gt;
+</p>
+
+<p>
+Macro之所以可以这样做，因为他们对参数的上的未评估的表达式进行运算。而
+不是像函数那样对参数值进行运算。因此它们可以构建一个包含这些参数表达式
+或者它一部分的扩展。
+</p>
+
+<p>
+如果你使用一个 Macro 做一个普通函数可以做的一些事情,只是为了速度，可以
+考虑使用一下 <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Inline-Functions.html#Inline-Functions">Inline function</a>。
+</p>
+
+<ul class="org-ul">
+<li><a href="#org4a3f1ef">Simple Macro</a>: A basic example。</li>
+<li><a href="#org94308c3">Expansion of a Macro Call</a>: How,When and why macros are expanded.</li>
+</ul>
+
+<div id="outline-container-org4a3f1ef" class="outline-2">
+<h2 id="org4a3f1ef"><span class="section-number-2">1</span> Simple Macro</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+假设我们想要定义Lisp结构来增加一个变量值。类似于C语言中的 <code>++</code>
+.我们想写为 <code>(inc x)</code> ，并对 <code>(setq x (1+ x))</code> 有效。
+</p>
+
+<p>
+下面这个宏可以完成这个工作。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(defmacro inc (var)
+  (list 'setq var (list '1+ var)))
+</pre>
+</div>
+
+<p>
+解释如下：
+</p>
+
+<p>
+1.调用宏 <code>(inc x)</code>,参数 <i>var</i> 是 <b>symbol x</b>,不是x的值，因为参数 <i>var</i>
+将会在一个函数里面。
+</p>
+
+<p>
+2.这个宏的主体使用上面的方式来构建这个扩展，也就是 <code>(setq x (1+
+   x))</code>.一旦宏定义返回这个扩展，Lisp继续评估它，因此增加 <i>x</i> 的值。
+</p>
+
+<p>
+现在我想用下面的方式调用，可惜不管用。
+</p>
+
+<p>
+<code>(inc x)					;error call macro methods</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org94308c3" class="outline-2">
+<h2 id="org94308c3"><span class="section-number-2">2</span> Expansion of a Macro Call</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+宏调用就像函数调用一样，因此它是以宏的名字开头的list.这个
+list的其余元素是宏的参数。
+</p>
+
+<p>
+宏调用的评估开始像函数调用的评估，除了一个关键不同之外：
+<b>宏的参数</b> 是出现在宏调用中的 <b>真实的表达式</b>.它们在给到宏定义之前不
+会被评估。相比较之下， <b>函数的参数</b> 是评估调用list函数的元素的结果。
+</p>
+
+<p>
+在获得参数的过程中，Lisp执行宏定义就像执行函数一样。 <code>宏的参数变量</code>   
+被绑定到来自 <code>宏调用</code> 的参数值，或者是被绑定在有 <code>&amp;rest</code> 参数下的的
+list。宏的主体就像函数的主体一样执行和返回它的值.
+</p>
+
+<p>
+宏和函数之间的第二个关键不同在于：宏的值通过替代Lisp表达式的宏主体
+返回，也被成为宏扩展。Lisp解释器从宏返回后立即继续评估宏扩展。
+</p>
+
+<p>
+宏扩展在正常情况下被评估之后，它可能会包含调用其它宏。甚至可能调用
+同样的宏，尽管这是异常的情况。
+</p>
+
+<p>
+注意Emacs在载入未编译的Lisp文件当中，会尝试的展开宏。这可能不会经常
+出现，但是如果出现了，这将会加快后续执行的速度。具体参见：<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/How-Programs-Do-Loading.html#How-Programs-Do-Loading">How
+Programms Do Loading</a>. 
+</p>
+
+<p>
+你可以看到给出的宏调用的扩展是通过 <code>macroexpand</code> 来调用的。
+</p>
+
+<ul class="org-ul">
+<li>Function: <b>macroexpand</b> form &amp;optional environment
+
+<ol class="org-ol">
+<li>这个函数扩展 <code>form</code>,如果它是一个 <code>macro call</code> 的话。</li>
+<li>如果结果是其他的 <code>macro call</code> 的话，它将依次扩展,直到不是 <code>macro call</code> 的结果。</li>
+<li>这个值通过 <code>macroexpand</code> 来返回。</li>
+<li>如果这个 <code>form</code> 不是一个 <code>macro call</code> 来开头的话，它将会按照给
+定的内容返回。</li>
+</ol></li>
+</ul>
+
+
+<p>
+注意 <code>macroexpand</code> 不能视为 <code>form</code> 的子表达式（尽管有一些宏定义确
+实是这么回事）。就算是这个 <code>form</code> 是调用宏本身, <code>macroexpand</code> 也
+不会扩展它们。
+</p>
+
+<p>
+函数 <code>macroexpand</code> 不会展开调用 <code>inline functions</code>. 通常情况下这
+是不需要的，因为调用 <code>inline function</code> 比对调用普通函数更容易理解。
+</p>
+
+<p>
+如果 提供了 <i>environment</i> ,它会指定一个宏定义的一个 <i>alist</i> ，来遮
+住当前定义的宏。字节编译使用这个功能。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span class="linenr">1: </span>(defmacro inc (var)
+<span class="linenr">2: </span>  (list 'setq var (list '1+ var)))
+<span class="linenr">3: </span>
+<span class="linenr">4: </span>(macroexpand '(inc r))                  
+</pre>
+</div>
+
+<p>
+<a href="./macro-and-expand-macro.el">./macro-and-expand-macro.el</a>
+</p>
+
+<p>
+The Result in here: <a href="macro-and-expand-macro.el">Results</a>
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgcd5bf75" class="outline-2">
+<h2 id="orgcd5bf75"><span class="section-number-2">3</span> 快速定位并解决问题。</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2020-02-23 Sun 00:00</p>
+<p class="date">Created: 2020-02-25 Tue 15:42</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

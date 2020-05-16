@@ -1,0 +1,92 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-03-19 Thu>
+#+hugo_tags: mermaid chart
+#+hugo_categories: mermaid chart
+#+STARTUP: inlineimages
+* mermaid
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: mermaid
+  :END:
+  
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+
+  chart tools <b style="color:red">mermaid</b> intergrate with Emacs.
+
+  <!--more-->
+  
+  now we should test how to insert HTML code,yes,i said is real html
+  code insert into hugo blog.
+  
+  now we should test it wheather avaliable.but we should select hugo
+  bolg custom shortcodes insert it.
+  
+  cause use the mermaid premise is insert mermaid's CDN in html.
+
+** setting mmdb path 
+   #+begin_src emacs-lisp :exports all :results output
+     (setq ob-mermaid-cli-path "~/.npm_module/node_modules/.bin/mmdc")
+   #+end_src
+
+** test image demo 
+   #+begin_example
+	,#+html: <style>.foo img { border:2px solid black; }</style>
+	,#+attr_html: :alt Org mode logo
+	,#+attr_html: :width 300 :class foo
+	[[https://ox-hugo.scripter.co/test/images/org-mode-unicorn-logo.png]]
+   #+end_example
+** test demo
+   
+  #+name: sequenceDiagram
+  #+attr_html: :width 100 :height 100
+  #+caption: sequence Diagram
+  #+begin_src mermaid :width 100px :height 100px :file sequence_diagram.png :output-dir ../../../static/images/mermaid
+    sequenceDiagram
+	A-->B: Workss!
+  #+end_src
+
+  #+RESULTS: sequenceDiagram
+  [[file:../../../static/images/mermaid/sequence_diagram.png]]
+** test demo2
+
+   #+name: StateDiagram
+   #+caption: StateDiagram
+   #+ATTR_ORG: :widht 20
+   #+ATTR_HTML: :width 50 :height 100
+   #+header: :theme neutral :background-color #F0F0F0
+   #+begin_src mermaid :file Pie.png :output-dir ../../../static/images/mermaid/ :tangle "Pie.mermaid"
+     pie title Pets adopted by volunteers
+       "Dogs" : 386
+       "Cats" : 85
+       "Rats" : 15
+   #+end_src
+
+   #+RESULTS: StateDiagram
+   [[file:../../../static/images/mermaid/Pie.png]]
+** test demo3 
+   #+begin_src shell :tangle "./a.txt"
+     ls -ll 
+   #+end_src
+
+   #+RESULTS:
+   | total      | 4 |        |        |      |     |    |       |         |
+   | -rw-r--r-- | 1 | revolt | revolt | 2636 | Mar | 29 | 03:01 | mermaid |
+** test demo4
+   #+tangle: "./hello.txt"
+   #+begin_src shell
+     ls -ll
+   #+end_src
+
+   #+RESULTS:
+   | total      | 8 |        |        |      |     |    |       |                   |
+   | -rw-r--r-- | 1 | revolt | revolt | 2476 | Mar | 29 | 03:07 | mermaid           |
+   | -rw-r--r-- | 1 | revolt | revolt |  877 | Mar | 29 | 03:02 | #mermaid_archive# |

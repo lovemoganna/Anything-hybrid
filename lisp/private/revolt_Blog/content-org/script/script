@@ -1,0 +1,27 @@
+#+-*-mode: org;-*-
+#+title: script programming selection
+#+hugo_base_dir: ../../
+#+hugo_section: ./post
+#+Date: <2020-03-11 Wed>
+#+hugo_auto_set_lastmod: t
+#+hugo_weight: auto
+#+hugo_tags: script C
+#+hugo_categories: script C
+
+我想选一门快而狠的脚本语言。因为编程的乐趣就在与速度与思考。
+
+速度带来激情，思考带来成果。
+
+没有激情就没有结果。
+
+<!--more-->
+
+在综合条件下，我既想选择Python,又想选择Bash。然后又清楚的想到自己最终
+会回到 C.
+
+还是先不折腾了，就先搞C，把它当作一门脚本语言来搞一下。
+
+另外一个事情，就是我的思维太过于跳跃，有时候容易压不住。所以需要一个笔
+记本列出未做的事情，先专心做一件事，然后再把剩余的事情做完。
+
+

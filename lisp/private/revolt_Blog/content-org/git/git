@@ -1,0 +1,61 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../
+#+date: <2020-03-24 Tue>
+#+hugo_tags: git
+#+hugo_categories: git
+
+* git faq
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: git
+  :END:
+  
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+
+  slove git using procedure problems.
+
+  <!--more-->
+  
+** how to insert comment for peer commited git files
+  
+   one sloved methods:
+   
+   - use =git add <single-files>= and does not use =git add -A=.
+   - =git commmit -m "you want to insert comment in this file"=
+     
+   the question is I alerday add all file in git working stage.Now how
+   to remove these file form working stage.
+   
+   - remove single file using =git rm --cache <sing_file_name>=.
+     
+   now just use the methods sloved the problem.
+
+   another slove methods is use *magit*,but need more time test
+   it.but the question i can't stand it any more.
+
+
+   
+** how to remove all file in git working stage
+   
+   - [[https://docs.gitlab.com/ee/university/training/topics/unstage.html][ref1]]
+   - [[https://stackoverflow.com/questions/19730565/how-to-remove-files-from-git-staging-area][ref2]]
+
+     To remove All files from stage use reset HEAD where HEAD is the last
+     commit of the current branch.
+   
+     so to unstage everything at once,run this from the root directory
+     of your reposistory:
+     
+     #+begin_src code
+     git reset HEAD -- . 
+     #+end_src
+
+     

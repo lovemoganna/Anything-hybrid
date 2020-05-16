@@ -1,0 +1,42 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-03-17 Tue>
+#+hugo_tags: Eshell Emacs
+#+hugo_categories: Eshell Emacs
+
+* Eshell as a main shell
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: Eshell
+  :END:
+  
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+
+  这篇文章翻译自Reddit.一个充满神奇的地方。原文出自
+  [[https://www.reddit.com/r/emacs/comments/6y3q4k/yes_eshell_is_my_main_shell/][here]].
+
+  <!--more-->
+  
+** 欲扬先抑
+   自从Eshell诞生开始，可以说人气并不是特别高。可以看下社区的说法
+   
+   - [[https://www.reddit.com/r/emacs/comments/492edz/is_anybody_using_eshell_as_the_default_shell_any/][反对使用1]]
+   - [[https://www.reddit.com/r/emacs/comments/48opk1/eshell_and_why_cant_i_convert_to_you/][反对使用2]]
+
+   然后就是官方给出的合理使用警告: [[https://www.gnu.org/software/emacs/manual/html_mono/eshell.html#Inteoduction][Eshell 简介]]
+ 
+   
+
+   
+
+  
+  
+

@@ -1,0 +1,163 @@
+#+-*-mode: org;-*-
+#+date: <2020-03-06 Fri>
+#+options: ':nil -:nil ^:{} num:nil toc:nil
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+ugo_section: post
+#+hugo_base_dir: ../../../../
+#+hugo_tags: emacs erc
+#+hugo_categories: emacs erc
+#+title: ERC
+
+要想知道一个东西怎么用。就得自己动手用。
+
+我需要一个聊天工具，而不是自己处于一个孤岛。
+
+选一个和Emacs 集成度比较高的聊天工具 [[https://www.gnu.org/software/emacs/manual/html_mono/erc.html][IRC]]。
+
+<!--more-->
+
+** Intorduction
+
+  ERC 是强大的，模块化的，Emacs 上的可扩展的客户端。自从22.1版本就和
+  Emacs一起分发。
+
+  下面的功能是自带默认开启的。
+  - Flood control.
+  - Timestamps
+  - Join channels automatically
+  - Buttonize URLs,nicenames,and other text.
+  - Wrap long lines.
+  - Highlight or remove IRC control characters
+  - Highlight pals,fools, and other keywords.
+  - Detect netsplits.
+  - Complete nicknames and commands in a programmable fashion.
+  - Make displayed lines read-only.
+  - Input history.
+  - Track channel activity in the mode-line.
+  
+** Getting Started
+   
+   - =M-x erc= start ERC and prompt for the server to conenct to.
+   - if you want to place ERC settings in their own file,you can place
+     them in =~/.emacs.d/.ercrc.el= , creating it if necessary.
+   - if you would rather use the Customize interface to change how ERC
+     works,do =M-x customize-group <RET> erc <RET>=.In particular,ERC
+     comes with lots of modules that may be enabled or disabled; to
+     select which ones you want, do =M-x customize-variable <RET>
+     erc-modules <RET>= .
+*** Sample Session
+ 
+     very so sad! just run =erc-tls= is work for me. and the show
+     windows very bad. my emacs version is ~28.0.50~.
+
+   - if you would like to be able to talk with people privately on the
+     freenode network,you will have to ~register~ your nickname. just
+     need switch to the ~"irc.freennode.net:6667"~ buffer and type
+     ~"/msg NickServ register <password> youremail@example.com"~.and
+     input your email checkcode.if you not register , see [[https://www.jianshu.com/p/59c6aa6c7d7f][here]].
+
+   - if you want to open a query buffer to talk to someone.type
+     ~/query <nick>~.Note that if the other person is not
+     registered,you will not be able to talk with them.
+
+*** Special Feature
+    
+    - multiple channels and multiple servers
+    - private message separation
+    - highlighting
+    - notification
+    - channel tracking
+    - nick completion
+    - history
+    - multiple language 
+
+      different channels and servers may have different language encodings.
+    - user scripting 
+
+      Users can load scripts (e.g., *auto greeting* scripts) when ERC
+      starts up.
+      It is also possible to make custom IRC commands,if you know a
+      little emacs lisp.Just make an Emacs lisp function and call it
+      =erc-cmd-NEWCOMMAND=,where =NEWCOMMAND= is the name of the new
+      command in capital letters.
+    - auto reconnect 
+
+      if the connection goes away at some point,ERC will try to
+      reconnect automatically.If it fails to reconnect,and you want to
+      try to manually reestablish the connection at some later
+      point,switch to an ERC buffer and run the ~/RECONNECT~ command.
+    
+*** Keys Used in ERC
+    - =C-c C-b= select one IRC buffer.
+    - =C-c C-t= erc-set-topic.
+      
+      the following is #emacs channel topic:
+      
+      eamcs 27.0.90, the first pretest for 27.1, is out.  Please test. "Ask
+      not what your Emacs can do for you, but what you can do for your
+      Emacs" -- JFK | EmacsConf 2019 videos now out!
+      https://emacsconf.org/2019/videos | Emacs questions take
+      priority over off-topic chatter, so ask! | No public logging!
+      What happens in #emacs stays in #emacs |.
+
+    - =C-c C-p= leave the channel reaseon.
+    - =C-c C-q= quite the ERC service.
+    - =C-c C-o= see current channel mode.
+    - =C-c C-e= interactively input a user action and send it to IRC.
+    - =C-c C-n= erc-channel-names --- run ~/names #channel~ in the
+      current channel.
+    - =C-c C-f= erc-toggle-flood-control
+    - =C-c C-l= erc-save-buffer-in-logs --- Interactively open an
+      erc-log-matches buffer. if not work,should run =M-x
+      erc-log-enable=.
+    - =C-c C-o= erc-get-channel-mode-form-keypress --- if ~l~ press,
+      =erc-set-channel-limit= gets called. if ~k~ is pressed,
+      =erc-set-channel-key= gets called.Anythings else will be sent
+      to =erc-toggle-channel-mode=.
+
+
+    
+    
+*** Modules
+    One way to add functionality to ERC is to customize which of its
+    many modules are loaded.
+    
+    - run =M-x customize-options <RET> erc-modules <RET>=.
+    - set done,run =erc-update-modules= update ERC setting.
+      
+
+*** Advanced Usage
+    - [[*Connecting][Connecting]]: Ways of connecting to an IRC server.
+
+**** Connecting
+     if you want to assign this function to a keystroke,the following
+     will help you figure out itss parameters.
+
+     
+
+*** IRC Talk Screenshot
+    
+      <blockquote class="imgur-embed-pub" lang="en"
+      data-id="a/U4dbkMA"  ><a href="//imgur.com/a/U4dbkMA">Emacser
+      Talk in IRC</a></blockquote><script async
+      src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+      我只知道，如果再不行动，未来只会进一步的被宰割。这样，在面对灾
+      难的时候，只能等死。
+      
+      如果遭遇了不幸，至少还可以触发宏，干他娘的。
+      
+*** IRC client
+    - [[https://www.irccloud.com/][ircloud]]
+    - linux clinet: hexchat
+** Video
+  {{% youtube "l5u-907zUB0" %}}
+
+  may be useful.in particular, enable image feature.
+    
+    
+    

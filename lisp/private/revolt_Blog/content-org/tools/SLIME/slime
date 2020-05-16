@@ -1,0 +1,94 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-03-19 Thu>
+#+hugo_tags: slime commonlisp
+#+hugo_categories: slime
+* Slime
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: slime
+  :END:
+  
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+
+  learn how to use Slime mode in Emacs.
+
+  <!--more-->
+  
+  Lisp mode supports editing lisp source files,slime mode adds
+  supports for interacting with a running Common Lisp process for
+  compilation,debugging,documentation lookup,and so on.
+  
+  The slime mode programming environment follows the example of
+  Emacs's native Elisp environment.
+  
+  SLIME is constructed from two parts: a user-interface written in
+  Emacs lisp,and a supporting server program written in Common
+  lisp.The two sides are connected together with a socket and
+  communicate using an RPC[fn:1]-like protocol.
+  
+  The Lisp Server is primarily written in protable Common lisp.The
+  required implementation-specific functionality is specified by a
+  well-defined interface and implemented separately for each lisp
+  implementation.This makes SLIME readily protable.
+** GETTING STARTED
+*** Platforms
+    Support all platforms,Most features work uniformly across
+    implementations,but some are prone to variation.These include the
+    precision of placing compiler-note annotations,XREF support,and
+    fancy debugger commands (like "restart frame")
+    
+*** Downloading
+    just search git reposity,add the configeration into your emacs
+    config file:
+    
+    #+begin_src emacs-lisp
+      ;; -*-Emacs-lisp-*-
+      (setq inferior-lisp-program "/usr/bin/sbcl")
+
+      (setq slime-contribs '(slime-fancy))
+    #+end_src
+    
+    once you press =M-x slime=.This use the inferior-lisp package to
+    start a lisp process,loads and starts the lisp-side server(named
+    as "Swank"),and establishes a socket connection between Emacs and
+    lisp.Finally a REPL buffer is created where you can enter Lisp
+    expressions for evaluation.
+    
+    If the basic setup is working,we can try additional modules.now
+    could try to run =Loading Contrib Packages=.
+
+*** Loading Contrib Packages
+    Contrib packages aren't loaded by default.You have to modify your
+    setup a bit so that Emacs knows where to find them and which of
+    them to load.Generally,you set the variable ~slime-contribs~ with
+    the list of package-names that you want to use.e.g.,a setup to
+    load the ~slime-scratch~ and ~slime-editing-commands~ packages
+    looks like:
+ 
+    #+begin_src emacs-lisp
+      ;; starting slime,the commands of both packages should be available
+      (setq slime-contribs '(slime-scratch slime-editing-commands))
+
+      ;; slime-fancy is a meta package which loads a combination of the most popular packages.
+      ;;(setq slime-contribs '(slime-fancy))
+
+      ;;(setq slime-contribs '(slime-repl))  ;repl only
+    #+end_src
+    
+*** Installation
+*** Running
+*** Setup Tuning
+  
+
+* Footnotes
+
+[fn:1] [[https://searchapparchitecture.techtarget.com/definition/Remote-Procedure-Call-RPC][Remote Procedure Call(RPC)]] 

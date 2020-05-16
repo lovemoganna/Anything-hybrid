@@ -1,0 +1,68 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../../
+#+date: <2020-03-24 Tue>
+#+hugo_tags: elisp basic
+#+hugo_categories: elisp basic 
+* Elisp Basic
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: basic2
+  :END:
+  
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+
+  Elisp Basic Example.
+
+  <!--more-->
+** Printing
+   #+begin_src emacs-lisp
+     ; printing variable values
+     (message "Her age is: %.2g" 12)        ; %g
+     (message "Her age is: %.2c" 12)        ; %c,means print a number as a single characters.
+     (message "Her name is: %s" "Vicky")  ; %s is for string
+     (message "My list is: %S" (list 8 2 3))  ; %S is for any lisp expression
+   #+end_src
+
+   
+   #+begin_src emacs-lisp :exports all
+     (message "Her age is: %d" 16)        ; %d is for number
+   #+end_src
+
+   #+RESULTS:
+   : Her age is: 16
+   
+   #+begin_src emacs-lisp :exports all
+     (message "Her age is: %x" 12)        ; %x is hexq 
+   #+end_src
+
+   #+RESULTS:
+   : Her age is: c
+
+   #+begin_src emacs-lisp :exports all
+     (message "Her age is: %X" 12)	     ; %X is hex 
+   #+end_src
+
+   #+RESULTS:
+   : Her age is: C
+   
+   #+begin_src emacs-lisp :exports all :results output
+     (setq the_means_of_%o (message "Her age is: %o" 16))        ; %o is octal 
+     (setq the_means_of_%f (message "Her age is: %.2f" 16))        ; %f 
+     (setq the_means_of_%e (message "Her age is: %.2e" 16))        ; %e
+     (print the_means_of_%e)
+   #+end_src
+
+   #+RESULTS:
+   : 
+   : "Her age is: 1.60e+01"
+   : 
+   : "Her age is: 16.00"
+

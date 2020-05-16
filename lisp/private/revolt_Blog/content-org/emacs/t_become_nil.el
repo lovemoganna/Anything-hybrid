@@ -1,0 +1,1 @@
+(if (eq foo t) (setq foo nil) (setq foo t))

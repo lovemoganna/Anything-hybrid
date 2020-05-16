@@ -1,0 +1,238 @@
+#+-*-mode: org;-*-
+#+options: ':nil -:nil ^:{} num:nil toc:nil
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../../
+#+date: <2020-03-08 Sun>
+#+hugo_tags: elisp Function
+#+hugo_categories: elisp function
+
+#+TITLE: ELISP FUNCTION
+
+A Lisp program is composed mainly of lisp functions.
+
+There will explains:
+
+1. what functions are
+2. how they accept agruments
+3. how to define them
+
+<!--more-->
+
+
+- [[*What is a function][What is a function]]: Lisp functions vs. primitives; terminology.
+- [[file:Lambda-Expressions][Lambda Expressions]]: functions are expressed as lisp object.
+
+** What is a function
+   
+   In a general sense, a function is a *rule* for carrying out a
+   computation give input values called arguments.The result of the
+   computation is called the value or return vlaue of the function.
+   
+   The computation can also have side effects,such as lasting changes
+   in the values of variables or the contents of data structures.(see
+   [[*Definition of the side effect][Definition of the side effect]]).A pure function is a function
+   which,in addition to having no side effects,always returns the same
+   value for the same combination of arguments, /regardless/ of external
+   factors such as machine type or system state.
+   
+   In most computer language,every function has a name.But in lisp, a
+   function in the strictest sense has no name: it is a object which
+   can optionally be associated with a symbol (e.g., car).that servers
+   as the function name.
+   
+   In this manual,the distinction between a function name and function
+   object itself is usually unimportant,but we will take note wherever
+   it is /relevant/.
+   
+   Certain function like objects,called special forms and macros,also
+   accept arguments to carry out computations.however,as explained
+   below,there are not considered function in elisp.
+
+   Here are important trems for functions and function-like objects:
+   
+   - *lambda expression* ::
+     A function (in the strict sense,i.e., a function object) which is
+     written in lisp.see here described [[*Lambda Expressions][Lambda Expressions]].
+
+   - *primitive* :: 
+     A function which is callable from lisp but is actually written in
+     C. *Primitives* are also called build-in functions,or
+     subrs.Examples include functions like car and append.In
+     addition,all sepcial forms (see below) are also considered
+     primitives.
+     
+     Usually,a function is implemented as a primitive because it is a
+     fundamental part of lisp(e.g., car),or because it provides a
+     low-level interface to operating system services,or beacuse it
+     needs to run fast.Unlike functions defined in lisp, primitive
+     can be modified or added only by changing the C sources and
+     recompiling Emacs .See [[*Writing Emacs Primitives][Writing Emacs Primitives]].
+
+   - *Special form* :: 
+     A primitive that is like a function but does not evaluate all of
+     its agruments in the usual way.It may evaluate only some of the
+     arguments, or may evaluate them in an /unusual/ order,or serveral
+     times.Examples include *if*, *and*,and *while*.See [[*Sepcial form][Sepcial form]].
+
+   - *Macro* :: 
+     A construct defined in Lisp,which differs from a function in that
+     it translates a lisp expression into another expression which is
+     to be evaluated instead of the orginal expression. Macro enable
+     lisp programmers to do the /sorts of things/ that special forms can
+     do. See [[*Macro][Macro]].
+
+   - *Command* :: 
+     An Object which can be invoked /via/ the command-execute
+     primitive,usually due to the user typing in a key sequence bound
+     to that command. See [[*Interactive Call][Interactive Call]].
+
+     A command is usually a function; if the function is written in
+     lisp,it is made into a command by an ~interactive~ form in the
+     function definition.(see [[*Defining Commands][Defining Commands]] ). Commands that are
+     functions can also be called.
+
+     *Keyboard macros (strings and vectors) are commands also*,even
+     though they are not functions. (See [[*Keyboard Macros][Keyboard Macros]]).We say that
+     a symbol is a commmand if its function cell contains a command
+     (See [[*Symbol Components][Symbol Components]]);such a "named command" can be invoked
+     with =M-x=.
+   - *Closure(闭包)* ::
+     A function object that much like a lambda expresion,except that
+     is also encloses an environment of lexical variable bindings.See
+     [[*Closure][Closure]].
+   - *byte-code function* :: 
+     A function that has been compiled by the byte compiler.
+     See [[*Byte-Code Type][Byte-Code Type]].
+   - *autoload object* :: 
+     A place-holder for a real function.If the autoload object is
+     called,Emacs loads the file containing the definition of the real
+     function, and then calls the real function. See [[*Autoload][Autoload]].
+     
+     You can use the function ~functionp~ to test if an object is a
+     function:
+     
+     -- Function: functionp object
+     This function returns =t= if OBJCET is any kind of
+     function. i.e., can be passed to =funcall=. Note that =functionp=
+     returns =t= for symbols that are function names,and returns ~nil~
+     for special forms.
+     
+     #+begin_src emacs-lisp
+       (defun hello()
+	   (format "%s" (message "hello world"))
+	 )
+
+       (hello)
+
+       (functionp 'hello)			;t
+
+       (funcall 'hello)			;hello world
+     #+end_src
+
+     #+RESULTS:
+     : hello world
+
+     It is also possible to find out how many arguments an arbitrary
+     function expects:
+     
+     -- Function: func-arity function
+     This function provides information about the argument list of the
+     specified FUNCTION. The returned value is a cons cell of the form
+     ~'(MIN . MAX)'~, where MIN is the minimum number of arguments,or
+     the symbol ~'many'~ for functions with '&rest' arguments,or the
+     symbol ~'unevalled'~ if FUNCTION is a special form.
+     
+     #+begin_src emacs-lisp :exports result
+	(func-arity 'message)			;(1 . many)
+	(func-arity 'car)			;(1 . 1)
+
+	(defun hello (name word)
+	  (message "小明对%s说%s" name word)
+	  )
+
+	(hello "小红" "你真棒！")
+
+	(func-arity 'hello)			;(2 . 2)
+     #+end_src
+
+     #+RESULTS:
+     : (2 . 2)
+
+     也就是针对任意的函数，有3种情况:
+     
+     - Functions defined using ~'apply-partially'~ (See
+       [[*apply-partially][apply-partially]]).
+
+     - Functions that are advised using `advice-add'.
+       (See [[*Advising Named Functions][Advising Named Functions]])
+
+     - Functions that determine the argument list dynamically,as part
+       of their code.
+       
+     Unlike ~'functionp'~,the next three functions do _not_ treat a
+     symbol as its function definition.
+     
+     -- Fuction: *subrp* object
+     This function return 't' if OBJECT is a built-in function (i.e.,
+     a lisp primitive).
+     
+     #+begin_src emacs-lisp :exports result
+       (subrp 'message)			;nil, because message is a symbol.
+       (subrp (symbol-function 'message))	;t, cause symbol-function return symbol's function definition.
+     #+end_src
+
+     #+RESULTS:
+     : t
+     
+     -- Function: *byte-code-function-p* object
+     This function returns t if object is a byte-code function.For
+     example:
+     
+    #+begin_src emacs-lisp :exports result
+      (byte-code-function-p (symbol-function 'next-line))
+    #+end_src
+
+    #+RESULTS:
+    : t
+    
+    -- Function: *subr-arity* subr
+    This works like func-arity,but only for built-in functions and
+    without symbol indirection.It signals an error for non-built-in
+    functions.we recommand to use func-arity instead.
+    
+   
+     
+
+
+ 
+
+
+
+** Definition of the side effect
+
+** Lambda Expressions
+   
+** Writing Emacs Primitives
+ 
+** Sepcial form  
+
+** Macro
+
+** Interactive Call
+
+** Defining Commands
+   
+** Keyboard Macros
+
+** Symbol Components
+** Closure
+** Byte-Code Type
+** Autoload
+** apply-partially
+** Advising Named Functions
