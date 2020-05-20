@@ -1,0 +1,64 @@
+#+-*-mode: org;-*-
+#+options: ':nil -:nil ^:{} num:nil toc:nil
+#+author:
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale:
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_preserve_filling:
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../../
+#+date: <2020-02-25 Tue>
+#+hugo_tags: elisp faq
+#+hugo_categories: elisp
+
+#+TITLE: ELISP FAQ
+
+There have a little Elisp question.
+
+<!--more-->
+
+** How to use `
+** How to use &rest and &optional
+*** &rest
+    #+begin_src emacs-lisp
+      (info "(elisp)Argument List")		;see more information about &rest
+    #+end_src
+    
+*** &optional
+** How to download file use org mode
+   
+   #+begin_example
+     ,#+begin_src shell :results file link :file "Results-of-Evaluation.html" :output-dir ./ :exports result
+     wget "https://orgmode.org/manual/Results-of-Evaluation.html"
+     ,#+end_src
+     
+     ,#+RESULTS:
+     [[file:./Results-of-Evaluation.html]]
+   #+end_example
+** How to move another buffer point
+   
+   - =C-M v=
+   - =C-M-S v=
+** How to mark a location in use evil mdoe
+   
+   - =m a=
+   - =` a= --- jump your marked location
+   - ='a= --- jump your marked location line
+   - =:marks= --- show all marks location
+   - =:delmarks! / :delmarks= --- delete all marks or one special mark.
+** elisp - multiple line print in org mode  
+   
+   #+BEGIN_SRC emacs-lisp :results output
+   (setq my-list '(apple orange peach))
+   (print (car my-list))
+   (print (cdr my-list))
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : apple
+   : 
+   : (orange peach)

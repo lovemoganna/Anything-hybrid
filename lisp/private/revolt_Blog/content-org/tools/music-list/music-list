@@ -1,0 +1,42 @@
+#+-*-mode: org;-*-
+#+date: <2020-03-06 Fri>
+#+options: ':nil -:nil ^:{} num:nil toc:nil
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+ugo_section: post
+#+hugo_base_dir: ../../../
+#+hugo_tags: musiclsit
+#+hugo_categories: youtube music
+#+title: Music List
+
+That's my favorite music list. enjoy.
+
+<!--more-->
+
+** youtube && NetEase demo
+   #+begin_src code
+     {{%/* youtube "wC5pJm8RAu4" */%}}
+   #+end_src
+
+   {{% youtube "wC5pJm8RAu4" %}}
+   
+   #+begin_src code
+   {{% music "28196554" %}}
+   #+end_src
+
+   {{% music "28196554" %}}
+** my favorite music
+   
+   {{% youtube "09j1wYdNfVQ" %}}
+
+   {{% youtube "fuUFrAVGYe4" %}}
+** Chillstep＆Chill Music
+   {{% youtube "f2Q3pSV5XWA" %}}
+
+
+   Yes,we can enjoy myself love music!
+
+   

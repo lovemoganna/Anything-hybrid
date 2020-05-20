@@ -1,0 +1,302 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-03-14 Sat>
+#+hugo_tags: linux-command
+#+hugo_auto_set_lastmod: t
+#+hugo_categories: linux-command
+
+* A sets of X command
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: X
+  :ID:       4d8d49e2-46bd-4fe9-a898-d8ef7ea35f74
+  :END:
+  
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+  
+  X系列命令DEMO.
+  
+  <!--more-->
+
+** X resources [100%]
+   
+   Xresources is a user-level configuration dotfile, typically located
+   at =~/.Xresources=. It can be used to set X resources, which are
+   configuration parameters for X client applications. [fn:1]
+
+   - [X] [[*Installation][Installation]]
+   - [X] [[*Usage][Usage]]
+   
+*** Installation
+    need install ~xorg-xrdb~.
+*** Usage [4/4]
+    - [X] [[*Load resource file][Load resource file]]
+    - [X] [[*xinitrc][xinitrc]]
+    - [X] [[*Default settings][Default settings]]
+    - [X] [[*Xresource syntax][Xresource syntax]]
+**** Load resource file
+     Resources are stored in X server,so have to only be read
+     once.They are also accessible to remote X11 clinets.(such as SSH
+     转发的内容).
+     
+     - ~.Xresources~: replacing any current settings.
+       
+     - Could use command: src_shell[:exports both]{echo "xrdb
+       ~/.Xresources"} {{{results(=xrdb ~/.Xresources=)}}}
+
+     - Load a resource file merger with the current
+       settings: src_shell[:exports both]{echo "xrdb -merge
+       ~/.Xresources"} {{{results(=xrdb -merge ~/.Xresources=)}}}
+
+     >Most Display manager load the ~/.Xresource~ file on login.
+     
+**** xinitrc
+     if you are using a copy of the default ~xinitrc~ as your
+     =.xinitrc= it already merges =~/.Xresources=.
+
+     If you are using a custom ~.xinitrc~ add the following line: 
+     
+     #+begin_src shell
+       [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+     #+end_src
+**** Default settings
+     To see the default settings for your installed X11 apps, look in
+     =/usr/share/X11/app-defaults/=. 
+     
+     #+name: show_the_x11_default_settings
+     #+begin_src shell :exports both
+       ls -ll "/usr/share/X11/app-defaults/"
+     #+end_src
+
+     #+RESULTS: show_the_x11_default_settings
+     | total      | 60 |      |      |       |     |    |       |                  |
+     | -rw-r--r-- |  1 | root | root |  2799 | Dec | 23 | 20:21 | GXditview        |
+     | -rw-r--r-- |  1 | root | root |   601 | Dec | 23 | 20:21 | GXditview-color  |
+     | -rw-r--r-- |  1 | root | root |  2400 | May |  4 | 11:49 | KOI8RXTerm       |
+     | -rw-r--r-- |  1 | root | root |  5836 | May |  4 | 11:49 | KOI8RXTerm-color |
+     | -rw-r--r-- |  1 | root | root |  3609 | May |  4 | 11:49 | UXTerm           |
+     | -rw-r--r-- |  1 | root | root |  5828 | May |  4 | 11:49 | UXTerm-color     |
+     | -rw-r--r-- |  1 | root | root |   248 | May |  7 | 10:54 | Xmessage         |
+     | -rw-r--r-- |  1 | root | root |   920 | May |  7 | 10:54 | Xmessage-color   |
+     | -rw-r--r-- |  1 | root | root | 10269 | May |  4 | 11:49 | XTerm            |
+     | -rw-r--r-- |  1 | root | root |  5826 | May |  4 | 11:49 | XTerm-color      |
+     
+     
+     #+begin_src shell :exports both :results output
+       xrdb -query -all
+     #+end_src
+
+     #+RESULTS:
+**** Xresource syntax
+***** Basic Syntax
+      The syntax of an Xresource file is as follows:
+      
+      #+begin_example
+	name.Class.resource: value
+      #+end_example
+      
+      and here is a real world example:
+      
+      #+begin_example
+	xscreensaver.Dialog.headingFont: -*-fixed-bold-r-*-*-*-100-*-*-*-*-iso8859-1
+      #+end_example
+***** Wildcard matched
+      
+      Using the previous example, if you want to apply the same font
+      to all programs (not just XScreenSaver) that contain the class
+      name Dialog which contains the resource name headingFont, you
+      could write:
+      
+      #+begin_example
+	?.Dialog.headingFont:     -*-fixed-bold-r-*-*-*-100-*-*-*-*-iso8859-1
+      #+end_example
+      
+      if you want to apply this same rule to all programs that contain the
+      resource headingFont, regardless of its class, you could write: 
+      
+      #+begin_example
+	,*headingFont:    -*-fixed-bold-r-*-*-*-100-*-*-*-*-iso8859-1
+      #+end_example
+***** Comments
+      
+      #+begin_example
+	! This is a comment form
+      #+end_example
+***** Inlcude files
+      
+      TO use different files for each application,use ~#include~ in
+      the main file ,e.g. =~/.Xresources=:
+      
+      #+begin_example
+	~/.Xresources
+
+	--------------------------------------------------
+
+	#include ".Xresources.d/xterm"
+	#include ".Xresources.d/rxvt-unicode"
+	#include ".Xresources.d/fonts"
+	#include ".Xresources.d/xscreensaver"
+      #+end_example
+
+      If file fail to load,specify the directory to /xedb/ with the
+      =-I= parameter.e.g.:
+      
+      #+begin_example
+	~/.xinitrc
+
+	xrdb -I$HOME ~/.Xresources
+      #+end_example
+***** Getting resource values
+      if you want to get the value of a resource,you can use
+      =xgetres=.e.g.:
+      
+      #+begin_src shell :exports both
+	xgetres xterm.metaSendsEscape
+      #+end_src
+
+      #+RESULTS:
+      : true
+
+      
+** Xterm
+
+   *xterm* is the standard ~terminal emulator~ for ~x window
+   system~.It is highly configurable and has many useful and some
+   unusual features.
+
+   目前我遇到的问题就是,在终端下的xtrem 和 Emacs有着巨大的键冲突。很难
+   忍受。不过问题解决了。
+
+   Current Xterm Setting of the follow,the rest of xterm
+   configuration you can see here [fn:2]:
+   
+   #+begin_src shell
+     !support chinese fonts
+     !中文测试
+     XTerm.vt100.faceName: all-the-icons:size=9:antialias=True:pixelsize=12
+     XTerm.vt100.faceNameDoublesize: Wenquanyi Zen Hei:style=Regular,Bold,Italic:size=10:antialias=True:pixelsize=12
+     XTerm*scaleHeight: 1.01
+     XTerm*locale:zh_CN.UTF-8
+
+     !backrgound color settings
+     XTerm*foreground: white
+     XTerm*background: black
+
+     !use mouse select text color is yellow,not evil select color,so sadness.
+     !about Xterm select,you can see here: https://jonasjacek.github.io/colors/
+
+     XTerm*highlightColor: yellow
+     XTerm*highlightTextColor: yellow
+     XTerm*highlightColorMode: true
+     XTerm*cursorColor: LightGoldenrod3
+     XTerm*pointerShape: arrow
+     XTerm*pointerColor: blue
+
+     !init window size
+     XTerm*geometry:100x32
+
+     !dynamic color
+     XTerm*dynamicColors:true
+
+     !xterm M key configuration
+     XTerm*metaSendsEscape: true
+
+     !TERM Environmental variable			 
+     XTerm*termName: xterm-256color
+
+     !Ensure that your locale is set up for UTF-8.you may need to force xterm to more strictly follow you locale by setting.
+     !XTerm.vt100.locale: true
+
+
+     !Make 'Alt' key behave as on other terminal emulators
+     XTerm.vt100.metaSendsEscape: true
+
+     !Fix the backspace key, This breaks the Ctrl+H key combination on Emacs. now fix it.
+     XTerm.vt100.backarrowKey: false
+     XTerm.ttyModes: erase ^?
+
+
+     !key binding
+     !#override indicates that these bindings should override any existing ones
+     !Each binding must be separated by the escape sequence \n. If you want
+     !to insert a literal newline, it also needs to be escaped (hence \n\).)
+
+     !XTerm.vt100.translations: #override \n\
+     !    Ctrl <Key>M: maximize() \n\
+     !    Ctrl <Key>R: restore()
+
+     !鼠标左键CLICK，即可向浏览器粘贴.
+     !从浏览器往XTERM中粘贴,C-S t.或者Linux自带的C-;
+
+     !Xterm could copy clipboard
+     XTerm*selectToClipboard: true
+
+     !下面是Xterm自定义键
+     ,*VT100*translations:      #override \n\
+	 Ctrl Shift <Key>C:  copy-selection(SELECT) \n\
+	 Ctrl Shift <Key>V:  insert-selection(CLIPBOARD)
+
+     !Scrolling, i dont want to fix it.Cause I use Emacs evil mode.
+
+     !enable Xterm Menus
+     XTerm.vt100.geometry: 80x32
+   #+end_src
+   
+   now left the M-RET not working in Emacs org mode in Xterm,but have
+   alternative Keys in Terminal/putty,[[https://orgmode.org/manual/TTY-Keys.html#TTY-keys][See Using Org on a TTY]].
+   
+   because in the terminal,so the =M-RET= should press =C-c C-x
+   m=.very bad feel.but it's working.
+
+*** How to open multi xterm window?
+    #+begin_src shell
+      #!/bin/bash
+      xterm -geometry 80x27+1930+0 &
+      xterm -geometry 80x27+2753+0 &
+      xterm -geometry 80x27+1930+626 &
+      xterm -geometry 80x27+2753+626 &
+    #+end_src
+    
+    fell bad,so give up the idea,may be could use stumpwm slove the problem.
+
+*** TODO how to change the title of an Xterm
+    [[https://tldp.org/HOWTO/Xterm-Title.html][ref]]
+    
+*** How to slove cpoy/paste in Xterm?
+    现在我们需要解决这个问题。因为真的太TM的烦人。
+    
+    Xterm is compiled with /toolbar/,or /menubar/,disabled.The menus
+    are still available as ~popups~ when you press =C MouseButton=
+    within the xterm window.The actions invoked by the menu items can
+    often be accomplished using command line options or by setting
+    resource values.
+ 
+    Some of the menu options are discussed below:
+    
+    
+*** TODO Main Options menu
+    
+**** Ctrl + leftmouse
+     - =Secure Keyboard= attempts to ensure only the xterm window,and
+       no other application,receive your keystorkes.
+     - =Allow SendEvents= allows other processs to send keypress and
+       mouse events to the xterm window.Because of the security
+       risk,do not enable this unless you are very sure you know what
+       you are doing.
+       
+       
+    
+    
+
+    
+    
+** Footnotes
+
+[fn:2] [[https://wiki.archlinux.org/index.php/Xterm#VT_Fonts_menu][XTerm]] 
+[fn:1] [[https://wiki.archlinux.org/index.php/X_resources][X resources]] 

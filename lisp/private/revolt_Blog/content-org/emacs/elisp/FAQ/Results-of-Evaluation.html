@@ -1,0 +1,465 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for Org version 9.3.
+
+Copyright (C) 2004-2020 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation License."
+
+(a) The FSF's Back-Cover Text is: "You have the freedom to copy and
+modify this GNU manual."
+ -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Results of Evaluation (The Org Manual)</title>
+
+<meta name="description" content="Results of Evaluation (The Org Manual)">
+<meta name="keywords" content="Results of Evaluation (The Org Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Main-Index.html#Main-Index" rel="index" title="Main Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Working-with-Source-Code.html#Working-with-Source-Code" rel="up" title="Working with Source Code">
+<link href="Exporting-Code-Blocks.html#Exporting-Code-Blocks" rel="next" title="Exporting Code Blocks">
+<link href="Evaluating-Code-Blocks.html#Evaluating-Code-Blocks" rel="prev" title="Evaluating Code Blocks">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Results-of-Evaluation"></a>
+<div class="header">
+<p>
+Next: <a href="Exporting-Code-Blocks.html#Exporting-Code-Blocks" accesskey="n" rel="next">Exporting Code Blocks</a>, Previous: <a href="Evaluating-Code-Blocks.html#Evaluating-Code-Blocks" accesskey="p" rel="prev">Evaluating Code Blocks</a>, Up: <a href="Working-with-Source-Code.html#Working-with-Source-Code" accesskey="u" rel="up">Working with Source Code</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Main-Index.html#Main-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Results-of-Evaluation-1"></a>
+<h3 class="section">15.6 Results of Evaluation</h3>
+
+<a name="index-code-block_002c-results-of-evaluation"></a>
+<a name="index-source-code_002c-results-of-evaluation"></a>
+
+<a name="index-results_002c-header-argument"></a>
+<p>How Org handles results of a code block execution depends on many
+header arguments working together.  The primary determinant, however,
+is the &lsquo;<samp>results</samp>&rsquo; header argument.  It accepts four classes of options.
+Each code block can take only one option per class:
+</p>
+<dl compact="compact">
+<dt>Collection</dt>
+<dd><p>For how the results should be collected from the code block;
+</p>
+</dd>
+<dt>Type</dt>
+<dd><p>For which type of result the code block will return; affects how Org
+processes and inserts results in the Org buffer;
+</p>
+</dd>
+<dt>Format</dt>
+<dd><p>For the result; affects how Org processes results;
+</p>
+</dd>
+<dt>Handling</dt>
+<dd><p>For inserting results once they are properly formatted.
+</p></dd>
+</dl>
+
+<a name="Collection"></a><a name="Collection-1"></a>
+<h4 class="subheading">Collection</h4>
+
+<p>Collection options specify the results.  Choose one of the options;
+they are mutually exclusive.
+</p>
+<dl compact="compact">
+<dt>&lsquo;<samp>value</samp>&rsquo;</dt>
+<dd><p>Default.  Functional mode.  Org gets the value by wrapping the code
+in a function definition in the language of the source block.  That
+is why when using &lsquo;<samp>:results value</samp>&rsquo;, code should execute like
+a function and return a value.  For languages like Python, an
+explicit <code>return</code> statement is mandatory when using &lsquo;<samp>:results
+  value</samp>&rsquo;.  Result is the value returned by the last statement in the
+code block.
+</p>
+<p>When evaluating the code block in a session (see <a href="Environment-of-a-Code-Block.html#Environment-of-a-Code-Block">Environment of a Code Block</a>), Org passes the code to an interpreter running as an
+interactive Emacs inferior process.  Org gets the value from the
+source code interpreter&rsquo;s last statement output.  Org has to use
+language-specific methods to obtain the value.  For example, from
+the variable <code>_</code> in Python and Ruby, and the value of <code>.Last.value</code>
+in R.
+</p>
+</dd>
+<dt>&lsquo;<samp>output</samp>&rsquo;</dt>
+<dd><p>Scripting mode.  Org passes the code to an external process running
+the interpreter.  Org returns the contents of the standard output
+stream as text results.
+</p>
+<p>When using a session, Org passes the code to the interpreter running
+as an interactive Emacs inferior process.  Org concatenates any text
+output from the interpreter and returns the collection as a result.
+</p>
+<p>Note that this collection is not the same as that would be collected
+from stdout of a non-interactive interpreter running as an external
+process.  Compare for example these two blocks:
+</p>
+<div class="example">
+<pre class="example">#+BEGIN_SRC python :results output
+  print &quot;hello&quot;
+  2
+  print &quot;bye&quot;
+#+END_SRC
+
+#+RESULTS:
+: hello
+: bye
+</pre></div>
+
+<p>In the above non-session mode, the &ldquo;2&rdquo; is not printed; so it does
+not appear in results.
+</p>
+<div class="example">
+<pre class="example">#+BEGIN_SRC python :results output :session
+  print &quot;hello&quot;
+  2
+  print &quot;bye&quot;
+#+END_SRC
+
+#+RESULTS:
+: hello
+: 2
+: bye
+</pre></div>
+
+<p>In the above session, the interactive interpreter receives and
+prints &ldquo;2&rdquo;.  Results show that.
+</p></dd>
+</dl>
+
+<a name="Type"></a><a name="Type-1"></a>
+<h4 class="subheading">Type</h4>
+
+<p>Type tells what result types to expect from the execution of the code
+block.  Choose one of the options; they are mutually exclusive.  The
+default behavior is to automatically determine the result type.
+</p>
+<dl compact="compact">
+<dt>&lsquo;<samp>table</samp>&rsquo;</dt>
+<dt>&lsquo;<samp>vector</samp>&rsquo;</dt>
+<dd><p>Interpret the results as an Org table.  If the result is a single
+value, create a table with one row and one column.  Usage example:
+&lsquo;<samp>:results value table</samp>&rsquo;.
+</p>
+<a name="index-hlines_002c-header-argument"></a>
+<p>In-between each table row or below the table headings, sometimes
+results have horizontal lines, which are also known as &ldquo;hlines&rdquo;.
+The &lsquo;<samp>hlines</samp>&rsquo; argument with the default &lsquo;<samp>no</samp>&rsquo; value strips such lines
+from the input table.  For most code, this is desirable, or else
+those &lsquo;<samp>hline</samp>&rsquo; symbols raise unbound variable errors.  A &lsquo;<samp>yes</samp>&rsquo;
+accepts such lines, as demonstrated in the following example.
+</p>
+<div class="example">
+<pre class="example">#+NAME: many-cols
+| a | b | c |
+|---+---+---|
+| d | e | f |
+|---+---+---|
+| g | h | i |
+
+#+NAME: no-hline
+#+BEGIN_SRC python :var tab=many-cols :hlines no
+  return tab
+#+END_SRC
+
+#+RESULTS: no-hline
+| a | b | c |
+| d | e | f |
+| g | h | i |
+
+#+NAME: hlines
+#+BEGIN_SRC python :var tab=many-cols :hlines yes
+  return tab
+#+END_SRC
+
+#+RESULTS: hlines
+| a | b | c |
+|---+---+---|
+| d | e | f |
+|---+---+---|
+| g | h | i |
+</pre></div>
+
+</dd>
+<dt>&lsquo;<samp>list</samp>&rsquo;</dt>
+<dd><p>Interpret the results as an Org list.  If the result is a single
+value, create a list of one element.
+</p>
+</dd>
+<dt>&lsquo;<samp>scalar</samp>&rsquo;</dt>
+<dt>&lsquo;<samp>verbatim</samp>&rsquo;</dt>
+<dd><p>Interpret literally and insert as quoted text.  Do not create
+a table.  Usage example: &lsquo;<samp>:results value verbatim</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>file</samp>&rsquo;</dt>
+<dd><p>Interpret as a filename.  Save the results of execution of the code
+block to that file, then insert a link to it.  You can control both
+the filename and the description associated to the link.
+</p>
+<a name="index-file_002c-header-argument"></a>
+<a name="index-output_002ddir_002c-header-argument"></a>
+<p>Org first tries to generate the filename from the value of the
+&lsquo;<samp>file</samp>&rsquo; header argument and the directory specified using the
+&lsquo;<samp>output-dir</samp>&rsquo; header arguments.  If &lsquo;<samp>output-dir</samp>&rsquo; is not specified,
+Org assumes it is the current directory.
+</p>
+<div class="example">
+<pre class="example">#+BEGIN_SRC asymptote :results value file :file circle.pdf :output-dir img/
+  size(2cm);
+  draw(unitcircle);
+#+END_SRC
+</pre></div>
+
+<a name="index-file_002dext_002c-header-argument"></a>
+<p>If &lsquo;<samp>file</samp>&rsquo; header argument is missing, Org generates the base name of
+the output file from the name of the code block, and its extension
+from the &lsquo;<samp>file-ext</samp>&rsquo; header argument.  In that case, both the name
+and the extension are mandatory.
+</p>
+<div class="example">
+<pre class="example">#+name: circle
+#+BEGIN_SRC asymptote :results value file :file-ext pdf
+  size(2cm);
+  draw(unitcircle);
+#+END_SRC
+</pre></div>
+
+<a name="index-file_002ddesc_002c-header-argument"></a>
+<p>The &lsquo;<samp>file-desc</samp>&rsquo; header argument defines the description (see
+<a href="Link-Format.html#Link-Format">Link Format</a>) for the link.  If &lsquo;<samp>file-desc</samp>&rsquo; has no value, Org
+uses the generated file name for both the &ldquo;link&rdquo; and
+&ldquo;description&rdquo; parts of the link.
+</p>
+<a name="index-sep_002c-header-argument"></a>
+<p>By default, Org assumes that a table written to a file has
+TAB-delimited output.  You can choose a different separator with
+the &lsquo;<samp>sep</samp>&rsquo; header argument.
+</p></dd>
+</dl>
+
+<a name="Format"></a><a name="Format-1"></a>
+<h4 class="subheading">Format</h4>
+
+<p>Format pertains to the type of the result returned by the code block.
+Choose one of the options; they are mutually exclusive.  The default
+follows from the type specified above.
+</p>
+<dl compact="compact">
+<dt>&lsquo;<samp>code</samp>&rsquo;</dt>
+<dd><p>Result enclosed in a code block.  Useful for parsing.  Usage
+example: &lsquo;<samp>:results value code</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>drawer</samp>&rsquo;</dt>
+<dd><p>Result wrapped in a &lsquo;<samp>RESULTS</samp>&rsquo; drawer.  Useful for containing &lsquo;<samp>raw</samp>&rsquo;
+or &lsquo;<samp>org</samp>&rsquo; results for later scripting and automated processing.
+Usage example: &lsquo;<samp>:results value drawer</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>html</samp>&rsquo;</dt>
+<dd><p>Results enclosed in a &lsquo;<samp>BEGIN_EXPORT html</samp>&rsquo; block.  Usage example:
+&lsquo;<samp>:results value html</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>latex</samp>&rsquo;</dt>
+<dd><p>Results enclosed in a &lsquo;<samp>BEGIN_EXPORT latex</samp>&rsquo; block.  Usage example:
+&lsquo;<samp>:results value latex</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>link</samp>&rsquo;</dt>
+<dt>&lsquo;<samp>graphics</samp>&rsquo;</dt>
+<dd><p>When used along with &lsquo;<samp>file</samp>&rsquo; type, the result is a link to the file
+specified in &lsquo;<samp>:file</samp>&rsquo; header argument.  However, unlike plain &lsquo;<samp>file</samp>&rsquo;
+type, nothing is written to the disk.  The block is used for its
+side-effects only, as in the following example:
+</p>
+<div class="example">
+<pre class="example">#+begin_src shell :results file link :file &quot;download.tar.gz&quot;
+wget -c &quot;http://example.com/download.tar.gz&quot;
+#+end_src
+</pre></div>
+
+</dd>
+<dt>&lsquo;<samp>org</samp>&rsquo;</dt>
+<dd><p>Results enclosed in a &lsquo;<samp>BEGIN_SRC org</samp>&rsquo; block.  For comma-escape,
+either <kbd><span class="key">TAB</span></kbd> in the block, or export the file.  Usage
+example: &lsquo;<samp>:results value org</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>pp</samp>&rsquo;</dt>
+<dd><p>Result converted to pretty-print source code.  Enclosed in a code
+block.  Languages supported: Emacs Lisp, Python, and Ruby.  Usage
+example: &lsquo;<samp>:results value pp</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>raw</samp>&rsquo;</dt>
+<dd><p>Interpreted as raw Org mode.  Inserted directly into the buffer.
+Aligned if it is a table.  Usage example: &lsquo;<samp>:results value raw</samp>&rsquo;.
+</p></dd>
+</dl>
+
+<a name="index-wrap_002c-header-argument"></a>
+<p>The &lsquo;<samp>wrap</samp>&rsquo; header argument unconditionally marks the results block by
+appending strings to &lsquo;<samp>#+BEGIN_</samp>&rsquo; and &lsquo;<samp>#+END_</samp>&rsquo;.  If no string is
+specified, Org wraps the results in a &lsquo;<samp>#+BEGIN_results</samp>&rsquo;
+&hellip; &lsquo;<samp>#+END_results</samp>&rsquo; block.  It takes precedent over the &lsquo;<samp>results</samp>&rsquo;
+value listed above.  E.g.,
+</p>
+<div class="example">
+<pre class="example">#+BEGIN_SRC emacs-lisp :results html :wrap EXPORT markdown
+&quot;&lt;blink&gt;Welcome back to the 90's&lt;/blink&gt;&quot;
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_EXPORT markdown
+&lt;blink&gt;Welcome back to the 90's&lt;/blink&gt;
+#+END_EXPORT
+</pre></div>
+
+<a name="Handling"></a><a name="Handling-1"></a>
+<h4 class="subheading">Handling</h4>
+
+<p>Handling options after collecting the results.
+</p>
+<dl compact="compact">
+<dt>&lsquo;<samp>silent</samp>&rsquo;</dt>
+<dd><p>Do not insert results in the Org mode buffer, but echo them in the
+minibuffer.  Usage example: &lsquo;<samp>:results output silent</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>replace</samp>&rsquo;</dt>
+<dd><p>Default.  Insert results in the Org buffer.  Remove previous
+results.  Usage example: &lsquo;<samp>:results output replace</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>append</samp>&rsquo;</dt>
+<dd><p>Append results to the Org buffer.  Latest results are at the bottom.
+Does not remove previous results.  Usage example: &lsquo;<samp>:results output
+  append</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp>prepend</samp>&rsquo;</dt>
+<dd><p>Prepend results to the Org buffer.  Latest results are at the top.
+Does not remove previous results.  Usage example: &lsquo;<samp>:results output
+  prepend</samp>&rsquo;.
+</p></dd>
+</dl>
+
+<a name="Post_002dprocessing"></a><a name="Post_002dprocessing-1"></a>
+<h4 class="subheading">Post-processing</h4>
+
+<a name="index-post_002c-header-argument"></a>
+<a name="index-_002athis_002a_002c-in-post-header-argument"></a>
+<p>The &lsquo;<samp>post</samp>&rsquo; header argument is for post-processing results from block
+evaluation.  When &lsquo;<samp>post</samp>&rsquo; has any value, Org binds the results to
+<code>*this*</code> variable for easy passing to &lsquo;<samp>var</samp>&rsquo; header argument
+specifications (see <a href="Environment-of-a-Code-Block.html#Environment-of-a-Code-Block">Environment of a Code Block</a>).  That makes results
+available to other code blocks, or even for direct Emacs Lisp code
+execution.
+</p>
+<p>The following two examples illustrate &lsquo;<samp>post</samp>&rsquo; header argument in
+action.  The first one shows how to attach an &lsquo;<samp>ATTR_LATEX</samp>&rsquo; keyword
+using &lsquo;<samp>post</samp>&rsquo;.
+</p>
+<div class="example">
+<pre class="example">#+NAME: attr_wrap
+#+BEGIN_SRC sh :var data=&quot;&quot; :var width=&quot;\\textwidth&quot; :results output
+  echo &quot;#+ATTR_LATEX: :width $width&quot;
+  echo &quot;$data&quot;
+#+END_SRC
+
+#+HEADER: :file /tmp/it.png
+#+BEGIN_SRC dot :post attr_wrap(width=&quot;5cm&quot;, data=*this*) :results drawer
+  digraph{
+          a -&gt; b;
+          b -&gt; c;
+          c -&gt; a;
+  }
+#+end_src
+
+#+RESULTS:
+:RESULTS:
+#+ATTR_LATEX :width 5cm
+[[file:/tmp/it.png]]
+:END:
+</pre></div>
+
+<p>The second example shows use of &lsquo;<samp>colnames</samp>&rsquo; header argument in &lsquo;<samp>post</samp>&rsquo;
+to pass data between code blocks.
+</p>
+<div class="example">
+<pre class="example">#+NAME: round-tbl
+#+BEGIN_SRC emacs-lisp :var tbl=&quot;&quot; fmt=&quot;%.3f&quot;
+  (mapcar (lambda (row)
+            (mapcar (lambda (cell)
+                      (if (numberp cell)
+                          (format fmt cell)
+                        cell))
+                    row))
+          tbl)
+#+end_src
+
+#+BEGIN_SRC R :colnames yes :post round-tbl[:colnames yes](*this*)
+  set.seed(42)
+  data.frame(foo=rnorm(1))
+#+END_SRC
+
+#+RESULTS:
+|   foo |
+|-------|
+| 1.371 |
+</pre></div>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Exporting-Code-Blocks.html#Exporting-Code-Blocks" accesskey="n" rel="next">Exporting Code Blocks</a>, Previous: <a href="Evaluating-Code-Blocks.html#Evaluating-Code-Blocks" accesskey="p" rel="prev">Evaluating Code Blocks</a>, Up: <a href="Working-with-Source-Code.html#Working-with-Source-Code" accesskey="u" rel="up">Working with Source Code</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Main-Index.html#Main-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

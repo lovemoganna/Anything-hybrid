@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: tangle_file_in_specific_dir
+# key: tfisd
+# --
+#+begin_src emacs-lisp :tangle (concat (org-entry-get nil "PRJ-DIR" t) "$1")
+$2
+#+end_src
+

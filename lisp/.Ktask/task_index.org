@@ -1,0 +1,76 @@
+* Tasks
+** TODO Learn how to read linux log
+   [2020-03-12 Thu]
+** TODO slove hugo how to clean content post dir and change import file dir
+   [2020-03-12 Thu]
+** TODO find a script language like C
+   [2020-03-12 Thu]
+** TODO 凯勒奇计划
+   [2020-03-12 Thu]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Functions/Lambda-Expressions::*Local Variables][Local Variables]]
+** DONE how to set xterm color is 256 bit?
+   [2020-03-14 Sat]
+** TODO [[https://github.com/mermaid-js/mermaid.git][流程图（important!）]] 
+   [2020-03-14 Sat]
+** TODO [[https://www.reddit.com/r/emacs/comments/fg9vcn/centaur_emacs_charts_in_markdown/][Charts in markdown]]
+   [2020-03-14 Sat]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Functions/Lambda-Expressions::*Function Names][Function Names]]
+** TODO [[https://www.reddit.com/r/emacs/comments/6y3q4k/yes_eshell_is_my_main_shell/][Eshell tutorial]] 
+   [2020-03-14 Sat]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Functions/Lambda-Expressions::*Function Names][Function Names]]
+** TODO org mode how to integration with web browser?
+   [2020-03-14 Sat]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Functions/Lambda-Expressions::*Function Names][Function Names]]
+** TODO 同步EMACS 的配置文件，机器千万，不过载体。
+   [2020-03-14 Sat]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/linux/cp::*TARGET： 覆盖掉已经过时的配置文件][TARGET： 覆盖掉已经过时的配置文件]]
+** TODO change the comment css color
+   [2020-03-15 Sun]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/linux/terminal/X::*Default settings][Default settings]]
+** DONE snippet customize configuration
+   [2020-03-15 Sun]
+   [[file:~/.emacs.d/lisp/utils/yasnippet/init-yasnippet::;; https://joaotavora.github.io/yasnippet/snippet-expansion.html#org87a6f68]]
+** TODO 学习一下八卦语言与计算机语言结合起来
+   [2020-03-18 Wed]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/eshell/Eshell::*欲扬先抑][欲扬先抑]]
+** TODO learn latex could use in ox-hugo blog
+   [2020-03-18 Wed]
+   [[file:~/.emacs.d/test/hello-latex.org]]
+** TODO How to setting default pdf reader in emacs? 
+   [2020-03-18 Wed]
+   [[file:~/.emacs.d/test/hello-latex.org::*How to setting default pdf reader in emacs][How to setting default pdf reader in emacs]]
+** TODO How to slove file bak in Dropbox
+   [2020-03-19 Thu]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/tools/SLIME/slime::*Downloading][Downloading]]
+** DONE how to specify npm install package dir?
+   [[https://www.itranslater.com/qa/details/2120266687726486528][npm install --prefix ./you/install/file/path <package>]]
+   [2020-03-20 Fri]
+** TODO how to insert online image in emacs?
+   [2020-03-22 Sun]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/protocol/Gnutls::*TLS layer][TLS layer]]
+   
+   in here test.
+** TODO [#A] 解决git单个文件提交的问题,bak emacs configuration file
+   [2020-03-23 Mon]
+   
+** TODO [#A] upgrade package manage in quelpa
+   [2020-03-23 Mon]
+** TODO [#A] upgrade hugo blog use hugo module
+   [2020-03-23 Mon]
+** TODO How to control thus powerful strength
+   [2020-03-24 Tue]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/git/git::*how to insert comment for peer commited git files][how to insert comment for peer commited git files]]
+** TODO [#B] add log for slove problem
+   [2020-03-24 Tue]
+   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/git/git::*how to remove all file in git working stage][how to remove all file in git working stage]]
+** TODO fix mermaid mode error
+   [2020-03-26 Thu]
+   [[file:~/.revolt/aa Dropbox/piaoshang luoyu/revolt-blog/bak/tools/Chart-mermaid/mermaid::*Flowchart][Flowchart]]
+** TODO [[https://orgmode.org/worg/org-tutorials/images-and-xhtml-export.html][Images and XHTML export]]
+   [2020-03-26 Thu]
+   [[file:~/.revolt/aa Dropbox/piaoshang luoyu/revolt-blog/bak/tools/Chart-mermaid/mermaid::*Sequence diagrams][Sequence diagrams]]
+** TODO Tufte CSS & ET-BOOK Font integate with Emacs org mode
+   [2020-04-05 Sun]
+** TODO learn more emacs keybind knowledge
+   [2020-04-08 Wed]
+   [[file:~/.emacs.d/lisp/utils/emmet/init-emmet][file:~/.emacs.d/lisp/utils/emmet/init-emmet]]

@@ -1,0 +1,541 @@
+#+title: Org Mode
+#+Hugo_base_dir: ../../../
+#+hugo_section: ./post
+#+Date: <2020-02-24 Sat>
+#+hugo_auto_set_lastmod: t
+#+hugo_weight: auto
+#+hugo_tags: emacs orgmode
+#+hugo_categories: emacs orgmode
+  
+  Org can edit, format, extract, export, and publish source code blocks.
+  
+  Org can also compile and execute a source code block, then capture the results.
+  
+  Users can control how live they want each source code block by
+  tweaking the header arguments (see Using Header Arguments) for
+  compiling, execution, extraction, and exporting. 
+
+  <!--more-->
+  
+  Org can also link a compiler error message to the appropriate line
+  in the source code block.
+  
+  An important feature of Org’s management of source code blocks is the
+  ability to pass variables, functions, and results to one another using
+  a common syntax for source code blocks in any language.
+
+** Structure of Code Blocks
+   
+   A source code block conforms to this structure: 
+   
+   #+begin_example
+     ,#+NAME: <name>
+     ,#+BEGIN_SRC <language> <switches> <header arguments>
+       <body>
+     ,#+END_SRC
+   #+end_example
+
+   An inline code block conforms to this structure: 
+   
+   #+begin_example
+     src_<language>{<body>}
+   #+end_example
+
+   or 
+   
+   #+begin_example
+     src_<language>[<header arguments>]{<body>}
+   #+end_example
+   
+   - =‘#+NAME: <name>’= 
+   
+     Org mode requires unique names. For duplicate names, Org mode’s
+     behavior is undefined.
+
+     
+   - =‘<switches>’= 
+
+     Switches provide finer control of the code execution, export, and
+     format. see [[*Literal Examples][Literal Examples]]
+
+
+   - ~'<header arguments>'~
+
+     Heading arguments control many aspects of evaluation, export and
+     tangling of code blocks.Using Org’s properties feature, header
+     arguments can be selectively applied to the entire buffer or
+     specific sub-trees of the Org document.
+
+** Literal Examples
+     
+   1.特殊符号，防止歧义。
+
+   #+BEGIN_EXAMPLE
+     ,* I am no real headline
+   #+END_EXAMPLE
+
+   Here is an example
+   : Some example from a text file.
+
+   2.显示行号
+   
+   #+BEGIN_SRC emacs-lisp -n 20
+     ;; This exports with line number 20.
+     (message "This is line 21")
+   #+END_SRC
+
+   #+RESULTS:
+   : This is line 21
+
+   #+BEGIN_SRC emacs-lisp +n 10
+     ;; This is listed as line 31.
+     (message "This is line 32")
+   #+END_SRC
+
+   #+RESULTS:
+   : This is line 32
+
+   3.定位到代码位置（在导出的HTML里面生效）
+   #+BEGIN_SRC emacs-lisp -n -r
+     (save-excursion                 (ref:sc)
+	(goto-char (point-min))      (ref:jump)
+   #+END_SRC
+
+   In line [[(sc)]] we remember the current position. [[(jump)][Line (jump)]]
+   jumps to point-min.
+
+   
+   4.when exporting the contents of the block. However, you can use
+   the ‘-i’ switch to also preserve the global indentation, if it does
+   matter. See Editing Source Code。缩进的设置。
+
+    #+BEGIN_SRC emacs-lisp -n -r -i 10
+     (message "This is line 32")
+    #+END_SRC
+
+    #+RESULTS:
+    : This is line 32
+
+** Using Header Arguments
+   
+   Since header arguments can be set in several ways, Org prioritizes
+   them in case of overlaps or conflicts by giving local settings a
+   higher priority.
+
+   Header values in function calls, for example, override header
+   values from global defaults. 
+
+   
+*** System-wide header arguments
+    
+    System-wide values of header arguments can be specified by
+    customizing the org-babel-default-header-args variable, which
+    defaults to the following values:
+    
+    #+BEGIN_EXAMPLE -n -r -i 10
+    :session    => "none"
+    :results    => "replace"
+    :exports    => "code"
+    :cache      => "no"
+    :noweb      => "no"
+    #+END_EXAMPLE
+
+
+*** Header arguments in Org mode properties
+     ~#+PROPERTY: header-args:Emacs-lisp  :session *Emacs-lisp*~
+    
+    For header arguments applicable to the buffer, use ‘PROPERTY’
+    keyword anywhere in the Org file
+    
+    #+NAME: elsip_variable
+    #+begin_src emacs-lisp :results silent :exports code :var a = 1
+      (message (number-to-string a))
+    #+end_src
+
+    #+RESULTS:
+    : 1
+
+    /now here is a test demo/:
+
+    src_emacs-lisp[:exports both]{(message (number-to-string 1))} {{{results(=1=)}}}
+    
+    #+name: get_date 
+    #+begin_src http :exports result
+      GET http://date.jsontest.com
+    #+end_src
+
+    #+RESULTS: get_date
+    #+begin_example
+    HTTP/1.1 200 OK
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json
+    X-Cloud-Trace-Context: 6651d80a2a9aedface50a6a8634d1112
+    Date: Sat, 14 Mar 2020 17:12:21 GMT
+    Server: Google Frontend
+    Content-Length: 100
+
+    {
+       "date": "03-14-2020",
+       "milliseconds_since_epoch": 1584205941375,
+       "time": "05:12:21 PM"
+    }
+    #+end_example
+    
+    now call the ~get_date~ function,the following of the result:
+
+    #+name: callgetdate2
+    #+call: get_date[:select .date]
+
+    #+RESULTS: callgetdate2
+    : {
+    :    "date": "03-14-2020",
+    :    "milliseconds_since_epoch": 1584206033817,
+    :    "time": "05:13:53 PM"
+    : }
+
+    inline block multi problem,now it is:
+    
+    Inline source code is only supposed to create one-line results. If
+    you write code that generates multiple result lines, an error is
+    raised: Inline error: multiline result cannot be used
+    
+    =src_emacs-lisp[:results value]{(princ "hha\nyesyesyes")}=
+    
+    
+    src_emacs-lisp[:exports both :header-name test]{(princ "hha")} {{{results(=hha=)}}}
+    
+    you could run it and test it.
+    
+*** Code block specific header arguments
+    
+    Multi-line header arguments on an unnamed code block: 
+    
+    #+HEADER: :var data1=1
+    #+BEGIN_SRC emacs-lisp :var data2=2
+      (message "data1:%S, data2:%S" data1 data2)
+    #+END_SRC
+
+    #+RESULTS:
+    : data1:1, data2:2
+
+    Multi-line header arguments on a named code block:
+
+    #+NAME: named-block
+    #+HEADER: :var data=2
+    #+BEGIN_SRC emacs-lisp :results silent
+      (message "data:%S" data)
+    #+END_SRC
+
+    
+*** TODO Header arguments in function calls
+    Header arguments in function calls are the most specific and
+    override all other settings in case of an overlap.
+    
+    They get the highest priority. Two ‘#+CALL:’ examples are shown
+    below.
+    
+    ;#+CALL: name-block(data=3) :exports results
+
+    ;#+CALL: name-block[:session special](data=5)
+    
+    
+**** Evaluating Code Blocks
+     
+***** Code Evaluation and Security Issues
+      
+      just set the variable =org-confirm-babel-evaluate= nil, org
+      executes code blocks without prompting the user for
+      confirmation.
+
+      Each source code language can be handled separately through this
+      function argument.
+      
+      #+begin_example
+	(defun my-org-confirm-babel-evaluate (lang body)
+	  (not (string= lang "ditaa")))  ;don't ask for ditaa
+	(setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
+      #+end_example
+ 
+      here test ~emacs-lisp~ :
+      
+      #+begin_src emacs-lisp
+	(message "%s - %s" "hello" "world")
+      #+end_src
+
+      #+RESULTS:
+      : hello - world
+
+***** How to Evaluate Code Blocks
+      Org captures the results of the code block evaluation and
+      inserts them in the Org file, right after the code block.
+      
+      By calling a named code block from an Org mode buffer or a
+      table. Org can call the named code blocks from the current Org
+      mode buffer or from the “Library of Babel”.
+      
+      The syntax for ‘CALL’ keyword is:
+      
+      #+begin_example
+	... call_<name>(<arguments>) ...
+	... call_<name>[<inside header arguments>](<arguments>)[<end header arguments>] ...
+      #+end_example
+      
+     - /name/ 参数的使用
+ 
+        假设我们需要调用其他文件里面的函数 [[file:org_call_test::*demo-one][demo-one]]，则需要按照以下方
+        法来进行操作:
+        #+begin_example
+	  ,#+CALL: org_call_test:sayHello()
+
+	  ,#+RESULTS:
+	  : "hello world"
+        #+end_example
+     
+       - org_call_test 是一个文件
+       - sayHello 是上面文件的一个名字为 ~sayHello~ 的代码块。
+	  
+     - /arguments/ 参数的使用
+      
+       现在我在另外一个文件中的 =org_call_test= 中，名为 =sayHello= 的
+       代码块中的代码如下：
+       #+name: sayHello
+       #+begin_src emacs-lisp :var n = 2
+	(defun sayHello(n)
+	  (format "%s" (message (number-to-string n))))
+	(sayHello n)
+       #+end_src
+
+       #+RESULTS: sayHello
+       : 2
+      
+       现在咱们调用它，如下：
+      
+       #+begin_example
+	 ,#+CALL: org_call_test:sayHello(n=5)
+
+	 ,#+RESULTS:
+	 : 5
+       #+end_example
+
+     - /inside header arguments/ 参数的使用
+       
+       Org passes inside header arguments to the named code block
+       using the header argument syntax. Inside header arguments apply
+       to code block evaluation.
+
+       #+begin_example
+	 ,#+CALL: org_call_test:sayHello(n=5) [:results output]
+
+	 ,#+RESULTS:
+	 : 5
+       #+end_example
+
+     - /end header agruments/ 参数的使用
+       
+       End header arguments affect the results returned by the code
+       block.
+       
+       #+begin_example
+	 ,#+CALL: org_call_test:sayHello(n=5) [:results md]
+
+	 ,#+RESULTS:
+	 : 5
+       #+end_example
+***** Limit code block evaluation
+      
+      The ~eval~ header agruments can limit evaluation of sepcific
+      code blocks and ~CALL~ keyword. It is useful for protection
+      against evaluating untrusted code blocks by prompting for a
+      confirmation. 
+      
+      #+begin_example
+      #+begin_src emacs-lisp :eval never(no/query/never-export/no-export/query-export)
+	(format "%s" (message "hello world"))
+      #+end_src
+      #+end_example
+***** Cache results of evaluation
+      The ~cache~ header argument is for caching results of evaluating
+      code blocks.
+      
+      Caching results can avoid re-evaluating a code block that have
+      not changed since the previous run.
+      
+      The caching feature is best for when code blocks are pure
+      functions, that is functions that return the same value for the
+      same input arguments.and that do not have side effects, and do
+      not rely on external variables other than the input arguments. 
+****** Environment of a Code Block
+******* Passing a default value
+	The following syntax is used to pass arguments to code blocks
+	using the ‘var’ header argument. 
+	
+	#+begin_example
+	  :var NAME=ASSIGN
+	#+end_example
+	
+	*NAME* is the name of the variable bound in the code block
+	body. *ASSIGN* is a literal value, such as a string, a number, a
+	reference to a table, a list, a literal example, another code
+	block—with or without arguments—or the results of evaluating a
+	code block.
+
+	#+NAME: example-table
+	| 1 |
+	| 2 |
+	| 3 |
+	| 4 |
+
+	#+NAME: table-length
+	#+BEGIN_SRC emacs-lisp :var table=example-table
+	  (length table)
+	#+END_SRC
+
+	#+RESULTS: table-length
+	: 4
+	
+	The *colnames* header argument accepts ‘yes’, ‘no’, or ‘nil’
+	values. The default value is ‘nil’:if an input table has
+	column names—because the second row is a horizontal rule—then
+	Org removes the column names.
+	
+	#+NAME: less-cols
+	| a |
+	|---|
+	| b |
+	| c |
+
+	#+BEGIN_SRC python :var tab=less-cols :colnames nil (& yes/no)
+	  return [[val + '*' for val in row] for row in tab]
+	#+END_SRC
+
+	#+RESULTS:
+	| a  |
+	|----|
+	| b* |
+	| c* |
+
+	Similarly, the *rownames* header argument can take two values:
+	‘yes’ or ‘no’. When set to ‘yes’, Org removes the first
+	column, processes the table, puts back the first column, and
+	then writes the table to the results block.
+	
+	Note that Emacs Lisp code blocks ignore ‘rownames’ header
+	argument because of the ease of table-handling in Emacs. 
+	
+	#+NAME: with-rownames
+	| "one" |       1 |       2 |       3 |       4 |       5 |
+	| "two" |       6 |       7 |       8 |       9 |      10 |
+
+	#+BEGIN_SRC python :var tab=with-rownames :rownames yes
+	  return [[val + 10 for val in row] for row in tab]
+	#+END_SRC
+
+	#+RESULTS:
+	| one | 11 | 12 | 13 | 14 | 15 |
+	| two | 16 | 17 | 18 | 19 | 20 |
+	
+	*list*
+	
+	A simple named list.
+	
+	#+NAME: example-list
+        - simple
+          - not
+          - nested
+        - list
+	#+BEGIN_SRC emacs-lisp :var x=example-list
+	  (print x)
+	#+END_SRC
+
+	#+RESULTS:
+	| simple | (unordered (not) (nested)) |
+	| list   |                            |
+
+	Note that only the top level list items are passed
+	along. Nested list items are ignored. 
+	
+	A code block name, as assigned by ‘NAME’ keyword from the
+	example above, optionally followed by parentheses.
+
+
+	#+BEGIN_SRC emacs-lisp :var length=table-length()
+	  (* 2 length)
+	#+END_SRC
+
+	#+RESULTS:
+	: 8
+
+	#+NAME: double
+	#+BEGIN_SRC emacs-lisp :var input=8
+	  (* 2 input)
+	#+END_SRC
+
+	#+RESULTS: double
+	: 16
+
+	#+NAME: squared
+	#+BEGIN_SRC emacs-lisp :var input=double(input=1)
+	  (* input input)				; input = 1 替换 double里面的变量
+	#+END_SRC
+
+	#+RESULTS: squared
+	: 4
+	
+	*literal example*
+	
+	A literal example block named with a ‘NAME’ keyword.
+
+	#+NAME: literal-example
+	#+BEGIN_EXAMPLE
+	  A literal example
+	  on two lines
+	#+END_EXAMPLE
+
+	#+NAME: read-literal-example
+	#+BEGIN_SRC emacs-lisp :var x=literal-example
+	  (concatenate #'string x " for you.")
+	#+END_SRC
+
+	#+RESULTS: read-literal-example
+	: A literal example
+	: on two lines
+	:  for you.
+	
+	*Indexing variable* values enables referencing portions of a
+	variable.
+	
+	Note that this indexing occurs before other table-related header
+	arguments are applied, such as ‘hlines’, ‘colnames’ and ‘rownames’. 
+	
+	#+NAME: example-table
+	| 1 | a |
+	| 2 | b |
+	| 3 | c |
+	| 4 | d |
+
+	#+BEGIN_SRC emacs-lisp :var data=example-table[1:3]
+	  data
+	#+END_SRC
+
+	#+RESULTS:
+	| 2 |
+	| 3 |
+	| 4 |
+** Extracting Source Code
+   Extracting source code from code blocks is a basic task in literate
+   programming.Org has features to make this easy.In literate
+   programming parlance.Documents on creation are woven with code and
+   documentation,and on export,the code is *tangled* for execution by
+   a computer.Org facilitates weaving and tangling for
+   producing,maintaining,sharing,and exporting literate programming
+   documents.Org provides extensive customization options for
+   extracting source code.
+   
+   When org tangles code blocks,it expands,merges,and tramsforms them.
+   The org recompress them into one or more separate files,as
+   configured through the options.During this tangling process,Org
+   expands variables in the source code,and resolves any Noweb style
+   references.
+   
+   
+   

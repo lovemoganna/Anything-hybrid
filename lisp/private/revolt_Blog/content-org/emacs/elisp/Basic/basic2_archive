@@ -1,0 +1,58 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/revolt/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Basic/basic2
+
+
+* Printing
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-03-24 Tue 17:15
+  :ARCHIVE_FILE: ~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Basic/basic2
+  :ARCHIVE_OLPATH: Elisp Basic
+  :ARCHIVE_CATEGORY: basic2
+  :END:
+  #+begin_src emacs-lisp
+    ; printing variable values
+   (message "Her age is: %.2g" 12)        ; %g
+    (message "Her age is: %.2c" 12)        ; %c,means print a number as a single characters.
+    (message "Her name is: %s" "Vicky")  ; %s is for string
+    (message "My list is: %S" (list 8 2 3))  ; %S is for any lisp expression
+  #+end_src
+
+   
+  #+begin_src emacs-lisp :exports all
+    (message "Her age is: %d" 16)        ; %d is for number
+  #+end_src
+
+  #+RESULTS:
+  : Her age is: 16
+   
+  #+begin_src emacs-lisp :exports all
+    (message "Her age is: %x" 12)        ; %x is hexq 
+  #+end_src
+
+  #+RESULTS:
+  : Her age is: c
+
+  #+begin_src emacs-lisp :exports all
+    (message "Her age is: %X" 12)	     ; %X is hex 
+  #+end_src
+
+  #+RESULTS:
+  : Her age is: C
+   
+  #+begin_src emacs-lisp :exports all :results output
+    (setq the_means_of_%o (message "Her age is: %o" 16))        ; %o is octal 
+    (setq the_means_of_%f (message "Her age is: %.2f" 16))        ; %f 
+    (setq the_means_of_%e (message "Her age is: %.2e" 16))        ; %e
+    (setq my-list `(the_means_of_%o the_means_of_%f the_means_of_%e))
+    (print (car my-list))
+    (print (cdr my-list))
+  #+end_src
+
+  #+RESULTS:
+  : 
+  : the_means_of_%o
+  : 
+  : (the_means_of_%f the_means_of_%e)
+

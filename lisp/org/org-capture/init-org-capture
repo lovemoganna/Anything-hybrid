@@ -1,0 +1,11 @@
+;-*-Emacs-lisp-*-
+(global-set-key (kbd "C-c c") 'org-capture)
+
+;; config org capture file
+(setq org-default-notes-file "~/.emacs.d/lisp/.Ktask/task_index.org")
+
+;; config org agenda files
+;;(setq org-agenda-files '("~/.emacs.d/lisp/.Ktask/agenda_index.org"))
+
+;; slove “Not allowed in todo-type agenda” using custom agenda
+(provide 'init-org-capture)

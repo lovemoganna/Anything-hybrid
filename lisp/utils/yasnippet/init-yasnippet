@@ -1,0 +1,20 @@
+;; -*-Emacs-lisp-*-
+(require 'yasnippet)
+;; (setq yas-snippet-dirs
+;;       '(
+;; 	"~/.emacs.d/snippets"		;personal snippers.
+;; 	"~/.emacs.d/elpa/" ;extra package collection.
+;; 	)
+;;       )
+(yas-global-mode 1)
+;; 在ORG MODE里面 yas-expand 巨恶心，只能取消下。
+;; https://joaotavora.github.io/yasnippet/snippet-expansion.html#org87a6f68
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+
+;; Bind `SPC' to `yas-expand' when snippet expansion available (it
+;; will still call `self-insert-command' otherwise).
+;;(define-key yas-minor-mode-map (kbd "SPC") yas-maybe-expand)
+;; Bind `C-c y' to `yas-expand' ONLY.
+(define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
+(provide 'init-yasnippet)

@@ -1,0 +1,3 @@
+;;-*-Emacs-lisp-*-
+(setq browse-url-browser-function 'browse-url-firefox)
+(provide 'init-firefox-browser)

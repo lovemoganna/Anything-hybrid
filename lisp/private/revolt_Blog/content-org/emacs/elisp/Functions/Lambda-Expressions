@@ -1,0 +1,173 @@
+#+-*-mode: org;-*-
+#+options: ':nil -:nil ^:{} num:nil toc:nil
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../../
+#+date: <2020-03-09 Mon>
+#+hugo_tags: elisp Lambda 
+#+hugo_categories: Lambda Elisp
+#+title: LAMBDA EXPRESSIONS
+
+A lambda expression is a function object written in lisp.
+
+<!--more-->
+
+example:
+
+#+begin_src emacs-lisp :exports result
+  (lambda(x)
+    "return the hyperbolic consine of X (双曲线余弦值)"
+    (* 0.5 (+ (exp x) (exp (- x))))
+    )
+#+end_src
+
+#+RESULTS:
+| lambda | (x) | return the hyperbolic consine of X (双曲线余弦值) | (* 0.5 (+ (exp x) (exp (- x)))) |
+
+
+In Emacs lisp,such a list is a valid expression which evaluates to a
+function object.
+
+A lambda expression,by itself,has no name;it is an anonymous
+function.Althogh lamda expressions can be used this way (see [[*Anonymous function][Anonymous
+function]]),they more commonly associated with symbols to make named
+functions (See [[*Function Names][Function Names]]).Before going into these detail,the
+following subsections describe the componenets of a lambda expression
+and what they do.
+
+- [[*Lambda Components][Lambda Components]]: The parts of a lambda expression.
+- [[*Simple Lambda][Simple Lambda]]: A simple example.
+- [[*Agrument list][Agrument list]]: Details and special features of arguments list.
+- [[*Function Documentation][Function Documentation]]: How to put documentation in a function.
+
+
+** Lambda Components
+   A lambda expression is a list that looks like this:
+   
+   #+begin_src emacs-lisp
+     (lambda (arg-variables...)
+       [documentation-string]
+       [interactive-declaration]
+       body-forms...
+       )
+   #+end_src
+
+   The first element of a lambda expresion is always the symbol lambda.
+   This indicates that the list represents a function.The reason
+   function are defined to start with lambda is so that other lists,
+   intended for other uses,will not accidentally be valid as
+   functions.
+   
+   The second element is a list of symbols-*the argument variable
+   names*.This is called the lambda list.When a lisp function is
+   called,the argument values are matched up against the variables in
+   the lambda list,which are given local bindings with the values
+   provided.See [[*Local Variables][Local Variables]].
+
+  
+   The documentation string is a lisp string object placed within the
+   function definition to describe the function for the Emacs help
+   facilities.See [[*Function Documentation][Function Documentation]].
+   
+   The interactive declaration is a list of the form(interactive
+   /code-string/).This declares how to provide agruments if the
+   function is used interactively.Functions with this declaration are
+   called commands;they can be called using =M-x= or bound to a
+   key.Functions not intended to be called in this way should not have
+   interactive declaration.See [[*Defining Commands][Defining Commands]],for how to write an
+   interactive declaration.
+
+   The rest of the elements are the body of the function: the lisp
+   code to do the work of the function (or, as a lisp programmer would
+   say, "a list of lisp forms to evaluate"). The value returned by the
+   function is the value returned by the last element of the body.
+
+** Simple Lambda 
+   #+name: code_lambda_demo1
+   #+begin_src emacs-lisp :exports result
+     (lambda (a b c) (+ a b c))
+   #+end_src
+
+   #+RESULTS: code_lambda_demo1
+   | lambda | (a b c) | (+ a b c) |
+   
+   How to we call this lambda function?
+   
+   #+begin_src emacs-lisp :exports result
+     (funcall
+      (lambda (a b c)(+ a b c))
+      1 2 3)
+   #+end_src
+
+   #+RESULTS:
+   : 6
+   
+   Note that the arguments can be the reuslts of other function
+   calls,as in this example:
+   
+   #+begin_src emacs-lisp :tangle yes :exports result
+     (funcall (lambda (a b c) (+ a b c)) 1 (* 2 3) (+ 3 4 6))
+   #+end_src
+
+   #+RESULTS:
+   : 20
+
+   As these examples show,you can use a form with a lambda expression
+   as its CAR to make local variables and give them values.
+   
+   In the old days of lisp,this technique was the only way to bind and
+   initialize local variables.
+   
+   But nowadays,it is clearer to use the special form =let= for this
+   purpose.(see [[*Local Variables][Local Variables]]).Lambda Expression are mainly used as
+   anonymous function for passing as arguments to other function.(see
+   [[*Anonymous function][Anonymous function]]),or stored as symbol function definitions to
+   produce named functions(see [[*Function Names][Function Names]]).
+   
+   
+** Agrument list
+
+** Function Documentation
+
+** Anonymous function
+
+** Function Names
+
+** Local Variables
+   Global variables have values that last until /explicitly
+   superseded/ （显式的取代）with new vlaues.
+   
+   When a variable has a local value,we say that it is "locally bound"
+   to that value,and that it is a "local variable".
+
+   For example,when a function is called,its agrument variables
+   receive local values,which are the actual arguments supplied to the
+   function call; these local bindings take effect within the body of
+   the function.
+   
+   To take another example, the ~let~ special form explicitly
+   establishes local bindings for specific variabels,which take effect
+   only within the body of the ~let~ form.
+   
+   We also speak of the ="global binding"=,which is where
+   (conceptually 概念上) the global value is kept.
+   
+   Establishing a local binding saves away the variable 's previous
+   value(or lack of one).We say that the previous value is
+   shdowed.Both global and local values my be shadowed.It determines
+   the value returned by 
+   
+** Function Documentation
+
+** Defining Commands
+
+** Local Variables
+
+** Anonymous function
+
+** Function Names

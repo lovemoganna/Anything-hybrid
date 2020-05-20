@@ -1,0 +1,39 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-05-19 Tue>
+#+hugo_tags: linux-command
+#+hugo_auto_set_lastmod: t
+#+hugo_categories: linux-command
+#+TITLE: Unix power tools
+
+Unix is not an operating system as much as it is a way of thinking.
+
+* Unix
+
+  #+begin_src toml :front_matter_extra t
+      autoCollapseToc = true
+  #+end_src
+
+  <!--more-->
+
+  It is the idea that the power of a system comes more from the
+  relationships among programs than from the programs themseleves.
+
+  No single program,however well thought out,will solve every problem.
+
+  many situation that runs counter(相反) to the expected.
+
+  Faced with a choice between an hour spent on a boring,repetitive task
+  and an hour putting together a tool that will do the task in a flash?
+
+  One key concept is that programs are tools.
+
+** Shell
+   
+   
+   

@@ -1,0 +1,39 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/revolt/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Introduction/introduction
+
+
+* nil and t
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-03-24 Tue 17:41
+  :ARCHIVE_FILE: ~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Introduction/introduction
+  :ARCHIVE_OLPATH: Elisp introduction
+  :ARCHIVE_CATEGORY: introduction
+  :END:
+   
+  In Elisp, the symbol ~nil~ has three separate meanings:
+   
+  - it is a symbol with the name ='nil'=
+  - it is the logical truth value =false=
+  - it it the *empty list*-the list of zero elements.when used as a
+    variable,nil always has the value nil.
+     
+  As far as the following testing, ='()'= and =nil= are identical:
+   
+  #+begin_src emacs-lisp :exports all :results output
+    (print (message "the value of () is %S" ())) ;;nil
+    (print (message "the value of nil is %S" nil)) ;; ;;nil
+  #+end_src
+
+  #+RESULTS:
+  : 
+  : "the value of () is nil"
+  : 
+  : "the value of nil is nil"
+
+     
+     
+   
+
+  

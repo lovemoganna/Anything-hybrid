@@ -1,0 +1,1328 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../../
+#+date: <2020-03-24 Tue>
+#+hugo_tags: elisp basic
+#+hugo_categories: elisp basic 
+* Elisp Basic
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: basic
+  :END:
+  
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+
+  Elisp Basic Demo
+
+  <!--more-->
+  
+** Emacs Basic
+*** Printing
+   #+begin_src emacs-lisp
+     ; printing variable values
+     (message "Her age is: %d" 16)        ; %d is for number
+     (message "Her age is: %x" 12)        ; %x is hexq 
+     (message "Her age is: %X" 12)	     ; %X is hex 
+     (message "Her age is: %o" 16)        ; %o is octal 
+     (message "Her age is: %.2f" 16)        ; %f 
+     (message "Her age is: %.2e" 16)        ; %e
+     (message "Her age is: %.2g" 12)        ; %g
+     (message "Her age is: %.2c" 12)        ; %c,means print a number as a single characters.
+     (message "Her name is: %s" "Vicky")  ; %s is for string
+     (message "My list is: %S" (list 8 2 3))  ; %S is for any lisp expression
+   #+end_src
+
+   #+RESULTS:
+   : My list is: (8 2 3)
+   
+   you could run the follow command: *view-echo-area-messages*
+   binding keys: *C-h e*
+
+****  Elisp: Print, Output
+    #+begin_src code
+      ; printing
+      (message "hi")
+
+      ; printing variable values
+
+      ;; %d is decimal number
+      (message "age is: %d " 16)
+
+      ;; %s is for string
+      (message "name is: %s " "Joe")
+
+      ;; %c is char by unicode codepoint in decimal
+      (message "Mid init is: %c " 65)
+      ;; 65 is A
+
+      ;; print a line many times
+      (defun message_many_times()
+	(setq xx 1)
+	(while (< xx 20)
+	  (message "yay")
+	  (setq xx (1+ xx))
+	  )
+	(switch-to-buffer "*Messages*"))
+      (message_many_times)
+
+      ;; Print your own buffer
+      (defun print_my_output()
+	(setq xbuff (generate-new-buffer "*my output*"))
+	(print "something" xbuff)
+	(switch-to-buffer xbuff ))
+
+      (print_my_output)
+
+      ;; "print" "printc" function
+
+      ;; (print OBJECT)
+
+      '("x" "y")
+      ("x" "y")
+
+      (princ '("x" "y"))
+      (x y)("x" "y")
+
+      (prin1 '("x" "y"))
+      ("x" "y")("x" "y")
+
+      ;; with-output-to-temp-buffer
+
+      (defun test_inset_&_print()
+	(setq xbuff (generate-new-buffer "*my output-2*"))
+	(with-output-to-temp-buffer xbuff
+	  ;; this is inserted in current buffer
+	  (insert "xyz")
+	  ;; this is printed in buffer xbuff
+	  (print "abc"))
+	(switch-to-buffer xbuff))
+      (test_inset_&_print)
+    #+end_src
+****  Elisp: Format String
+    #+begin_src emacs-lisp
+      ;; (format STRING &rest OBJECT)
+      (print (format "%04d-%02d-%02d" 2020 2 16))
+
+      "2020-02-16"
+      "2020-02-16"
+
+      (setq x "hello")
+      (print x)
+
+      "hello"
+      "hello"
+    #+end_src
+*** Arithmetic
+   #+begin_src emacs-lisp
+     (+ 4 5 1)  ; 10
+     (- 9 2)    ; 7
+     (- 9 2 3)  ; 4
+     (* 2 3)    ; 6
+     (* 2 3 2)  ; 12
+
+     ;; integer part of quotient
+     (/ 7 2)    ; 3
+
+     ;; division
+     (/ 7 2.0)  ; 3.5
+
+     ;; mod, remainder
+     (% 7 4)    ; 3
+
+     ;; power; exponential, 
+     (expt 2 3) ; 8
+
+     ;; 3. is a integer, 3.0 is a float
+     (integerp 3.) ;  t
+     (floatp 3.) ;  nil
+     (floatp 3.0) ;  t
+   #+end_src
+*** Convert Float/Integer
+   #+begin_src emacs-lisp
+     ;; int to float
+     (float 3) ; 3.0
+
+     ;; float to int
+     (truncate 3.99) ; 3
+
+     ;; 
+     (floor 3.99) ; 3
+
+     ;; 
+     (ceiling 3.01) ; 4
+
+     ;; 
+     (round 3.4) ; 3
+   #+end_src
+*** Convert String and Number
+   #+begin_src emacs-lisp
+     (string-to-number "3")			;3
+     (number-to-string 3)			;"3"
+   #+end_src
+*** True & False
+   #+begin_src emacs-lisp
+     ;; all the following are false. They all evaluate to nil
+     (if nil "yes" "no") ;  "no"
+     "no"
+
+     (if () "yes" "no") ;  "no"
+     "no"
+
+     (if '() "yes" "no") ;  "no"
+     "no"
+
+     (if (list) "yes" "no") ; 
+     "no"
+
+     nil
+     nil
+
+     ()
+     nil
+
+     '()
+     nil
+
+     (list)
+     nil
+
+   #+end_src
+   
+   #+begin_src emacs-lisp
+     []
+     []
+
+     0
+     0
+
+     t
+     t
+
+     ""
+     ""
+
+     (if t "yes" "no") ;  "yes"
+     "yes"
+
+     (if 0 "yes" "no") ;  "yes"
+     "yes"
+
+     (if "" "yes" "no") ;  "yes"
+     "yes"
+
+     (if [] "yes" "no") ;  "yes". The [] is vector of 0 elements
+     "yes"
+   #+end_src
+*** Boolean Function
+**** compare numbers
+   #+begin_src emacs-lisp
+     (and t nil)
+     nil
+
+     (or t nil)
+     t
+
+     (and t nil t t t t)
+     nil
+
+     ;; Comparing numbers
+     (< 3 4)
+     t
+
+     (> 3 4)
+     nil
+
+     (<= 3 4)
+     t
+
+     (>= 4 3)
+     t
+
+     (= 3 3)
+     t
+
+     (= 3 3.0000000000000000000000001)
+     t
+
+     (/= 3 4) 				;not equal expression
+     t
+   #+end_src
+**** compate strings
+    #+begin_src emacs-lisp
+      ;; compare string
+      (equal "abc" "abc")
+      t
+
+      (string-equal "abc" "abc")
+      t
+
+      (string-equal "abc" "Abc")
+      nil
+
+      ;; can be used to compare string and symbol
+      (string-equal "abc" 'abc)
+      t
+
+      (string-equal "abc" 'Abc)
+      nil
+    #+end_src
+*** For generic equality,use **equal**.It tests if two values have the same datatype and vlaue.
+    #+begin_src emacs-lisp
+      (equal 3 3)
+      t
+
+      (equal 3.0 3.0)
+      t
+
+      ;; test equality of lists
+      (equal '(3 4 5) '(3 4 5))  ;  t
+      t
+
+      (equal '(3 4 5) '(3 4 "5")) ;  nil
+      nil
+
+
+      ;; test equality of strings
+      (equal "e" "e") ;  t
+      t
+
+      ;; test equality of symbols
+      (equal 'abc 'abc) ;  t
+      t
+
+
+      ;; it return `t` if the two args are the same lisp object.
+      (setq x 12)
+      (setq y 12)
+
+      (eq x y)
+      t
+
+      (eq 12 12)
+      t
+
+      (eq "12" "12")
+      nil
+
+      (not (equal 3 4))
+      t
+    #+end_src
+*** even,odd
+    #+begin_src emacs-lisp
+      (= (% n 2) 0)				;t,test even
+      (= (% n 2) 1)				;t,test odd
+    #+end_src
+*** Variable
+   #+begin_src emacs-lisp
+     (setq x 1)
+     1
+
+     (setq a 3 b 2 c 7)
+     7
+
+     ,** Local variable
+
+     (let (a b)
+       (setq a 3)
+       (setq b 2)
+       (+ a b))
+     5
+
+     ;; Another form of `let` is this:
+     (let ((a 3)(b 2))
+       (+ a b))
+     5
+
+   #+end_src
+*** If Then Else
+   #+begin_src emacs-lisp
+     (if (< 3 2)
+	 7
+       8)
+     8
+
+     ;; no false expression, return nil
+     (if (< 3 2)
+	 (message "yes")
+       )
+     nil
+
+     ;; when form
+
+     ;; (when (and a b)
+     ;;    (do-c))
+
+     (let ((a 2)(b 1))
+       (when (and a b)			;t
+	 (message "hello world")))
+
+     "hello world"
+
+     (let ((a ())(b 1))
+       (unless (and a b)			;nil
+	 (message "hello world")))
+     "hello world"
+
+
+     (setq a 'hack)
+     (setq hack 5)
+     (cond ((eq a 'hack) 'foo)
+	   (t "default"))
+     foo
+   #+end_src
+*** Block of Expressions
+   #+begin_src emacs-lisp
+     (progn (message "hello")(message "world"))
+     "world"
+
+     ;; is equivalent to
+
+     (message "hello")(message "world")
+     "world"
+
+     (if (> 3 4)
+	 (progn
+	   (message "hello")
+	   (message "world"))
+       (progn
+	 (message "hello2")
+	 (message "world2")))
+     "world2"
+
+     ;; `progn` return the last expression in this body
+   #+end_src
+*** Loop 
+   #+begin_src emacs-lisp
+     (setq x 0)
+
+     (while (< x 4)
+       (print (format "number is %d" x))
+       (setq x (1+ x)))
+
+     "number is 0"
+
+     "number is 1"
+
+     "number is 2"
+
+     "number is 3"
+     nil
+
+     (let ((y 32))
+       (while (< y 127)
+	 (insert-char y)
+	 (setq y (1+ y))))
+
+      !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~nil
+   #+end_src
+*** Elisp: Sequence: List & Array
+   #+begin_src emacs-lisp
+     ;; The sequence type is the union of two other lisp types: lists and arrays.
+
+     ;; An array is a fixed-length object with a slot for each of its elements.
+     ;; All the elements are accessible in constant time.
+     ;; The four types of arrays are stings,vectors,char-tables,bool-vectors.
+
+     ;; An list is a sequence of elements,but it is not single primitive object
+     ;; it is made of cons cells,one cell per element.
+     ;; Finding the nth element requires looking through n cons cell
+     ;; so elements farther from the beginning of the list take longer to access.
+     ;; But it is possible to add elements to the list,or remove elements.
+   #+end_src
+*** Sequence Functions
+    - Function: sequencep object
+      #+begin_src emacs-lisp
+	(sequencep '(1 2 3))
+      #+end_src
+
+      #+RESULTS:
+      : t
+
+    - Function: length sequence
+      #+begin_src emacs-lisp
+	(length '(1 2 3))
+
+	(length "foobar")
+
+	(length [1 2 3])
+
+	(length (make-bool-vector 5 nil))
+      #+end_src
+
+    - Function: more
+
+      #+begin_src emacs-lisp
+	(length '(1 2 3))
+	3
+
+	(length "foobar")
+	6
+
+	(length [1 2 3])
+	3
+
+	(length (make-bool-vector 5 nil))
+	5
+
+	(make-bool-vector 2 nil)
+	#&2" "
+
+	(string-width "hello world")
+	11
+
+	;; function: elt. This function returns the elements of sequence
+	;; indexed by index.
+
+	(elt [1 2 3 4] 2)			;返回索引为2的元素值
+	3
+
+	(elt '(1 2 3 4) 2)
+	3
+
+	(string (elt "1234" 2))
+	"3"
+
+	;; function: copy-sequence.This function returns a cpoy of sequence.
+	;; The copy is the same type of object as the original sequence,and it
+	;; has the same elements in the same order.
+
+	;; 定义一个 list
+	(setq bar '(1 2))
+	;; 定义一个 vector
+	(setq x (vector 'foo bar))
+	[foo (1 2)]
+
+	;; 拷贝一个矢量
+	(setq y (copy-sequence x))
+	[foo (1 2)]
+
+	(eq x y)
+	nil				;比较两个矢量是否相同
+
+	(equal x y)
+	t
+
+	(eq (elt x 1) (elt y 1))
+	t
+
+	;; replacing an element of one sequence
+	(vectorp x)
+	t
+
+	(aset x 0 'quux)
+	quux
+
+	x
+	[quux (1 2)]
+
+	y
+	[foo (1 2)]
+
+	;; ------------------------------
+	(setq z (vector 'foo bar))
+	[foo (1 2)]
+
+	(aset z 1 '(3 4))			;修改矢量Z上索引为1的元素
+	(3 4)
+
+	z
+	[foo (3 4)]
+
+
+	;; Modifying the inside of a shared element. 修改内部分享的数据。
+
+	(aref x 1)				;获取矢量X上索引为 1的元素
+	(1 2)
+
+	(setcar (aref x 1) 69)
+	69
+
+	x
+	[quux (69 2)]
+
+	y
+	[foo (69 2)]
+
+
+	;; ------------------------------
+
+	(aref [1 2 3 4] 3)
+	4
+
+	;; make more vector
+	(setq world '(1 2 3 4))
+	(setq CC (vector 'hello 'world world))
+	[hello world (1 2 3 4)]
+	CC
+	[hello world (1 2 3 4)]
+
+	(aref CC 2)				; 取出CC上索引为 2的元素
+	(1 2 3 4)
+
+	CC
+	[hello world (1 2 3 4)]
+
+	(setcar (aref CC 2) 11)			;给CC上的索引为2的元素重新设置car
+	11
+
+	CC
+	[hello world (11 2 3 4)]
+
+
+	(setq x1 '(1 2 3 4))
+	(1 2 3 4)
+
+	(setcar x1 10)
+	10
+
+	x1
+	(10 2 3 4)
+
+	;; function :reverse
+
+	(setq x '(1 2 3 4))
+	(reverse x)
+	(4 3 2 1)
+
+	x
+	(1 2 3 4)
+
+	(setq x [1 2 3 4])
+	(reverse x)
+	[4 3 2 1]
+
+	x
+	[1 2 3 4]
+
+	(setq x "xyzzy")
+	"xyzzy"
+
+	(reverse x)
+	"yzzyx"
+
+	x
+	"xyzzy"
+
+	;; --------------------------------------------------
+	;; function: nreverse 
+	(setq x '(a b c))
+	(a b c)
+
+	(nreverse x)
+	(c b a)
+
+	x
+	(a)
+
+	;; so avoid confusion,we usually store the result of `nreverse` back
+	;; in the same variable which held the original list:
+	(setq y '(a b c))
+	y
+	(a b c)
+
+	(setq y (nreverse y))
+	(c b a)
+
+	y
+	(c b a)
+
+
+	(cdr '(c b a))
+
+
+	(setq x [1 2 3 4])
+	(nreverse x)
+	[4 3 2 1]
+
+	x
+	[4 3 2 1]
+   #+end_src
+
+    - Vector
+      1.Vector: Access time to any element is constant.
+      2.Vector's length cannot change. (if you create a new copy of a
+      vector, the time required is proportional to the vector's
+      length)
+
+    - List
+      1.List: Access time to a element is proportional to the distance of the element's position in the list.
+      2.List's length can grow by prepending element, and can shorten
+      by removing first element. These operations have constant time.
+
+    In short, list can grow or shorten, but if you have a long list,
+    say 1 thousand items, accessing 999th item is slow.
+
+    Vector has fixed length. Accessing any element is fast.
+*** Elisp: Vector
+   #+begin_src emacs-lisp
+     ;;; Emacs lisp vector datatype is similar to java's Array
+
+     ;; 1. Vector is a ordered sequence of values.
+     ;; 2. Each element can be any type.
+     ;; 3. Element's value can be changed.
+     ;; 4. Number of elements cannot change.(i.e. Vector's length is fixed。）
+     ;; 5. Reading/Writing a element has constant random access time.
+
+     ;; --------------------------------------------------
+     ;; Create Vector
+
+     (make-vector 5 2)			;create a vector of length
+					     ;5,value 0 for all elements
+     [2 2 2 2 2]
+
+     (setq v (vector 3 4 5))			;create a vector and set to
+					     ;var v
+     [3 4 5]
+
+     v
+     [3 4 5]
+
+     (setq x 8)
+     (setq v (vector 3 x 7))
+     [3 8 7]
+
+     v
+     [3 8 7]
+
+     (setq n 7)
+     [3 n 7]
+
+     '(3 n 7)
+     (3 n 7)
+
+     (setq v (vector [3 n 7]))
+     [[3 n 7]]				;then n remains a symbol,not 7
+
+     ;; --------------------------------------------------
+     ;; Fill Vector: (fillarray array val) → make all elements of array to have value val
+     (setq aa [3 4 5])
+     [3 4 5]
+
+     (fillarray aa nil)
+     [nil nil nil]
+
+     ;; --------------------------------------------------
+     ;; Length
+     (length (vector 4 5 6))
+     3
+
+     ;; --------------------------------------------------
+     ;; Get Element
+
+     ;; (aref array n) → Return the element of array at index n.
+     ;; (elt sequence n) → Return element of sequence at index n.
+
+     ;; get a element from vector
+     (aref ["a" "b" "c"] 0)
+     "a"
+
+     (aref '("a" "b" "c") 0)
+     ;; wrong type argument,error
+
+     ;; get a element from vector
+     (elt ["a" "b" "c"] 0)
+     "a"
+
+     (elt '("a" "b" "c") 0)
+     "a"
+
+     ;; so `elt` is more general. It works on vector and list.
+
+     ;; --------------------------------------------------
+     ;; Change Element
+     (setq v [3 4 5])
+     (aset v 0 "b")
+     "b"
+
+     v
+     ["b" 4 5]
+
+     ;; --------------------------------------------------
+     ;; Nested Vector
+
+     [[1 2][3 4]]
+     [[1 2] [3 4]]
+
+     ;; Random nested vector
+     [8 [3 [2 9]c] 7 [4 "b"]]
+     [8 [3 [2 9] c] 7 [4 "b"]]
+
+     ;; --------------------------------------------------
+     ;; Join Vectors,Convert List to Vector
+
+     ;; join any sequence types
+     (vconcat [3 4] ["a" "b"])
+     [3 4 "a" "b"]
+
+     (vconcat [3 4] '("a" "b"))
+     [3 4 "a" "b"]
+
+     (vconcat [3 4] "ab")
+     ;; string elements are converted to char.
+     ;; 97 is the codepoint for the char a
+     [3 4 97 98]
+
+     (arrayp "ab")
+     t
+
+     (length "ab")
+     2
+
+     ;; --------------------------------------------------
+     ;; Convert Vector to List
+     ;; convert vector to list
+     (append [1 2 3] nil)
+     (1 2 3)
+
+     (append [1 2 3] [4 5] )
+     (1 2 3 . [4 5])
+
+     ;; (1 2 3 . [4 5])
+     ;; this is improper list
+
+     (append [1 2 3] [4 5] nil)
+     (1 2 3 4 5)
+
+     (append [1 2 3] [4 5] '(6))
+     ;; (1 2 3 4 5 6)
+     ;; proper list
+   #+end_src
+*** Elisp: List
+   #+begin_src emacs-lisp
+     ;; --------------------------------------------------
+     ;; Create List
+     ; assign a list to a var
+     (setq mylist (list 1 "b" 3))
+     (1 "b" 3)
+
+     ; prints a list
+     (message "%S" mylist)
+     "(1 \"b\" 3)"
+
+     ; assign a list to a var
+     (setq mylist '(a b c))
+     (a b c)
+
+     ; prints a list
+     (message "%S" mylist)
+     "(a b c)"
+
+     ;; create a list of values of variables
+     (let ((x 3) (y 4) (z 5))
+       (message "%S" (list x y z))
+       )
+     "(3 4 5)"
+
+     (make-list 4 0) ;; (0 0 0 0)
+
+
+     ;; --------------------------------------------------
+     ;; Empty List,nil
+     '()
+     nil
+
+     ()
+     nil
+
+     (list)
+     nil
+
+     (eq '() (list)) 
+     t
+
+     (eq '() nil)
+     t
+
+     (eq (list )nil)
+     t
+
+     ;; --------------------------------------------------
+     ;; List of Numbers (aka Range Function)
+
+     ;; creating a range of numbers
+
+     ;; just 1 element
+     (number-sequence 5)
+     (5)
+
+     ;; n to m, inclusive
+     (number-sequence 2 5) 
+     (2 3 4 5)
+
+     ;; using 3 as step
+     (number-sequence 0 9 3) 
+     (0 3 6 9)
+
+     ;; step can be negative
+     (number-sequence 5 0 -1) 
+     (5 4 3 2 1 0)
+
+     ;; boundaries can be float but will not include
+     (number-sequence 2.2 5.3)
+     (2.2 3.2 4.2 5.2)
+
+     ;; --------------------------------------------------
+     ;; Get 1 Element from a List
+     (car (list "a" "b" "c") )
+     "a"
+ 
+     (nth 2 (list "a" "b" "c") ) 
+     "c"
+
+     (car (last (list "a" "b" "c")) ) 	;last element
+     "c"
+
+     ;; --------------------------------------------------
+     ;; Get Sublist
+     (cdr (list "a" "b" "c") ) 
+     ("b" "c")
+
+     (butlast (list "a" "b" "c" "d") 0)	;without the last n elements
+     ("a" "b" "c" "d")
+
+     (butlast (list "a" "b" "c" "d") 2)
+     ("a" "b")
+
+     ;; --------------------------------------------------
+     ;; Prepend to list
+     (cons "a" (list "c" "d") ) 
+     ("a" "c" "d")
+
+
+     (cons (list "a" "b") (list "c" "d") )
+     (("a" "b") "c" "d")
+
+     ;; --------------------------------------------------
+     ;; Append, Join Lists
+     (equal
+      '(1 2 3 4)
+      (append '(1 2) '(3 4))
+      )
+     t
+
+     ;; --------------------------------------------------
+     ;; Modify List Variable
+     (let ((x '(1)))
+       (push 2 x)
+       (equal x '(2 1)) ; true
+       )
+     t
+
+     (setq mylist '("a" "b" "c"))
+     ("a" "b" "c")
+
+     (pop mylist)
+     "a"
+
+     (print mylist)
+
+     ("b" "c")
+     ("b" "c")
+
+
+     - (push list) → Add a element to the front variable. Returns the new list.
+     - (pop list) → Remove first element from the variable. Returns the removed element.
+     - (nbutlast list n) → Remove last n elements from the variable. Returns the new value of the variable.
+     - (setcar list x) → replaces the first element in list with x. Returns x.
+     - (setcdr list x) → replaces the rest of elements in list with x. Returns x.
+
+     ;; --------------------------------------------------
+     ;; List to String
+     ;; convert a list to string
+     (mapconcat 'number-to-string '(1 2 3) ",")
+     "1,2,3"
+
+     ;; convert a list to string
+     (mapconcat 'identity '("a" "b" "c") ",")
+     "a,b,c"
+
+     ;; convert list to string
+
+     (format "%s" '(1 "two" 3))
+     "(1 two 3)"
+
+     (substring (format "%s" '(1 "two" 3)) 1 -1)
+     "1 two 3"
+   #+end_src
+*** Elisp: Map List /Vector
+   #+begin_src emacs-lisp
+     (mapc
+      (lambda (x)
+	(insert (number-to-string (aref x 0))))
+      [[1 2] [3 4]])
+
+     (aref [[1 2] [3 4]] 0)
+     [1 2]
+
+
+     ;; -------------------------------------------------- 
+     ;; dolist (dolist (VAR LIST) BODY)
+
+     (number-sequence 10 20)
+     (10 11 12 13 14 15 16 17 18 19 20)
+
+     (let ((xlist (number-sequence 97 122)))
+       (dolist (n xlist) (insert n)))
+     ;; abcdefghijklmnopqrstuvwxyz
+
+     ;; --------------------------------------------------
+     ;; Apply Function to each element of Sequence.
+
+     ;; get first element of each row
+     (mapcar
+      (lambda (x) (elt x 0))
+      [[1 2] [3 4]] )
+     (1 3)
+
+
+     ;; The major difference between `dolist` and `mapc` is that `dolist` uses expression,
+     ;; mapc uses a function.
+     ;; Also,dolist work with list only, `mapc` works with list and vectors.
+
+     ;; --------------------------------------------------
+     ;; dotime (dotime (VAR COUNT) BODY ...)
+     ;; loop a certain number ot times.Evaluate Body with Var bound to successive integers running from 0.
+     (dotimes (i 4)
+       (insert (number-to-string i)))0123
+
+     (let ((v [3 4 5]))
+       (dotimes (i (length v))
+	 (insert
+	  (number-to-string (elt v i)))))345
+
+     (elt [1 2 3 4] 2)
+     3
+
+     ;; --------------------------------------------------
+     ;; While loop
+
+     (let ((mylist '(a b c)))
+	   (while mylist
+	     (insert (message "%s" (pop mylist)))
+	     (sleep-for 6)))
+     abcnil
+
+     (setq v [3 4 5])
+     (setq i 0)
+
+     (while (< i (length v))
+       (insert (format "%d" (elt v i)))
+       (setq i (1+ i))) ; inserts "345"
+     345nil
+   #+end_src
+*** Elisp: Exit Loop / Function, catch/throw
+   #+begin_src emacs-lisp
+     ;; --------------------------------------------------
+     ;; Elisp: Exit loop / Function,catch / throw
+
+     ;; To exit a loop or function in elisp:
+     ;;     - Use `catch` and `throw` to exit loop or function.These are
+     ;;       like `break`、 `goto`.
+     ;;     - Use `error` or `user-error` to signal a error and exit.
+
+     ;; --------------------------------------------------
+     ;; Exit a function
+
+     - To exit a function,put
+
+     `throw` tagname value.
+
+     - at the place you want to exit,and wrap your function body with a
+
+     `catch` tagname for the target exit position.
+
+     (defun test-exit-f()
+       "example,using catch/throw to exit function"
+       (interactive)
+       (catch 'aaa
+	 (if (y-or-n-p "exit?")
+	     (progn
+	       (message "existing")
+	       (throw 'aaa 3)
+	       )
+	   (progn
+	     (message "went on")
+	     4
+	     ))))
+     (test-exit-f)
+
+
+     ;; --------------------------------------------------
+     ;; Exit by Error --- you can exit by calling `error` or `user-error`
+
+     (defun test-exit-f()
+       "example"
+       (interactive)
+       (if (y-or-n-p "invoke user-error to exit?")
+	   (user-error "Error,because: %s" "you said Y!")
+	 (progn ;else,go on
+	   (message "went on")
+	   "you are good!"
+	   )))
+     (test-exit-f)
+
+     ;; --------------------------------------------------
+     ;; Exit a map
+     (setq myList [0 1 2 3 4 5])
+     [0 1 2 3 4 5]
+
+     ;; map lambda onto a list. If value 3 is found, return 3, else nil
+     (catch 'bbb
+       (mapc
+	(lambda (x)
+	  (message "%s" x)
+	  (when (equal x 3) (throw 'bbb x)))
+	myList)
+       nil
+       )
+     3
+
+     ;; --------------------------------------------------
+     ;; Exit a while loop by Flag
+
+     (setq fou nil)
+     nil
+
+     (not fou)
+     t
+
+     ;; Here's a sample of setting flag:
+     (let ((myList [0 1 2 3 4 5])
+	   (foundFlag-p nil )
+	   (i 0))
+
+       (while (and
+	       (not foundFlag-p)
+	       (<= i (length myList)))
+
+	 ;; if found, set foundFlag-p
+	 (when (equal (elt myList i) 3)
+	   (setq foundFlag-p t)
+	   (message "value: %s" i))
+	   (setq i (1+ i))))
+     nil
+   #+end_src
+*** Elisp: Function Optional Parameters
+*** Elisp: Association List
+*** Elisp: Hash Table
+   Emacs lisp has 2 types of collection of key/value pairs.
+
+   - ~Association List (aka alist)~. → a ordered list of key val pairs. Keys may repeat.
+   - ~Hash Table~. → unordered set of key val pairs. No duplicate keys. Constant access time.
+   
+     #+begin_src emacs-lisp
+       ;; --------------------------------------------------
+       ;; Optional Parameters
+       ;; defining a function with 2 optional params named cc and dd
+
+       (defun myfun (aa bb &optional cc dd)
+	 "test optional arguments"
+	 (insert aa bb cc dd)
+	 )
+       myfun
+
+       ;; call it
+       (myfun "1" "2" "3" "4")
+       1234
+					       ;When a optional parameter is not given, its value is nil
+
+       ;; calling a function with 3rd parameter omitted
+       (myfun "myaa" "mybb" nil "mydd")
+       myaamybb				;show error
+
+
+       ;; --------------------------------------------------
+       ;; Unspecified Number of Parameters (Rest Args)
+
+       ;; defining a function with rest args
+
+       (defun ff (aa bb &rest cc)
+	 "test rest arguments"
+	 (message "%s" cc) ; cc is a list
+	 )
+       ;; test
+       (ff "1" "2" "3" "4")
+
+       "(3 4)"					; the cc value is "(3 4)"
+
+       (defun ff1 (aa bb &optional ee &rest cc)
+	 "test rest arguments"
+	 (message "%s %S" ee cc) ; cc is a list
+	 )
+
+       (ff1 "1" "2" "3" 4 6 7)
+       "3 (4 6 7)"
+
+       (setq a "1" b 2)
+       2
+       (message "%s %d" a b)
+       "1 2"
+
+       ;; --------------------------------------------------
+       ;; No Named Parameter
+       ;; Elisp: Association List
+       ;; Associative List (aka “alist”) is a value type in Emacs Lisp.
+       ;; Alist is a list, where each element is a cons pair, like this (cons
+       ;; key value).
+       ;; Alist is a list, where each element is a cons pair, like this (cons
+       ;; key value).
+
+
+
+       ;; --------------------------------------------------
+       ;; Create Hash Table
+       ;; (make-hash-table :test 'equal) → returns a new hashtable.
+
+       ;; create a hash table
+       (setq myHash (make-hash-table :test 'equal))
+       #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ( ...))
+
+       ;; The :test 'equal is to special what function to use to test key
+       ;; existence.
+
+       ;; if your keys are integers of lisp symbols, you can use  `:test eq`.
+       ;; if your keys are strings, you must use `:test equal`,
+       ;; because `(eq	"x" "x")` return `nil`.
+
+
+       (setq myHash
+	     #s(hash-table
+		size 30
+		test equal
+		data (
+		      "joe" 3
+		      "jane" 9
+		      "liz" 5 )))
+       #s(hash-table size 30 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("joe" 3 "jane" 9 "liz" 5 ...))
+
+       (gethash "joe" myHash)
+       3
+     #+end_src
+     
+** FAQ
+*** What is the difference between sh and shell for org-babel?
+   
+   #+tblname: simple-table
+   | 1 |
+   | 2 |
+   | 3 |
+   | 4 |
+   | 5 |
+
+   #+name: work-with-simple-list-shell
+   #+begin_src shell :var tbl=simple-table
+   echo "$tbl"
+   #+end_src
+
+   #+RESULTS: work-with-simple-list-shell
+   | 1 |
+   | 2 |
+   | 3 |
+   | 4 |
+   | 5 |
+
+   #+BEGIN_SRC shell
+   echo $0
+   #+END_SRC
+
+   #+RESULTS:
+   : /usr/bin/zsh
+
+
+   #+BEGIN_SRC sh
+   echo $0
+   #+END_SRC
+
+   #+RESULTS:
+   : sh
+
+*** How to see emacs Info document about emacs font
+
+   #+begin_src emacs-lisp
+     (info "emacs Font")
+     (info "(elisp) Other char Bits")
+   #+end_src
+
+*** Emacs how to select Major mode
+
+   Ref Link: http://lifegoo.pluskid.org/wiki/EmacsMajorMode.html
+
+   - Multi Major settings
+     #+begin_example
+       ;; Local Variables: **
+       ;; mode: emacs-lisp **
+       ;; comment-column:0 **
+       ;; comment-start: ";; "  **
+       ;; comment-end:"**" **
+       ;; End: **
+     #+end_example
+   - One Major settings
+     #+begin_example
+       ;_*_Emacs-lisp_*_
+       _*_ mode: MODENAME;_*_
+     #+end_example
+
+*** Emacs how to use lexical binding
+   Ref Link: https://www.jwz.org/blog/2012/12/lexical-binding-t/
+
+   #+begin_example
+     ;;; -*- lexical-binding: t -*-
+   #+end_example
+   
+*** emacs terminal 
+   run **emacs -nw**.
+*** Emacs: How to define keys
+
+   #+begin_src emacs-lisp
+     (global-set-key (kbd "M-a") 'backward-char)
+   #+end_src
+
+   you can define these key: **kbd "<C-M-f8>"** .
+
+*** How to add a prefix to every line?
+   - set-mark-command
+   - string-retangele
+*** How to delete the first new n chars of every line?
+   - set-mark-command
+   - kill-retangle(C-x r k)
+*** How to record a sequence of keystrokes?
+   Emacs Keyboard Macro Show Case:
+*** define a keyboard macro
+     - **kmacro-start-macro** Command: **C-x (**
+     - Type your keystrokes   
+     - **kmacro-end-macro**   Command: **C-x )**
+*** run keyboard macro
+    - **call-last-kbd-macro**
+    - **kmacro-end-and-call-macro** Command: **C-x e**, press /e/
+      repeated the defined macro.
+      
+      if you forget the call macro command,just run =M-x
+      apropos-command macro=
+*** Save keyboard macro
+    run =M-x insert-macro= ,then insert named "hello-world" macro in emacs init file for you could after call it.
+
+    #+begin_src emacs-lisp
+       (fset 'hello-world
+      (kmacro-lambda-form [?\C-x ?b ?s ?c tab return return ?\( ?m ?e ?s ?s ?a ?g ?e ?  ?\" ?h ?e ?l ?l ?o ?  ?w ?o ?r ?l ?d ?\" ?\)] 0 "%d"))
+    #+end_src
+*** What's a Major mode
+   Each buffer/file is associated with one major mode.
+   
+   A "**Major Mode**" is a collection of emacs behaviors,designed for specific task.
+
+   Example of major modes:
+   
+   - [[*dired mode][dired mode]]
+   - shell mode
+   - image mode
+   - eww mode
+*** dired mode
+    
+   
