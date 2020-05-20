@@ -109,17 +109,12 @@
       ;; Usage: https://quickref.common-lisp.net/truetype-clx.html
       ;; Source: https://github.com/madand/clx-truetype.git
 
-      ;;(load-module "clx-truetype")
-
-      (ql:quickload :clx-truetype)
+      (ql:quickload "trivial-features")
+      (load-module "clx-truetype")
       ;; setting default font
       (load-module "ttf-fonts")
 
-      ;; cache fonts
-      (xft:cache-fonts)
-
-      (set-font
-       (make-instance 'xft:font :family "Iosevka Fixed SS14" :subfamily "Regular" :size 10))
+      ;;(make-instance 'xft:font :family "Iosevka Fixed SS14" :subfamily "Regular" :size 10)
 
       ;;(load-module "screenshot")
       ;; Set font for messages and modeline
@@ -149,7 +144,7 @@
 
       ;; test
     #+end_src
-    
+*** 
 *** stumpm login manager
     #+begin_src shell :tangle "/sudo::/usr/share/xsessions/stumpwm.desktop"
       [Desktop Entry]
@@ -282,7 +277,7 @@
       export MANPATH="/usr/local/man:$MANPATH"
 
       # You may need to manually set your language environment
-      export LANG=en_US.UTF-8
+      export LANG=zh_CN.UTF-8
 
       # Preferred editor for local and remote sessions
       if [[ -n $SSH_CONNECTION ]]; then
