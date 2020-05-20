@@ -40,7 +40,7 @@
 
       ;; if you want to reload stumpwm,could type =s-ERT ;= then input =loadrc=
 
-      ;; Create myself owm keymap.
+      ;; Create myself own keymap.
 
       (defvar *my-frame-bindings*
 	(let ((m (stumpwm:make-sparse-keymap)))
@@ -114,6 +114,9 @@
       (ql:quickload :clx-truetype)
       ;; setting default font
       (load-module "ttf-fonts")
+
+      ;; slove font question
+      ;; https://github.com/stumpwm/stumpwm/issues/350
 
       ;; cache fonts
       (xft:cache-fonts)
@@ -286,9 +289,9 @@
 
       # Preferred editor for local and remote sessions
       if [[ -n $SSH_CONNECTION ]]; then
-	 export EDITOR='vim'
+	  export EDITOR='vim'
       else
-	export EDITOR='mvim'
+	  export EDITOR='mvim'
       fi
 
       # Compilation flags
@@ -305,7 +308,14 @@
       # alias zshconfig="mate ~/.zshrc"
       # alias ohmyzsh="mate ~/.oh-my-zsh"
       alias et="emacs -nw"
-      alias rm ="trash"
+
+      # trash-cli
+      alias rm='trash-put'
+      alias rm.list='trash-list'
+      alias rm.restore='trash-restore'
+      alias rm.delete='trash-rm'
+      alias rm.empty='trash-empty'
+      alias rm.origin='/bin/rm -fr'
 
       # proxy settings
       # set http_proxy=http://127.0.0.1:1080
