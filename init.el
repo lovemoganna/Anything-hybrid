@@ -12,3 +12,4 @@
 
 (require 'ob-tangle)
 (org-babel-load-file "~/.emacs.d/lisp/init-package.org")
+(put 'narrow-to-page 'disabled nil)

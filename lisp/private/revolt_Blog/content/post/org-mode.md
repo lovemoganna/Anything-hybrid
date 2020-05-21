@@ -1,7 +1,7 @@
 +++
 title = "Org Mode"
 date = 2020-02-24T00:00:00+08:00
-lastmod = 2020-03-29T14:11:58+08:00
+lastmod = 2020-05-21T13:28:04+08:00
 tags = ["emacs", "orgmode"]
 categories = ["emacs", "orgmode"]
 draft = false
@@ -100,7 +100,7 @@ Some example from a text file.
 
 {{< highlight emacs-lisp "linenos=table, linenostart=1" >}}
 (save-excursion
-   (goto-char (point-min))
+				(goto-char (point-min))
 {{< /highlight >}}
 
 In line 1 we remember the current position. Line 2
@@ -111,7 +111,7 @@ the ‘-i’ switch to also preserve the global indentation, if it does
 matter. See Editing Source Code。缩进的设置。
 
 {{< highlight emacs-lisp "linenos=table, linenostart=1" >}}
-     (message "This is line 32")
+(message "This is line 32")
 {{< /highlight >}}
 
 
@@ -235,7 +235,9 @@ below.
 
 #### Evaluating Code Blocks {#evaluating-code-blocks}
 
--    Code Evaluation and Security Issues
+<!--list-separator-->
+
+-  Code Evaluation and Security Issues
 
     just set the variable `org-confirm-babel-evaluate` nil, org
     executes code blocks without prompting the user for
@@ -256,7 +258,9 @@ below.
     (message "%s - %s" "hello" "world")
     ```
 
--    How to Evaluate Code Blocks
+<!--list-separator-->
+
+-  How to Evaluate Code Blocks
 
     Org captures the results of the code block evaluation and
     inserts them in the Org file, right after the code block.
@@ -333,7 +337,9 @@ below.
         : 5
         ```
 
--    Limit code block evaluation
+<!--list-separator-->
+
+-  Limit code block evaluation
 
     The `eval` header agruments can limit evaluation of sepcific
     code blocks and `CALL` keyword. It is useful for protection
@@ -346,7 +352,9 @@ below.
     #+end_src
     ```
 
--    Cache results of evaluation
+<!--list-separator-->
+
+-  Cache results of evaluation
 
     The `cache` header argument is for caching results of evaluating
     code blocks.
@@ -359,9 +367,13 @@ below.
     same input arguments.and that do not have side effects, and do
     not rely on external variables other than the input arguments.
 
-    -    Environment of a Code Block
+    <!--list-separator-->
 
-        -    Passing a default value
+    -  Environment of a Code Block
+
+        <!--list-separator-->
+
+        -  Passing a default value
 
             The following syntax is used to pass arguments to code blocks
             using the ‘var’ header argument.

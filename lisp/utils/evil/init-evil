@@ -29,6 +29,7 @@
 "b j" 'buf-move-down
 "b h" 'buf-move-left
 "b l" 'buf-move-right
+"u s" 'unix-sync
 "b d" 'kill-buffer-and-window)
 
 ;; test the super key.

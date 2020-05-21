@@ -7,22 +7,22 @@
 #+hugo_tags: emacs orgmode
 #+hugo_categories: emacs orgmode
   
-  Org can edit, format, extract, export, and publish source code blocks.
+Org can edit, format, extract, export, and publish source code blocks.
   
-  Org can also compile and execute a source code block, then capture the results.
+Org can also compile and execute a source code block, then capture the results.
   
-  Users can control how live they want each source code block by
-  tweaking the header arguments (see Using Header Arguments) for
-  compiling, execution, extraction, and exporting. 
+Users can control how live they want each source code block by
+tweaking the header arguments (see Using Header Arguments) for
+compiling, execution, extraction, and exporting. 
 
-  <!--more-->
+<!--more-->
   
-  Org can also link a compiler error message to the appropriate line
-  in the source code block.
+Org can also link a compiler error message to the appropriate line
+in the source code block.
   
-  An important feature of Org’s management of source code blocks is the
-  ability to pass variables, functions, and results to one another using
-  a common syntax for source code blocks in any language.
+An important feature of Org’s management of source code blocks is the
+ability to pass variables, functions, and results to one another using
+a common syntax for source code blocks in any language.
 
 ** Structure of Code Blocks
    
@@ -98,7 +98,7 @@
    3.定位到代码位置（在导出的HTML里面生效）
    #+BEGIN_SRC emacs-lisp -n -r
      (save-excursion                 (ref:sc)
-	(goto-char (point-min))      (ref:jump)
+				     (goto-char (point-min))      (ref:jump)
    #+END_SRC
 
    In line [[(sc)]] we remember the current position. [[(jump)][Line (jump)]]
@@ -109,12 +109,12 @@
    the ‘-i’ switch to also preserve the global indentation, if it does
    matter. See Editing Source Code。缩进的设置。
 
-    #+BEGIN_SRC emacs-lisp -n -r -i 10
-     (message "This is line 32")
-    #+END_SRC
+   #+BEGIN_SRC emacs-lisp -n -r -i 10
+(message "This is line 32")
+   #+END_SRC
 
-    #+RESULTS:
-    : This is line 32
+   #+RESULTS:
+   : This is line 32
 
 ** Using Header Arguments
    
@@ -142,7 +142,7 @@
 
 
 *** Header arguments in Org mode properties
-     ~#+PROPERTY: header-args:Emacs-lisp  :session *Emacs-lisp*~
+    ~#+PROPERTY: header-args:Emacs-lisp  :session *Emacs-lisp*~
     
     For header arguments applicable to the buffer, use ‘PROPERTY’
     keyword anywhere in the Org file
@@ -280,67 +280,67 @@
 	... call_<name>[<inside header arguments>](<arguments>)[<end header arguments>] ...
       #+end_example
       
-     - /name/ 参数的使用
- 
-        假设我们需要调用其他文件里面的函数 [[file:org_call_test::*demo-one][demo-one]]，则需要按照以下方
-        法来进行操作:
-        #+begin_example
+      - /name/ 参数的使用
+
+	假设我们需要调用其他文件里面的函数 [[file:org_call_test::*demo-one][demo-one]]，则需要按照以下方
+	法来进行操作:
+	#+begin_example
 	  ,#+CALL: org_call_test:sayHello()
 
 	  ,#+RESULTS:
 	  : "hello world"
-        #+end_example
-     
-       - org_call_test 是一个文件
-       - sayHello 是上面文件的一个名字为 ~sayHello~ 的代码块。
-	  
-     - /arguments/ 参数的使用
-      
-       现在我在另外一个文件中的 =org_call_test= 中，名为 =sayHello= 的
-       代码块中的代码如下：
-       #+name: sayHello
-       #+begin_src emacs-lisp :var n = 2
-	(defun sayHello(n)
-	  (format "%s" (message (number-to-string n))))
-	(sayHello n)
-       #+end_src
+	#+end_example
 
-       #+RESULTS: sayHello
-       : 2
-      
-       现在咱们调用它，如下：
-      
-       #+begin_example
-	 ,#+CALL: org_call_test:sayHello(n=5)
+	- org_call_test 是一个文件
+	- sayHello 是上面文件的一个名字为 ~sayHello~ 的代码块。
 
-	 ,#+RESULTS:
-	 : 5
-       #+end_example
+      - /arguments/ 参数的使用
 
-     - /inside header arguments/ 参数的使用
-       
-       Org passes inside header arguments to the named code block
-       using the header argument syntax. Inside header arguments apply
-       to code block evaluation.
+	现在我在另外一个文件中的 =org_call_test= 中，名为 =sayHello= 的
+	代码块中的代码如下：
+	#+name: sayHello
+	#+begin_src emacs-lisp :var n = 2
+	  (defun sayHello(n)
+	    (format "%s" (message (number-to-string n))))
+	  (sayHello n)
+	#+end_src
 
-       #+begin_example
-	 ,#+CALL: org_call_test:sayHello(n=5) [:results output]
+	#+RESULTS: sayHello
+	: 2
 
-	 ,#+RESULTS:
-	 : 5
-       #+end_example
+	现在咱们调用它，如下：
 
-     - /end header agruments/ 参数的使用
-       
-       End header arguments affect the results returned by the code
-       block.
-       
-       #+begin_example
-	 ,#+CALL: org_call_test:sayHello(n=5) [:results md]
+	#+begin_example
+	  ,#+CALL: org_call_test:sayHello(n=5)
 
-	 ,#+RESULTS:
-	 : 5
-       #+end_example
+	  ,#+RESULTS:
+	  : 5
+	#+end_example
+
+      - /inside header arguments/ 参数的使用
+
+	Org passes inside header arguments to the named code block
+	using the header argument syntax. Inside header arguments apply
+	to code block evaluation.
+
+	#+begin_example
+	  ,#+CALL: org_call_test:sayHello(n=5) [:results output]
+
+	  ,#+RESULTS:
+	  : 5
+	#+end_example
+
+      - /end header agruments/ 参数的使用
+
+	End header arguments affect the results returned by the code
+	block.
+
+	#+begin_example
+	  ,#+CALL: org_call_test:sayHello(n=5) [:results md]
+
+	  ,#+RESULTS:
+	  : 5
+	#+end_example
 ***** Limit code block evaluation
       
       The ~eval~ header agruments can limit evaluation of sepcific

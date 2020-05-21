@@ -323,6 +323,9 @@
 
       # Note the source command must be at the end of .zshrc
       source "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+      # set primary monitor
+      mons -s
     #+end_src
 
 
