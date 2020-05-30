@@ -1,0 +1,30 @@
+{
+  "title": "js",
+  "author": "lyps",
+  "description": "Anti-build",
+  "language": "zh-hans",
+  "styles": {
+  },
+  "structure": {
+    "readme": "README.md"
+  },
+  "links": {
+    "sidebar": {
+      "webpack": "https://webpack.js.org"
+    }
+  },
+  "plugins": [
+    "-sharing",
+    "splitter",
+    "expandable-chapters-small",
+    "theme-comscore",
+    "back-to-top-button",
+    "search-pro",
+    "prism",
+    "todo",
+    "toggle-chapters",
+    "multipart",
+    "-highlight",
+    "styles-less"
+  ]
+}

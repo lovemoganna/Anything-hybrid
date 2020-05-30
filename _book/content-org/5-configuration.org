@@ -1,0 +1,21 @@
+** Configuration
+
+这个配置是通过webpack基于它的定义属性来处理的.
+
+因为它是标准的Nodejs commonjs 模块.你可以做:
+
+- import other file, using =require (...)=
+- use utilities on npm
+- use js control flow expressions, eg. the =?:= operator.
+- use constants or variables for often used values.
+- write and execute functions to generate a part of the configuration
+
+
+** simple configuration
+** Multiple configuration
+** Using other Configuration Languages
+
+- typescript
+- coffeescript
+- Babel
+- JSX
