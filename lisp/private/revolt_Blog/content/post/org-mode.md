@@ -1,7 +1,7 @@
 +++
 title = "Org Mode"
 date = 2020-02-24T00:00:00+08:00
-lastmod = 2020-05-21T13:28:04+08:00
+lastmod = 2020-05-26T10:51:17+08:00
 tags = ["emacs", "orgmode"]
 categories = ["emacs", "orgmode"]
 draft = false

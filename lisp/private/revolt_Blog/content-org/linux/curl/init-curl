@@ -1,0 +1,571 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+startup: content
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-05-24 Sun>
+#+hugo_tags: 
+#+hugo_categories: 
+#+title: Curl
+
+curl 是一个url资源下载器.
+
+<!--more-->
+
+** communication
+   
+   - Most discussions are held on mailing lists.All issues are
+     discussed and handled by bug trackers.
+
+   - Encourage: if you are mailing for the first time,it might be good
+     to read a few old mails first to get to learn the culture and
+     what's considered good practice.
+
+** Mailling list etiquette(邮件礼仪/规矩)
+
+   其实邮件这玩意也是老外那边传过来的.规矩还是得学学,才能傲游世界.
+
+   - Do not mail a single individual
+     
+     别光给一个人发邮件.这样的目的就是最大程度的让世界上的人了解所有正
+     在发生的问题,以及解决这个问题的过程.
+
+   - Reply or new mail
+     
+     就是一堆人谈论一个重复的问题,但是这个问题之前已经解决了.你就别在
+     那个已经解决的邮件之上讨论了.自己再单独创建一个新邮件讨论就行了,
+     就是别污染之前别人的讨论结果.可以在你的邮件里面引用之前的讨论.
+     
+     仅从技术角度! 老外喜欢高真实度还原事实.
+
+   - Reply to the list
+     
+     回复给邮件群组的时候,一定要点回复全部,一个软件的开发有时候不是一
+     个作者,他可能是一个团队.
+
+   - Use a sensible subject
+     
+     使用一个简介明了的词,一针见血的指出问题就可以.
+
+   - Do not top-post
+     
+     回复信息的时候,不要使用自下而上的回复方式.省得麻烦别人还得把邮件
+     划到最下方看原始内容.
+
+     程序按顺序执行的,搞开发的也一样.随时保持脑路清晰.
+
+   - [[https://www.netmeister.org/news/learn2quote.html][quote]]
+
+   - Digest(摘要)
+     
+     一般情况下,加几个脚注就可以解决.
+
+   - Please tell us how you solved the problem
+     
+     还原过程,陈述事实.
+
+   - Mailling Lists
+     
+     1. curl-users
+
+     2. curl-library
+
+     3. curl-announce
+
+   - Reporting bugs
+     
+     1. A bug is a problem
+
+     2. Problems must be known to get fixed
+
+	必须得描述清楚问题,bug才能够被解决
+
+     3. Fixing the poroblems
+
+     4. A good bug report
+	
+	- 一个好的bug报告必须揭示了发生了什么,以及它发生的过程.
+
+	- 声明你正在使用的设备的信息版本号.(一步一步的陈述清楚)
+
+	- 在提交报告之后,你可能会按照要求做一些尝试,开发者就会缩小bug
+          产生的范围,确保你的问题可以正确的被解决.
+
+	- 开发者如果读不懂你提交的bug报告,自然你的问题会被遗弃.也有可
+          能人家正在忙别的事,你需要重复提交一份报告(如果觉得bug报告描
+          述的不够好,可以修正一下,为了解决问题,需要有百折不挠的精神.)
+	  
+	curl 的bug追踪器设置在 github上面.[[https://github.com/curl/curl/issues][curl bug trackers]].
+
+     
+
+   - Testing
+     
+     common problem have memory leak or something fishy in the
+     protocol layer.
+
+     其中有一个最大的问题是,curl官方的测试套件根本没办法在其他平台运行.所
+     以注定会在别的平台有漏洞.
+
+   - Releases
+
+     github search
+
+   - Daily snapshots
+     
+     don't important
+
+   - Install
+     
+     if you want to build applications against libcurl, you need a
+     development package installed to get the include headers and some
+     additional documentation.You can then select ta libcurl with the
+     TLS backend your prefer:
+     
+     #+BEGIN_EXAMPLE
+       libcurl4-openssl-dev
+       libcurl4-nss-dev
+       libcurl4-gnutls-dev
+     #+END_EXAMPLE
+     
+** Network and protocols
+   
+*** Networking simplified
+    
+    Networking means communicating between two endpoints on the
+    internet.
+    
+    The internet is just a bunch(一堆) of interconnected
+    machines(computers really),each using their own private
+    address.(IP address).
+
+    The addresses each machine have can be of different types and
+    machines can even have temporary addresses.These computers are
+    often called hosts.(主机)
+    
+*** Which machine
+    
+    When you want to initiate a transfer to one of the machines out
+    there (a server),you usually do not know its IP address but
+    instead you usually know its name.The name of the machine you will
+    talk to is embedded in the URL that you work with when you use
+    curl.
+    
+    You might use a URL like ="http://example.com/index.html"=, which
+    means you will connect to and communicate with the host named
+    example.com.
+
+  
+*** Host name resolving 
+    
+    Once we know the host name, we need to figure out which IP address
+    that host has so that we can contact it.
+    
+    Converting the name to an IP address is often called 'Name
+    resolving'.The name is "resolved" to one or a set of
+    addresses. This is usually done by "DNS Server",DNS being like a
+    big lookup table that can convert names to addresses - all the
+    names on the Internet, really. Your computer normally already
+    knows the address of a computer that runs the DNS server as that
+    is part of setting up the network.
+
+    
+*** Establish a connection
+    
+    With a list of IP addresses for the host curl wants to
+    contact,curl sends out a "connect request".The connection curl
+    wants to establish is called TCP (Transmission Control Protocol)
+    and it works sort of like connecting an invisible string between
+    two computers.Once established,it can be used to send a stream of
+    data in both directions.
+    
+*** Connects to "port numbers"
+    
+    When connecting with TCP to a remote server, a client selects
+    which port number to do that on.
+    
+    A port number is just a dedicated place for a particular
+    service,which allows that same server to listen to to other
+    services on other port numbers at the same time.
+    
+    
+** Command line options
+   
+
+
+
+
+   
+** 让我们一起来Hack资源
+
+   今天我们就来掠取一些有意思的东西吧.
+   
+   教育分为多面,成绩,富贵啥的先放在一边吧.就先教会孩子怎么保护自己,健康的
+   活着才是一切的基础.
+
+   作为大人,有能力还是多做点吧.很多人把弘扬社会责任变成牟利的工具.
+
+   我也不多BB,免费的东西才是最贵的.
+
+   天下大事,近收眼底.奈何无为.
+
+   孩子在手,长在眼前,岂能不管?(别傻啦吧唧的老打孩子).多动脑子.
+
+   落后的脑子怎么能教育出先进的孩子哪?
+   
+*** Massion
+    
+    重组数据,让农村更加美好.
+    
+   - target: https://www.cxy61.com/girl/child_sexual_education/child_view.html
+   
+     #+BEGIN_SRC shell :results verbatim
+       curl https://www.cxy61.com/girl/child_sexual_education/child_view.html
+     #+END_SRC
+
+     #+RESULTS:
+     #+begin_example
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121322429-1"></script>
+     <script>
+	     window.dataLayer = window.dataLayer || [];
+	     function gtag(){dataLayer.push(arguments);}
+	     gtag("js", new Date());
+	     gtag("config", "UA-121322429-1");
+	 </script>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>孩子看的</title>
+     <link href="css/bootstrap.css" rel="stylesheet">
+     <link rel="stylesheet" href="plugins/ionicons/css/ionicons.css">
+     <link rel="stylesheet" href="plugins/owlcarousel/owl.carousel.css">
+     <link rel="stylesheet" href="css/child_view.css">
+     <style type="text/css">
+			     @media (max-width: 991px) {
+				     .ui-login-view, .phone-reg-view .close, .phone-reg-view .phone-reg-account-view, .find-password-view .close, .find-password-view .find-password-account-view, .choose-avatar-view-s, .choose-avatar-view .close {
+				     width: 90%;
+				 }
+				 .bc-alert-view .bc-alert-btns, .bc-alert-view .bc-alert-msg {
+				     width: 70%;
+				 }
+			     }
+			     @media (min-width: 768px) {
+				 .section-title {
+				     width: 768px;
+				 }
+				 .ui-login-view, .phone-reg-view .close, .phone-reg-view .phone-reg-account-view, .find-password-view .close, .find-password-view .find-password-account-view, .choose-avatar-view-s, .choose-avatar-view .close {
+				     width: 50%;
+				 }
+			     }
+			     @media (min-width: 992px) {
+				 .section-title {
+				     width: 970px;
+				 }
+				     .ui-login-view, .phone-reg-view .close, .phone-reg-view .phone-reg-account-view, .find-password-view .close, .find-password-view .find-password-account-view, .choose-avatar-view-s, .choose-avatar-view .close {
+				     width: 45%;
+				 }
+			     }
+			     @media (min-width: 1200px) {
+				 .section-title {
+				     width: 1170px;
+				 }
+				 .ui-login-view, .phone-reg-view .close, .phone-reg-view .phone-reg-account-view, .find-password-view .close, .find-password-view .find-password-account-view, .choose-avatar-view-s, .choose-avatar-view .close {
+				     width: 35%;
+				 }
+			     }
+		     </style>
+     </head>
+     <body>
+     <div class="page-wrapper">
+     <div class="page-header">
+     <header class="header stuck">
+     <div class="container">
+     <div class="logo" style="height: 70px;line-height: 70px;">
+     <img src="images/img_top.png" style="height: 50px;" />
+     </div>
+     <div class="mobile-menu">
+     <a href=""><i class="ion-android-menu"></i></a>
+     </div>
+     <div class="main-nav">
+     <ul class="main-nav-inner">
+     <li><a class="home" style="color: rgb(179, 179, 179);font-size: 20px;cursor: pointer;">首页</a></li>
+     <li><a class="parentView" style="color: rgb(179, 179, 179);font-size: 20px;cursor: pointer;">家长看的</a></li>
+     <li><a class="childView" style="color: rgb(92, 96, 99);font-size: 20px;cursor: pointer;">孩子看的</a></li>
+     <li><a class="quit" style="color: rgb(179, 179, 179);font-size: 20px;cursor: pointer;display: none;">退出</a></li>
+     </ul>
+     </div>
+     </div>
+     </header>
+     </div>
+     <main class="page-content">
+     <section id="two" class="section-padding">
+     <div class="section-title" style="text-align: left;margin-bottom: 0">
+     <h3 class="esseyartical"><span style="padding-bottom: 5px;border-bottom: solid 3px rgb(104, 104, 104);color: rgb(84, 84, 84);">给孩子看的</span></h3>
+     </div>
+     <div class="container mb-80 message">
+     </div>
+     <script type="text/html" id="message-template">
+						     {{each}}
+							     <div class="row" style="background-color: white;padding: 20px;margin-top: 20px;">
+								     <div class="col-md-2" style="display: none;">
+									     <div class="mockup">
+										     <img src={{$value.images}} class="mockup-front wow fadeInUp" data-wow-delay="0.4s"  alt="" style="margin: 0 auto;" />
+									     </div>
+								     </div>
+								     <div class="col-md-10 jump" data-link={{$value.link}} style="cursor: pointer;">
+									     <div class="mockup-text mb-sm-80 mb-xs-65 wow fadeInUp" data-wow-delay="0.2s" style="padding-top: 0;padding-bottom: 0;">
+										     <h3 class="mb-0" style="text-align: left;color: rgb(84, 84, 84);">{{$value.title}}</h3>
+										     <p style="font-size: 14px;color: rgb(143, 143, 143);text-align: left;line-height: 30px;">{{$value.content}}</p>
+									     </div>
+								     </div>
+								     <div class="col-md-2" style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+									     {{if $value.islike}}
+										     <img class="heart" data-pk={{$value.pk}} src="images/zan.png" style="cursor: pointer;">
+									     {{else}}
+										     <img class="heart" data-pk={{$value.pk}} src="images/no_zan.png" style="cursor: pointer;">
+									      {{/if}}
+									     <div style="font-size: 17px;color: rgb(143, 143, 143);">{{$value.like}}人点赞</div>
+								     </div>
+							     </div>
+						     {{/each}}
+					     </script>
+     </section>
+     </main>
+     </div>
+     <script type="text/html" id="country-option-template">
+			     {{each}}
+				     <li class="country-option{{if $value.code==+86}} select{{/if}}" data-code="{{$value.code}}">
+					     <span class="codeCty">{{$value.code}}</span>
+					     <span class="country">{{$value.country}}</span>
+				     </li>
+			     {{/each}}
+		     </script>
+     <div class="phone-invite-shadow-view">
+     <div class="phone-invite-view">
+     <div class="close ui-login-view">
+     <img style="position: absolute;right: 10px;" src="../statics/images/close-w.png"/>
+     </div>
+     <div class="tabs ui-login-view">
+     <div class="tab unselect phone">手机号登录</div>
+     <div class="tab select invite">邀请码登录</div>
+     </div>
+     <div class="account-view ui-login-view phone-account-view" data-tag="phone">
+     <div class="username ui-login-input-view">
+     <div class="code-country">
+     <span>+86</span>
+     <img src="../statics/images/arrow_d1.png" style="width: 20px;">
+     </div>
+     <ul class="country-options">
+     </ul>
+     <input class="ui-login-input" placeholder="请输入手机号" />
+     </div>
+     <div class="password ui-login-input-view">
+     <input class="ui-login-input" type="password" placeholder="请输入密码" />
+     </div>
+     <div class="tips">
+     <span>已有邀请码用户，可以直接登陆，建议登陆后在问号里绑定手机，方便找回密码！</span>
+     </div>
+     <div class="login-btn">
+     <span class="login">登录</span>
+     </div>
+     <div class="login-footer">
+     <span class="go-reg">立即注册</span>
+     <span class="login-footer-line">|</span>
+     <span class="forgot-psd">忘记密码</span>
+     </div>
+     </div>
+     <div class="account-view ui-login-view invite-account-view" data-tag="invite">
+     <div class="username ui-login-input-view">
+     <input class="ui-login-input" placeholder="请输入邀请码" />
+     </div>
+     <div class="password ui-login-input-view">
+     <input class="ui-login-input" type="password" placeholder="请输入密码" />
+     </div>
+     <div class="login-btn">
+     <span class="login">登录</span>
+     </div>
+     </div>
+     </div>
+     </div>
+     <div class="phone-reg-shadow-view">
+     <div class="phone-reg-view">
+     <div class="close">
+     <img src="../statics/images/close-w.png"/>
+     </div>
+     <div class="phone-reg-account-view">
+     <div class="view-tag">注册</div>
+     <div class="phone">
+     <div class="code-country">
+     <span>+86</span>
+     <img src="../statics/images/arrow_d1.png" style="width: 20px;">
+     </div>
+     <ul class="country-options">
+     </ul>
+     <input placeholder=" 请输入手机号" />
+     </div>
+     <div class="verify-code">
+     <input type="text" placeholder="请输入验证码" />
+     <span class="get-code">获取验证码</span>
+     </div>
+     <div class="password">
+     <input type="password" placeholder="请输入密码" />
+     </div>
+     <div class="reg-next-btn">
+     <span class="reg-next">下一步</span>
+     </div>
+     </div>
+     </div>
+     </div>
+     <div class="choose-avatar-shadow-view">
+     <div class="choose-avatar-view">
+     <div class="close ui-choose-avatar-view">
+     <img src="../statics/images/close-w.png"/>
+     </div>
+     <div class="choose-avatar-view-s">
+     <div class="choose-avatar-account-view ui-choose-avatar-view">
+     <div class="view-tag">注册</div>
+     <div class="choose-avatar">
+     <span class="text">选择头像</span>
+     <img src="https://static1.bcjiaoyu.com/avatars/1.png">
+     </div>
+     <div class="nickname">
+     <input placeholder="请输入昵称" />
+     </div>
+     <div class="reg-btn">
+     <span class="reg">完成</span>
+     </div>
+     </div>
+     <div class="avatars-view">
+     <div class="avatars">
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/1.png">
+     </div>
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/2.png">
+     </div>
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/3.png">
+     </div>
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/4.png">
+     </div>
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/5.png">
+     </div>
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/6.png">
+     </div>
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/7.png">
+     </div>
+     <div class="avatar">
+     <img src="https://static1.bcjiaoyu.com/avatars/8.png">
+     </div>
+     </div>
+     <div class="submit-avatar">
+     <span class="submit">确定</span>
+     </div>
+     </div>
+     </div>
+     </div>
+     </div>
+     <div class="find-password-shadow-view">
+     <div class="find-password-view">
+     <div class="close">
+     <img src="../statics/images/close-w.png"/>
+     </div>
+     <div class="find-password-account-view">
+     <div class="view-tag">找回密码</div>
+     <div class="phone">
+     <div class="code-country">
+     <span>+86</span>
+     <img src="../statics/images/arrow_d1.png" style="width: 20px;">
+     </div>
+     <ul class="country-options">
+     </ul>
+     <input placeholder=" 请输入手机号" />
+     </div>
+     <div class="verify-code">
+     <input type="text" placeholder="请输入验证码" />
+     <span class="get-code">获取验证码</span>
+     </div>
+     <div class="password">
+     <input type="password" placeholder="请输入新密码" />
+     </div>
+     <div class="reset-psd-btn">
+     <span class="reset-psd">确认修改密码</span>
+     </div>
+     </div>
+     </div>
+     </div>
+     <div class="phone-bind-shadow-view">
+     <div class="phone-bind-view">
+     <div class="close">
+     <img src="../statics/images/close-w.png"/>
+     </div>
+     <div class="phone-bind-account-view">
+     <div class="view-tag">绑定手机</div>
+     <div class="phone">
+     <div class="code-country">
+     <span>+86</span>
+     <img src="../statics/images/arrow_d1.png" style="width: 20px;">
+     </div>
+     <ul class="country-options">
+     </ul>
+     <input placeholder=" 请输入手机号" />
+     </div>
+     <div class="verify-code">
+     <input type="text" placeholder="请输入验证码" />
+     <span class="get-code">获取验证码</span>
+     </div>
+     <div class="password">
+     <input type="password" placeholder="请设置密码" />
+     </div>
+     <div class="bind-btn">
+     <span class="bind">立即绑定</span>
+     </div>
+     </div>
+     </div>
+     </div>
+     <script src="js/jquery.js"></script>
+     <script src="js/bootstrap.js"></script>
+     <script src="plugins/jquery.singlePageNav.js"></script>
+     <script src="plugins/parallax.js"></script>
+     <script src="plugins/jquery.ajaxchimp.js"></script>
+     <script src="plugins/particles.js"></script>
+     <script src="plugins/wow.js"></script>
+     <script src="plugins/magnific-popup/jquery.magnific-popup.js"></script>
+     <script src="plugins/owlcarousel/owl.carousel.js"></script>
+     <script type="text/javascript" src="../libs/template.js?v=1.1"></script>
+     <script src="js/child_view.js?v=1.1"></script>
+     </body>
+     </html>
+     #+end_example
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

@@ -1,63 +1,61 @@
 ;; 关闭工具栏，Tool-Bar-Mode 即为一个 Minor Mode
- (tool-bar-mode -1)
- (menu-bar-mode -1)
- ;; 关闭文件滑动控件
-;; (scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+;; 关闭文件滑动控件
+(scroll-bar-mode -1)
 
- ;; 显示行号
- ;; (global-linum-mode 1)
+;; 显示行号
+(global-linum-mode 1)
 
- ;; 关闭启动帮助画面
- (setq inhibit-splash-screen t
-       initial-scratch-message ";;-------------------- Remake-
+;; 关闭备份文件
+(setq make-backup-files nil)
+
+;; 关闭启动帮助画面
+(setq inhibit-splash-screen t
+      initial-scratch-message ";;-------------------- Remake-
   \n\n"
-       ;; initial-major-mode 'org-mode
-       )
+      ;; initial-major-mode 'org-mode
+      )
 
-					 ; 开启全局 Company 补全
- (global-company-mode 1)
+					; 开启全局 Company 补全
+(global-company-mode 1)
 
- ;; different state cursor form
- (setq-default cursor-type 'bar)
+;; different state cursor form
+(setq-default cursor-type 'bar)
 
- ;; simple request
- (fset 'yes-or-no-p 'y-or-n-p)
+;; simple request
+(fset 'yes-or-no-p 'y-or-n-p)
 
- ;; show time in mode line
- (setq display-time-24hr-format t)
- (setq display-time-day-and-date t)
+;; show time in mode line
+(setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
 
- (display-time)
- ;; highlight selected area
- (transient-mark-mode t)
+(display-time)
+;; highlight selected area
+(transient-mark-mode t)
 
- ;; 显示匹配的括号
- (show-paren-mode t)
+;; 显示匹配的括号
+(show-paren-mode t)
 
- ;; disable create bak file
- (setq-default make-backup-files nil)
+;; disable create bak file
+(setq-default make-backup-files nil)
 
- ;; 括号自动补全
- (electric-pair-mode 1)
+;; 括号自动补全
+(electric-pair-mode 1)
 
- ;; auto fill mode
- (add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; auto fill mode
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
- ;; UTF-8 as default encoding
- (set-language-environment "UTF-8")
- (set-default-coding-systems 'utf-8-unix)
+;; UTF-8 as default encoding
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8-unix)
 
- ;; hacks to reduce the startup time.
- (setq gc-cons-threshold (expt 2 24))
- (setq load-prefer-newer t)
+;; hacks to reduce the startup time.
+(setq gc-cons-threshold (expt 2 24))
+(setq load-prefer-newer t)
 
- ;; personal information
- ;; (setq user-full-name "revolt")
-
-;; set proxy
-
-(setq url-gateway-method 'socks)
-(setq socks-server '("Default server" "127.0.0.1" 1081 5))
+;; personal information
+;; (setq user-full-name "revolt")
 
 ;; import customzie path
 (add-to-list 'load-path "~/.emacs.d/lisp/customize")

@@ -521,7 +521,9 @@ a common syntax for source code blocks in any language.
 	| 2 |
 	| 3 |
 	| 4 |
+
 ** Extracting Source Code
+
    Extracting source code from code blocks is a basic task in literate
    programming.Org has features to make this easy.In literate
    programming parlance.Documents on creation are woven with code and

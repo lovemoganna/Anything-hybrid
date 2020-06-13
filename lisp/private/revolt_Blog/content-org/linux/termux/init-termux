@@ -1,0 +1,47 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-06-03 Wed>
+#+hugo_tags: 
+#+hugo_categories: 
+#+title: Termux
+
+** How to connection your andriod device use adb
+   
+   MY device: google pixel 2xl.
+   
+   - first: enter develop state,press your device version,and use your
+   hand press seven times.then your enter develop state.
+   
+   - two: select **usb debug**
+
+   - three: install **adb**, then run **adb devices**,if is the
+     fllowed result,you success connect your phone in use adb.
+
+     #+BEGIN_SRC shell :results verbatim
+       adb devices
+     #+END_SRC
+
+     #+RESULTS:
+     : List of devices attached
+     : 909KPVH2080791	device
+     : 
+
+   Mission: slove my phone termux cannot ssh connect question.
+
+   slove methods: [[https://glow.li/technology/2016/9/20/access-termux-via-usb/]]
+
+*** Question
+    
+    - error: insufficient permissions for device
+      
+      you could see here slove:
+
+      https://itsfoss.com/fix-error-insufficient-permissions-device/
+

@@ -1,7 +1,7 @@
 +++
 title = "Unix power tools"
 date = 2020-05-19T00:00:00+08:00
-lastmod = 2020-05-21T20:49:24+08:00
+lastmod = 2020-05-24T16:19:04+08:00
 tags = ["linux-command"]
 categories = ["linux-command"]
 draft = false
@@ -151,62 +151,50 @@ ps x
 ```
 
 ```text
-   PID TTY      STAT   TIME COMMAND
-   563 ?        Ss     0:00 /usr/lib/systemd/systemd --user
-   564 ?        S      0:00 (sd-pam)
-   677 ?        Sl     0:00 /usr/bin/startplasma-x11
-   684 ?        Ss     0:00 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
-   748 ?        Sl     0:00 /usr/lib/dconf-service
-   762 ?        Sl     0:00 /usr/bin/plasma_session
-   780 ?        Rl   589:15 /usr/bin/kwin_x11 -session 10bdca6d61000158998168400000006870007_1589982425_893779
-   792 ?        SNl    0:00 /usr/bin/baloo_file
-   884 ?        SNl    0:00 /usr/lib/tracker-miner-fs
-   887 ?        Sl     0:00 /usr/lib/tracker-miner-rss
-   907 ?        Sl     0:00 /usr/lib/telepathy/mission-control-5
-   910 ?        Ssl    0:00 /usr/lib/gvfsd
-   954 ?        Sl     0:00 /usr/lib/gvfsd-fuse /run/user/1000/gvfs -f
-   990 ?        Ssl    0:00 /usr/lib/gvfs-udisks2-volume-monitor
-  1147 ?        Ss     0:00 /usr/lib/bluetooth/obexd
-  1353 ?        S<sl   0:01 /usr/bin/pulseaudio --daemonize=no
-  1369 ?        Sl     0:00 /usr/lib/pulse/gsettings-helper
-  1384 ?        S      0:00 /usr/bin/kwalletd5 --pam-login 7 3
-  1385 ?        Sl    10:10 /usr/bin/stumpwm
-  1403 ?        Sl     0:11 fcitx
-  1412 ?        Ss     0:00 /usr/bin/dbus-daemon --syslog --fork --print-pid 4 --print-address 6 --config-file /usr/share/fcitx/dbus/daemon.conf
-  1417 ?        SN     0:00 /usr/bin/fcitx-dbus-watcher unix:abstract=/tmp/dbus-sXxpaFe8ed,guid=7e73b502f66d1f9069502de05ec5eea6 1412
-  1423 ?        Sl     0:00 /usr/bin/kglobalaccel5
-  1430 ?        Sl     1:20 qv2ray
-  1628 ?        Ssl    0:00 /usr/lib/at-spi-bus-launcher
-  1634 ?        S      0:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
-  1638 ?        Sl     0:00 /usr/lib/at-spi2-registryd --use-gnome-session
-  2164 ?        S      0:17 xterm
-  2166 pts/0    Ss     0:00 zsh
-  2701 ?        Sl    19:14 /usr/lib/firefox/firefox
-  2807 ?        Sl     1:54 /usr/lib/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 6310 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
-  2925 ?        Sl     0:48 /usr/lib/firefox/firefox -contentproc -childID 4 -isForBrowser -prefsLen 7042 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
-  3082 ?        Sl     0:00 /usr/bin/plasma-browser-integration-host /usr/lib/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json plasma-browser-integration@kde.org
-  3124 ?        SLl    0:01 /usr/lib/kdeconnectd
-  3276 ?        Sl     1:32 /usr/lib/firefox/firefox -contentproc -childID 8 -isForBrowser -prefsLen 7353 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
-  4254 ?        Sl     3:03 /usr/lib/firefox/firefox -contentproc -childID 21 -isForBrowser -prefsLen 9206 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
- 16422 ?        Sl     0:29 /usr/lib/v2ray/v2ray -config /home/revolt/.config/qv2ray/generated/config.gen.json
- 17647 ?        Sl     3:16 /usr/lib/firefox/firefox -contentproc -childID 23 -isForBrowser -prefsLen 10177 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
- 22153 ?        S      0:02 xterm
- 22156 pts/2    Ss     0:02 zsh
- 23639 ?        Sl     7:57 /usr/lib/firefox/firefox -contentproc -childID 24 -isForBrowser -prefsLen 10187 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
- 23783 pts/2    S      0:00 /bin/bash
- 23944 pts/2    S      0:12 zsh
- 53464 ?        Sl     0:00 /usr/lib/gvfsd-trash --spawner :1.61 /org/gtk/gvfs/exec_spaw/0
- 53498 ?        Ssl    0:00 /usr/lib/gvfsd-metadata
- 74323 ?        Sl     0:17 /usr/lib/firefox/firefox -contentproc -childID 34 -isForBrowser -prefsLen 10669 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
- 74380 ?        Sl     0:19 /usr/lib/firefox/firefox -contentproc -childID 35 -isForBrowser -prefsLen 10669 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
- 75024 pts/2    S      0:00 -csh
- 75039 pts/2    S      0:00 zsh
- 75950 pts/2    S      0:00 -csh
- 76000 ?        Sl     0:42 /usr/lib/firefox/firefox -contentproc -childID 37 -isForBrowser -prefsLen 10668 -prefMapSize 220269 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2701 true tab
- 77039 pts/2    S+     0:01 zsh
-115698 pts/0    Sl+    0:02 emacs -nw
-115929 ?        Ss     0:00 /usr/bin/zsh
-115930 ?        R      0:00 ps x
+  PID TTY      STAT   TIME COMMAND
+  651 ?        Ss     0:00 /usr/lib/systemd/systemd --user
+  652 ?        S      0:00 (sd-pam)
+  661 ?        S      0:00 /usr/bin/kwalletd5 --pam-login 7 3
+  662 ?        Sl    14:11 /usr/bin/stumpwm
+  670 ?        Ss     0:00 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  673 ?        Sl     0:11 fcitx
+  683 ?        Ss     0:00 /usr/bin/dbus-daemon --syslog --fork --print-pid 4 --print-address 6 --config-file /usr/share/fcitx/dbus/daemon.conf
+  687 ?        SN     0:00 /usr/bin/fcitx-dbus-watcher unix:abstract=/tmp/dbus-8tyfTxJD0k,guid=fecdd2284141e57d98b17e8e5ec8d7cd 683
+  695 ?        Sl     3:19 qv2ray
+  751 ?        Sl     0:00 /usr/lib/dconf-service
+ 2930 ?        Sl     1:52 /usr/lib/v2ray/v2ray -config /home/revolt/.config/qv2ray/generated/config.gen.json
+ 2979 ?        Sl    19:57 /usr/lib/firefox/firefox
+ 2998 ?        Ssl    0:00 /usr/lib/gvfsd
+ 3004 ?        Sl     0:00 /usr/lib/gvfsd-fuse /run/user/1000/gvfs -f
+ 3069 ?        Ssl    0:00 /usr/lib/at-spi-bus-launcher
+ 3099 ?        Sl     0:19 /usr/lib/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 1 -prefMapSize 220399 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2979 true tab
+ 3144 ?        S      0:15 xterm
+ 3155 pts/0    Ss     0:00 zsh
+ 3197 ?        S<sl   0:18 /usr/bin/pulseaudio --daemonize=no
+ 3264 ?        Sl     0:00 /usr/lib/pulse/gsettings-helper
+ 3272 ?        Sl     2:33 /usr/lib/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 6442 -prefMapSize 220399 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2979 true tab
+ 3375 ?        Sl     0:01 /usr/bin/plasma-browser-integration-host /usr/lib/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json plasma-browser-integration@kde.org
+ 3397 ?        Sl     9:22 /usr/lib/firefox/firefox -contentproc -childID 5 -isForBrowser -prefsLen 7248 -prefMapSize 220399 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2979 true tab
+ 3450 ?        SLl    0:03 /usr/lib/kdeconnectd
+ 3640 pts/0    Sl+    1:15 emacs -nw
+ 3810 ?        S      0:01 xterm
+ 3813 pts/1    Ss+    0:13 zsh
+ 4506 ?        Sl     2:11 /usr/lib/firefox/firefox -contentproc -childID 8 -isForBrowser -prefsLen 12156 -prefMapSize 220399 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2979 true tab
+ 4770 ?        Sl     0:27 /usr/lib/firefox/firefox -contentproc -childID 10 -isForBrowser -prefsLen 12157 -prefMapSize 220399 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2979 true tab
+ 5420 ?        S      0:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+ 5427 ?        Sl     0:01 /usr/lib/at-spi2-registryd --use-gnome-session
+22173 pts/1    Sl     1:27 ./firefox.real --class Tor Browser -profile TorBrowser/Data/Browser/profile.default
+22245 pts/1    S      0:07 /home/revolt/tor-browser_en-US/Browser/TorBrowser/Tor/tor --defaults-torrc /home/revolt/tor-browser_en-US/Browser/TorBrowser/Data/Tor/torrc-defaults -f /home/revolt/tor-browser_en-US/Browser/TorBrowser/Data/Tor/torrc DataDirectory /home/revolt/tor-browser_en-US/Browser/TorBrowser/Data/Tor GeoIPFile /home/revolt/tor-browser_en-US/Browser/TorBrowser/Data/Tor/geoip GeoIPv6File /home/revolt/tor-browser_en-US/Browser/TorBrowser/Data/Tor/geoip6 HashedControlPassword 16:f4f85b31fe5b244d60be58a90b4dda505cd40e94d19b874ee206563bd8 +__ControlPort 9151 +__SocksPort 127.0.0.1:9150 IPv6Traffic PreferIPv6 KeepAliveIsolateSOCKSAuth __OwningControllerProcess 22173
+22355 pts/1    Sl     0:02 ./TorBrowser/Tor/PluggableTransports/obfs4proxy
+22435 pts/1    Sl     0:16 /home/revolt/tor-browser_en-US/Browser/firefox.real -contentproc -childID 2 -isForBrowser -prefsLen 899 -prefMapSize 223657 -parentBuildID 20200402110101 -greomni /home/revolt/tor-browser_en-US/Browser/omni.ja -appomni /home/revolt/tor-browser_en-US/Browser/browser/omni.ja -appdir /home/revolt/tor-browser_en-US/Browser/browser 22173 tab
+22503 pts/1    Sl     1:55 /home/revolt/tor-browser_en-US/Browser/firefox.real -contentproc -childID 3 -isForBrowser -prefsLen 899 -prefMapSize 223657 -parentBuildID 20200402110101 -greomni /home/revolt/tor-browser_en-US/Browser/omni.ja -appomni /home/revolt/tor-browser_en-US/Browser/browser/omni.ja -appdir /home/revolt/tor-browser_en-US/Browser/browser 22173 tab
+22747 pts/1    Sl     1:28 /home/revolt/tor-browser_en-US/Browser/firefox.real -contentproc -childID 4 -isForBrowser -prefsLen 1925 -prefMapSize 223657 -parentBuildID 20200402110101 -greomni /home/revolt/tor-browser_en-US/Browser/omni.ja -appomni /home/revolt/tor-browser_en-US/Browser/browser/omni.ja -appdir /home/revolt/tor-browser_en-US/Browser/browser 22173 tab
+23049 pts/1    Sl     0:00 /home/revolt/tor-browser_en-US/Browser/firefox.real -contentproc -childID 5 -isForBrowser -prefsLen 1993 -prefMapSize 223657 -parentBuildID 20200402110101 -greomni /home/revolt/tor-browser_en-US/Browser/omni.ja -appomni /home/revolt/tor-browser_en-US/Browser/browser/omni.ja -appdir /home/revolt/tor-browser_en-US/Browser/browser 22173 tab
+28482 ?        Sl     2:33 /usr/lib/firefox/firefox -contentproc -childID 14 -isForBrowser -prefsLen 12634 -prefMapSize 220399 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2979 true tab
+33788 ?        Sl    19:31 /usr/lib/firefox/firefox -contentproc -childID 15 -isForBrowser -prefsLen 12702 -prefMapSize 220399 -parentBuildID 20200509015111 -appdir /usr/lib/firefox/browser 2979 true tab
+56044 ?        Sl     1:19 /usr/lib/firefox/firefox -contentproc -parentBuildID 20200509015111 -prefsLen 14377 -prefMapSize 220399 -appdir /usr/lib/firefox/browser 2979 true rdd
+58844 ?        Ss     0:00 /usr/bin/zsh
+58845 ?        R      0:00 ps x
 ```
 
 User logged into his ****console****, which shows as _tty?_ in the TTY
@@ -256,6 +244,73 @@ have happened if you didn't.
 
 
 ### Filenames {#filenames}
+
+-   Upper -and lowercase characters
+    
+    Unix filenames are always case senstive.
+
+-   Underscores(\_)
+    
+    make filename more readable.
+
+-   Periods(.)
+    1.  filename extensions.
+    2.  Filenames that begin with a period are treated specially by
+        the shell: wildcards won't match them unless you include the
+        period (like .\*). The ls command,which lists your file,ignore
+        files whose begin with a period unless you give it a special
+        option.
+        
+        ```shell
+        ls -a
+        ```
+
+-   Certains other punctuation.
+    
+    comma(,) , is safe.
+
+-   Some things to be aware of:
+    
+    1.Unix dose not have any concept of a file version.
+    2.Once you delete a file in Unix, it is ****gone forever****.You
+    can't get it back without restoring it from a backup.May be you
+    should have a "grace period".
+
+
+### Filename Extensions {#filename-extensions}
+
+Filename extensions for user's benefit:
+
+| Extension       | Description                           |
+|-----------------|---------------------------------------|
+| .tar            | `tar` archive                         |
+| .tar.gz or .tgz | `gzip` ped tar archive                |
+| .shar           | Shell archive                         |
+| .sh             | Bournel shell script                  |
+| .csh            | C Shell script                        |
+| .mm             | Text file containing troffs mm macros |
+| .ms             | Text file containing troffs ms macros |
+| .ps             | PostScript source file                |
+
+
+### Wildcards {#wildcards}
+
+The shells provide a number of wildcards that you can use to
+abbreviate filenames or refer to groups of files.
+
+For example,let's say you want to delete all filenames ending in
+`/.txt` in the current directory.
+
+The wildcard is the "regardless" part. Like a wildcard in a poker
+game,a wildcard in a filename can have any value.
+
+When `?` appears in a filename, the `?` matches any single
+character.For example, `letter?` refers to any filename that
+begins with letter and has exactly one character after that.
+
+```shell
+ls -a ./demo-1 | egrep "^aa?"	# ? 匹配带有 0 个 / 1 个 带 a 的文件名
+```
 
 
 ## Hacking on Characters with tr {#hacking-on-characters-with-tr}

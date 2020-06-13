@@ -1,0 +1,14 @@
+;; -*-Emacs-lisp-*-
+
+(require 'circe)
+
+(setq circe-network-options
+      '(("Freenode"
+         :tls t
+         :nick "revolt"
+         :sasl-username "mrrevolt"
+         :sasl-password "pz621z521wodejia"
+         :channels ("#emacs")
+         )))
+
+(provide 'init-circe)

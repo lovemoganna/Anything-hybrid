@@ -1,0 +1,10 @@
+;; -*-Emacs-lisp-*-
+(require 'real-auto-save)
+
+(add-hook 'org-mode-hook 'real-auto-save-mode)
+(add-hook 'markdown-mode-hook 'real-auto-save-mode)
+(setq real-auto-save-interval 2)	; Auto save interval is 2 secodes
+
+;; (setq real-auto-save-use-idle-timer 2)
+
+(provide 'init-real-auto-save)

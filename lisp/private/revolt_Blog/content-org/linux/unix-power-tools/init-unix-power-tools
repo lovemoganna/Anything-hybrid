@@ -470,8 +470,89 @@ Unix is not an operating system as much as it is a way of thinking.
     stands for =filesystem check=; its job is to find out if you shut
     down the system correctly and try to fix any damage that might
     have happened if you didn't.
-    
+
+
 *** Filenames
+    
+    - Upper -and lowercase characters
+      
+      Unix filenames are always case senstive.
+
+    - Underscores(_)
+      
+      make filename more readable.
+
+    - Periods(.)
+      
+      1. filename extensions.
+      2. Filenames that begin with a period are treated specially by
+         the shell: wildcards won't match them unless you include the
+         period (like .*). The ls command,which lists your file,ignore
+         files whose begin with a period unless you give it a special
+         option.
+	 
+	 #+BEGIN_SRC shell :results verbatim
+	   ls -a
+	 #+END_SRC
+
+	 #+RESULTS:
+	 : .
+	 : ..
+	 : demo-1
+	 : .#init-unix-power-tools
+	 : init-unix-power-tools
+      
+    - Certains other punctuation.
+      
+      comma(,) , is safe.
+
+    - Some things to be aware of:
+      
+      1.Unix dose not have any concept of a file version.
+      2.Once you delete a file in Unix, it is **gone forever**.You
+      can't get it back without restoring it from a backup.May be you
+      should have a "grace period". 
+      
+
+*** Filename Extensions
+    
+    Filename extensions for user's benefit:
+    
+    | Extension       | Description                           |
+    |-----------------+---------------------------------------|
+    | .tar            | ~tar~ archive                         |
+    | .tar.gz or .tgz | ~gzip~ ped tar archive                |
+    | .shar           | Shell archive                         |
+    | .sh             | Bournel shell script                  |
+    | .csh            | C Shell script                        |
+    | .mm             | Text file containing troffs mm macros |
+    | .ms             | Text file containing troffs ms macros |
+    | .ps             | PostScript source file                |
+
+*** Wildcards
+    
+    The shells provide a number of wildcards that you can use to
+    abbreviate filenames or refer to groups of files.
+    
+    For example,let's say you want to delete all filenames ending in
+    ~/.txt~ in the current directory.
+
+    The wildcard is the "regardless" part. Like a wildcard in a poker
+    game,a wildcard in a filename can have any value.
+    
+    When =?= appears in a filename, the =?= matches any single
+    character.For example, =letter?= refers to any filename that
+    begins with letter and has exactly one character after that.
+    
+    #+BEGIN_SRC shell
+      ls -a ./demo-1 | egrep "^aa?"	# ? 匹配带有 0 个 / 1 个 带 a 的文件名
+    #+END_SRC
+
+    #+RESULTS:
+    | aa     |
+    | aa.txt |
+    | a.txt  |
+    
     
 ** Hacking on Characters with tr
 

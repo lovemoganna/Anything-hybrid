@@ -71,6 +71,11 @@
 	company-web
 	neotree
 	htmlize
+	real-auto-save
+	markdown-mode
+	edit-indirect
+	polymode
+	poly-markdown
 	))
 (setq package-selected-packages revolt/package-list)
 

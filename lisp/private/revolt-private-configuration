@@ -25,7 +25,7 @@
       ;;change cursor from defalut X shape
       (stumpwm:run-shell-command "xsetroot -cursor_name left_ptr")
 
-      (stumpwm:run-shell-command "qv2ray")
+      (stumpwm:run-shell-command "v2ray -config /etc/v2ray/config.json")
 
       ;; default start input methods
       (stumpwm:run-shell-command "fcitx-autostart")
@@ -47,6 +47,8 @@
 	  (stumpwm:define-key m (stumpwm:kbd "c") "curframe")
 	  (Stumpwm:Define-key m (stumpwm:kbd "M-b") "move-focus left")
 	  (stumpwm:define-key m (stumpwm:kbd "f") "exec firefox")
+	  (stumpwm:define-key m (stumpwm:kbd "g") "exec google-chrome-stable")
+	  (stumpwm:define-key m (stumpwm:kbd "p") "exec flameshot gui")
 	  (stumpwm:define-key m (stumpwm:kbd "r") "loadrc")
 	  (stumpwm:define-key m (stumpwm:kbd "l") "reload")
 	  m
@@ -64,6 +66,8 @@
       (define-key *top-map* (kbd "H-Right") "gnext")
       (define-key *top-map* (kbd "H-TAB") "other")
 
+
+      (define-key ** (kbd "H-TAB") "other")
       ;; command
       (define-key *root-map* (kbd "[") "exchange-direction left")
       (define-key *root-map* (kbd "]") "exchange-direction right")
@@ -122,7 +126,7 @@
       (xft:cache-fonts)
 
       (set-font
-       (make-instance 'xft:font :family "Iosevka Fixed SS14" :subfamily "Regular" :size 10))
+       (make-instance 'xft:font :family "Iosevka Fixed SS14" :subfamily "Regular" :size 12))
 
       ;;(load-module "screenshot")
       ;; Set font for messages and modeline
@@ -1491,3 +1495,6 @@
    - [[http://xfmro77i3lixucja.onion/search/?q=scheme][BookLibrary]]
 
    - [[http://torbox3uiot6wchz.onion/][Torbox]]
+** ScreenShot
+*** flameshot
+   

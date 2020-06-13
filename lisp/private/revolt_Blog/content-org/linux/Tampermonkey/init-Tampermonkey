@@ -1,0 +1,21 @@
+#+-*-mode: org;-*-
+#+creator: Emacs 28.0.50 (Org mode 9.3 + ox-hugo)
+#+hugo_with_locale: en
+#+hugo_front_matter_format: toml
+#+hugo_level_offset: 1
+#+hugo_delete_trailing_ws:
+#+hugo_section: post
+#+hugo_bundle:
+#+hugo_base_dir: ../../../
+#+date: <2020-05-26 Tue>
+#+hugo_tags: 
+#+hugo_categories: 
+#+title: TamperMonkey
+
+This is a freedom use user own script tools in website.
+
+<!--more-->
+
+** Document
+   
+   [[https://www.tampermonkey.net/documentation.php][TemperMonkey Document]]
