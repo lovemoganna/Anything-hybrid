@@ -1,15 +1,13 @@
 +++
 title = "Org Mode Table"
 date = 2020-05-26T00:00:00+08:00
-lastmod = 2020-05-26T15:37:23+08:00
+lastmod = 2020-06-15T23:00:25+08:00
 tags = ["emacs", "orgmode"]
 categories = ["emacs", "orgmode"]
 draft = false
 +++
 
 Org as a spreadsheet system,just for test my poor salary
-
-你可能很难理解,为什么我要忍受这无聊的生活.
 
 <!--more-->
 

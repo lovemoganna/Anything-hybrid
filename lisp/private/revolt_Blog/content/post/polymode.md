@@ -1,7 +1,7 @@
 +++
 title = "Ploymode"
 date = 2020-06-13T00:00:00+08:00
-lastmod = 2020-06-14T01:35:07+08:00
+lastmod = 2020-06-14T17:02:54+08:00
 draft = false
 locale = "en_US"
 +++
@@ -203,6 +203,43 @@ polymode如何从chunk的head中找到major mode.三个matchers没一个都可�
 
 `:head-mode` 和 `:tail-mode` 指定的major mode分别用于head 和
 tail.特殊符号 `'host` 意味着 `host mode` 被用于head or tail.如果
-`'body`,即 chunk's body 的mode.
+`'body`,即 chunk's body 的mode.Head and tail mode 默认是
+`poly-head-tail-mode`,这是非常基本的 prog mode,没有特殊功能.
+
+anonymous mode(aka mode-less)chunks 或者major mode 无法识别
+的情况,对于body span,Buffer local `polymode-default-inner-mode` 可
+以被指定默认的mode.当这个变量是 `nil` (默认)时,即是一个 `host
+    mode`,也是一个已经被安装的特殊 `poly-fallback-mode`.这个mode被安装
+取决于innermode配置对象 `:mode` 插槽的值.
+
+
+### <span class="org-todo todo TODO">TODO</span> Polymodes {#polymodes}
+
+最终,使用 host and inner modes定义要比定义 `poly-markdown-mode`
+polymode 要更容易:
+
+```emacs-lisp
+(define-polymode poly-markdown-mode
+  :hostmode 'pm-host/markdown
+  :innermodes '(poly-markdown-yaml-metadata-innermode
+		poly-markdown-fenced-code-innermode)
+  )
+```
+
+`define-polymode` 跟标准EMACS工具集 `define-derived-mode` 和
+`define-minor-mode` 相同.它接受一些可选参数:
+
+-   `PARENT` polymode可以被划分
+-   在chunkmodes安装期间, `DOC` string and `BODY` 在host和indirect
+    buffer中被执行
+-   可以在 `BODY` 前添加键值进一步完善配置,
+-   到目前为止,大多数 common keys 是 `:hostmode` 指定
+    `pm-host-chunkmode` 对象的名字(symbol),以及 `:innermode`,即
+    `pm-inner-chunkmode` 对象的列表名.详情参见 `define-polymode`.
+
+大多数 polymodes 被设计用作major mode.(i.e. in `auto-mode-alist`
+or buffer-local `mode:` cookie).
+
+很遗憾,不知道如何使用.暂时搁置.
 
 [^fn:1]: MMM: Multiple Major Mode

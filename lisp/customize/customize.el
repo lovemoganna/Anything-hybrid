@@ -80,3 +80,6 @@
 
 ;; evil terminal cursor setting
 (require 'init-terminal "./terminal/init-terminal")
+
+;; eval whole bash buffer 
+(require 'init-bash "./bash/init-bash")

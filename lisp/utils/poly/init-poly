@@ -1,5 +1,32 @@
 ;; -*-Emacs-lisp-*-
-(require 'polymode)
-(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+(require 'poly-R)
+(require 'poly-noweb)
+(require 'poly-markdown)
+
+(defcustom pm-inner/noweb-python
+  (clone pm-inner/noweb
+	 :name "noweb-python"
+	 :mode 'python-mode)
+  "Noweb for Python"
+  :group 'poly-innermodes
+  :type 'object)
+
+(define-polymode poly-pweave-mode poly-markdown-mode
+  :innermodes '(pm-inner/noweb-python :inherit))
+
+(add-to-list 'auto-mode-alist '("\\.pymd" . poly-pweave-mode))
+
+
+;; define pwn multi major modes mode
+(require 'mmm-auto)
+(mmm-add-classes
+ '((noweb-python
+    :submode python-mode
+    :face mmm-default-submode-face
+    :front "^<<.*>>=\n"
+    :back "^@$")))
+(setq mmm-global-mode 'maybe)
+(mmm-add-mode-ext-class 'markdown-mode nil 'noweb-python)
+(add-to-list 'auto-mode-alist '("\\.pymd" . markdown-mode))
 
 (provide 'init-poly)

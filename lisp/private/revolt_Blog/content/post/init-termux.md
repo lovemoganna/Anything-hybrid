@@ -1,7 +1,7 @@
 +++
 title = "Termux"
 date = 2020-06-03T00:00:00+08:00
-lastmod = 2020-06-04T18:22:40+08:00
+lastmod = 2020-06-18T22:59:49+08:00
 draft = false
 locale = "en_US"
 +++
@@ -32,6 +32,5 @@ slove methods: <https://glow.li/technology/2016/9/20/access-termux-via-usb/>
 
 -   error: insufficient permissions for device
     
-    you could see here slove:
-    
+    ref link:
     <https://itsfoss.com/fix-error-insufficient-permissions-device/>

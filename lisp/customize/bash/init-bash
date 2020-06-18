@@ -1,0 +1,15 @@
+;; -*-Emacs-lisp-*-
+;; ref link: http://xahlee.info/comp/lisp_read-from-minibuffer_propels_deep_questions.html
+
+(defun shell-command-on-buffer ()
+  "Asks for a command and executes it in inferior shell with current bufferas input."
+  (interactive)
+  (shell-command-on-region
+   (point-min)
+   (point-max)
+   (read-shell-command
+    (format "Run you slected shell command: (default file is %s) "(buffer-name))(buffer-name))))
+
+;; insert (format "%S" (buffer-name))
+(provide 'init-bash)
+

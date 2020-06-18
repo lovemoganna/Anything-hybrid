@@ -74,3 +74,15 @@
 ** TODO learn more emacs keybind knowledge
    [2020-04-08 Wed]
    [[file:~/.emacs.d/lisp/utils/emmet/init-emmet][file:~/.emacs.d/lisp/utils/emmet/init-emmet]]
+** TODO org mode image setting
+   [2020-06-15 Mon]
+   [[file:~/.emacs.d/lisp/private/gitbook/bash/org-dir/1-basic-bash::*Directories][Directories]]
+   
+   About org mode image setting,we could use
+   =#+BEGIN_EXPORT...#+END_EXPORT= import html file.
+** TODO 终端滚动性阅读
+   [2020-06-15 Mon]
+   [[file:~/.emacs.d/lisp/private/gitbook/bash/org-dir/1-basic-bash::*Tilde%20notation%20(~)][Tilde notation (~)]]
+** TODO 收集好玩的视频去炸屏
+   [2020-06-15 Mon]
+   [[file:~/.emacs.d/lisp/private/gitbook/bash/org-dir/1-basic-bash::*Tilde%20notation%20(~)][Tilde notation (~)]]

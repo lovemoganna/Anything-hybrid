@@ -22,6 +22,7 @@
 "b" '(:ignore t :which-key "buffers")
 "f" '(:ignore t :which-key "files")
 "n" '(:ignore t :which-key "neotree")
+"g" '(:ignore t :which-key "script")
 "n t" 'neotree-toggle
 "n d" 'neotree-dir
 "f e d" 'open-my-init-file
@@ -30,6 +31,7 @@
 "b h" 'buf-move-left
 "b l" 'buf-move-right
 "u s" 'unix-sync
+"g b" 'shell-command-on-buffer 
 "b d" 'kill-buffer-and-window)
 
 ;; test the super key.

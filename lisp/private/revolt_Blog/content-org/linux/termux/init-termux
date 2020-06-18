@@ -30,7 +30,7 @@
 
      #+RESULTS:
      : List of devices attached
-     : 909KPVH2080791	device
+     : 909KPVH2080791	no permissions; see [http://developer.android.com/tools/device.html]
      : 
 
    Mission: slove my phone termux cannot ssh connect question.
@@ -41,7 +41,12 @@
     
     - error: insufficient permissions for device
       
-      you could see here slove:
-
+      ref link:
       https://itsfoss.com/fix-error-insufficient-permissions-device/
+      
+      
+    #+BEGIN_SRC shell
+      sudo adb kill-server
+      sudo adb start-server
+    #+END_SRC
 

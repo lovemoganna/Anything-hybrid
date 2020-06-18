@@ -75,7 +75,12 @@
 	markdown-mode
 	edit-indirect
 	polymode
+	mmm-mode
+	poly-R
 	poly-markdown
+	ess
+	python-mode
+	org-download
 	))
 (setq package-selected-packages revolt/package-list)
 
