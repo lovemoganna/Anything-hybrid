@@ -1,0 +1,7 @@
+;; -*-Emacs-lisp-*-
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/utils/insert-translated-name"))
+
+(require 'insert-translated-name)
+
+(provide 'init-insert-translated-name)

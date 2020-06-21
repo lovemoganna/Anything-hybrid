@@ -1,0 +1,20 @@
+;; -*-Emacs-lisp-*-
+(require 'engine-mode)
+(engine-mode t)
+
+;; change your defalut browser
+(setq engine/browser-function 'eww-browse-url)
+
+(defengine github
+  "https://github.com/search?ref=simplesearch&q=%s")
+
+(defengine duckduckgo
+  "https://duckduckgo.com/?q=%"
+  :keybinding "d"
+  :browser 'eww-browse-url)
+
+(defengine google
+  "https://google.com/?q=%"
+  :keybinding "g")
+
+(provide 'init-engine)

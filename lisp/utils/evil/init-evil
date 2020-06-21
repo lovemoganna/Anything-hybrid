@@ -23,6 +23,13 @@
 "f" '(:ignore t :which-key "files")
 "n" '(:ignore t :which-key "neotree")
 "g" '(:ignore t :which-key "script")
+"s" '(:ignore t :which-key "stardict")
+"c" '(:ignore t :which-key "company")
+"u" '(:ignore t :which-key "unix")
+"i" '(:ignore t :which-key "insert-translated-name")
+"i i" 'insert-translated-name-insert
+"s i" 'sdcv-search-input+
+"c i" 'toggle-company-english-helper
 "n t" 'neotree-toggle
 "n d" 'neotree-dir
 "f e d" 'open-my-init-file

@@ -29,59 +29,62 @@
 
 ;; Add packages
 (defvar revolt/package-list
-      '(
-	smartparens
-	better-defaults
-	pkg-info
-	epl
-	doom-themes
-	js2-mode
-	;; mermaid-mode
-	helm
-	helm-projectile
-	helm-ag
-	;;ob-mermaid
-	f
-	dash
-	youdao-dictionary
-	names
-	chinese-word-at-point
-	pos-tip
-	yasnippet
-	yasnippet-snippets
-	wolfram
-	slime
-	quelpa
-	;;pdf-tools
-	ox-hugo
-	web-mode
-	web-beautify
-	emmet-mode
-	org-bullets
-	ob-http
-	monokai-theme
-	helm-circe
-	evil
-	evil-leader
-	which-key
-	general
-	window-numbering
-	stumpwm-mode
-	company
-	company-web
-	neotree
-	htmlize
-	real-auto-save
-	markdown-mode
-	edit-indirect
-	polymode
-	mmm-mode
-	poly-R
-	poly-markdown
-	ess
-	python-mode
-	org-download
-	))
+  '(
+    smartparens
+    better-defaults
+    pkg-info
+    epl
+    doom-themes
+    js2-mode
+    ;; mermaid-mode
+    helm
+    helm-projectile
+    helm-ag
+    ;;ob-mermaid
+    f
+    dash
+    youdao-dictionary
+    names
+    chinese-word-at-point
+    pos-tip
+    yasnippet
+    yasnippet-snippets
+    wolfram
+    slime
+    quelpa
+    ;;pdf-tools
+    ox-hugo
+    web-mode
+    web-beautify
+    emmet-mode
+    org-bullets
+    ob-http
+    monokai-theme
+    helm-circe
+    evil
+    evil-leader
+    which-key
+    general
+    window-numbering
+    stumpwm-mode
+    company
+    company-web
+    neotree
+    htmlize
+    real-auto-save
+    markdown-mode
+    edit-indirect
+    polymode
+    mmm-mode
+    poly-R
+    poly-markdown
+    ess
+    python-mode
+    org-download
+    pdf-tools
+    org-noter
+    engine-mode
+    ))
 (setq package-selected-packages revolt/package-list)
 
 (require 'cl)
@@ -93,12 +96,12 @@
 	))
 
 (unless (revolt/packages-installed-p)
-					  (message "%s" "searching you lost package.....")
-					  (package-refresh-contents)
-					  (message "%s" "refersh successed melpa library!")
-					  (dolist (pkg revolt/package-list)
-					    (when (not (package-installed-p pkg))
-					      (package-install pkg))))
+  (message "%s" "searching you lost package.....")
+  (package-refresh-contents)
+  (message "%s" "refersh successed melpa library!")
+  (dolist (pkg revolt/package-list)
+    (when (not (package-installed-p pkg))
+      (package-install pkg))))
 
 ;; load another setting path
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -122,9 +125,9 @@
 (require 'ob-tangle)
 (org-babel-load-file "~/.emacs.d/lisp/customize/customize.org")
 
-;(setq custom-file "~/.emacs.d/lisp/customize/customize.el")
-;(if (file-exists-p custom-file)
-;    (load-file custom-file))
+					;(setq custom-file "~/.emacs.d/lisp/customize/customize.el")
+					;(if (file-exists-p custom-file)
+					;    (load-file custom-file))
 
 ;; utils settings
 (require 'init-utils "./utils/init-utils")
@@ -138,7 +141,7 @@
 
 ;; customize keyboard macro
 (fset 'helloa
-   (kmacro-lambda-form [?\( ?m ?e ?s ?s ?a ?g ?e ?  ?\" ?h ?e ?l ?l ?o ?\" ?\)] 0 "%d"))
+      (kmacro-lambda-form [?\( ?m ?e ?s ?s ?a ?g ?e ?  ?\" ?h ?e ?l ?l ?o ?\" ?\)] 0 "%d"))
 
 ;; my-command-line macro
 (fset 'my-comment-line

@@ -36,7 +36,7 @@
 (require 'init-real-auto-save "./real-auto-save/init-real-auto-save")
 
 ;; pdf-tools - in emacs view / annation pdf file
-;;(require 'init-pdf-tools "./pdftools/init-pdf-tools")
+(require 'init-pdf-tools "./pdftools/init-pdf-tools")
 
 ;; chart-tools - in emacs use meimaid make flows image.
 ;;(require 'init-mermaid "./mermaid/init-mermaid")
@@ -61,6 +61,17 @@
 
 ;; support r markdown
 (require 'init-poly "./poly/init-poly")
+
+;; posframe support
+(require 'init-posframe "./posframe/init-posframe")
+
+(require 'init-sdcv"./sdcv/init-sdcv")
+
+(require 'init-engine "./engine/init-engine")
+
+(require 'init-company-english-helper"./company-english-helper/init-company-english-helper")
+
+(require 'init-insert-translated-name "./insert-translated-name/init-insert-translated-name")
 
 (provide 'init-utils)
 

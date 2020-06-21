@@ -1,0 +1,33 @@
+;; -*-Emacs-lisp-*-
+;;; ref link: https://emacs-china.org/t/emacs/7750
+
+(require 'sdcv)
+
+(setq sdcv-say-word-p t)
+
+(setq sdcv-dictionary-data-dir "~/.stardict/dic/")
+
+(setq sdcv-dictionary-simple-list
+      ;;setup dictionary list for simple search
+      '("懒虫简明英汉词典"
+        "懒虫简明汉英词典"
+        ;;"KDic11万英汉词典"
+	))
+
+(setq sdcv-dictionary-complete-list
+      '(
+	"朗道汉英字典5.0"   
+	"新世纪汉英科技大词典"    
+	"懒虫简明汉英词典"    
+	"21世纪英汉汉英双向词典"    
+	"XDICT英汉辞典"    
+	"21世纪英汉汉英双向词典"    
+	"懒虫简明英汉词典"    
+	"新世纪英汉科技大词典"    
+	"XDICT汉英辞典"    
+	"计算机词汇"    
+	"英汉汉英专业词典"    
+	"KDic11万英汉词典"    
+	))
+
+(provide 'init-sdcv)

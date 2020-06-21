@@ -1,0 +1,5 @@
+;; -*-Emacs-lisp-*-
+
+(require 'posframe)
+
+(provide 'init-posframe)
