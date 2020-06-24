@@ -13,4 +13,9 @@
 
 (global-set-key (kbd "C-\\") 'toggle-input-method)
 
+;; import outside pyim dict
+
+(setq pyim-dicts
+      '((:name "dict1" :file "~/.emacs.d/dict/scel2pyim/pyim-dict/computer_all_word.pyim")))
+
 (provide 'init-pyim)
