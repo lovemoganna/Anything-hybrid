@@ -65,7 +65,9 @@
    ~layouts/shortcodes~ directory of your =Directory Structure=.
 
 ** Directory Structure
+
    - archetypes
+
      自定义Page template,just run =hugo new post/test.md=.jsut run
      =hugo run test/test.md=,just make the =/content/test/test.md=,but
      not show in hugo blog.Currrent i can't slove the problem.may be
@@ -73,7 +75,6 @@
      
      
   
-
 
 ** Hugo Modules
    Hugo Modules are the core building blocks in Hugo.A module can be
@@ -85,26 +86,26 @@
    directories form non-Hugo projects,forming a big,virtual unior file
    system.
    
- 
 ** Use Hugo Modules 
+
    How to use Hugo Modules to build and manage your site.
    
 *** Prerequisite
     
     Most of the commands for Hugo Modules requires a newer version of
     GO installed and the relevant VCS client.
-    
    
 *** Initialize a New Module
     
     Use =hugo mode init= to initialize a new Hugo Module.If it fails
-    to guess the module path,you must provide it as an argument,e.g.:
+    to guess the module path,you must provide it as an argument.
    
-*** DONE Hugo modules noobs start fighting 
-    one important question is : how to run hugo modules?
-    
+*** Hugo modules noobs start fighting 
+
+    one important question is: how to run hugo modules?
     
 **** Prepare a Hugo site to test out Hugo Modules
+
      - Install latest version of go on yuor computer
 
        Make sure that you have installed a recent version of go on
@@ -119,11 +120,11 @@
        The theme =hugo-xmin= are used as an example.
 
 **** TODO [[https://craftsmandigital.net/blog/hugo-modules/#prepare-a-test-site-to-implement-a-theme-as-a-hugo-module][here]]
+     
+     
        
+     
 ** 如何解决嵌套问题？
-  
-   
-   
 ** Use Shortcodes
    
 ** page and list templates

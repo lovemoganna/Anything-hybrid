@@ -1,6 +1,6 @@
 ;; 关闭工具栏，Tool-Bar-Mode 即为一个 Minor Mode
 (tool-bar-mode -1)
-(menu-bar-mode -1)
+;;(menu-bar-mode -1)
 ;; 关闭文件滑动控件
 (scroll-bar-mode -1)
 

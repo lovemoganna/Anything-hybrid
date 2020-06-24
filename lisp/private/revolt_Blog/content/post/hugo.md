@@ -1,7 +1,7 @@
 +++
 title = "hugo faq"
 date = 2020-03-20T00:00:00+08:00
-lastmod = 2020-03-29T02:15:33+08:00
+lastmod = 2020-06-24T16:21:56+08:00
 tags = ["hugo"]
 categories = ["hugo"]
 draft = false
@@ -63,6 +63,7 @@ To create a shortcode,place an HTML template in the
 ## Directory Structure {#directory-structure}
 
 -   archetypes
+    
     自定义Page template,just run `hugo new post/test.md`.jsut run
     `hugo run test/test.md`,just make the `/content/test/test.md`,but
     not show in hugo blog.Currrent i can't slove the problem.may be
@@ -95,12 +96,12 @@ GO installed and the relevant VCS client.
 ### Initialize a New Module {#initialize-a-new-module}
 
 Use `hugo mode init` to initialize a new Hugo Module.If it fails
-to guess the module path,you must provide it as an argument,e.g.:
+to guess the module path,you must provide it as an argument.
 
 
-### <span class="org-todo done DONE">DONE</span> Hugo modules noobs start fighting {#hugo-modules-noobs-start-fighting}
+### Hugo modules noobs start fighting {#hugo-modules-noobs-start-fighting}
 
-one important question is : how to run hugo modules?
+one important question is: how to run hugo modules?
 
 
 #### Prepare a Hugo site to test out Hugo Modules {#prepare-a-hugo-site-to-test-out-hugo-modules}
@@ -240,7 +241,9 @@ check above the variable,have many file types.
 
 #### Setting image size {#setting-image-size}
 
--    setting :width parameter
+<!--list-separator-->
+
+-  setting :width parameter
 
     ```text
     #+attr_html: :width 50
@@ -252,7 +255,9 @@ check above the variable,have many file types.
     
     {{< figure src="/images/web-image/cat.png" caption="Figure 3: Below rainbow cat is shown 100 pixel wide." width="100" >}}
 
--    setting :height parameter and :width parameter
+<!--list-separator-->
+
+-  setting :height parameter and :width parameter
 
     ```text
     #+attr_html: :width 50 :height 100
@@ -260,13 +265,15 @@ check above the variable,have many file types.
     [[file:/images/web-image/cat.png]]
     ```
     
-    <a id="orgda0fb7e"></a>
+    <a id="orgbe04a86"></a>
     
     \#+attr\_html :width 20 :height 200
     
     {{< figure src="/images/web-image/cat.png" caption="Figure 4: Below rainbow cat is shown 20x200 pixel wide." >}}
 
--    Multiple ATTR\_HTML
+<!--list-separator-->
+
+-  Multiple ATTR\_HTML
 
     ```text
     #+html: <style>.foo img { border:2px solid black; }</style>

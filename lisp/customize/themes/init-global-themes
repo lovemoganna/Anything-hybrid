@@ -1,8 +1,8 @@
 ;-*-emacs-lisp-*-
 ;-*-lexical-binding: t;-*-
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
 
-;; (load-theme 'vivid t)
+(load-theme 'vivid t)
 
 ;; Nice,the answer in here
 ;; https://stackoverflow.com/questions/18684579/how-do-i-change-the-highlight-color-for-selected-text-with-emacs-deftheme 

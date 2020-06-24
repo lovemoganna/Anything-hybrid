@@ -73,5 +73,10 @@
 
 (require 'init-insert-translated-name "./insert-translated-name/init-insert-translated-name")
 
+(require 'init-expand-region "./expand-region/init-expand-region")
+
+;; chinese input methods: pyim
+(require 'init-pyim "./pyim/init-pyim")
+
 (provide 'init-utils)
 
