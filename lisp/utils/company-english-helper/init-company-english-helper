@@ -6,4 +6,3 @@
 (require 'company-english-helper)
 
 (provide 'init-company-english-helper)
-

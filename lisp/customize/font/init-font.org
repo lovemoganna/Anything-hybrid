@@ -1,12 +1,10 @@
-
-  
-* table test
+* Table test
   | 软件       | 版本   | 发布日期          |
   | 1          | 2      | 3                 |
   | Gnu Emacs  | 25.1   | 2016年18月53 日   |
   | 你好       | 笨蛋   | 傻瓜              |
   | 你这个小子 | 想吃屎 | 等宽字体测试 成功 |
-* init font test demo
+* In-it font test demo
   Ref link: https://phenix3443.github.io/notebook/emacs/emacs-font-setting.html
 
   #+name: vowel_r

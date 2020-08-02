@@ -1,7 +1,7 @@
 +++
 title = "hugo faq"
 date = 2020-03-20T00:00:00+08:00
-lastmod = 2020-06-24T16:21:56+08:00
+lastmod = 2020-06-30T22:54:40+08:00
 tags = ["hugo"]
 categories = ["hugo"]
 draft = false
@@ -84,7 +84,7 @@ system.
 
 ## Use Hugo Modules {#use-hugo-modules}
 
-How to use Hugo Modules to build and manage your site.
+How to use Hugo Modules to build and manage your site?
 
 
 ### Prerequisite {#prerequisite}
@@ -117,13 +117,234 @@ one important question is: how to run hugo modules?
 
 -   Prepare a test site to implement a theme as a Hugo module
     
-    The theme `hugo-xmin` are used as an example.
+    1.The theme `hugo-xmin` are used as an example.Can be downloaded
+    from [here](https://github.com/yihui/hugo-xmin/archive/master.zip).
+    2.Extract the folder `exampleSite` to your harddrive
+    3.Rename `exampleSite` to `hugo-test-modules`.
 
 
 #### <span class="org-todo todo TODO">TODO</span> [here](https://craftsmandigital.net/blog/hugo-modules/#prepare-a-test-site-to-implement-a-theme-as-a-hugo-module) {#here}
 
 
-## 如何解决嵌套问题？ {#如何解决嵌套问题}
+## Blog migration plan {#blog-migration-plan}
+
+1.我需要利用上面的 hugo module 来升级我的博客。
+
+2.图省事的话，直接发布到github 上，直接一步到位就行了。
+
+3.如果想要达到theme,document,deploy 三者分离部署的效果。
+需要动手做下试验.very magic~.
+
+这样做的好处是可以随时阅读别人托管在github 上的文档。看不懂的话，镶
+嵌在你的博客里，慢慢看就行了
+
+
+### 上传我的theme 到github {#上传我的theme-到github}
+
+这需要我抽离我的theme.
+
+这里有2个选择，你使用别人的Theme,还是使用自己的Hugo theme.
+
+我用我自己已经调好的Theme.但是不管你选哪个，它都是挂载在github 上
+的仓库。
+
+1.  导入你的Theme 仓库
+    
+    ```text
+    [module]
+        [[module.imports]]
+        path = "github.com/lovemoganna/revolt-theme"
+    ```
+
+2.  安装好最新版本的Go 语言，将上面的Theme 作为Hugo Module.
+    
+    ```text
+    hugo mod init <hugo_module_name>
+    ```
+    
+    这个时候会生成 `go.mod` 文件。
+    
+    ```shell
+    cat go.mod
+    ```
+    
+    这样你的远程调用就会被记录下来。
+
+3.  这个时候提交你已经搭建好的Hugo project.
+    
+    ```text
+    git initgit add -A && git commit -m "Initial Commit"
+    git remote add origin https://github.com/< your username >/<your-repository>.git
+    git push -u origin master
+    ```
+
+
+### 添加文档作为Hugo Module {#添加文档作为hugo-module}
+
+也就是在你的 `config.toml` 文件下添加：
+
+```text
+[[module.imports]]
+      path = "github.com/craftsmandigital/markdown-content-repo"
+      disabled = false
+      [[module.imports.mounts]]
+      source = "testing-hugo-modules"
+      target = "content/new-stuff"
+```
+
+-   path: 你挂载的 content 仓库。
+-   source: 挂载仓库的 document location.
+-   target: 当前项目的挂载路由.
+    
+    当你使用了 `hugo mod init` 的时候，代表了一个时间快照，就像 `git
+            submodules` 一样，但如果你想体验最新功能，必须保持更新。
+    
+    无非就是直接干掉 `go.mod or go.sum`. 重新生成 `hugo module`.
+
+
+### You can use Hugo modules to mount any kind of resources to your Hugo site. {#you-can-use-hugo-modules-to-mount-any-kind-of-resources-to-your-hugo-site-dot}
+
+You can mount layouts like partials shortcodes resources like JS
+libraries. Etc. Use your Imagination.
+
+That was all, really really really "Happy moduling".
+
+If you have some comments or criticism please let me know in the
+comments below.
+
+
+### 这么多的git 仓库，太难了，我们需要使用 git submodule {#这么多的git-仓库-太难了-我们需要使用-git-submodule}
+
+
+#### git module 的使用 {#git-module-的使用}
+
+`git add submodule <url> <path>`
+
+-   check already add git module
+    
+    ```text
+    git diff --cached
+    ```
+
+
+#### git module 的使用 {#git-module-的使用}
+
+```text
+git submodule init
+git submodule update
+
+# another methods
+git submodule update --init --recursive
+```
+
+
+#### git module 的更新 {#git-module-的更新}
+
+```text
+# git pull
+# git log
+```
+
+
+#### git module 的删除 {#git-module-的删除}
+
+-   =rm -rf <submodule name>
+-   delete `.gitmodules`
+-   delete about git module config in `.git/config` file.
+-   delete `.git/module/*` dir
+-   `git rm --cached <submodule name>`
+
+
+### 部署博客 {#部署博客}
+
+
+#### 如何使用Git hooks 来自动化开发和部署任务？ {#如何使用git-hooks-来自动化开发和部署任务}
+
+来自[here](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks).如果不去了解的话，我想Git 的精髓也不会了解到。
+
+版本控制对于现代软件开发而言变成了重要依赖。它允许项目安全的追踪
+变化和开启还原，完整性检查，协作以及其他好处。 `git` 版本控制系统，
+基于其分散的架构以及在各方之间进行更改和转换的速度，被广泛采用。
+
+Git 工具套件提供了很多已实现的良好功能，其中最有用的特性之一就是
+它的灵活性。通过使用 `hook` 系统，Git 允许开发者和系统管理员基于
+不同的事件和动作调用指定脚本来extend functionality(扩展功能). 
+
+
+#### Prerequisites(先决条件) {#prerequisites--先决条件}
+
+在一切开始之前，你必须安装 `git` 在你的服务器上面。
+
+
+#### Basic ieda with Git hooks {#basic-ieda-with-git-hooks}
+
+Git hooks 是一个很简单的概念，被用于解决需求。当在一个分享的项目
+上开发软件的时候，维护风格指南标准，或者发布当发布软件的时候，
+（Git 经常被提及的所有时候),git hook 就是用来解决每次执行某项操作
+时需要执行重复的任务的。
+
+Git hooks 是基于event 的。当你运行某个Git commands 时，软件将会在
+Git 仓库检查 `hook` 目录，看与它关联的脚本是否运行。
+
+一些脚本在采取行动之前运行，可以被用于检查代码是否符合标准，健全
+性，或者用来设置环境。其他脚本运行在Event 之后，为了发布代码，重
+新建立正确的权限，一些不能被追踪Git等。
+
+使用这些功能，可以执行策略，确保一致性，并控制环境，甚至处理部署
+任务。
+
+Pro Git 这本书的作者尝试着将不同类型的Hooks 分类：
+
+-   Client-Side Hooks: 在提交者的计算机Hooks 被执行和调用。这些又分
+    为几个单独的类别：
+    -   Committing-Workflow hooks: Committing hooks 被用于指示在
+        Commit 被提交时应采取的措施。它们被用于健全性检查，预填充
+        commit 信息，和详细的校验信息。你可以使用它来在 committing 时
+        提供通知。
+    
+    -   Email Workflow hooks: 这个钩子的策略包含的动作是作用于Email
+        补丁。像Linux Kernel 这样的项目提交和查看补丁的时候使用一种
+        Email 的方法。这和 commit hooks 类似，但是可以被负责应用提交
+        代码的维护人员使用。
+    
+    -   Other: other client-side hooks include hooks that execute
+        when merging ,checking out code, rebasing,rewriting,and
+        cleaning repos.
+
+-   Server-Side Hooks: These hooks are executed on servers that are
+    used to receive `pushes`. Generally,that would be the main git
+    repo for a project. Again,Chacon divided these into categories:
+    -   Pre-receive and post-receive: These are executed on the
+        server receiving a push to do things like check for project
+        conformance and to deploy after a push.
+    
+    -   Update: This is like a pre-receive,but operates on a
+        branch-by-branch basis to execute code priot to each branch
+        being accepted.
+
+Certain hooks also take parameters.This means that when git calls
+the script for the hook,it will pass in some relevant data that
+the script can then use to complete tasks.In full,the hooks that
+available are:
+
+| Hook Name          | Invoked By                             | Description                                                                                                                                                                                                                                | Parameters(Number and Description)                                                                                                                                                              |                                                                 |
+|:------------------:|:--------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------|
+| applypatch-msg     | `git am`                               | 可以编辑提交信息文件，常被用于校验或者主动格式化一个补丁的信息达到项目的标准。                                                                                                                                                             | 文件名包含计划好的提交信息                                                                                                                                                                      |                                                                 |
+| pre-applypatch     | `git am`                               | 补丁被应用之后，变动在提交之前被调用。结束非0状态将放弃暂存区的变化。可以在真实提交变化之前检查Tree 的状态                                                                                                                                 | None                                                                                                                                                                                            |                                                                 |
+| post-applypatch    | `git am`                               | 这个钩子应用在补丁被采用和提交之后。因此，它不能用来终止程序，主要用于新建通知。                                                                                                                                                           | None                                                                                                                                                                                            |                                                                 |
+| pre-commit         | `git-commit`                           | 这个钩子在获取计划好的提交信息之前被调用。退出任何非0状态将会终止命令，它被用来检查 commit 本身。                                                                                                                                          | None                                                                                                                                                                                            |                                                                 |
+| prepare-commit-msg | `git commit`                           | 接收到默认 commit message 之后被调用，必须在启动提交信息编辑之前。这用于以不能抑制的方式编辑消息信息。                                                                                                                                     | (1 to 3) Name of the file with the commit message, the source of the commit message (message, template, merge, squash, or commit), and the commit SHA-1 (when operating on an existing commit). |                                                                 |
+| commit-msg         | `git commit`                           | 在已经编辑为了确保一致性标准或者基于标准拒绝后，这个钩子可以被用于调整信息，如果存在非0值，它可以终止命令。                                                                                                                                | 这个文件控制提示信息。                                                                                                                                                                          |                                                                 |
+| post-commit        | `git commit`                           | 在真实提交创建之后被调用，因此它不能打乱提交，主要用于允许通知。                                                                                                                                                                           | None                                                                                                                                                                                            |                                                                 |
+| pre-rebase         | `git rebase`                           | 当改变分支的时候被调用，如果不满意，停止改变分支                                                                                                                                                                                           | (1 or 2) 从它 fork 的上游分支，正在改变的分支（当前改变分支不会设置）                                                                                                                           |                                                                 |
+| post-checkout      | `git check` and `git clone`            | 在更新 worktree 或者 git clone 之后运行检查的时候被调用。主要用于校验条件，展示不同，如果必要的话，顺便配置一下环境。                                                                                                                      | (3) Ref of the previous HEAD,ref of the new HEAD,flag indicating whether it was a branch checkout (1) or a file checkout(0)                                                                     |                                                                 |
+| pre-push           | `git push`                             | 在 push 到远程之前被调用。除了用空格分隔传递 "<local ref>", "<local sha1>", "<remote ref>", "<remote sha1>" 传递参数，额外信息之外。解析输入可以获得你用于检查的额外的信息。例如，如果 local sha1 有40个0 那么长，PUSH 是删除操作，如果 remote sha1 有40个0那么长，PUSH 是一个新的分支。这可用于PUSH 引用与当前引用的很多比较。一个非0的终止状态禁止PUSH. | (2)remote 目标的名字， remote 目标的位置。                                                                                                                                                      |                                                                 |
+| pre-receive        | =git-receive-pack = on the remote repo | 在更新PUSH 的引用之前，在远程仓库上调用此方法。非0 状态将会终止进程。尽管它可以接收无参数，但它可以通过 "<old-value>","<new-value>","<ref-name>" 的形式对每个 ref 传递一个字符串。                                                         | None                                                                                                                                                                                            |                                                                 |
+| update             | =git-receive-pack = on the remote repo | 对于每个PUSH 的引用，会在远程仓库上运行一次，而不是每次PUSH 一次。非0状态将会终止进程。可以被用于确认所有提交都是快进的。                                                                                                                  | (3) The name of the ref being updated,the old object name,the new object name                                                                                                                   |                                                                 |
+| post-receive       | `git-receive-pack` on the remote repo  | 所有 refs 在更新的PUSH 时，钩子会在远程运行。此钩子不带参数，但是通过 "<old-value>","<new-value>" ,"<ref-name>"时，钩子会在远程运行。此钩子不带参数，但是通过 "<old-value>","<new-value>","<ref-name>" 的格式来接收 info. 由于它是在更新后被调用，它不能终止进程。 | None                                                                                                                                                                                            |                                                                 |
+| post-update        | `git-receive-pack` on the remote repo  | 所有 refs 被PUSH 完毕后，此钩子只运行一次。在此方面，可以与 `post-receive` 类似。但是不接收 new/old value. 它最常用在对PUSH 过的Refs 实施通知。                                                                                            |                                                                                                                                                                                                 | (?) A parameter for each of the pushed refs containing its name |
+| post-auto-gc       | `git gc --auto`                        | 此钩子在自动清理仓库之前做一些检查。                                                                                                                                                                                                       | None                                                                                                                                                                                            |                                                                 |
+| post-rewrite       | `git commit --amend` / `git -rebase`   | 当git 命令正在重写已经被提交的数据时，此钩子会被调用。除了参数，                                                                                                                                                                           |                                                                                                                                                                                                 |                                                                 |
 
 
 ## Use Shortcodes {#use-shortcodes}
@@ -140,12 +361,12 @@ one important question is: how to run hugo modules?
 ## <span class="org-todo todo TODO">TODO</span> Shortcodes with raw strings parameters {#shortcodes-with-raw-strings-parameters}
 
 
-## shortcodes with markdown {#shortcodes-with-markdown}
+## Shortcodes with markdown {#shortcodes-with-markdown}
 
 in hugo the `%` delimiters how to works?
 
 
-## image links {#image-links}
+## Image links {#image-links}
 
 There have a few alternatives for linking to images in Org files
 in a way that's compatible with `ox-hugo` and Hugo.
@@ -265,7 +486,7 @@ check above the variable,have many file types.
     [[file:/images/web-image/cat.png]]
     ```
     
-    <a id="orgbe04a86"></a>
+    <a id="org903f280"></a>
     
     \#+attr\_html :width 20 :height 200
     

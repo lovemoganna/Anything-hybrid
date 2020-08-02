@@ -1,0 +1,3 @@
+;;; -*- lisp-data -*-
+(("~/.emacs.d/lisp/private/revolt_gitbook/")
+ ("~/.emacs.d/lisp/private/revolt_Blog/"))

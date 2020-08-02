@@ -1,0 +1,16 @@
+;; -*-Emacs-lisp-*-
+
+(require 'command-log-mode)
+
+
+;; (add-hook 'emacs-startup-hook 'command-log-mode-hook)
+
+(defun enable-command-log()
+  (interactive)
+  (command-log-mode 1)
+  (clm/toggle-command-log-buffer))
+
+(global-set-key (kbd "C-c o") 'enable-command-log)
+
+
+(provide 'init-command-log)

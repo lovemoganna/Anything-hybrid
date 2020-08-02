@@ -23,34 +23,37 @@ There have a little Elisp question.
 ** How to use `
 ** How to use &rest and &optional
 *** &rest
+
     #+begin_src emacs-lisp
       (info "(elisp)Argument List")		;see more information about &rest
     #+end_src
-    
+
+    #+RESULTS:
+
 *** &optional
 ** How to download file use org mode
-   
+
    #+begin_example
      ,#+begin_src shell :results file link :file "Results-of-Evaluation.html" :output-dir ./ :exports result
      wget "https://orgmode.org/manual/Results-of-Evaluation.html"
      ,#+end_src
-     
+
      ,#+RESULTS:
      [[file:./Results-of-Evaluation.html]]
    #+end_example
 ** How to move another buffer point
-   
+
    - =C-M v=
    - =C-M-S v=
 ** How to mark a location in use evil mdoe
-   
+
    - =m a=
    - =` a= --- jump your marked location
    - ='a= --- jump your marked location line
    - =:marks= --- show all marks location
    - =:delmarks! / :delmarks= --- delete all marks or one special mark.
-** elisp - multiple line print in org mode  
-   
+** elisp - multiple line print in org mode
+
    #+BEGIN_SRC emacs-lisp :results output
    (setq my-list '(apple orange peach))
    (print (car my-list))
@@ -58,7 +61,13 @@ There have a little Elisp question.
    #+END_SRC
 
    #+RESULTS:
-   : 
+   :
    : apple
-   : 
+   :
    : (orange peach)
+
+** How to check one function source code
+
+   =M-x find-function RET flyspell-prog-mode RET=
+
+   what's that?

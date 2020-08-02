@@ -1,11 +1,11 @@
 +++
 title = "ELISP FAQ"
 date = 2020-02-25T00:00:00+08:00
-lastmod = 2020-03-24T17:09:33+08:00
+lastmod = 2020-07-05T22:50:17+08:00
 tags = ["elisp", "faq"]
 categories = ["elisp"]
 draft = false
-locale = "zh_CN"
+locale = "en_US"
 +++
 
 There have a little Elisp question.
@@ -63,3 +63,10 @@ wget "https://orgmode.org/manual/Results-of-Evaluation.html"
 (print (car my-list))
 (print (cdr my-list))
 ```
+
+
+## How to check one function source code {#how-to-check-one-function-source-code}
+
+`M-x find-function RET flyspell-prog-mode RET`
+
+what's that?

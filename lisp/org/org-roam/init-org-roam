@@ -1,0 +1,22 @@
+;; -*-Emacs-lisp-*-
+
+;; 现在我需要系统化构建知识网络。
+
+(setq org-roam-directory "~/.emacs.d/org-roam")
+
+(add-hook 'after-init-hook 'org-roam-mode)
+
+(setq org-roam-server-host "127.0.0.1"
+      org-roam-server-port 9090
+      org-roam-server-export-inline-images t
+      org-roam-server-authenticate nil
+      org-roam-server-label-truncate t
+      org-roam-server-label-truncate-length 60
+      org-roam-server-label-wrap-length 20)
+
+(org-roam-server-mode)
+
+(require 'org-roam-protocol)
+
+(provide 'init-org-roam)
+

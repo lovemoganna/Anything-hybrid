@@ -5,9 +5,6 @@
    [2020-03-12 Thu]
 ** TODO find a script language like C
    [2020-03-12 Thu]
-** TODO 凯勒奇计划
-   [2020-03-12 Thu]
-   [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Functions/Lambda-Expressions::*Local Variables][Local Variables]]
 ** DONE how to set xterm color is 256 bit?
    [2020-03-14 Sat]
 ** TODO [[https://github.com/mermaid-js/mermaid.git][流程图（important!）]] 
@@ -21,7 +18,7 @@
 ** TODO org mode how to integration with web browser?
    [2020-03-14 Sat]
    [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/emacs/elisp/Functions/Lambda-Expressions::*Function Names][Function Names]]
-** TODO 同步EMACS 的配置文件，机器千万，不过载体。
+** TODO 同步EMACS 的配置文件
    [2020-03-14 Sat]
    [[file:~/aa Dropbox/piaoshang luoyu/revolt-blog/content-org/linux/cp::*TARGET： 覆盖掉已经过时的配置文件][TARGET： 覆盖掉已经过时的配置文件]]
 ** TODO change the comment css color
@@ -85,4 +82,14 @@
    [[file:~/.emacs.d/lisp/private/gitbook/bash/org-dir/1-basic-bash::*Tilde%20notation%20(~)][Tilde notation (~)]]
 ** TODO 收集好玩的视频去炸屏
    [2020-06-15 Mon]
-   [[file:~/.emacs.d/lisp/private/gitbook/bash/org-dir/1-basic-bash::*Tilde%20notation%20(~)][Tilde notation (~)]]
+** TODO this is a
+   [2020-08-01 Sat]
+   [[file:~/.emacs.d/lisp/private/revolt_gitbook/bash/html/test.html][file:~/.emacs.d/lisp/private/revolt_gitbook/bash/html/test.html]]
+** TODO how to recognize html file
+   [2020-08-02 Sun]
+   [[file:~/.emacs.d/lisp/private/revolt_gitbook/bash/html/how_to_take_smart_notes.html::Interlocking Tasks</span></a></span></span></p>]]
+
+   1.需要知道如何抽取Html 文件的所有内容，可剔除一段比较简单的
+   sentence 来做实验。
+   2.利用 grid 布局来重新组装这些 CSS 样式。
+   3.制作封面给它构造成书库的样子。

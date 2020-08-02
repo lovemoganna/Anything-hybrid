@@ -4,8 +4,13 @@
 ;; 关闭文件滑动控件
 (scroll-bar-mode -1)
 
+;; 设置EMACS ORG MODE 下的文字间距
 ;; 显示行号
 ;; (global-linum-mode 1)
+
+;; Set TAB key default indentation
+(setq indent-tabs-width 4)
+(setq indent-tabs-mode nil)
 
 ;; 关闭备份文件
 (setq make-backup-files nil)

@@ -22,7 +22,9 @@
   Elisp Basic Example.
 
   <!--more-->
+
 ** Printing
+
    #+begin_src emacs-lisp
      ; printing variable values
      (message "Her age is: %.2g" 12)        ; %g

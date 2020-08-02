@@ -6,6 +6,13 @@
 (global-evil-leader-mode)
 (evil-mode 1)
 
+
+;; define evil key binding
+(define-key evil-ex-map "o" 'helm-occur)
+
+(setq evil-insert-state-cursor '((bar . 3) "orange red")
+      evil-normal-state-cursor '(box "purple"))
+
 ;; 快速打开配置文件
 (defun open-my-init-file()
   (interactive)
@@ -14,32 +21,32 @@
   (find-file "~/.emacs.d/lisp/init-package.org")
   )
 
+;; vim command cookbook: http://tnerual.eriogerg.free.fr/vimqrc.pdf
+
 ;; need install general.el package from melpa
 (general-define-key
-:keymaps '(normal insert emacs)
-:prefix "SPC"
-:non-normal-prefix "M-SPC"
-"b" '(:ignore t :which-key "buffers")
-"f" '(:ignore t :which-key "files")
-"n" '(:ignore t :which-key "neotree")
-"g" '(:ignore t :which-key "script")
-"s" '(:ignore t :which-key "stardict")
-"c" '(:ignore t :which-key "company")
-"u" '(:ignore t :which-key "unix")
-"i" '(:ignore t :which-key "insert-translated-name")
-"i i" 'insert-translated-name-insert
-"s i" 'sdcv-search-input+
-"c i" 'toggle-company-english-helper
-"n t" 'neotree-toggle
-"n d" 'neotree-dir
-"f e d" 'open-my-init-file
-"b k" 'buf-move-up
-"b j" 'buf-move-down
-"b h" 'buf-move-left
-"b l" 'buf-move-right
-"u s" 'unix-sync
-"g b" 'shell-command-on-buffer 
-"b d" 'kill-buffer-and-window)
+ :keymaps '(normal insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "b" '(:ignore t :which-key "buffers")
+ "f" '(:ignore t :which-key "files")
+ "n" '(:ignore t :which-key "neotree")
+ "g" '(:ignore t :which-key "script")
+ "s" '(:ignore t :which-key "stardict")
+ "c" '(:ignore t :which-key "company")
+ "u" '(:ignore t :which-key "unix")
+ "s i" 'sdcv-search-input+
+ "c i" 'toggle-company-english-helper
+ "n t" 'neotree-toggle
+ "n d" 'neotree-dir
+ "f e d" 'open-my-init-file
+ "b k" 'buf-move-up
+ "b j" 'buf-move-down
+ "b h" 'buf-move-left
+ "b l" 'buf-move-right
+ "u s" 'unix-sync
+ "g b" 'shell-command-on-buffer 
+ "b d" 'kill-buffer-and-window)
 
 ;; test the super key.
 (general-define-key
@@ -48,6 +55,6 @@
  "c" 'org-capture
  )
 
-(global-set-key (kbd "H-b") 'backward-word) ; H is for hyper(global-set-key (kbd "s-b") 'ba)
+(global-set-key (kbd "H-RET") 'insert-translated-name-insert) ; H is for hyper(global-set-key (kbd "s-b") 'ba)
 
 (provide 'init-evil)

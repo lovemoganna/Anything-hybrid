@@ -6,6 +6,10 @@
 ;; 	"~/.emacs.d/elpa/" ;extra package collection.
 ;; 	)
 ;;       )
+;; global enable `aggressive-indent-mode'
+(global-aggressive-indent-mode 1)
+;; 将html mode 排除在外
+;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 (yas-global-mode 1)
 ;; 在ORG MODE里面 yas-expand 巨恶心，只能取消下。
 ;; https://joaotavora.github.io/yasnippet/snippet-expansion.html#org87a6f68

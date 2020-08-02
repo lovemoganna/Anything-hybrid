@@ -1,21 +1,64 @@
 ;; -*-Emacs-lisp-*-
 
 (require 'pyim)
-(require 'pyim-basedict)
-(pyim-basedict-enable)
+;; (require 'pyim-basedict)
+;; (pyim-basedict-enable)
+
+;; load great dict
+;; ref link: https://github.com/tumashu/pyim-greatdict
+(add-to-list 'load-path  "~/.emacs.d/dict/scel2pyim/pyim-dict/greatdict/")
+
+;; use big dict
+(require 'pyim-greatdict)
+(pyim-greatdict-enable)
 
 (setq default-input-method "pyim")
 (setq pyim-page-tooltip 'posframe)
 (setq pyim-page-length 5)
 
 ;; 双拼模式
-(setq pyim-default-scheme 'pyim-quanpin)
+(setq pyim-default-scheme 'quanpin)
 
-(global-set-key (kbd "C-\\") 'toggle-input-method)
+;; enable pinyin search function
+;; (pyim-isearch-mode 1)
+
+;; (global-set-key (kbd "SPC-SPC") 'toggle-input-method)
+
+;; 直接使用半角符号。
+;; Optinals parameters: yes/no/auto
+
+(setq pyim-punctuation-translate-p 'yes)
+
+;; 中英文切换
+(setq-default pyim-english-input-switch-functions
+	      '(pyim-probe-dynamic-english
+		pyim-probe-isearch-mode
+		pyim-probe-program-mode
+		pyim-probe-org-structure-template))
+
+(setq-default pyim-punctuation-half-width-functions
+               '(pyim-probe-punctuation-line-beginning
+		pyim-probe-punctuation-after-punctuation))
+
+;; https://emacs.stackexchange.com/questions/1020/problems-with-keybindings-when-using-terminal
+;; So sorry, I want to bind `<M-<return>' give 'pyim-convert-code-at-point,but not working in xterm.
+;; you know, xterm M-RET is fullscreen, i already ban it,but still not working.So i guess remove xterm M-RET key bind.
+(define-key org-mode-map (kbd "C-<return>") nil)
+
+(global-set-key (kbd "C-<return>") 'pyim-convert-code-at-point)
+
+;; enable guess word
 
 ;; import outside pyim dict
+;; (setq pyim-dicts
+;;       '(
+;; 	(:name "dict1" :file "~/.emacs.d/dict/scel2pyim/pyim-dict/pyim-bigdict.pyim")
+;; 	(:name "dict2" :file "~/.emacs.d/dict/scel2pyim/pyim-dict/computer_all_word.pyim")
+;; 	(:name "dict3" :file "~/.emacs.d/dict/scel2pyim/pyim-dict/programming.pyim")
+;; 	))
 
-(setq pyim-dicts
-      '((:name "dict1" :file "~/.emacs.d/dict/scel2pyim/pyim-dict/computer_all_word.pyim")))
+;; When you start emacs auto load thesaurus
+;; (add-hook 'emacs-startup-hook
+;; 	  #'(lambda() (pyim-restart-1 t)))
 
 (provide 'init-pyim)

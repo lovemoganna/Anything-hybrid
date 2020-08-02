@@ -5,7 +5,7 @@ title = "Revolt's NoteBook"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
-theme = "even"
+# theme = "evens"
 publishDir = "docs"
 # enableGitInfo = true # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
 
@@ -44,6 +44,11 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   weight = 30
   identifier = "tags"
   url = "/tags/"
+[[menu.main]]
+  name = "Hearts"
+  weight = 30
+  identifier = "hearts"
+  url = "/hearts/"
 [[menu.main]]
   name = "Categories"
   weight = 40
@@ -222,47 +227,12 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 #  taxonomyTerm = ["HTML"]
 
 [module]
-  # Comma separated glob list matching paths that should be treated as private.
-  private = "*.*"
-  # defines the proxy server to use to download remote modules.Default is `direct',which means "git clone" and similar.
-  proxy = "direct"
-   # Comma seperated glob list matching paths that should not use the proxy configured above.
-  noProxy = "none"
-  [module.hugoVersion]
-    extended = false
-    max = "0.59.0"
-    min = "0.56.0"
-  [module.imports]
-    # Set to `true` to disable the module off while keeping any version info in the `go.*` files.
-    disable = false
-    # if enabled,any module configuration file,e.g.,`config.toml`,will not be loaded.
-    ignoreconfig = false
-    #path = "github.com/gohugoio/hugoTestModules1_linux/modh1_2_1v"
-    # Can be either a vlaid Go module path,e.g. `github.com/gohugoio/myShortCodes/`,or the directory name for the module as stored in your themes folder.
-    path = "../layouts/shortcodes"
-
-  [[module.mounts]]
-    # when the `mounts` config was intorduced in Hugo 0.56.0,we were careful to preserve the existing `staticDir` and similar configuration to make sure all existing sites just continuted to work.
-    # The source directory of the mount.For the main project,this can be either project-relative or absolute and even a symbolic link.
-    source = "content"
-    # Where is should be mounted into hugo's virtual filesystem.It must start with one of Hugo's component folders: static,content,layouts,data,assets,i18n,or archetypes.E.g. content/blog.
-    target = "content"
-  [[module.mounts]]
-    source = "static"
-    target = "static"
-  [[module.mounts]]
-    source = "layouts"
-    target = "layouts"
-  [[module.mounts]]
-    source = "data"
-    target = "data"
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-  [[module.mounts]]
-    source = "i18n"
-    target = "i18n"
-  [[module.mounts]]
-    source = "archetypes"
-    target = "archetypes"
-
+  [[module.imports]]
+    path = "github.com/lovemoganna/revolt-theme"
+   [[module.imports]]
+     path = "github.com/lovemoganna/gitbook"
+     disabled = false
+     [[module.imports.mounts]]
+     source = "bash/content"
+     target = "content/hearts"
+    

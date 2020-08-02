@@ -1,0 +1,445 @@
+-*- mode: Org; org-download-image-dir: "~/.emacs.d/lisp/private/gitbook/assets/screenshot/"; -*-
+#+hugo_section: 
+#+hugo_bundle:
+#+hugo_base_dir: ../
+#+STARTUP: inlineimages
+#+title: BASH BASIC
+
+** Getting Bash
+   
+   - check your current use bash type
+     
+     #+BEGIN_SRC shell :results verbatim :exports both
+       echo $SHELL
+     #+END_SRC
+
+     #+RESULTS:
+     : /usr/bin/zsh
+
+   - check bash path
+     
+     #+BEGIN_SRC shell :results verbatim :exports both
+       whereis bash
+     #+END_SRC
+
+     #+RESULTS:
+     : bash: /usr/bin/bash /usr/lib/bash /etc/bash.bashrc /etc/bash.bash_logout /usr/include/bash /usr/share/man/man1/bash.1.gz /usr/share/info/bash.info.gz
+
+     #+BEGIN_SRC shell :results verbatim :exports both
+       which bash
+     #+END_SRC
+
+     #+RESULTS:
+     : /usr/bin/bash
+
+     #+BEGIN_SRC shell :results verbatim :exports both
+       whence bash
+     #+END_SRC
+
+     #+RESULTS:
+     : /usr/bin/bash
+
+   - change current defualt shell
+     
+     #+BEGIN_SRC shell :results verbatim :exports both
+       # chsh /usr/bin/bash
+     #+END_SRC
+
+** Interactive Shell Use
+   
+  
+*** Commands,Arguments,and Options
+
+    Shell 命令行有一个或者多个word组成,通过BLANKS或者TABS来进行分隔.组
+    成格式如下:
+
+    #+BEGIN_EXAMPLE
+    command auguments/parameters
+    #+END_EXAMPLE
+
+   
+*** Files 
+    
+    File是任何UNIX系统中最重要的类型.一个File可以包含各种各样的信息,同
+    样也有不同类型的File.主要有三种最重要的类型:
+    
+    - Regular files(常规文件) :: text files.
+
+    - Executable files(可执行文件) :: The shell itself is a executable
+         file called /bash/.
+      
+    - Directories(目录) :: like folders that contain other files.
+
+    
+
+*** Directories
+    
+    Directories can contain other directories leads to a hierachical structure.
+
+    #+BEGIN_EXPORT html
+    <html>
+      <body>
+	<div style="text-align: center">
+	  <img src="https://i.imgur.com/xraNY0O.png" alt="directory tree"
+	       style="width:300px;height=300px;display: inline-block;"/>
+	  <p>directories tree</p>
+	</div>
+      <body/>
+    </html>
+    #+END_EXPORT
+
+*** The working directory
+    
+    You need to specify a file path,then you should have a work
+    directory,then should use /relative path/.
+    
+    When you log in to the system,your working directory is initially
+    set to a special directory called your /home/ directory.
+    
+    系统管理员经常设置系统,所有每个人的HOME目录名字都跟他们的登录名字
+    相同,所有的HOME目录都被包含在root之下的同一个目录内.
+    
+   
+*** Tilde notation (~)
+    
+    
+    1.run =org-babel-tangle= generate ~hello.txt~ file in =/home/revolt=
+    (your user ditrectory).
+
+    #+BEGIN_SRC shell :tangle "/sudo::/home/revolt/hello.txt"
+      结婚没意思
+    #+END_SRC
+    
+    2.你可以在用户 ~revolt~ HOME 目录下引用一个file =hello=.写法如下:
+
+    #+BEGIN_SRC shell :results verbatim :exports both :dir "/sudo::/"
+      #!/bin/bash
+      ls -ll ~revolt/hello.txt
+    #+END_SRC
+
+    #+RESULTS:
+    : -rw-r--r-- 1 root root 16 Jun 15 22:13 /home/revolt/hello.txt
+
+    这是一种绝对路径,当你使用它的时候,你不必在乎它的working directory.
+
+    更加方便的是, =~= 本身就是引用到你自己的 ~home~ 目录.
+    
+    #+BEGIN_SRC shell :results verbatim  :dir "~/"
+      #!/bin/bash
+      ls -ll ~/
+    #+END_SRC
+
+    #+RESULTS:
+    #+begin_example
+    total 280
+    drwx------ 2 revolt revolt   4096 May 16 18:58 Desktop
+    drwx------ 2 revolt revolt   4096 Jun 17 09:26 Downloads
+    -rw-r--r-- 1 revolt revolt      4 Jun 15 22:57 hello.asd
+    -rw-r--r-- 1 root   root       16 Jun 16 23:13 hello.txt
+    drwxr-xr-x 5 revolt revolt   4096 May 16 22:22 hosts
+    -rwxrwxrwx 1 revolt revolt   2972 May 16 22:24 lhosts
+    -rw-r--r-- 1 revolt revolt    218 May  7 22:13 LICENSE.TXT
+    drwxr-xr-x 6 revolt revolt   4096 Jun 16 22:10 powerlevel10k
+    drwxr-xr-x 6 revolt revolt   4096 May 16 19:59 quicklisp
+    -rw-r--r-- 1 revolt revolt  57144 May 16 19:43 quicklisp.lisp
+    -rw-r--r-- 1 revolt revolt    882 May 16 19:43 quicklisp.lisp.asc
+    drwxr-xr-x 3 revolt revolt   4096 Jun 13 19:55 R
+    -rw-r----- 1 revolt revolt 176394 Jun  3 23:07 sbcl.pdf
+    drwxr-xr-x 4 revolt revolt   4096 May 18 21:39 Skyzip
+    #+end_example
+    
+    #+BEGIN_SRC shell :results verbatim  :dir "/home/revolt"
+      #!/bin/bash
+      ls -ll /home/revolt
+    #+END_SRC
+
+    #+RESULTS:
+    #+begin_example
+    total 280
+    drwx------ 2 revolt revolt   4096 May 16 18:58 Desktop
+    drwx------ 2 revolt revolt   4096 Jun 17 09:26 Downloads
+    -rw-r--r-- 1 revolt revolt      4 Jun 15 22:57 hello.asd
+    -rw-r--r-- 1 root   root       16 Jun 16 23:13 hello.txt
+    drwxr-xr-x 5 revolt revolt   4096 May 16 22:22 hosts
+    -rwxrwxrwx 1 revolt revolt   2972 May 16 22:24 lhosts
+    -rw-r--r-- 1 revolt revolt    218 May  7 22:13 LICENSE.TXT
+    drwxr-xr-x 6 revolt revolt   4096 Jun 16 22:10 powerlevel10k
+    drwxr-xr-x 6 revolt revolt   4096 May 16 19:59 quicklisp
+    -rw-r--r-- 1 revolt revolt  57144 May 16 19:43 quicklisp.lisp
+    -rw-r--r-- 1 revolt revolt    882 May 16 19:43 quicklisp.lisp.asc
+    drwxr-xr-x 3 revolt revolt   4096 Jun 13 19:55 R
+    -rw-r----- 1 revolt revolt 176394 Jun  3 23:07 sbcl.pdf
+    drwxr-xr-x 4 revolt revolt   4096 May 18 21:39 Skyzip
+    #+end_example
+    
+    注意下 =~hello.txt= 与 =~/hello.txt= 的区别.
+    
+    #+BEGIN_EXAMPLE
+    [revolt@Remake ~]$ cat ~revolt/hello.txt
+    结婚没意思
+    [revolt@Remake ~]$ cat ~/hello.txt
+    结婚没意思
+    [revolt@Remake ~]$ cat ~hello.txt
+    cat: '~hello.txt': No such file or directory
+    
+    # in here, ~hello.txt is user hello.txt's home directory.
+    #+END_EXAMPLE
+    
+    
+   
+*** Changing working directories
+    
+    Just input =cd= in terminal, you will go to your home directory.
+    
+   
+*** Filenames,Wildcards,and Pathname Expansion
+    
+    | Wildcard | Matches                  |
+    |----------+--------------------------|
+    | ?        | Any Single Character     |
+    | *        | Any String of Character  |
+    | [set]    | Any character in set     |
+    | [!set]   | Any character not in set |
+    
+    #+BEGIN_SRC shell :dir "~/" :exports both :results verbatim
+      ls hello????
+    #+END_SRC
+
+    #+RESULTS:
+    : hello.asd
+    : hello.txt
+    
+    #+BEGIN_SRC shell :dir "~/" :exports both :results verbatim
+      ls hello*
+    #+END_SRC
+
+    #+RESULTS:
+    : hello.asd
+    : hello.txt
+    
+    #+BEGIN_EXAMPLE
+      Remake➜  test : master ✘ :✖✹✭ ᐅ  ls -al
+      total 20
+      drwxr-xr-x  5 revolt revolt 4096 Jun 15 23:11 .
+      drwxr-xr-x 12 revolt revolt 4096 Jun 15 21:41 ..
+      drwxr-xr-x  2 revolt revolt 4096 Jun 15 19:41 bash
+      drwxr-xr-x  2 revolt revolt 4096 Jun 15 23:11 cash
+      drwxr-xr-x  3 revolt revolt 4096 Jun 15 17:54 pweave_demo
+
+      Remake➜  test : master ✘ :✖✹✭ ᐅ  tree [bc]ash   # here test demo
+      bash
+      ├── 1.txt
+      ├── file.err
+      └── file.out
+      cash
+
+      0 directories, 3 files
+      Remake➜  test : master ✘ :✖✹✭ ᐅ  
+
+    #+END_EXAMPLE
+
+    #+BEGIN_SRC shell :dir "~/" :exports both :results verbatim
+      echo {a,b,c{a,c,d}}
+    #+END_SRC
+
+    #+RESULTS:
+    : a b ca cc cd
+
+   
+*** Pipelines 
+    
+    1.何时需要把结果输出到一个文件里?
+
+    2.何时需要重定向 一个命令的输出 作为 其他命令的输入?
+
+    问题2描述的这种操作可以称为 pipe.(管道),本质上是个传递操作,符号记做
+    =|=. 就是将第一个命令的标准输出作为第二个命令的标准输入.
+    
+    比如: 在使用 =ls -l= 的时候,如果你的文件太多,还没来得及一一浏览,就
+    一闪而过了.此时,你可以使用 =ls -ll | more= 来进行预览.
+    
+    The file ~/etc/passwd~ stores information about user's accounts on
+    a UNIX system.
+    
+    main have login name,user ID number,encryted passwd,home
+    directory,login shell.
+
+    #+BEGIN_SRC sh :results table 
+      bat /etc/passwd
+    #+END_SRC
+
+    #+RESULTS:
+    | git:x:972:972:git                                       | daemon                      | user:/:/usr/bin/git-shell                   |                                        |
+    | ntp:x:87:87:Network                                     | Time                        | Protocol:/var/lib/ntp:/usr/bin/nologin      |                                        |
+    | cups:x:209:209:cups                                     | helper                      | user:/:/usr/bin/nologin                     |                                        |
+    | nvidia-persistenced:x:143:143:NVIDIA                    | Persistence                 | Daemon:/:/usr/bin/nologin                   |                                        |
+    
+    
+    想得到当前系统经过排序的所有用户,
+    
+    #+BEGIN_SRC sh :results verbatim :exports both
+      # cut command extracts the first field (-f1)
+      cut -d: -f1 < /etc/passwd | sort
+    #+END_SRC
+
+    现在想在一个文件内检测指定字段,并查找出有多少行包含这个字段
+    
+    #+BEGIN_SRC sh :results verbatim :exports both
+      cat /etc/passwd | grep "/usr/bin/" | wc -l
+    #+END_SRC
+
+    #+RESULTS:
+    : 27
+
+**** cut command
+    
+     #+BEGIN_SRC sh :results verbatim
+       cut --help
+     #+END_SRC
+
+     #+RESULTS:
+     #+begin_example
+     Usage: cut OPTION... [FILE]...
+     Print selected parts of lines from each FILE to standard output.
+
+     With no FILE, or when FILE is -, read standard input.
+
+     Mandatory arguments to long options are mandatory for short options too.
+       -b, --bytes=LIST        select only these bytes 仅显示行中指定直接范围的内容
+       -c, --characters=LIST   select only these characters 仅显示行中指定范围的字符
+       -d, --delimiter=DELIM   use DELIM instead of TAB for field delimiter 指定字段的分隔符
+       -f, --fields=LIST       select only these fields;  also print any line 显示指定字段的内容
+				 that contains no delimiter character, unless
+				 the -s option is specified
+       -n                      (ignored)
+	   --complement        complement the set of selected bytes, characters
+				 or fields
+       -s, --only-delimited    do not print lines not containing delimiters
+	   --output-delimiter=STRING  use STRING as the output delimiter
+				 the default is to use the input delimiter
+       -z, --zero-terminated    line delimiter is NUL, not newline
+	   --help     display this help and exit
+	   --version  output version information and exit
+
+     Use one, and only one of -b, -c or -f.  Each LIST is made up of one
+     range, or many ranges separated by commas.  Selected input is written
+     in the same order that it is read, and is written exactly once.
+     Each range is one of:
+
+       N     N'th byte, character or field, counted from 1
+       N-    from N'th byte, character or field, to end of line
+       N-M   from N'th to M'th (included) byte, character or field
+       -M    from first to M'th (included) byte, character or field
+
+     GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+     Full documentation <https://www.gnu.org/software/coreutils/cut>
+     or available locally via: info '(coreutils) cut invocation'
+     #+end_example
+     
+     generate a test file =demo1.txt=
+
+     #+BEGIN_SRC bash :tangle "~/.emacs.d/lisp/private/gitbook/test/bash/demo1.txt" :exports both
+       No;Name;Mark;Percent
+       01 tom 69 91
+       02 jack 71 87
+       03 alex 68 98
+     #+END_SRC
+
+     
+     现在我们想选出 =demo1.txt= 中的第一行的 =Name;Mark= 字段.
+
+     1.我们第一步清洗出带有 =Name;Mark= 的所有字段.
+     #+BEGIN_SRC sh :dir "~/.emacs.d/lisp/private/gitbook/test/bash/" :results verbatim
+       #! /bin/bash
+       cut -d ";" -f 2,3 demo1.txt
+       # cut -d ";" -f 2- demo1.txt # print the second field to end of line
+
+       # ref link: https://www.jianshu.com/p/b5541da98139
+     #+END_SRC
+
+     #+RESULTS:
+     : Name;Mark
+     : 01 tom 69 91
+     : 02 jack 71 87
+     : 03 alex 68 98
+     
+     2.利用stream editor选出第一行,管道操作一下.
+     #+BEGIN_SRC sh :dir "~/.emacs.d/lisp/private/gitbook/test/bash/" :results verbatim
+       #! /bin/bash
+       sed -n "1p" demo1.txt | cut -d ";" -f 1,2
+
+       # print line 1 to end of line
+       # sed -n '2,$p' demo1.txt # 注意这里一定要使用单引号
+
+       # ref link: https://blog.csdn.net/lantianjialiang/article/details/52042135
+     #+END_SRC
+
+     #+RESULTS:
+     : No;Name
+     
+
+     
+
+*** Background Jobs
+    
+    Pipes 实际上是很多普通功能的特殊案例: 一次不想只做一件事.
+    
+    如果你想不需要用户输入来运行一个命令,当命令正在运行的时候,你想做其
+    他的事情,可以在这个命令后面放置一个 =&=. 此时命令就会在后台运行.
+    
+    比如,启动EMACS,有时候你不想占用终端,它加载包的时间又长,所以你只能
+    后台启动它,有空余的时间做别的事情. just run =emacs &=.之后,屏幕之
+    后一般会给出一个 =pid=,方便你在不需要它的时候,直接 kill 掉这个进程.
+    
+    你可以检查后台正在运行的jobs:
+    
+    #+BEGIN_SRC shell :results output :exports both
+      #! /bin/bash 
+      jobs
+    #+END_SRC
+
+   
+*** Background I/O 
+    
+    Jobs you put in the background should not do I/O to your terminal.
+    
+    #+BEGIN_EXAMPLE
+    > diff demo1.txt demo1.txt2 &
+    [1] 26363
+    0a1
+    > 111111
+    [1]  + 26363 exit 1     diff demo1.txt demo1.txt2
+    #+END_EXAMPLE
+
+    #+BEGIN_EXAMPLE
+    > diff demo1.txt demo1.txt2 > diff_log &
+
+    [1] 26317
+    [1]  + 26317 exit 1     diff demo1.txt demo1.txt2 > diff_log            
+    #+END_EXAMPLE
+
+    #+BEGIN_SRC sh :exports both :results output :dir "~/.emacs.d/lisp/private/gitbook/test/bash/"
+      #! /bin/bash
+      diff demo1.txt demo1.txt2 > diff_log & bat diff_log
+    #+END_SRC
+
+    #+RESULTS:
+    : 0a1
+    : > 111111
+    
+    
+   
+*** Background Jobs and Priorities
+
+    Every job on the system is assigned a priority,a number that tells
+    the operating system how much priority to give the job then it
+    doles out resources.(**the higher the number,the low the
+    priority**).
+    
+    
+    =nice= 命令可以调节job运行的优先级,系统管理员的Job优先级大于普通用
+    户Job的优先级.
+    
+   
+*** Special Characters and Quoting
+    

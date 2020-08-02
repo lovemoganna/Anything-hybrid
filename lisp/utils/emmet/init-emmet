@@ -6,7 +6,6 @@
 ;; https://github.com/smihica/emmet#html
 ;; https://github.com/smihica/emmet#css
 
-(add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook 'emmet-mode)
 (add-hook 'web-mode-hook 'emmet-mode)
@@ -17,6 +16,6 @@
 
 ;; change expand key
 (global-unset-key (kbd "C-j"))
-(global-set-key (kbd "<tab>") 'emmet-expand-line)
+;; (global-set-key (kbd "<tab>") 'emmet-expand-line)
 
 (provide 'init-emmet)

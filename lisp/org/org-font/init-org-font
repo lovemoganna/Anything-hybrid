@@ -1,0 +1,60 @@
+;; -*-Emacs-lisp-*-
+;; ref link: https://zzamboni.org/post/beautifying-org-mode-in-emacs/#step-1-configure-faces-for-org-headlines-and-lists
+
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook 'visual-line-mode)
+
+(setq-default line-spacing 0.4)
+
+(custom-theme-set-faces 'user
+			'(variable-pitch ((t (:family "Fira" :height 100 :weight thin))))
+			'(fixed-pitch ((t ( :family "Hack" :height 100)))))
+;; '(fixed-pitch ((t ( :family "Fira Code Retina" :height 80)))))
+(let* ((variable-tuple
+        (cond
+         ((x-list-fonts "Fira Code")   '(:font "Fira Code Medium"))
+	 ((x-list-fonts "Angelina")         '(:font "Angelina"))
+	 ((x-list-fonts "ETBembo")          '(:font "ETBembo"))
+         ((x-list-fonts "Lucida Grande")    '(:font "Lucida Grande"))
+ 	 ((x-list-fonts "Verdana")          '(:font "Verdana"))
+         ((x-family-fonts "Sans Serif")     '(:family "Sans Serif"))
+         (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+       (base-font-color (face-foreground 'default nil 'default))
+       (headline  `(:inherit fixed-pitch  :foreground "slate blue" :background "ghost white")))
+  ;; (headline  `(:inherit default :weight bold :foreground ,base-font-color)))
+
+
+  (custom-theme-set-faces
+   'user
+   `(org-level-8 ((t (,@headline ,@variable-tuple :height 1.2))))
+   `(org-level-7 ((t (,@headline ,@variable-tuple :height 1.2))))
+   `(org-level-6 ((t (,@headline ,@variable-tuple :height 1.2))))
+   `(org-level-5 ((t (,@headline ,@variable-tuple :height 1.2))))
+   `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.2))))
+   `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.2))))
+   `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.25))))
+   `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.3)))
+		 `(org-document-title ((t (,@headline ,@variable-tuple :height 1.0 :underline nil))))))
+  )
+
+
+
+(custom-theme-set-faces
+ 'user
+ '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ '(org-block-begin-line ((t (:inherit fixed-pitch :foreground "dim gray" :background "cornsilk" :height 0.95))))
+ '(org-block ((t (:inherit fixed-pitch :height 0.95))))
+ '(org-document-info ((t (:background "ghost white"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch) :foreground "dim gray"))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-link ((t (:foreground "dark turquoise" :underline t))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch) :height 0.9 :foreground "gray"))))
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch) :foreground "dim gray" :weight bold))))
+ '(org-special-properties ((t (:inherit fixed-pitch :color "black"))))
+ '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+ '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+ '(org-verbatim ((t (:inherit (fixed-pitch) :foreground "dark orchid" :weight bold :height 0.9)))))
+
+;; org-fill-paragraph M-q
+;; what-cursor-position C-u C-x =
+(provide 'init-org-font)

@@ -16,8 +16,12 @@
 ;; org image setting
 ;;(setq org-image-actual-width nil)
 
+;; org roam && org roam server
+(require 'init-org-roam "./org-roam/init-org-roam")
+
 ;; org redisplay inline images
 (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+
 
 ;; syntax highlight code
 (setq org-confirm-babel-evaluate nil
@@ -26,4 +30,8 @@
 
 ;; default hidden org block
 (setq org-hide-block-startup t)
+
+;; import org font
+(require 'init-org-font "./org-font/init-org-font")
+
 (provide 'init-org)

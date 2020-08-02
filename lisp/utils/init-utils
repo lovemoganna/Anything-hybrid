@@ -7,6 +7,12 @@
 ;; helm mode
 (require 'init-helm"./helm/init-helm")
 
+;; require command log mode when emacs startup
+(require 'init-command-log "./command-log/init-command-log")
+
+;; hunspell & ispell
+(require 'init-fly-spell "./flyspell/init-fly-spell")
+
 ;; projectile mode
 (require 'init-projectile "./projectile/init-projectile")
 

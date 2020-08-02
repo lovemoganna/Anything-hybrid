@@ -1,0 +1,5 @@
+#+title: org-roam
+* org roam introduction
+  
+  org roam 是 [[https://roamresearch.com/][roam]] 的复制品。另外也是使用Org mode 非线性记笔记的高效方
+  法。使用

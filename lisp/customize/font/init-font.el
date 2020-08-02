@@ -12,16 +12,17 @@
  (cond
   ((string-equal system-type "gnu/linux")
    (when (member "Iosevka SS02" (font-family-list))
-     (add-to-list 'initial-frame-alist '(font . "Iosevka fixed SS02-10"))
-     (add-to-list 'default-frame-alist '(font . "Iosevka fixed SS14-10")))))
+     (add-to-list 'initial-frame-alist '(font . "Iosevka fixed SS02-16"))
+     (add-to-list 'default-frame-alist '(font . "Iosevka fixed SS14-16")))))
 
 ;; set font all windows. don't keep window size fixed
 ;; (set-frame-font "Iosevka Fixed SS14" nil t)
 ;; you must set the `pixelsize` the font will show beautiful!
-(set-frame-font "Hack-9:style=Regular:antialias=True:pixelsize=12" nil t)
+(set-frame-font "Hack-12:style=Regular:antialias=True:pixelsize=15" nil t)
 
 
 ;; Chinese Font -- 中文字体的话，必须设置为 14px，才能使Org Mode里面的Table对齐。很是Fuck。
+
 ;; ref link: https://emacs-china.org/t/org-mode/440/52
 ;; https://emacs-china.org/t/org-mode-9-3/11217/12
     
@@ -30,12 +31,21 @@
 (if (display-graphic-p)
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
-			charset (font-spec :family "WenQuanYi Zen Hei"
-                                           :size 13)))) ;理解万岁
+			;; WenQuanYi Zen Hei
+			;;charset (font-spec :family "WenQuanYi Zen Hei Mono Light"
+			charset (font-spec :family "TsangerJinKai03\-6763 W03"
+                                           :size 16)))) ;理解万岁
 
 (require 'org-faces)
-(set-face-attribute 'org-table nil :family "WenQuanYi Zen Hei")
+(set-face-attribute 'org-table nil :family "TsangerJinKai03\-6763 W03")
 
+(setq org-hide-emphasis-markers t)
+(font-lock-add-keywords 'org-mode
+			'(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+
+(setq-default )
 (provide 'init-font)
 
 

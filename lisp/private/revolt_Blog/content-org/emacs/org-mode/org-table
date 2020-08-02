@@ -25,7 +25,6 @@ Org as a spreadsheet system,just for test my poor salary
     
     最终目的就是算出每个学生的每个学科的平均值.
     
-   
 *** 初步认识公式
     
     | Student  | Maths | Physics | Mean      |
@@ -50,7 +49,7 @@ Org as a spreadsheet system,just for test my poor salary
       另外一种记法就是 =D2= ,这种记法来跟 Excel 类似,想象自己
       处在一个2维空间内即可.
 
-***  Column formulas and field formulas
+*** Column formulas and field formulas
    
     | Student  | Maths | Physics | Mean |
     |----------+-------+---------+------|
@@ -64,3 +63,126 @@ Org as a spreadsheet system,just for test my poor salary
       
       
       
+    
+** Editing Text-based Tables
+   
+   - =table-fix-width-mdoe= 自动切换表格大小功能。
+
+*** Table Definition
+    
+    - table-cell-vertical-char
+      
+      input =|=,press =Tab= ,you will see the beycond it:
+      
+      #+begin_example
+	||
+	||
+      #+end_example
+
+    - table-cell-intersection-char
+
+      #+begin_src org
+	|   |
+	|---|
+	|   |
+      #+end_src
+
+*** Table Creation
+    
+    =M-x table-insert=
+    
+    #+begin_example
+    +-----+-----+-----+
+    |     |     |     |
+    +-----+-----+-----+
+    |     |     |     |
+    +-----+-----+-----+
+    |     |     |     |
+    +-----+-----+-----+
+    #+end_example
+
+*** Table Recognition
+    
+    - =table-recognize= 
+
+      demo:
+      
+      #+begin_example
+	a b c
+	1 2 3
+	4 5 6
+      #+end_example
+      
+        +------+
+        | a b c|
+        +------+
+        | 1 2 3|
+        +------+
+        | 4 5 6|
+	+------+
+
+*** Cell command
+    
+    调整单元格的大小
+    
+    - table-highten-cell
+    - table-shorten-cell
+    - table-widen-cell
+    - table-narrow-cell
+
+*** Cell justification
+    
+*** Table Rows and Columns
+*** Table Conversion
+*** Table Misc
+*** Converting Between Plain text and tables
+ 
+    #+begin_example
+      1,2,3,4
+      5,6,7,8
+      9,10
+    #+end_example
+
+    - =org-capture=
+
+      1. the column delimiter regexp: =,=
+      2. the row delimiter regexp: =C-o= (newline)
+      3. justification
+      4. the Cell width: 10
+      
+    +----------+----------+----------+----------+
+    |    1     |    2     |    3     |    4     |
+    +----------+----------+----------+----------+
+    |    5     |    6     |    7     |    8     |
+    +----------+----------+----------+----------+
+    |    9     |    10    |          |          |
+    +----------+----------+----------+----------+
+
+
+** Org mode table newline
+   
+   ref [[https://emacs.stackexchange.com/questions/38135/wrap-cell-content-in-an-org-mode-table][here]].
+
+   Org mode has two type of table formats,the default =org-table= and
+   the other is =table.el=.
+
+   - =org-table= demo
+ 
+     |  1   |   2   | 3                    |  4  |   5   |
+     |------+-------+----------------------+-----+-------|
+     | <c>  |  <c>  | <12>                 | <c> |  <c>  |
+     | <12> | world | weclome sadasdasdasd | to  | emacs |
+
+
+   - =org-table= convert to =table=
+     
+     =C-c ~= org-table-create-with-table\.el
+
+
+** Useful link
+
+   https://www.zmonster.me/2016/06/03/org-mode-table.html
+
+** org table wrap multi line
+   
+   - =C-c TAB=

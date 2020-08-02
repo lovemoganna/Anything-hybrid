@@ -49,6 +49,7 @@
     pos-tip
     yasnippet
     yasnippet-snippets
+    aggressive-indent
     wolfram
     slime
     quelpa
@@ -84,6 +85,8 @@
     pdf-tools
     org-noter
     engine-mode
+    pyim
+    ;; pyim-greatdict-mode
     ))
 (setq package-selected-packages revolt/package-list)
 

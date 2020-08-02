@@ -1,0 +1,38 @@
+;; -*-Emacs-lisp-*-
+
+;; hunspell dict in here download: https://extensions.libreoffice.org/en/extensions/show/english-dictionaries
+;; https://tex.stackexchange.com/questions/313370/installing-a-dictionary-files-extension-oxt
+;; uzip oxt file is OK .
+
+
+;; true text mode
+(dolist (hook '(text-mode-hook org-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))
+
+;; log mode
+(dolist (hook '(change-log-mode-hook log-edit-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode -1))))
+
+;; code comment scene
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+	    (flyspell-prog-mode)
+	    ))
+
+;; use hunspell
+(setq ispell-program-name (executable-find "hunspell")
+      ispell-dictionary "en_US")
+
+
+;; key binding `helm-flyspell-correct' auto fix word error
+(define-key org-mode-map (kbd "C-'") nil)
+;; set helm flysepll dictionary
+(define-key flyspell-mode-map (kbd "C-'") 'helm-flyspell-correct)
+ 
+;;; TODO: how to removing words form the hunspell directory
+
+;;; how to running flyspell on any type of buffer?
+;; =M-x flyspell-buffer=
+
+
+(provide 'init-fly-spell)

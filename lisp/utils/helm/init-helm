@@ -3,7 +3,7 @@
   (require 'helm)
   (helm-mode 1)
   (require 'helm-config)
-  
+ 
   (global-set-key (kbd "M-x") #'helm-M-x)
   (global-set-key (kbd "s-f") #'helm-projectile-ag)
   (global-set-key (kbd "s-t") #'helm-projectile-find-file-dwim)
@@ -37,6 +37,16 @@
 
   (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
+  (define-key helm-map (kbd "C-j") 'helm-next-line)
+  (define-key helm-map (kbd "C-k") 'helm-previous-line)
+  (define-key helm-map (kbd "C-h") 'helm-next-source)
+  (define-key helm-map (kbd "C-S-h") 'describe-key)
+  (define-key helm-map (kbd "C-l") (kbd "RET"))
+  (define-key helm-map [escape] 'helm-keyboard-quit)
+  (dolist (keymap (list helm-find-files-map helm-read-file-map))
+    (define-key keymap (kbd "C-l") 'helm-execute-persistent-action)
+    (define-key keymap (kbd "C-h") 'helm-find-files-up-one-level)
+    (define-key keymap (kbd "C-S-h") 'describe-key))
   
   (when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
@@ -52,7 +62,18 @@
 
   (setq helm-autoresize-min-height 40)
 
+  ;; fix helm error
+  ;; (defun evil//hide-cursor-in-helm-buffer()
+  ;;   "hide the cursor in helm buffer"
+  ;;   (with-helm-buffer
+  ;;     (setq cursor-in-non-selected-windows nil)))
+
+  ;; (add-hook 'helm-after-initialize-hook
+  ;; 	    'evil//hide-cursor-in-helm-buffer)
+
   (helm-autoresize-mode 1)
-  )
+ )
+
+
 
 (provide 'init-helm)
