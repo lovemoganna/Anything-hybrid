@@ -56,14 +56,18 @@
 ;; web emmet
 (require 'init-emmet "./emmet/init-emmet")
 
+;; tern
+(require 'init-tern "./tern/init-tern")
+
+;; company mode
+(require 'init-company "./company/init-company")
+
 ;; neotree
 (require 'init-neotree "./neotree/init-neotree")
 
 ;; all-the-icons
 (require 'init-all-the-icons "./all-the-icons/init-all-the-icons")
 
-;; company mode
-(require 'init-company "./company/init-company")
 
 ;; support r markdown
 (require 'init-poly "./poly/init-poly")
@@ -83,6 +87,11 @@
 
 ;; chinese input methods: pyim
 (require 'init-pyim "./pyim/init-pyim")
+
+;;  java-script IDE
+(require 'init-js2-mode "./js2-mode/init-js2-mode")
+
+
 
 (provide 'init-utils)
 

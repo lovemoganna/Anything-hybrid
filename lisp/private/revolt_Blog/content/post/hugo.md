@@ -1,7 +1,7 @@
 +++
 title = "hugo faq"
 date = 2020-03-20T00:00:00+08:00
-lastmod = 2020-06-30T22:54:40+08:00
+lastmod = 2020-08-06T17:43:26+08:00
 tags = ["hugo"]
 categories = ["hugo"]
 draft = false
@@ -486,7 +486,7 @@ check above the variable,have many file types.
     [[file:/images/web-image/cat.png]]
     ```
     
-    <a id="org903f280"></a>
+    <a id="org078bf47"></a>
     
     \#+attr\_html :width 20 :height 200
     
@@ -514,5 +514,10 @@ check above the variable,have many file types.
 
 
 ### ox-hugo export html image test {#ox-hugo-export-html-image-test}
+
+
+#### more CSS setting {#more-css-setting}
+
+<https://emacs.stackexchange.com/questions/5980/setting-class-attribute-for-html-table-in-orgmode-export>
 
 [^fn:1]: [refer link](https://anaulin.org/blog/hugo-raw-html-shortcode/)

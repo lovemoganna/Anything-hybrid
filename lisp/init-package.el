@@ -35,11 +35,17 @@
     pkg-info
     epl
     doom-themes
+    doom-modeline
     js2-mode
-    ;; mermaid-mode
+    js2-refactor
+    xref-js2
+    mermaid-mode
     helm
     helm-projectile
     helm-ag
+    helm-flyspell
+    flycheck
+    helm-flycheck
     ;;ob-mermaid
     f
     dash
@@ -86,9 +92,15 @@
     org-noter
     engine-mode
     pyim
-    ;; pyim-greatdict-mode
+    org-roam
+    org-roam-server
+    w3m
+    command-log-mode
+    posframe
+    sdcv
+    expand-region
     ))
-(setq package-selected-packages revolt/package-list)
+      (setq package-selected-packages revolt/package-list)
 
 (require 'cl)
 (defun revolt/packages-installed-p()

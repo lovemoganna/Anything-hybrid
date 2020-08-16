@@ -23,6 +23,14 @@
 
 ;; vim command cookbook: http://tnerual.eriogerg.free.fr/vimqrc.pdf
 
+;; generate GIF image in current folder
+(defalias 'sc 'shell-command)
+(defun gif-record()
+  (interactive)
+  (sc "~/.emacs.d/lisp/private/shell_tools/byzanz-record-region.sh 10 'screen'_$(date +'%Y.%m.%d-%H:%M:%S').gif")
+  (message "GIF 图生成在当前的文件夹")
+  )
+
 ;; need install general.el package from melpa
 (general-define-key
  :keymaps '(normal insert emacs)
@@ -46,6 +54,7 @@
  "b l" 'buf-move-right
  "u s" 'unix-sync
  "g b" 'shell-command-on-buffer 
+ "g r" 'gif-record
  "b d" 'kill-buffer-and-window)
 
 ;; test the super key.
@@ -55,6 +64,7 @@
  "c" 'org-capture
  )
 
-(global-set-key (kbd "H-RET") 'insert-translated-name-insert) ; H is for hyper(global-set-key (kbd "s-b") 'ba)
+(global-set-key (kbd "H-<return>") 'insert-translated-name-insert) ; H is for hyper(global-set-key (kbd "s-b") 'ba)
+
 
 (provide 'init-evil)

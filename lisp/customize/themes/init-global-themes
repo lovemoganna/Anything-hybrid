@@ -1,9 +1,9 @@
-;-*-emacs-lisp-*-
-;-*-lexical-binding: t;-*-
-;;(load-theme 'monokai t)
+;;-*-emacs-lisp-*-
+;;-*-lexical-binding: t;-*-
+(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/customize/themes")
+;; (load-theme 'monokai t)		
 
 (load-theme 'vivid t)
-
 ;; Nice,the answer in here
 ;; https://stackoverflow.com/questions/18684579/how-do-i-change-the-highlight-color-for-selected-text-with-emacs-deftheme 
 (set-face-attribute 'region nil :background "#FBD7CF")

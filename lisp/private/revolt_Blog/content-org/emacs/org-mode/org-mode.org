@@ -541,3 +541,8 @@ a common syntax for source code blocks in any language.
    
    
    
+** org mode faq
+   
+*** how to prevent Emacs org mode code block execute 
+    
+    ref link: [[https://stackoverflow.com/questions/29952543/how-do-i-prevent-org-mode-from-executing-all-of-the-babel-source-blocks][How do I prevent org-mode from executing all of the babel source blocks?]]

@@ -18,7 +18,7 @@
 ;; set font all windows. don't keep window size fixed
 ;; (set-frame-font "Iosevka Fixed SS14" nil t)
 ;; you must set the `pixelsize` the font will show beautiful!
-(set-frame-font "Hack-12:style=Regular:antialias=True:pixelsize=15" nil t)
+(set-frame-font "Fira Code-12:style=Medium,Regular:antialias=True:pixelsize=12" nil t)
 
 
 ;; Chinese Font -- 中文字体的话，必须设置为 14px，才能使Org Mode里面的Table对齐。很是Fuck。

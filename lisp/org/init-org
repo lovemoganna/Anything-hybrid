@@ -34,4 +34,8 @@
 ;; import org font
 (require 'init-org-font "./org-font/init-org-font")
 
+;; use org auto complete extension: org-ac
+(require 'org-ac)
+(org-ac/config-default)
+
 (provide 'init-org)

@@ -475,5 +475,8 @@
       
 *** ox-hugo export html image test
     
+    
+**** more CSS setting
+     https://emacs.stackexchange.com/questions/5980/setting-class-attribute-for-html-table-in-orgmode-export
 * Footnotes
 [fn:1] [[https://anaulin.org/blog/hugo-raw-html-shortcode/][refer link]] 

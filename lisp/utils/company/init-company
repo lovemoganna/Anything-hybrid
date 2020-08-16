@@ -1,16 +1,44 @@
 ;; -*-Emacs-lisp-*-
-;; 开启全局 Company 补全
+
 (require 'company)
+;; use company-mode in all buffers
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; configure java script 
+(add-to-list 'load-path "~/.emacs.d/lisp/utils/company/company-tern/company-tern.el")
+(add-to-list 'company-backend 'company-tern)
+(setq company-tern-meta-as-single-line t)
+(setq company-tooltip-align-annotations t)
+
+
+;;; company web mode configuration
+
+;; load HTML|jade|slim backend
 (require 'company-web-html)
 (require 'company-web-jade)
 (require 'company-web-slim)
-(define-key web-mode-map (kbd "C-'") 'company-web-html)
+(define-key web-mode-map (kbd "TAB") 'company-web-html)
 
+;; (setq company-minimum-prefix-length 0) ; WARNING, probably you will get perfomance issue if min len is 0!
 (setq company-tooltip-limit 20)                      ; bigger popup window
 (setq company-tooltip-align-annotations 't)          ; align annotations to the right tooltip border
 (setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-(global-set-key (kbd "C-c /") 'company-files) 
-(global-company-mode 1)
+;; (global-set-key (kbd "C-c /") 'company-files)        ; Force complete file names on "C-c /" key
+
+;; Only use company-mode with company-web-html in web-mode
+(add-hook 'web-mode-hook
+	  (lambda ()
+	    (set (make-local-variable 'company-backends)'(company-web-html))))
+
+;;; shell mode configuration with company mode
+
+;; make URL clickable
+(add-hook 'shell-mode-hook (lambda () (goto-address-mode)))
+;; make file path clickable
+(add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
+;; active shell mode
+(add-hook 'shell-mode-hook #'company-mode)
+(define-key shell-mode-map (kbd "TAB") #'company-manual-begin)
 
 (provide 'init-company)

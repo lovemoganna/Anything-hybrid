@@ -1,0 +1,18 @@
+;; -*-Emacs-lisp-*-
+(require 'tern)
+
+;; fix bug: The current directory can not be found "tern" 
+;; ref link: https://github.com/syl20bnr/spacemacs/issues/5993
+;; (setenv "PATH" (concat (getenv "PATH") ":/usr/bin/"))
+;; (setq exec-path (append exec-path '("/usr/bin/")))
+
+(autoload 'tern-mode "tern.el" nil t)
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+
+;; Auto-Complete
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
+
+(provide 'init-tern)

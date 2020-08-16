@@ -3,24 +3,23 @@
 #+startup: content
 
 ** Windows Tools 
-   
 *** Stumpwm
-**** stumpwm login start
-      #+header: :results verbatim
-     #+begin_src shell :tangle "/sudo::/home/revolt/.xinitrc"
-       ! xrandr --setprovideroutputsource modesetting NVIDIA-0
-       ! xrandr --auto
-       xrandr --dpi 100
+***** Stumpwm login start
+       #+header: :results verbatim
+      #+begin_src shell :tangle "/sudo::/home/revolt/.xinitrc"
+	! xrandr --setprovideroutputsource modesetting NVIDIA-0
+	! xrandr --auto
+	xrandr --dpi 100
 
 
-       [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+	[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-       ! load xterm  setting
-       ! xrdb -I$HOME "/.Xresources"
+	! load xterm  setting
+	! xrdb -I$HOME "/.Xresources"
 
-       exec /usr/bin/stumpwm
-     #+end_src
-**** stumpwm config
+	exec /usr/bin/stumpwm
+      #+end_src
+**** Stumpwm config
      #+header: :tangle "~/.stumpwm.d/init.lisp"
      #+begin_src common-lisp 
        ;; -*-Emacs-lisp-*-
@@ -159,7 +158,7 @@
        ;; test
      #+end_src
     
-**** stumpm login manager
+**** Stumpwm login manager
 
      #+begin_src shell :tangle "/sudo::/usr/share/xsessions/stumpwm.desktop"
        [Desktop Entry]
@@ -171,12 +170,12 @@
      #+end_src
     
 *** Gif record tools - byzanz record
-    
-** Shell setting
-   
-*** zsh setting
 
-**** use key short
+    [[file:~/.emacs.d/lisp/utils/evil/init-evil::;; generate GIF image in current folder][See here]]
+
+** Shell setting
+*** Zsh setting
+**** Use key short
      #+begin_example
        - C-r :: search history command
        - r :: remake the last command
@@ -394,7 +393,7 @@
         starts, but only if xrdb has not been used in the current
         session.
 
-***** xinitrc
+***** Xinitrc
       
       if you are using a copy of the default =xinitrc= as your =.xinitrc=
       it already merges =~.Xresource=.
@@ -786,7 +785,7 @@
 *** COMMENT Computer driver identify and install
 ***** check your laptop what's kinds of graphics card
       
-      #+begin_src shell :results verbatim
+      #+begin_src shell :results verbatim :exports results
 	lspci -k | grep -A 2 -E "(VGA|3D)"
       #+end_src
 
@@ -796,8 +795,8 @@
       : 	Subsystem: CLEVO/KAPOK Computer Device 55a1
       : --
       : 01:00.0 VGA compatible controller: NVIDIA Corporation GP107M [GeForce GTX 1050 Mobile] (rev a1)
-      : 	Subsystem: CLEVO/KAPOK Computer GP107M [GeForce GTX 1050 Mobile]
-      : 	Kernel driver in use: nouveau
+      : 	Subsystem: CLEVO/KAPOK Computer Device 55a1
+      : 	Kernel driver in use: nvidia
 
 	
       - install nvidia drive
@@ -815,6 +814,7 @@
 	1.For NVIDIA Optimus enabled laptop which uses an integrated
         video combined with a dedicated GPU.So more care about
         the [[*NVIDIA Optimus][NVIDIA Optimus]].
+
 ***** now checkout your nvidia graphic card version
       [[https://nouveau.freedesktop.org/wiki/CodeNames/][Check your graphic card version]]
       
@@ -852,50 +852,9 @@
 
       #+RESULTS:
 
-*** COMMENT NVIDIA Optimus
-    NVIDIA Optimus is a technology that allows an intel integrated GPU
-    and discrete NVIDIA GPU to be built into and accessed by a laptop.
-**** Use NVIDIA graphics only
-     The proprietary NVIDIA drive can be configured to be the primary
-     rendering provider.It also has notable screen-tearing(屏幕撕裂) issues
-     unless you enable prime sync by enabling [[*DRM Kernel mode setting][DRM Kernel mode setting]].
- 
-     - Install the NVIDIA driver and =xorg-xrandr=.
-     - configure =/etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf=
-       the options of which will be combined with the package provided
-       =/usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf= to
-       provide compatibility with this setup.
-
-     #+header: :dir "/usr/share/X11/xorg.conf.d/"
-     #+begin_src shell :results verbatim
-       cat 10-nvidia-drm-outputclass.conf
-     #+end_src
-
-     #+RESULTS:
-     
-     #+header: :tangle "/sudo::/etc/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf"
-     #+begin_src text
-       Section "OutputClass"
-       Identifier "intel"
-       MatchDriver "3e90"
-       Driver "modesetting"
-       EndSection
-
-       Section "OutputClass"
-       Identifier "nvidia"
-       MatchDriver "nvidia-drm"
-       Driver "nvidia"
-       Option "AllowEmptyInitialConfiguration"
-       Option "PrimaryGPU" "yes"
-       ModulePath "/usr/lib/nvidia/xorg"
-       ModulePath "/usr/lib/xorg/modules"
-       EndSection
-     #+end_src
-     
-     now put the above content into =/usr/share/sddm/scripts/Xsetup=
-     if you use =SDDM= as your start desktop display manager.
-     
-*** SDDM
+***** NVIDIA Optimus
+      Install =optimus manager= && =optimus-manager-qt=.
+*** COMMENT SDDM
 **** Configuration
      The default configuration file for SDDM can be found at
      =/usr/lib/sddm/sddm.conf.d/default.conf=.
@@ -1168,8 +1127,24 @@
       
       - create gnus configuration file.
 	
-      
 ** Basic Setting
+*** [[https://wiki.archlinux.org/index.php/environment_variables][Environment variables]] 
+
+    - The detection value of the current environment variables
+      
+      #+begin_src shell :results verbatim
+	printenv | grep "XDG"
+      #+end_src
+
+      #+RESULTS:
+      : XDG_DATA_DIRS=/home/revolt/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+      : XDG_RUNTIME_DIR=/run/user/1000
+      : XDG_SESSION_CLASS=user
+      : XDG_CURRENT_DESKTOP=GNOME
+      : XDG_SESSION_TYPE=x11
+      : XDG_SESSION_DESKTOP=gnome
+      : XDG_MENU_PREFIX=gnome-
+
 *** COMMENT config pacman mirrors
 **** use archlinux offical mirrors
 
@@ -1194,6 +1169,7 @@
      #+RESULTS:
 
 *** COMMENT Pacman 
+
     install pacman package manager: yay.
     
     #+BEGIN_EXAMPLE
@@ -1202,9 +1178,396 @@
     makepkg -si
     #+END_EXAMPLE
 *** COMMENT List of installed packages
-    #+begin_src shell :results verbatim
+
+    #+begin_src shell :results verbatim :cache yes
       pacman -Qqe
     #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    akonadi-calendar-tools
+    akonadi-import-wizard
+    akonadiconsole
+    akregator
+    alsa-utils
+    android-tools
+    ark
+    artikulate
+    aspell
+    audiocd-kio
+    autoconf
+    autojump
+    automake
+    baobab
+    base
+    bat
+    bbswitch
+    binutils
+    bison
+    blinken
+    bomber
+    bovo
+    byzanz
+    calibre
+    cantor
+    cervisia
+    cheese
+    chrome-gnome-shell
+    cl-zpb-ttf
+    dconf-editor
+    dhcpcd
+    dialog
+    dolphin
+    dolphin-plugins
+    dragon
+    efibootmgr
+    elisa
+    eog
+    epiphany
+    evince
+    fakeroot
+    fcitx
+    fcitx-cloudpinyin
+    fcitx-configtool
+    fcitx-googlepinyin
+    fcitx-qt5
+    fcitx-rime
+    ffmpegthumbs
+    file
+    file-roller
+    filelight
+    findutils
+    firefox
+    flameshot
+    flex
+    gawk
+    gcc
+    gdm
+    gedit
+    gettext
+    git
+    gnome-backgrounds
+    gnome-books
+    gnome-boxes
+    gnome-calculator
+    gnome-calendar
+    gnome-characters
+    gnome-clocks
+    gnome-color-manager
+    gnome-contacts
+    gnome-control-center
+    gnome-disk-utility
+    gnome-documents
+    gnome-font-viewer
+    gnome-getting-started-docs
+    gnome-keyring
+    gnome-logs
+    gnome-maps
+    gnome-menus
+    gnome-music
+    gnome-photos
+    gnome-remote-desktop
+    gnome-screensaver
+    gnome-screenshot
+    gnome-session
+    gnome-settings-daemon
+    gnome-shell
+    gnome-shell-extensions
+    gnome-software
+    gnome-system-monitor
+    gnome-terminal
+    gnome-themes-extra
+    gnome-tweaks
+    gnome-user-docs
+    gnome-user-share
+    gnome-video-effects
+    gnome-weather
+    google-chrome
+    granatier
+    grantlee-editor
+    grep
+    grilo-plugins
+    groff
+    grub
+    grub-theme-vimix
+    gvfs-afc
+    gvfs-goa
+    gvfs-google
+    gvfs-gphoto2
+    gvfs-mtp
+    gvfs-nfs
+    gvfs-smb
+    gwenview
+    gzip
+    hugo
+    iw
+    jq
+    juk
+    k3b
+    kaccounts-providers
+    kaddressbook
+    kajongg
+    kalarm
+    kalgebra
+    kalzium
+    kamera
+    kamoso
+    kanagram
+    kapman
+    kapptemplate
+    kate
+    katomic
+    kbackup
+    kblackbox
+    kblocks
+    kbounce
+    kbreakout
+    kbruch
+    kcachegrind
+    kcalc
+    kcharselect
+    kcm-fcitx
+    kcolorchooser
+    kcron
+    kde-dev-scripts
+    kde-dev-utils
+    kdebugsettings
+    kdeconnect
+    kdegraphics-mobipocket
+    kdegraphics-thumbnailers
+    kdenetwork-filesharing
+    kdenlive
+    kdepim-addons
+    kdesdk-kioslaves
+    kdesdk-thumbnailers
+    kdf
+    kdialog
+    kdiamond
+    keditbookmarks
+    kfind
+    kfloppy
+    kfourinline
+    kgeography
+    kgoldrunner
+    kgpg
+    khangman
+    khelpcenter
+    kig
+    kigo
+    killbots
+    kimagemapeditor
+    kio-extras
+    kipi-plugins
+    kirigami-gallery
+    kiriki
+    kiten
+    kjumpingcube
+    kleopatra
+    klettres
+    klickety
+    klines
+    kmag
+    kmahjongg
+    kmail
+    kmail-account-wizard
+    kmines
+    kmix
+    kmousetool
+    kmouth
+    kmplot
+    knavalbattle
+    knetwalk
+    knights
+    knotes
+    kolf
+    kollision
+    kolourpaint
+    kompare
+    konqueror
+    konquest
+    konsole
+    kontact
+    kopete
+    korganizer
+    kpatience
+    krdc
+    kreversi
+    krfb
+    kross-interpreters
+    kruler
+    kshisen
+    ksirk
+    ksnakeduel
+    kspaceduel
+    ksquares
+    ksudoku
+    ksystemlog
+    kteatime
+    ktimer
+    ktouch
+    ktuberling
+    kturtle
+    kubrick
+    kwalletmanager
+    kwave
+    kwordquiz
+    kwrite
+    libtool
+    linux
+    linux-firmware
+    lokalize
+    lskat
+    m4
+    make
+    marble
+    mbox-importer
+    mesa-demos
+    minuet
+    mons
+    mosh
+    mpd
+    mutter
+    nautilus
+    ncmpcpp
+    net-tools
+    networkmanager
+    nodejs
+    npm
+    ntfs-3g
+    nvidia
+    nvm
+    okular
+    opencl-nvidia
+    openntpd
+    optimus-manager
+    optimus-manager-qt
+    orca
+    os-prober
+    pacman
+    palapeli
+    pandoc
+    parley
+    patch
+    picmi
+    pim-data-exporter
+    pim-sieve-editor
+    pkgconf
+    poxml
+    print-manager
+    proxychains-ng
+    pulseaudio-alsa
+    putty
+    python-pip
+    python-pyqt3d
+    python-pyqtchart
+    python-pyqtdatavisualization
+    python-pyqtpurchasing
+    python-pyqtwebengine
+    qv2ray
+    r
+    rocs
+    rygel
+    sbcl
+    sdcv
+    sed
+    shadowsocks-qt5
+    simple-scan
+    spectacle
+    stardict
+    step
+    stumpwm
+    sudo
+    surfraw
+    sushi
+    svgpart
+    sweeper
+    syncthing
+    tcsh
+    telepathy-kde-accounts-kcm
+    telepathy-kde-approver
+    telepathy-kde-auth-handler
+    telepathy-kde-call-ui
+    telepathy-kde-common-internals
+    telepathy-kde-contact-list
+    telepathy-kde-contact-runner
+    telepathy-kde-filetransfer-handler
+    telepathy-kde-integration-module
+    telepathy-kde-send-file
+    telepathy-kde-text-ui
+    texinfo
+    texlive-core
+    texlive-langchinese
+    toilet
+    tor
+    totem
+    trash-cli
+    tree
+    ttf-fira-code
+    ttf-hack
+    ttf-iosevka-term
+    unzip
+    v2ray
+    vi
+    vim
+    vino
+    w3m
+    wget
+    which
+    wqy-bitmapfont
+    wqy-microhei
+    wqy-microhei-lite
+    wqy-zenhei
+    xdg-user-dirs-gtk
+    xf86-video-intel
+    xf86-video-vesa
+    xgetres
+    xorg-docs
+    xorg-fonts-100dpi
+    xorg-fonts-75dpi
+    xorg-fonts-cyrillic
+    xorg-fonts-misc
+    xorg-fonts-type1
+    xorg-iceauth
+    xorg-luit
+    xorg-server-devel
+    xorg-server-xephyr
+    xorg-server-xnest
+    xorg-server-xvfb
+    xorg-server-xwayland
+    xorg-sessreg
+    xorg-smproxy
+    xorg-x11perf
+    xorg-xbacklight
+    xorg-xcmsdb
+    xorg-xcursorgen
+    xorg-xdpyinfo
+    xorg-xdriinfo
+    xorg-xev
+    xorg-xgamma
+    xorg-xhost
+    xorg-xinit
+    xorg-xinput
+    xorg-xkbevd
+    xorg-xkbutils
+    xorg-xkill
+    xorg-xload
+    xorg-xlsatoms
+    xorg-xlsclients
+    xorg-xmodmap
+    xorg-xpr
+    xorg-xrandr
+    xorg-xrefresh
+    xorg-xvinfo
+    xorg-xwd
+    xorg-xwininfo
+    xorg-xwud
+    xterm
+    yakuake
+    yay
+    yelp
+    zeroconf-ioslave
+    zsh
+    #+end_example
 
 *** COMMENT Check System
     #+begin_src shell :results verbatim
@@ -1214,17 +1577,20 @@
     #+RESULTS:
     #+begin_example
     Filesystem     Type      Size  Used Avail Use% Mounted on
-    dev            devtmpfs  3.8G     0  3.8G   0% /dev
-    run            tmpfs     3.8G  1.5M  3.8G   1% /run
-    /dev/sdb2      ext4      147G  9.2G  130G   7% /
-    tmpfs          tmpfs     3.8G  150M  3.7G   4% /dev/shm
-    tmpfs          tmpfs     3.8G     0  3.8G   0% /sys/fs/cgroup
-    tmpfs          tmpfs     3.8G  5.9M  3.8G   1% /tmp
-    /dev/sdb3      ext4       30G  814M   28G   3% /home
-    /dev/sdb5      vfat     1022M  144K 1022M   1% /boot/EFI
-    tmpfs          tmpfs     769M   24K  769M   1% /run/user/1000
+    dev            devtmpfs  3.9G     0  3.9G   0% /dev
+    run            tmpfs     3.9G  2.0M  3.9G   1% /run
+    /dev/sdb2      ext4      147G   24G  117G  17% /
+    tmpfs          tmpfs     3.9G  429M  3.4G  11% /dev/shm
+    tmpfs          tmpfs     4.0M     0  4.0M   0% /sys/fs/cgroup
+    tmpfs          tmpfs     3.9G  4.7M  3.9G   1% /tmp
+    /dev/sdb3      ext4       30G   12G   16G  43% /home
+    /dev/sdb5      vfat     1022M  156K 1022M   1% /boot/EFI
+    tmpfs          tmpfs     781M  172K  781M   1% /run/user/1000
+    tmpfs          tmpfs     781M  128K  781M   1% /run/user/120
     #+end_example
+
 *** proxy config
+
     当前的socks 5代理GG l，不知道啥原因，目前替代的方式就是直接在zsh里
     面的设置写入代理方式。有机会再试一试。
 
@@ -1237,19 +1603,12 @@
        #+END_SRC
 
        #+RESULTS:
-     - add common DNS 
+       : # Generated by dhcpcd from enp2s0f1.dhcp
+       : # /etc/resolv.conf.head can replace this line
+       : nameserver 211.100.225.34
+       : nameserver 219.239.26.42
+       : # /etc/resolv.conf.tail can replace this line
 
-       #+BEGIN_SRC shell :tangle "/sudo::/etc/resolv.conf"
-	 # Generated by dhcpcd from enp2s0f1.dhcp
-	 # /etc/resolv.conf.head can replace this line
-	 nameserver 202.106.195.68
-	 nameserver 202.106.46.151
-	 # /etc/resolv.conf.tail can replace this line
-	 80.80.80.80  
-	 80.80.81.81
-       #+END_SRC
-
-       #+RESULTS:
 
 **** V2ray setting
      
@@ -1557,6 +1916,18 @@
    - [[http://xfmro77i3lixucja.onion/search/?q=scheme][BookLibrary]]
 
    - [[http://torbox3uiot6wchz.onion/][Torbox]]
-** ScreenShot
-*** flameshot
-   
+** Screenshot
+*** Flameshot
+    
+    - Set default save folder:
+      
+      #+begin_src shell
+	flameshot full -c -p ~/.emacs.d/lisp/private/revolt_Blog/static/ox-hugo/
+      #+end_src
+      
+      -c: copying to clipboard
+      -p: default save picture path
+      
+      ref_link: https://cmolinaord.github.io/using-flameshot-screenshot.html
+      
+      =flameshot gui -d 5000= 延迟加载5000s 再截图当前选定的位置.

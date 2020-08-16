@@ -1,7 +1,7 @@
 +++
 title = "Org Mode"
 date = 2020-02-24T00:00:00+08:00
-lastmod = 2020-05-26T10:51:17+08:00
+lastmod = 2020-08-04T19:35:55+08:00
 tags = ["emacs", "orgmode"]
 categories = ["emacs", "orgmode"]
 draft = false
@@ -519,3 +519,11 @@ The org recompress them into one or more separate files,as
 configured through the options.During this tangling process,Org
 expands variables in the source code,and resolves any Noweb style
 references.
+
+
+## org mode faq {#org-mode-faq}
+
+
+### how to prevent Emacs org mode code block execute {#how-to-prevent-emacs-org-mode-code-block-execute}
+
+ref link: [How do I prevent org-mode from executing all of the babel source blocks?](https://stackoverflow.com/questions/29952543/how-do-i-prevent-org-mode-from-executing-all-of-the-babel-source-blocks)

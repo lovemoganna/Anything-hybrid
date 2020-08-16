@@ -14,8 +14,12 @@
 (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
 (setq emmet-move-cursor-between-quotes t)
 
-;; change expand key
-(global-unset-key (kbd "C-j"))
+;; unset C-<return> key, rebind to PYIM input method pinyin convert 
+(define-key emmet-mode-keymap (kbd "C-<return>") nil)
+(global-set-key (kbd "C-<return>") 'pyim-convert-code-at-point)
+
+(define-key emmet-mode-keymap (kbd "C-j") 'emmet-expand-line)
 ;; (global-set-key (kbd "<tab>") 'emmet-expand-line)
+
 
 (provide 'init-emmet)
