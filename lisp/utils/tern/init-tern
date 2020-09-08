@@ -7,12 +7,32 @@
 ;; (setq exec-path (append exec-path '("/usr/bin/")))
 
 (autoload 'tern-mode "tern.el" nil t)
-(add-hook 'js-mode-hook (lambda () (tern-mode t)))
 
+;;; enable auto complete mode
+(ac-config-default)
+
+;; if you want to global enable auto-complete mode
+(global-auto-complete-mode t)
+
+;; if you want to enable auto-complete mode in specific mode
+;; (add-to-list 'ac-modes 'svelte-mode)
+;; (add-to-list 'ac-modes 'js-mode)
+
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+(add-hook 'web-mode-hook (lambda () (tern-mode t)))
+(add-hook 'svelte-mode-hook (lambda () (tern-mode t)))
 ;; Auto-Complete
 (eval-after-load 'tern
   '(progn
      (require 'tern-auto-complete)
      (tern-ac-setup)))
+;; (set-face-attribute 'ac-candidate-face ((t (:inherit popup-face :background "cornsilk" :foreground "dim gray" :weight normal :family "Fira Code"))))
 
+(set-face-attribute 'ac-candidate-face nil   :background "khaki" :foreground "dim gray" :family "Fira Code")
+(set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white"  :family "Fira Code")
+(set-face-attribute 'popup-tip-face    nil   :background "wheat" :foreground "slate blue"  :family "Fira Code")
+
+;; '(ac-gtags-selection-face ((t (:inherit ac-selection-face :background "medium purple"))))
+
+;; real JavaScript project tern configure tutorial link: https://medium.com/@jrwillette88/tern-why-it-breaks-and-how-to-fix-it-8d1677df05f9
 (provide 'init-tern)

@@ -6,7 +6,7 @@
 
 ;; configure java script 
 (add-to-list 'load-path "~/.emacs.d/lisp/utils/company/company-tern/company-tern.el")
-(add-to-list 'company-backend 'company-tern)
+(add-to-list 'company-backends 'company-tern)
 (setq company-tern-meta-as-single-line t)
 (setq company-tooltip-align-annotations t)
 

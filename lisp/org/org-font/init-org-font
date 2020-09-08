@@ -1,6 +1,5 @@
 ;; -*-Emacs-lisp-*-
 ;; ref link: https://zzamboni.org/post/beautifying-org-mode-in-emacs/#step-1-configure-faces-for-org-headlines-and-lists
-
 (add-hook 'org-mode-hook 'variable-pitch-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
 
@@ -53,7 +52,7 @@
  '(org-special-properties ((t (:inherit fixed-pitch :color "black"))))
  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold))))
- '(org-verbatim ((t (:inherit (shadow fixed-pitch) :foreground "dark orchid" :background "orange" :weight bold)))))
+ '(org-verbatim ((t (:inherit (shadow fixed-pitch) :foreground "dark orchid"  :weight bold)))))
 
 ;; org-fill-paragraph M-q
 ;; what-cursor-position C-u C-x =

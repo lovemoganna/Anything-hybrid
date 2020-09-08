@@ -22,8 +22,9 @@
 
 
 (add-to-list 'load-path "~/.emacs.d/lisp/utils/js2-mode/json-process-client/")
+(add-to-list 'load-path "/home/revolt/.nvm/versions/node/v12.8.1/bin/indium")
 (require 'indium)
-(setq indium-chrome-executable "chrome")
+(setq indium-chrome-executable "google-chrome-stable")
 ;; JavaScript 文件时打开 indium-interaction-mode , 可以方便的进行断点操作
 (add-hook 'js2-mode-hook #'indium-interaction-mode)
 (provide 'init-js2-mode)

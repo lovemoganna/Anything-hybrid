@@ -24,4 +24,10 @@
 
 (add-hook 'web-mode 'my-web-mode-hook)
 
+;; Add svelte mode
+(add-to-list 'load-path "~/.emacs.d/lisp/utils/web/sveltejs/")
+(require 'svelte-mode)
+(customize-set-variable 'svelte-basic-offset 2)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . svelte-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . svelte-mode))
 (provide 'init-web-mode)

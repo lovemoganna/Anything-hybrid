@@ -91,7 +91,11 @@
 ;;  java-script IDE
 (require 'init-js2-mode "./js2-mode/init-js2-mode")
 
+;; Emacs window manager tools
+(require 'init-window "./window/init-window")
 
+;; support golang program language
+(require 'init-golang "./golang/init-golang")
 
 (provide 'init-utils)
 

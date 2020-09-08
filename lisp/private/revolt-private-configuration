@@ -1931,3 +1931,145 @@
       ref_link: https://cmolinaord.github.io/using-flameshot-screenshot.html
       
       =flameshot gui -d 5000= 延迟加载5000s 再截图当前选定的位置.
+** vim hot key
+
+   - fast quit =ZQ=
+   - fast quit and save =ZZ=
+ 
+
+   0:00 Vim Diesel Let's Play Introduction
+   0:46 Playing stupid in movement/WASD for gamers!
+   1:46 Soydevs learn to exit vim with ZZ and ZQ.
+   3:44 Noob way to delete stuff and move around
+   4:34 zz, zt and zb to move the screen
+   5:25 i for insertion
+   6:07 Insert mode vs. Normal mode: The Magic of Vim
+   7:01 Most important tip of mapping caps lock as escape
+   7:49 How to go SANIC fast in vim with xset hacking! 🏃
+   9:33 Moving by paragraphs with {}
+   10:12 a, A and I for inserting text in different ways
+   12:22 Saving and exiting
+   14:20 Literally sorting every line in vimtutor alphabetically for
+   no reasons (based!)
+   15:36 Deleting by text objects; operators and motions
+   20:48 Counts for motions
+   25:17 Deleting around and inside and () {} [], etc.
+   28:28 LITERALLY TIME-TRAVELING IN VIM 😮
+   31:45 put or paste deleted text
+   33:26 Using the system clipboard in vim or really neovim to copy
+   and paste with other programs
+   34:40 Replace command (mostly useless, lol)
+   35:34 c to actually replace things the right way
+   39:18 File status, using p
+   40:45 Searching for text with / and ? (for it backwards)
+   42:31 Using % to jump from parenthis and bracket pairs
+   44:00 Substitute strings like with sed
+   48:44 External commands and I learned vim on Windows lol
+   49:54 Captain Kirk and learning visual mode
+   52:52 THE MOST USEFUL VIM COMMAND: .!!! (PERIOD)
+   55:40 NO WAIT, THIS ONE IS THE MOST USEFUL
+   56:40 Replace mode
+   58:30 vim does have a spellchecker!
+   1:00:29 Now we learn copying and yanking
+   1:01:54 Setting variables
+   1:04:30 How a vimrc works and how to configure vim on startup, tab completion?
+   1:05:38 WE DID IT REDDIT!
+** gdm package bak
+   
+   #+begin_example
+     Packages (192) amtk-5.0.2-1  apache-2.4.46-1  appstream-glib-0.7.17-1  apr-1.7.0-3  apr-util-1.6.1-7  atkmm-2.28.0-2  brltty-6.0-10
+     cairomm-1.12.2-4  cdrtools-3.02a09-3  clutter-1.26.4-1  clutter-gst-3.0.27-3  clutter-gtk-1.8.4-2  cogl-1.22.8-1
+     colord-gtk-0.2.0-2  colord-sane-1.4.4+9+g1ce26da-2  cups-pk-helper-0.2.6-4  dotconf-1.3-6
+     evolution-data-server-3.36.5-1  exempi-2.5.2-1  flatpak-1.8.1-1  folks-0.14-1  freerdp-2:2.2.0-1  fuse3-3.9.3-1
+     gcab-1.4-1  geoclue-2.5.6-1  geocode-glib-3.26.2-1  gfbgraph-0.2.4-1  gjs-2:1.64.4-1  glibmm-2.64.2-1  gmime3-3.2.7-1
+     gnome-autoar-0.2.4-2  gnome-bluetooth-3.34.1-1  gnome-epub-thumbnailer-1.6-2  gobject-introspection-runtime-1.64.1-2
+     gom-0.4-1  grilo-0.3.12-1  gsound-1.0.2-5  gspell-1.8.3-1  gst-plugin-gtk-1.16.2-3  gtk-vnc-1.0.0-2  gtkmm3-3.24.2-2
+     gtksourceview4-4.6.1-1  libcacard-2.7.0-2  libchamplain-0.12.20-2  libcue-2.2.1-2  libdazzle-3.36.0-1
+     libdmapsharing-2.9.39-3  libgdata-0.17.12-1  libgee-0.20.3-2  libgepub-0.6.0-2  libgrss-0.7.0+16+g971c421-3
+     libgsf-1.14.47-1  libgssglue-0.4-4  libgtop-2.40.0+2+g31db82ef-2  libgweather-3.36.1-1  libgxps-0.3.1-2
+     libhandy-0.0.13-2  libiptcdata-1.0.4-5  libmbim-1.24.2-1  libmediaart-1.9.4+1+ga704d0b-2  libmm-glib-1.14.2-1
+     libnautilus-extension-3.36.3-1  libndp-1.7-2  libnewt-0.52.21-3  libnma-1.8.30-1  liboauth-1.0.3+14+g186fb14-2
+     libosinfo-1.8.0-1  libpackagekit-glib-1.1.13-1  libpeas-1.26.0-1  libpgm-5.2.122-5  libqmi-1.26.2-1  libquvi-0.9.4-6
+     libquvi-scripts-0.9.20131130-5  libslirp-4.3.1-1  libsodium-1.0.18-2  libspeechd-0.10.1-1  libteam-1.31-1
+     liburing-0.7-1  libvirt-6.5.0-1  libvirt-glib-3.0.0-1  libxmlb-0.2.0-1  lua52-bitop-1.0.2-9  lua52-expat-1.3.0-5
+     lua52-lpeg-1.0.2-3  lua52-luajson-1.3.4-3  lua52-socket-20200329-1  malcontent-0.8.0-1
+     mobile-broadband-provider-info-20190618-2  mod_dnssd-0.6-8  modemmanager-1.14.2-1  modemmanager-qt-5.73.0-1
+     mtools-4.0.24-1  networkmanager-qt-5.73.0-1  nm-connection-editor-1.18.0-1  numactl-2.0.13-3  osinfo-db-20200529-1
+     ostree-2020.3-2  pangomm-2.42.1-2  pcsclite-1.9.0-1  phodav-2.4-1  plasma-nm-5.19.4-1  plasma-vault-5.19.4-1
+     powerdevil-5.19.4-1  ppp-2.4.7-7  pulseaudio-bluetooth-13.0-3  pygobject-devel-3.36.1-1  python-atspi-2.36.0-1
+     python-cairo-1.19.1-1  python-gobject-3.36.1-1  python-pyxdg-0.26-6  qemu-5.1.0-1  seabios-1.14.0-1
+     shared-color-targets-0.1.7-3  slang-2.3.2-2  speech-dispatcher-0.10.1-1  spice-0.14.3-2  spice-gtk-0.38-1
+     startup-notification-0.12-7  tcl-8.6.10-2  tepl-4.4.0-1  totem-pl-parser-3.26.5-1  uchardet-0.0.7-1  usbredir-0.8.0-2
+     vde2-2.3.2-14  virglrenderer-0.8.2-1  vte-common-0.60.3-1  vte3-0.60.3-1  wpa_supplicant-2:2.9-7
+     xdg-desktop-portal-1.7.2-1  xdg-user-dirs-0.17-3  yelp-xsl-3.36.0-1  zenity-3.32.0+50+gc229637-1  zeromq-4.3.2-2
+     baobab-3.34.1-1  cheese-3.34.0+23+gcac6d3a1-1  eog-3.36.3-1  epiphany-3.36.4-1  evince-3.36.7-1  file-roller-3.36.3-1
+     gedit-3.36.2-1  gnome-backgrounds-3.36.0-1  gnome-books-3.34.0+21+g4d34d109-1  gnome-boxes-3.36.6-1
+     gnome-calculator-3.36.0-1  gnome-calendar-3.36.2-1  gnome-characters-3.34.0-1  gnome-clocks-3.36.2-2
+     gnome-color-manager-3.36.0-1  gnome-contacts-3.36.2-1  gnome-control-center-3.36.4-1  gnome-disk-utility-3.36.3-1
+     gnome-font-viewer-3.34.0+27+g5ffd1ba-1  gnome-getting-started-docs-3.36.2-1  gnome-keyring-1:3.36.0-1
+     gnome-logs-3.36.0-1  gnome-maps-3.36.4-1  gnome-menus-3.36.0-1  gnome-music-1:3.36.4.1-1  gnome-remote-desktop-0.1.8-1
+     gnome-screenshot-3.36.0-1  gnome-session-3.36.0-1  gnome-settings-daemon-3.36.1-1  gnome-software-3.36.1-1
+     gnome-system-monitor-3.36.1-1  gnome-terminal-3.36.2-1  gnome-themes-extra-3.28-2  gnome-user-docs-3.36.2-1
+     gnome-user-share-3.34.0-2  gnome-video-effects-0.5.0+4+g9554041-2  gnome-weather-3.36.1-1
+     grilo-plugins-1:0.3.11+4+g11cc1f8e-1  gvfs-1.44.1-4  gvfs-afc-1.44.1-4  gvfs-goa-1.44.1-4  gvfs-google-1.44.1-4
+     gvfs-gphoto2-1.44.1-4  gvfs-mtp-1.44.1-4  gvfs-nfs-1.44.1-4  gvfs-smb-1.44.1-4  mutter-3.36.5-1  nautilus-3.36.3-1
+     networkmanager-1.26.2-1  orca-3.36.5-1  rygel-0.38.4-1  simple-scan-3.36.4-1  sushi-3.34.0+19+g331d9b7-1
+     totem-3.34.1-2  tracker-2.3.4-2  tracker-miners-2.3.3-2  vino-3.22.0+72+g3fe1f12-1  xdg-user-dirs-gtk-0.10+9+g5b7efc6-3
+     yelp-3.36.0-1
+   #+end_example
+** Programming Plug
+*** JavaScript Code analysis engine - tern 
+    
+    Tern 是一个 JS 标准代码分析引擎，支持智能JS 编辑，提供的功能有：
+    
+    - 变量和属性的自动完成。
+    - 函数参数捕获。
+    - 查询表达式的类型
+    - 查找函数定义
+    - 自动重构
+
+*** How to use tern ?
+    
+    Tern 由一些组件构成，取决于你想尝试做什么了，你可能对不同层感兴趣。
+    可能你最感兴趣的是编辑器插件了。这里要提到一个 Tern Sever,它是在
+    Sever Module 之上实现的，使用推理引擎来做真实类的推理。
+
+**** The Tern Server
+     
+    =/bin/tern/= 二进制文件，被用于启动Tern Server. 通常你想让编辑器为你
+    启动，但是手动启动，对 debugging 非常有用。
+
+    注意这个服务的基本结构通过编程接口也是有效的，一些项目，尤其是运行
+    在浏览器客户端，希望用此来替换 Http Server.
+
+    在服务启动之前，服务器会检查在当前目录或者上面一个目录的
+    =.tern-project= 文件，用做它的配置。如果项目文件没有被发现，它将回滚
+    为默认配置。你可以通过放置 =.tern-config= file 改变默认的配置， 或者
+    默认的 =.tern-project= 格式在你的 =home= 目录当中。 
+    
+    服务在启动时将它监听的端口写入到标准输出。它将在这个端口上通过HTTP
+    提供一个简单的JSON 协议。客户端可以通过这个协议来上传代码和询问关
+    于代码的问题。
+
+    
+**** JSON Protocol
+     
+     向tern 服务器发送查询，通过做一个请求主体里面带JSON document的 POST
+     请求到服务器的端口来完成。
+     
+     这个document 应该是一个对象，带着三个选项字段， /query/, /files/,
+     /timeout/.
+     
+     - query 描述了你想请求何种类别的信息。如果请求仅用于提交新代码到
+       服务器，它可能会被省略。（因此你将得到一个空对象， {} 作为响应）。
+     - =files= 属性，如果给定值，包含像下面描述一样的文件规范的数组。查
+       询应该操纵服务器上已经存在的代码，不能添加添加任何新的东西,否则
+       会被忽略。当 =timeout= 字段被设置后，它应该包含一个数字，被解释为
+       在这个请求在返回超时错误之前用来工作（CPU 工作，忽略I/O）的最大
+       毫秒数。
+       
+       一个查询是一个至少带 =type= 属性的对象，指定了查询是何种种类。取
+       决于种类，其他属性可能或者必须被提及，以便提供进一步的详情。
+       
+
+     

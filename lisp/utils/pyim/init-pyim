@@ -26,8 +26,7 @@
 
 ;; 直接使用半角符号。
 ;; Optinals parameters: yes/no/auto
-
-(setq pyim-punctuation-translate-p 'yes)
+(setq pyim-punctuation-translate-p 'no)
 
 ;; 中英文切换
 (setq-default pyim-english-input-switch-functions
@@ -37,14 +36,13 @@
 		pyim-probe-org-structure-template))
 
 (setq-default pyim-punctuation-half-width-functions
-               '(pyim-probe-punctuation-line-beginning
+              '(pyim-probe-punctuation-line-beginning
 		pyim-probe-punctuation-after-punctuation))
 
 ;; https://emacs.stackexchange.com/questions/1020/problems-with-keybindings-when-using-terminal
 ;; So sorry, I want to bind `<M-<return>' give 'pyim-convert-code-at-point,but not working in xterm.
 ;; you know, xterm M-RET is fullscreen, i already ban it,but still not working.So i guess remove xterm M-RET key bind.
 (define-key org-mode-map (kbd "C-<return>") nil)
-
 (global-set-key (kbd "C-<return>") 'pyim-convert-code-at-point)
 
 ;; enable guess word

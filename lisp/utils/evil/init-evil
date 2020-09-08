@@ -6,7 +6,6 @@
 (global-evil-leader-mode)
 (evil-mode 1)
 
-
 ;; define evil key binding
 (define-key evil-ex-map "o" 'helm-occur)
 
@@ -40,10 +39,8 @@
  "f" '(:ignore t :which-key "files")
  "n" '(:ignore t :which-key "neotree")
  "g" '(:ignore t :which-key "script")
- "s" '(:ignore t :which-key "stardict")
  "c" '(:ignore t :which-key "company")
  "u" '(:ignore t :which-key "unix")
- "s i" 'sdcv-search-input+
  "c i" 'toggle-company-english-helper
  "n t" 'neotree-toggle
  "n d" 'neotree-dir
@@ -64,7 +61,45 @@
  "c" 'org-capture
  )
 
-(global-set-key (kbd "H-<return>") 'insert-translated-name-insert) ; H is for hyper(global-set-key (kbd "s-b") 'ba)
+(general-define-key
+ :prefix "H-<return>"
+ :keymaps '(yas-minor-mode-map normal insert emacs)
+ "i" 'sdcv-search-input+
+ "RET" 'insert-translated-name-insert
+ "SPC" 'yas-maybe-expand
+ "y" #'yas-expand
+ )
 
+;;(define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
+;; (global-set-key (kbd "H-<return>") 'insert-translated-name-insert) ; H is for hyper(global-set-key (kbd "s-b") 'ba)
 
+;; define ace window keybinding
+;; cause me use evil-mode,so don't need ace jump.
+
+(general-define-key
+ :keymaps '(normal)
+ :prefix "C-w"
+ "C-w" 'ace-window
+ "s" 'ace-swap-window
+ "d" 'ace-delete-window
+ "o" 'ace-delete-other-windows
+ "v" (lambda ()
+       (interactive)
+       (split-window-right)
+       (windmove-right))
+ "x" (lambda ()
+       (interactive)
+       (split-window-below)
+       (windmove-down))
+ "h" 'windmove-left
+ "j" 'windmove-down
+ "k" 'windmove-up
+ "l" 'windmove-right
+ )
+
+(general-define-key
+ :keymaps '()
+ :prefix "C-c"
+ "'" 'go-scratch
+ )
 (provide 'init-evil)
