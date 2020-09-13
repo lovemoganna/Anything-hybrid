@@ -1,28 +1,28 @@
 ;; 关闭工具栏，Tool-Bar-Mode 即为一个 Minor Mode
 (tool-bar-mode -1)
-;;(menu-bar-mode -1)
+(menu-bar-mode -1)
 ;; 关闭文件滑动控件
 (scroll-bar-mode -1)
 
 ;; 设置EMACS ORG MODE 下的文字间距
 ;; 显示行号
-;; (global-linum-mode 1)
+(global-linum-mode 1)
 
 ;; Set TAB key default indentation
-(setq indent-tabs-width 4)
-(setq indent-tabs-mode nil)
+;; disable default tab width
+(setq-default tab-width 4)
 
 ;; 关闭备份文件
 (setq make-backup-files nil)
 
 ;; 关闭启动帮助画面
 (setq inhibit-splash-screen t
-      initial-scratch-message ";;-------------------- Remake-
+  initial-scratch-message ";;-------------------- Remake-
   \n\n"
-      ;; initial-major-mode 'org-mode
-      )
+  ;; initial-major-mode 'org-mode
+  )
 
-					; 开启全局 Company 补全
+;; 开启全局 Company 补全
 (global-company-mode 1)
 
 ;; different state cursor form

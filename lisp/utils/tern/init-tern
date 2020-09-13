@@ -9,14 +9,14 @@
 (autoload 'tern-mode "tern.el" nil t)
 
 ;;; enable auto complete mode
-(ac-config-default)
+;; (ac-config-default)
 
 ;; if you want to global enable auto-complete mode
-(global-auto-complete-mode t)
+;; (global-auto-complete-mode t)
 
 ;; if you want to enable auto-complete mode in specific mode
-;; (add-to-list 'ac-modes 'svelte-mode)
-;; (add-to-list 'ac-modes 'js-mode)
+(add-to-list 'ac-modes 'svelte-mode)
+(add-to-list 'ac-modes 'js-mode)
 
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
 (add-hook 'web-mode-hook (lambda () (tern-mode t)))

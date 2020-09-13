@@ -1,4 +1,15 @@
-;-*-Emacs-lisp-*-
+;;; init-util  --- summary  -*-Emacs-lisp-*-
+
+;; Copyright (C) 2020 Mr.Revolt
+
+;; Author: Mr.Revolt
+;; Keywords: faster
+
+;;; Commentary:
+;; Emacs package configuration
+
+;;; Code:
+
 (add-to-list 'load-path "~/.emacs.d/lisp/utils/")
 
 ;; evil mode
@@ -28,7 +39,7 @@
 ;; circe --- the IRC inhance client in emacs
 (require 'init-circe "./circe/init-circe")
 
-;; wolfram --- a kind of math program language,but run script export result need latex support 
+;; wolfram --- a kind of math program language,but run script export result need latex support
 ;;(require 'init-wolfram "./wolfram/init-wolfram")
 
 ;;; latex --- latex need to more configuration,so we must slowly step by step test.
@@ -68,7 +79,6 @@
 ;; all-the-icons
 (require 'init-all-the-icons "./all-the-icons/init-all-the-icons")
 
-
 ;; support r markdown
 (require 'init-poly "./poly/init-poly")
 
@@ -94,8 +104,14 @@
 ;; Emacs window manager tools
 (require 'init-window "./window/init-window")
 
-;; support golang program language
+;; Support golang program language.
 (require 'init-golang "./golang/init-golang")
+
+;; Use Emacs client for an LSP Server.
+(require 'init-lsp-mode "./lsp-mode/init-lsp-mode")
+
+(require 'init-flymake "./flymake/init-flymake")
 
 (provide 'init-utils)
 
+;;; init-utils ends here

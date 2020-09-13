@@ -6,8 +6,8 @@
 (setq-default line-spacing 0.4)
 
 (custom-theme-set-faces 'user
-			'(variable-pitch ((t (:family "Fira Code" :height 80 :weight thin))))
-			'(fixed-pitch ((t ( :family "Hack" :height 80)))))
+			'(variable-pitch ((t (:family "Fira Code" :height 90 :weight thin :pixels 12))))
+			'(fixed-pitch ((t ( :family "Hack" :height 90 :pixels 12)))))
 ;; '(fixed-pitch ((t ( :family "Fira Code Retina" :height 80)))))
 (let* ((variable-tuple
         (cond

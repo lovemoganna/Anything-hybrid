@@ -10,4 +10,36 @@
 
 (add-hook 'go-mode-hook #'my-go-hook)
 
+;; format go code
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+;; go-remove-unused-imports
+(add-hook 'go-mode-hook (lambda ()
+                          (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)))
+
+
+;;; Go Mode Usage
+;; 1.go-import-add
+;; 2.go-remove-unused-imports
+
+;;; Navigating Code
+;; 1.beginning-of-defun
+;; 2.end-of-defun
+
+;; Go Code integrates with godef, godef is able to parse your code,
+;; and the code of other packages,and the code of the Go standard
+;; library, and can tell you what exactly the symbol you're looking at
+;; means and where it has been defined.
+
+;; go-mode provide two functions:
+;; 1.godef-describe --- tell you what you're looking at. 
+;; 2.godef-jump --- jump will take you to its definition.
+;; 3.go-goto-imports
+(add-hook 'go-mode-hook (lambda ()
+                          (local-set-key (kbd "C-c i") 'go-goto-imports)))
+
+(add-hook 'go-mode-hook (lambda ()
+						  (local-set-key (kbd "C-c j") 'godef-jump)))
+;;                           (local-set-key (kbd \"M-.\") 'godef-jump)))
+
 (provide 'init-golang)

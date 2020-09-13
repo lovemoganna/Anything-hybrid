@@ -1,12 +1,23 @@
 ;; -*-Emacs-lisp-*-
 
 (require 'company)
+(require 'company-go)
 ;; use company-mode in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; configure java script 
 (add-to-list 'load-path "~/.emacs.d/lisp/utils/company/company-tern/company-tern.el")
-(add-to-list 'company-backends 'company-tern)
+
+(add-hook 'js-mode-hook
+		  (lambda()
+			(setq company-backends '(company-tern))))
+
+;; (add-hook 'js-mode-hook 
+;; 		  '(lambda ()
+;; 			 (setq-local company-backends '((company-web company-css company-tern :with company-yasnippet)))))
+
+
+;; (add-to-list 'company-backends 'company-tern)
 (setq company-tern-meta-as-single-line t)
 (setq company-tooltip-align-annotations t)
 
@@ -23,6 +34,7 @@
 (setq company-tooltip-limit 20)                      ; bigger popup window
 (setq company-tooltip-align-annotations 't)          ; align annotations to the right tooltip border
 (setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
+(setq company-echo-delay 0)							 ; remove annoying blinking
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
 ;; (global-set-key (kbd "C-c /") 'company-files)        ; Force complete file names on "C-c /" key
 

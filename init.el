@@ -19,6 +19,9 @@
   :group 'basic-faces)
 
 (set-fringe-bitmap-face 'left-curly-arrow 'my-custom-curly-face)
+
+(setq exec-path-from-shell-check-startup-files nil)
+(exec-path-from-shell-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,13 +36,13 @@
  '(highlight-changes-colors '("#FD5FF0" "#AE81FF"))
  '(highlight-tail-colors
    '(("#3C3D37" . 0)
-     ("#679A01" . 20)
-     ("#4BBEAE" . 30)
-     ("#1DB4D0" . 50)
-     ("#9A8F21" . 60)
-     ("#A75B00" . 70)
-     ("#F309DF" . 85)
-     ("#3C3D37" . 100)))
+	 ("#679A01" . 20)
+	 ("#4BBEAE" . 30)
+	 ("#1DB4D0" . 50)
+	 ("#9A8F21" . 60)
+	 ("#A75B00" . 70)
+	 ("#F309DF" . 85)
+	 ("#3C3D37" . 100)))
  '(jdee-db-active-breakpoint-face-colors (cons "#1E2029" "#bd93f9"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1E2029" "#50fa7b"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
@@ -51,7 +54,7 @@
  '(org-hugo-auto-set-lastmod t)
  '(org-hugo-section "post")
  '(package-selected-packages
-   '(go-rename go-autocomplete go-scratch company-go go-mode go mermaid-mode f dash youdao-dictionary names chinese-word-at-point pos-tip yasnippet wolfram slime quelpa pdf-tools ox-hugo org-bullets ob-http monokai-theme helm-circe evil company))
+   '(lsp-ui company-lsp helm-flymake flymake-go mermaid-mode f dash youdao-dictionary names chinese-word-at-point pos-tip yasnippet wolfram slime quelpa pdf-tools ox-hugo org-bullets ob-http monokai-theme helm-circe evil company))
  '(pdf-view-midnight-colors (cons "#f8f8f2" "#282a36"))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
@@ -60,24 +63,24 @@
  '(vc-annotate-background "#282a36")
  '(vc-annotate-color-map
    (list
-    (cons 20 "#50fa7b")
-    (cons 40 "#85fa80")
-    (cons 60 "#bbf986")
-    (cons 80 "#f1fa8c")
-    (cons 100 "#f5e381")
-    (cons 120 "#face76")
-    (cons 140 "#ffb86c")
-    (cons 160 "#ffa38a")
-    (cons 180 "#ff8ea8")
-    (cons 200 "#ff79c6")
-    (cons 220 "#ff6da0")
-    (cons 240 "#ff617a")
-    (cons 260 "#ff5555")
-    (cons 280 "#d45558")
-    (cons 300 "#aa565a")
-    (cons 320 "#80565d")
-    (cons 340 "#6272a4")
-    (cons 360 "#6272a4")))
+	(cons 20 "#50fa7b")
+	(cons 40 "#85fa80")
+	(cons 60 "#bbf986")
+	(cons 80 "#f1fa8c")
+	(cons 100 "#f5e381")
+	(cons 120 "#face76")
+	(cons 140 "#ffb86c")
+	(cons 160 "#ffa38a")
+	(cons 180 "#ff8ea8")
+	(cons 200 "#ff79c6")
+	(cons 220 "#ff6da0")
+	(cons 240 "#ff617a")
+	(cons 260 "#ff5555")
+	(cons 280 "#d45558")
+	(cons 300 "#aa565a")
+	(cons 320 "#80565d")
+	(cons 340 "#6272a4")
+	(cons 360 "#6272a4")))
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
    '(unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
@@ -86,7 +89,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fixed-pitch ((t (:family "Hack" :height 80))))
+ '(fixed-pitch ((t (:family "Hack" :height 90 :pixels 12))))
  '(org-block-begin-line ((t (:inherit fixed-pitch :foreground "dim gray" :background "cornsilk"))))
  '(org-code ((t (:inherit (shadow fixed-pitch)))))
  '(org-document-info ((t (:background "ghost white"))))
@@ -107,4 +110,4 @@
  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold))))
  '(org-verbatim ((t (:inherit (shadow fixed-pitch) :foreground "dark orchid" :weight bold))))
- '(variable-pitch ((t (:family "Fira Code" :height 80 :weight thin)))))
+ '(variable-pitch ((t (:family "Fira Code" :height 90 :weight thin :pixels 12)))))

@@ -3,24 +3,23 @@
 ;;; active Babel language
 ;; ref link: http://archive.3zso.com/archives/orgmode-babel.html
 (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-      	(shell . t)
-	(scheme . t)
-	(js . t)
-	(dot . t)
-	(css . t)
-	(http . t)
-	(latex .t)
-	(org . t)
-	(perl . t)
-	(ruby . t)
-        (python . t)))
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (shell . t)
+   (scheme . t)
+   (js . t)
+   (dot . t)
+   (css . t)
+   (http . t)
+   (latex .t)
+   (org . t)
+   (perl . t)
+   (ruby . t)
+   (go . t)
+   (python . t)))
 ;; (defun my-org-confirm-babel-evaluate (lang body)
 ;;   (not (string= lang "emacs-lisp")))  ;don't ask for ditaa
 ;; (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
 
 ;; import inf-ruby
-
-
 (provide 'init-org-babel)

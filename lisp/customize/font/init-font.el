@@ -34,7 +34,8 @@
 			;; WenQuanYi Zen Hei
 			;;charset (font-spec :family "WenQuanYi Zen Hei Mono Light"
 			charset (font-spec :family "TsangerJinKai03\-6763 W03"
-                                           :size 16)))) ;理解万岁
+					   :pixels 14
+                                           :size 14)))) ;理解万岁
 
 (require 'org-faces)
 (set-face-attribute 'org-table nil :family "TsangerJinKai03\-6763 W03")

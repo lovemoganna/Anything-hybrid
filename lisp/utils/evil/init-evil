@@ -1,4 +1,15 @@
-;-*-emacs-lisp-*-
+;;; init-evil --- summary  -*-Emacs-lisp-*-
+
+;; Copyright (C) 2020 Mr.Revolt
+
+;; Author: Mr.Revolt
+;; Keywords: keybinding configuration
+
+;;; Commentary:
+
+;; Anything Keybinding configuration
+
+;;; Code:
 
 (require 'evil)
 (require 'evil-leader)
@@ -12,8 +23,8 @@
 (setq evil-insert-state-cursor '((bar . 3) "orange red")
       evil-normal-state-cursor '(box "purple"))
 
-;; 快速打开配置文件
 (defun open-my-init-file()
+  "快速打开配置文件."
   (interactive)
   (find-file "~/.emacs.d/init.el")
   (eval-buffer)
@@ -22,9 +33,9 @@
 
 ;; vim command cookbook: http://tnerual.eriogerg.free.fr/vimqrc.pdf
 
-;; generate GIF image in current folder
 (defalias 'sc 'shell-command)
 (defun gif-record()
+  "在当前文件夹中生成GIF图."
   (interactive)
   (sc "~/.emacs.d/lisp/private/shell_tools/byzanz-record-region.sh 10 'screen'_$(date +'%Y.%m.%d-%H:%M:%S').gif")
   (message "GIF 图生成在当前的文件夹")
@@ -50,7 +61,7 @@
  "b h" 'buf-move-left
  "b l" 'buf-move-right
  "u s" 'unix-sync
- "g b" 'shell-command-on-buffer 
+ "g b" 'shell-command-on-buffer
  "g r" 'gif-record
  "b d" 'kill-buffer-and-window)
 
@@ -97,9 +108,6 @@
  "l" 'windmove-right
  )
 
-(general-define-key
- :keymaps '()
- :prefix "C-c"
- "'" 'go-scratch
- )
 (provide 'init-evil)
+
+;;; init-evil ends here

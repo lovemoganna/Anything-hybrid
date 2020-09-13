@@ -6,14 +6,16 @@
       ;; Emacs package source
       (require 'package)
 
-	;;; slove contract melpa.gnu.org:443 question
+      ;;; slove contract melpa.gnu.org:443 question
+
       ;; https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request/etw48ux
       ;; https://stackoverflow.com/questions/29085937/package-refresh-contents-hangs-at-contacting-host-elpa-gnu-org80
       (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+
 			       ("marmalade" . "http://marmalade-repo.org/packages/")
 			       ("melpa" . "http://melpa.org/packages/")))
 
-	;;; China Tuna Package Source
+      ;;; China Tuna Package Source
       ;; (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
       ;; 			   ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
@@ -35,80 +37,81 @@
     
 *** maintain your installed package
     #+begin_src emacs-lisp
-      ;; Add packages
-      (defvar revolt/package-list
-	'(
-	  smartparens
-	  better-defaults
-	  pkg-info
-	  epl
-	  doom-themes
-	  doom-modeline
-	  js2-mode
-	  js2-refactor
-	  xref-js2
-	  mermaid-mode
-	  helm
-	  helm-projectile
-	  helm-ag
-	  helm-flyspell
-	  flycheck
-	  helm-flycheck
-	  ;;ob-mermaid
-	  f
-	  dash
-	  youdao-dictionary
-	  names
-	  chinese-word-at-point
-	  pos-tip
-	  yasnippet
-	  yasnippet-snippets
-	  aggressive-indent
-	  wolfram
-	  slime
-	  quelpa
-	  ;;pdf-tools
-	  ox-hugo
-	  web-mode
-	  web-beautify
-	  emmet-mode
-	  org-bullets
-	  ob-http
-	  monokai-theme
-	  helm-circe
-	  evil
-	  evil-leader
-	  which-key
-	  general
-	  window-numbering
-	  stumpwm-mode
-	  company
-	  company-web
-	  neotree
-	  htmlize
-	  real-auto-save
-	  markdown-mode
-	  edit-indirect
-	  polymode
-	  mmm-mode
-	  poly-R
-	  poly-markdown
-	  ess
-	  python-mode
-	  org-download
-	  pdf-tools
-	  org-noter
-	  engine-mode
-	  pyim
-	  org-roam
-	  org-roam-server
-	  w3m
-	  command-log-mode
-	  posframe
-	  sdcv
-	  expand-region
-	  ))
-	    (setq package-selected-packages revolt/package-list)
+	  ;; Add packages
+	  (defvar revolt/package-list
+		'(
+		  smartparens
+		  better-defaults
+		  pkg-info
+		  epl
+		  doom-themes
+		  doom-modeline
+		  js2-mode
+		  js2-refactor
+		  xref-js2
+		  mermaid-mode
+		  helm
+		  helm-projectile
+		  helm-ag
+		  helm-flyspell
+		  flycheck
+		  helm-flycheck
+		  ;;ob-mermaid
+		  f
+		  dash
+		  youdao-dictionary
+		  names
+		  chinese-word-at-point
+		  pos-tip
+		  yasnippet
+		  yasnippet-snippets
+		  aggressive-indent
+		  wolfram
+		  slime
+		  quelpa
+		  ;;pdf-tools
+		  ox-hugo
+		  web-mode
+		  web-beautify
+		  emmet-mode
+		  org-bullets
+		  ob-http
+		  monokai-theme
+		  helm-circe
+		  evil
+		  evil-leader
+		  which-key
+		  general
+		  window-numbering
+		  stumpwm-mode
+		  company
+		  company-web
+		  neotree
+		  htmlize
+		  real-auto-save
+		  markdown-mode
+		  edit-indirect
+		  polymode
+		  mmm-mode
+		  poly-R
+		  poly-markdown
+		  ess
+		  python-mode
+		  org-download
+		  pdf-tools
+		  org-noter
+		  engine-mode
+		  pyim
+		  org-roam
+		  org-roam-server
+		  w3m
+		  command-log-mode
+		  posframe
+		  sdcv
+		  expand-region
+		  flymake-go
+		  ))
+	  (setq package-selected-packages revolt/package-list)
     #+end_src
 *** check my installed package state
     #+begin_src emacs-lisp

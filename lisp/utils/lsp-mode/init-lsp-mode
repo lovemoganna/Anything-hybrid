@@ -1,0 +1,64 @@
+;;; init-lsp-mode  --- summary  -*-Emacs-lisp-*-
+
+;; Copyright (C) 2020 Mr.Revolt
+
+;; Author: Mr.Revolt
+;; Keywords: faster
+
+;;; Commentary:
+
+;; LSP Mode configuration
+;; LSP Mode is Client for Language Server Protocol
+
+;;; Code:
+
+;; Set prefix for lsp-mode keybindings.
+(setq lsp-keymap-prefix "s-l")
+(require 'lsp-mode)
+(add-hook 'go-mode-hook #'lsp)
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+
+(setq lsp-gopls-staticcheck t)
+(setq lsp-eldoc-render-all t)
+(setq lsp-gopls-complete-unimported t)
+
+;; gopls (go please) 是Go 语言的官方语言服务器。
+;; LSP(语言服务器协议的缩写),使用 lsp-mode, gopls 作为客户端被构建。首
+;; 先你必须安装 gopls, 并把它放置到你的 PATH 路径下。
+
+;; ref link: https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
+;; install gopls, run command: GO111MODULE=on go get golang.org/x/tools/gopls@latest
+
+(setf (lsp-session-folders-blacklist (lsp-session)) nil)
+(lsp--persist-session (lsp-session))
+
+;; ref link: https://gitter.im/emacs-lsp/lsp-mode?at=5e01b105c62fdf33f744a629
+;; (setq lsp-auto-guess-root t)
+
+(let ((project-root-suggestion (or (lsp--suggest-project-root) default-directory)))
+  (read-key (format
+             "%s is not part of any project. Select action:
+
+%s==>Import project root %s.
+%s==>Import project by selecting root directory interactively.
+%s==>Do not ask again for the current project by adding %s to lsp-session-folder-blacklist.
+%s==>Do not ask again for the current project by selecting ignore path interactively.
+%s==>Do nothing: ask again when opening other files from the current project."
+             (propertize (buffer-name) 'face 'bold)
+             (propertize "i" 'face 'success)
+             (propertize project-root-suggestion 'face 'bold)
+             (propertize "I" 'face 'success)
+             (propertize "d" 'face 'warning)
+             (propertize project-root-suggestion 'face 'bold)
+             (propertize "D" 'face 'warning)
+             (propertize "n" 'face 'warning)))
+  )
+(lsp-register-custom-settings
+ '(("gopls.completeUnimported" t t)
+   ("gopls.staticcheck" t t)))
+
+(provide 'init-lsp-mode)
+
+;;; init-lsp-mode ends here
+
