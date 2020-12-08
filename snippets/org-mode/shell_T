@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: shell_T
+# key: shell_T
+# --
+#+begin_src shell :dir "/sudo::/":results verbatim :tangle "$1"
+$2
+#+end_src
+

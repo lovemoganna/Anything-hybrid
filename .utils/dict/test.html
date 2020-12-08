@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-10-15 Thu 18:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#parameters">1. 4 Parameters</a>
+<ul>
+<li>
+<ul>
+<li><a href="#variable-types">1.0.1. 4.2 Variable Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4da14f0" class="outline-2">
+<h2 id="parameters"><span class="section-number-2">1</span> 4 Parameters</h2>
+<div class="outline-text-2" id="text-parameters">
+<p>
+Parameters are a sort of named space in memory you can use to retrieve
+or store information. Generally speaking, they will store string data,
+but can also be used to store integers, indexed and associative arrays.
+</p>
+
+<p>
+参数是内存中的一种命名空间，可用来检索或存储信息。一般来说，它们将存储
+字符串数据， 但也可以用来存储整数，索引和关联数组。
+</p>
+
+<p>
+Parameters come in two flavors: variables and special parameters.
+Special parameters are read-only, pre-set by BASH,and used to
+communicate some type of internal status. Variables are parameters
+that you can create and update yourself.
+</p>
+
+<p>
+参数有两种形式：变量和特殊参数。特殊参数是只读的，由BASH预先设置，并用
+于传达某种内部状态。变量是参数，你可以创建和更新。
+</p>
+
+<p>
+Variable names are bound by the following rule:
+</p>
+
+<p>
+变量名受以下规则约束：
+</p>
+
+<ul class="org-ul">
+<li>Name: A word consisting only of letters, digits and underscores, and
+beginning with a letter or an underscore. Also referred to as an
+identifier.</li>
+
+<li>名称：仅由字母，数字和下划线组成的单词，以及以字母或下划线开头。也称
+为标识符。</li>
+</ul>
+
+<p>
+To store data in a variable, we use the following assignment syntax:
+</p>
+
+<p>
+想要在变量中存储数据，我们使用如下分配语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ varname=vardata
+</pre>
+</div>
+
+<p>
+This command assigns the data <code>vardata</code> to the variable by name of
+<code>varname</code>.
+</p>
+
+<p>
+此命令通过 <code>varname</code> 的命名来给变量分配数据 <code>vardata</code>.
+</p>
+
+<p>
+Please note that you cannot use spaces around the <code>=</code> sign in an
+assignment. If you write this:
+</p>
+
+<p>
+请注意，你不能在 <code>=</code> 周围使用空格划分一个分配。如果您这样写：
+</p>
+
+<p>
+$ varname = vardata
+#+END<sub>EXAMPLE</sub>
+</p>
+
+<p>
+BASH will not know that you are attempting to assign something. The
+parser will see <code>varname</code> with no <code>=</code> and treat it as a command name,
+and then pass <code>=</code> and <code>vardata</code> to it as arguments.
+</p>
+
+<p>
+BASH不知道你正在尝试分配某些内容。解析器将看到带有非 <code>=</code> 的 <code>varname</code>,并
+视它为命令名称，接下来将 <code>=</code> 和 <code>vardata</code> 作为参数传递给BASH.
+</p>
+
+<p>
+To access the data stored in a variable, we use parameter expansion.
+Parameter expansion is the substitution of a parameter by its value,
+which is to say, the syntax tells bash that you want to use the
+contents of the variable. After that, Bash may still perform
+additional manipulations on the result. This is a very important
+concept to grasp correctly, because it is very much unlike the way
+variables are handled in other programming languages!
+</p>
+
+<p>
+要访问存储在变量中的数据，我们使用参数扩展。参数扩展是参数被其值替换,也
+就是说，语法告诉 bash 你要使用变量的内容。之后，Bash可能仍会执行其他
+操作对结果的操纵。这对正确掌握是非常重要的概念 ，因为它与其他编程语
+言中处理变量的方式非常不同！
+</p>
+
+<p>
+To illustrate what parameter expansion is, let's use this example:
+</p>
+
+<p>
+想要说明什么是参数扩展，让我们使用以下示例：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">foo=bar
+<span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Foo is $foo"</span>
+</pre>
+</div>
+
+<p>
+When Bash is about to execute your code, it first changes the
+command by taking your parameter expansion (the$foo), and replacing
+it by the contents offoo, which isbar. The command becomes:
+</p>
+
+<p>
+当Bash即将执行你的代码时，它先是通过执行参数扩展（the <code>$foo</code> ）更改命
+令 ，然后将其替换为foo的内容，即 <code>bar</code> 。命令变为：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"Foo is bar"</span>
+</pre>
+</div>
+
+<p>
+Now, Bash is ready to execute the command. Executing it shows us the
+simple sentence on screen.
+</p>
+
+<p>
+现在，Bash准备好执行命令。执行它会在屏幕上展示简单的句子。
+</p>
+
+<p>
+It is important to understand that parameter expansion causes the $
+parameter to be replaced by its contents. Note the following case,
+which relies on an understanding of the previous chapter on argument
+splitting:
+</p>
+
+<p>
+重要的是要理解参数扩展会导致 <code>$</code> 参数将由其内容代替。注意以下情况，参
+照对上一章参数分割方面的理解：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">song=<span style="color: #f1fa8c;">"My song.mp3"</span>
+rm $song
+</pre>
+</div>
+<p>
+rm: cannot remove 'My song.mp3': No such file or directory
+</p>
+
+<ul class="org-ul">
+<li><a href="http://mywiki.wooledge.org/BASH">http://mywiki.wooledge.org/BASH</a></li>
+</ul>
+
+<p>
+Why did this not work? Because Bash replaced your <code>$song</code> by its
+contents, being My song.mp3; then it performed word splitting; and
+only THEN executed the command. It was as if you had typed this:
+</p>
+
+<p>
+为什么这不起作用？由于Bash用其内容替换了你的 <code>$song</code> ，成为 <code>My song.mp3</code>;然
+后执行分词；然后只有接下来执行命令。就像您输入了以下内容：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">rm My song.mp3
+</pre>
+</div>
+
+<p>
+And according to the rules of word splitting, Bash thought you meant
+for My and song.mp3 to mean two different files, because there is
+white space between them and it wasn't quoted. How do we fix this?
+We remember to put double quotes around every parameter expansion!
+</p>
+
+<p>
+根据分词规则，Bash认为对于 My 和 song.mp3 表示两个不同的文件，因为它
+们之间是空格，不是引用。我们该如何解决？切记在每个参数扩展周围加上双
+引号！
+</p>
+
+<ul class="org-ul">
+<li>Parameters: Parameters store data that can be retrieved through a
+symbol or a name.</li>
+
+<li>参数： 参数存储数据可通过符号或名称检索。</li>
+</ul>
+</div>
+
+<div id="outline-container-org099b5e1" class="outline-4">
+<h4 id="variable-types"><span class="section-number-4">1.0.1</span> 4.2 Variable Types</h4>
+<div class="outline-text-4" id="text-variable-types">
+<p>
+Although Bash is not a typed language, it does have a few different
+types of variables. These types define the kind of content they are
+allowed to have. Type information is stored internally by Bash.
+</p>
+
+<p>
+-扩展：当参数以初期时，会发生扩展 美元符号。Bash将参数的值替换为
+参数在执行之前按其值扩展 命令。这也称为替代。
+</p>
+
+<ul class="org-ul">
+<li>Array:declare -a variable: The variable is an array of strings.</li>
+</ul>
+
+<p>
+-数组：声明-a变量：该变量是字符串数组。 - Associative array:declare -A
+variable: The variable is an associative array of strings (bash 4.0 or
+higher).
+</p>
+
+<p>
+-关联数组：声明-A变量：该变量是 字符串关联数组（bash 4.0或更高版本）。 -
+Integer: declare -i variable: The variable holds an integer. Assigning
+values to this variable automatically triggers Arithmetic Evaluation.
+</p>
+
+<p>
+-整数：声明-i变量：该变量包含一个 整数。给该变量赋值会自动触发
+算术评估。 - Read Only:declare -r variable: The variable can no longer
+be modified or unset.
+</p>
+
+<p>
+-只读：声明-r变量：该变量不再是 修改或未设置。 - Export:declare -x
+variable: The variable is marked for export which means it will be
+inherited by any child process.
+</p>
+
+<p>
+-导出：声明-x变量：该变量标记为要导出的变量 表示它将被任何子进程继承。
+</p>
+
+<p>
+Arrays are basically indexed lists of strings. They are very convenient
+for their ability to store multiple strings together without relying on
+adelimiterto split them apart (which is tedious when done correctly and
+error-prone when not).
+</p>
+
+<p>
+数组基本上是索引的字符串列表。他们很 方便将它们存储在一起
+无需依靠adelimiter将它们分开（这很繁琐） 如果操作正确，则容易出错）。
+</p>
+
+<p>
+Defining variables as integers has the advantage that you can leave out
+some syntax when trying to assign or modify them:
+</p>
+
+<p>
+将变量定义为整数具有可以离开的优点 尝试分配或修改它们时，列出一些语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ a=5; a+=2; <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"$a"</span>; <span style="color: #ffb86c;">unset</span> a
+52
+$ a=5; <span style="color: #ffb86c;">let</span> a+=2; <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"$a"</span>; <span style="color: #ffb86c;">unset</span> a
+7
+$ declare -i a=5; a+=2; <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"$a"</span>; <span style="color: #ffb86c;">unset</span> a
+7
+$ a=5+2; <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"$a"</span>; <span style="color: #ffb86c;">unset</span> a
+5+2
+$ declare -i a=5+2; <span style="color: #ffb86c;">echo</span> <span style="color: #f1fa8c;">"$a"</span>; <span style="color: #ffb86c;">unset</span> a
+7
+</pre>
+</div>
+
+<p>
+bash $ a = 5; a + = 2;回显“ $ a”；取消设定 52 $ a = 5;让a + = 2;回显“ $
+a”；取消设定 7 $声明-i a = 5; a + = 2;回显“ $ a”；取消设定 7 $ a = 5 +
+2;回显“ $ a”；取消设定 5 + 2 $声明-i a = 5 + 2;回显“ $ a”；取消设定 7
+</p>
+
+<pre class="example">
+
+However, in practice the use ofdeclare -iis exceedingly rare. In large
+part, this is because it creates behavior that can be surprising to
+anyone trying to maintain the script, who misses the declare
+statement. Most experienced shell scripters prefer to use explicit
+arithmetic commands (with((...))orlet) when they want to perform
+arithmetic.
+
+但是，实际上，很少使用声明-ii。很大
+部分是因为它产生的行为可能令
+任何试图维护脚本的人都错过了声明
+声明。大多数经验丰富的Shell脚本编写者都喜欢使用显式
+要执行的算术命令（with（（...））orlet）
+算术。
+
+It is also rare to see an explicit declaration of an array using
+declare -a. It is sufficient to write array=(...)  and Bash will know
+that the variable is now an array. The exception to this is the
+associative array, whichmustbe declared explicitly:declare -A my
+array.
+
+也很少见到使用
+声明-a。写array =（...）就足够了，Bash会知道
+现在该变量是一个数组。例外是
+关联数组，必须明确声明：declare -A my
+数组。
+
+- String: A string is a sequence of characters.
+
+-字符串：字符串是字符序列。
+- Array: An array is a list of strings indexed by numbers.
+- Integer: An integer is a whole number (positive, negative or zero).
+
+-整数：整数是整数（正数，负数或零）。
+- Read Only: Parameters that are read-only cannot be modified or
+	unset.
+
+-只读：只读参数无法修改或
+	未设定。
+- Export: Variables that are marked for export will be inherited by
+	any child process. Variables inherited in this way are called
+	Environment Variables.
+
+-导出：标记为导出的变量将被继承
+	任何子进程。以这种方式继承的变量称为
+	环境变量。
+- In the FAQ: How can I use array variables?^1
+
+### 4.3 Parameter Expansion
+
+Parameter Expansionis the term that refers to any operation that
+causes a parameter to be expanded (replaced by content). In its most
+basic appearance, the expansion of a parameter is achieved by
+prefixing that parameter with a$sign. In certain situations,
+additional curly braces around the parameter’s name are required:
+
+### 4.3参数扩展
+
+参数扩展是指涉及以下任何操作的术语：
+导致参数被扩展（由内容替换）。在最
+基本外观，参数的扩展是通过
+给该参数加上$符号前缀。在某些情况下，
+需要在参数名称周围加上花括号：
+
+``` bash
+$ echo "'$USER', '$USERs', '${USER}s'"
+'lhunath', '', 'lhunaths'
+</pre>
+
+<p>
+This example illustrates what basic parameter expansions (PE) look like.
+The second PE results in an empty string. That's because the
+parameterUSERsis empty. We did not intend to have the sbe part of the
+parameter name. Since there's no way Bash could know you want a literals
+appended to the parameter's value, you need to use curly braces to mark
+the beginning and end of the parameter name. That's what we do in the
+third PE in our example above.
+</p>
+
+<p>
+bash $ echo"'$ USER'，'$ USERs'，'$ {USER} s'" 'lhunath'，''，'lhunaths'
+</p>
+
+<pre class="example">
+本示例说明了基本参数扩展（PE）的外观
+喜欢。第二个PE导致一个空字符串。那是因为
+parameterUSERsis为空。我们不打算将sbe纳入
+参数名称。由于Bash不可能知道您想要一个
+参数值后面附加的文字，您需要使用curl
+用大括号标记参数名称的开头和结尾。那是
+在上面的示例中，我们在第三次PE中所做的操作。
+
+Parameter Expansion also gives us tricks to modify the string that
+will be expanded. These operations can be terribly convenient:
+
+参数扩展还为我们提供了修改字符串的技巧
+将扩大。这些操作非常方便：
+</pre>
+
+<p>
+$ for file in/.JPG/.jpeg do mv &#x2013; "\(file" "\){file%.*}.jpg" done
+</p>
+
+<pre class="example">
+
+</pre>
+
+<p>
+$用于* .JPG * .jpeg中的文件 做MV-“ $ file”“ $ {file％。*}。jpg” 完成
+</p>
+
+<pre class="example">
+
+The code above can be used to rename all JPEG files with a.JPGor
+a.jpeg extension to have a normal.jpg extension.
+
+上面的代码可用于使用a.JPGor重命名所有JPEG文件
+a.jpeg扩展名具有normal.jpg扩展名。
+
+The expression${file%.*}cuts off everything from the end starting with
+the last period (.). Then, in the same quotes, a new extension is
+appended to the expansion result.
+
+表达式$ {file％。*}从结尾处切断所有内容
+最后一个时期（。）。然后，用相同的引号将新扩展名
+附加到扩展结果中。
+
+Here’s a summary of most of the PE tricks that are available:
+
+以下是大多数可用的PE技巧的摘要：
+
+(^1)
+[http://mywiki.wooledge.org/BashFAQ/005](http://mywiki.wooledge.org/BashFAQ/005)
+
+（^ 1）
+[http://mywiki.wooledge.org/BashFAQ/005](http://mywiki.wooledge.org/BashFAQ/005）
+
+
+Syntax Description:
+
+语法说明：
+
+``` bash
+${parameter:-word}
+</pre>
+
+<p>
+bash $ {参数：-word}
+</p>
+
+<pre class="example">
+
+Use Default Value. If ’parameter’ is unset or null, ’word’ (which may
+be an expansion) is substituted.  Otherwise, the value of ’parameter’
+is substituted.
+
+使用默认值。如果未设置或设置为“参数”，则为“单词”（可能
+被扩展）替换。否则，“参数”的值
+被取代。
+</pre>
+
+<p>
+${parameter:=word}
+</p>
+
+<pre class="example">
+
+</pre>
+
+<p>
+$ {parameter：= word}
+</p>
+
+<pre class="example">
+
+Assign Default Value. If ’parameter’ is unset or null,
+’word’ (which may be an expansion) is assigned to
+’parameter’. The value of ’parameter’ is then
+substituted.
+</pre>
+
+<p>
+${parameter:+word}
+</p>
+
+<p>
+分配默认值。如果未设置"参数"或为空， "单词"（可能是扩展名）已分配给
+'参数'。则“ parameter”的值为 替代。
+</p>
+
+<pre class="example">
+$ {parameter：+ word}
+
+``` Use Alternate Value. If ’parameter'is null or unset, nothing is
+substituted, otherwise ’word’ (which may be an expansion) is
+substituted.
+
+使用替代值。如果“参数”为空或未设置，则没有任何内容
+被替换，否则“单词”（可能是扩展名）为
+替代。
+</pre>
+
+<p>
+${parameter:offset:length}
+</p>
+
+<pre class="example">
+
+</pre>
+
+<p>
+$ {parameter：offset：length}
+</p>
+
+<pre class="example">
+
+Substring Expansion. Expands to up to ’length’
+characters of ’parameter’ starting at the character
+specified by ’offset’ (0-indexed). If ’:length’ is
+omitted, go all the way to the end. If ’offset’ is
+negative (use parentheses!), count backward from the end
+of ’parameter’ instead of forward from the beginning.
+If ’parameter’ is @ or an indexed array name
+subscripted by @ or *, the result is ’length’ positional
+parameters or members of the array, respectively, starting
+from ’offset’.
+
+子串扩展。扩展到“长度”
+“ parameter”的字符从字符开始
+由“偏移”（0索引）指定。如果“：length”为
+省略，一直到最后。如果“偏移量”为
+负数（使用括号！），从末尾开始倒数
+而不是从头开始。
+如果“参数”为@或索引数组名称
+用@或*下标，结果是“长度”位置
+分别从数组的参数或成员开始
+从“偏移”开始
+</pre>
+
+<p>
+${#parameter}
+</p>
+
+<pre class="example">
+
+</pre>
+
+<p>
+$ {＃parameter}
+</p>
+
+<pre class="example">
+
+The length in characters of the value of ’parameter’ is
+substituted. If ’parameter’ is an array name
+subscripted by @ or *, return the number of elements.
+
+“参数”值的字符长度为
+替代。如果“参数”是数组名称
+用@或*下标，返回元素数。
+</pre>
+
+<p>
+${parameter#pattern}
+</p>
+
+<pre class="example">
+
+</pre>
+
+<p>
+$ {parameter＃pattern}
+</p>
+
+<pre class="example">
+
+The ’pattern’ is matched against thebeginningof
+’parameter’. The result is the expanded value of
+’parameter’ with the shortest match deleted.
+If ’parameter’ is an array name subscripted by @ or *,
+this will be done on each element. Same for all following
+items.
+
+“样式”与开头的匹配
+'参数'。结果是的扩展值
+匹配最短的“参数”已删除。
+如果“参数”是用@或*下标的数组名称，
+这将在每个元素上完成。以下所有内容均相同
+项目。
+
+${parameter##pattern} As above, but thelongestmatch is deleted.
+
+$ {parameter ## pattern}如上所述，但最长匹配被删除。
+</pre>
+
+<p>
+${parameter%pattern}
+</p>
+
+<pre class="example">
+
+</pre>
+
+<p>
+$ {parameter％pattern}
+</p>
+
+<pre class="example">
+
+The ’pattern’ is matched against theendof
+’parameter’. The result is the expanded value of
+’parameter’ with the shortest match deleted.
+${parameter%%pattern} As above, but thelongestmatch is deleted.
+
+“模式”与结尾匹配
+'参数'。结果是的扩展值
+匹配最短的“参数”已删除。
+$ {parameter %% pattern}如上所述，但最长匹配被删除。
+</pre>
+
+<p>
+${parameter/pat/string}
+</p>
+
+<pre class="example">
+
+</pre>
+
+<p>
+$ {parameter / pat / string}
+</p>
+
+<pre class="example">
+
+Results in the expanded value of ’parameter’ with the
+first(unanchored) match of ’pat’ replaced by
+’string’. Assume null string when the ’/string’ part
+is absent.
+${parameter//pat/string} As above, buteverymatch of ’pat’ is replaced.
+
+结果是“参数”的扩展值与
+“ pat”的第一个（固定）匹配项替换为
+'串'。假设“ / string”部分为空字符串
+缺席。
+$ {parameter // pat / string}如上所述，替换了所有“ pat”匹配项。
+
+``` ${parameter/#pat/string} ```
+
+```$ {parameter /＃pat / string}```
+
+As above, but matched against thebeginning. Useful for
+adding a common prefix with a null pattern:
+"${array[@]/#/prefix}".
+${parameter/%pat/string}
+As above, but matched against theend. Useful for adding
+a common suffix with a null pattern.
+
+如上，但与开头相匹配。对...有用
+添加带有空模式的通用前缀：
+“ $ {array [@] /＃/ prefix}”。
+$ {parameter /％pat / string}
+如上所述，但与目标相匹配。有助于添加
+具有空模式的常见后缀。
+
+You will learn them through experience. They come in handy far more
+often than you think they might. Here are a few examples to kick start
+you:
+
+您将通过经验学习它们。他们派上用场了
+通常比您想象的要多。这是开始的一些例子
+您：
+
+
+``` bash
+$ file="$HOME/.secrets/007"; \
+echo "File location: $file"; \
+echo "Filename: ${file##*/}"; \
+echo "Directory of file: ${file%/*}"; \
+echo "Non-secret file: ${file/secrets/not_secret}"; \
+echo; \
+echo "Other file location: ${other:-There is no other file}"; \
+echo "Using file if there is no other file: ${other:=$file}"; \
+echo "Other filename: ${other##*/}"; \
+echo "Other file location length: ${#other}"
+File location: /home/lhunath/.secrets/007
+Filename: 007
+Directory of file: /home/lhunath/.secrets
+Non-secret file: /home/lhunath/.not_secret/007
+</pre>
+
+<p>
+Other file location: There is no other file Using file if there is no
+other file: <i>home/lhunath</i>.secrets/007 Other filename: 007 Other file
+location length: 26
+</p>
+
+<p>
+bash $ file =“ $ HOME / .secrets / 007”;<br />
+回显"文件位置：$ file"；<br />
+回声"文件名：$ {file ## * <i>}";<br />
+回显"文件目录：$ {file％</i> /}”；<br />
+回声“非保密文件：$ {file / secrets / not<sub>secret</sub>}”；<br />
+回声;<br />
+echo“其他文件位置：$ {other：-没有其他文件}”;<br />
+echo“如果没有其他文件，则使用文件：$ {other：= $ file}”；<br />
+回声“其他文件名：$ {other ## / <i>}"；<br />
+回声"其他文件位置长度：$ {＃other}" 文件位置：/home/lhunath</i>.secrets/007
+档名：007 文件目录：/home/lhunath/.secrets
+非保密文件：/home/lhunath/.not<sub>secret</sub>/007 ``` 其他文件位置：没有其他文件
+如果没有其他文件，则使用文件：/home/lhunath/.secrets/007 其他文件名：007
+其他文件位置长度：26
+</p>
+
+<p>
+Remember the difference between\({v#p}and\){v##p}. The doubling of
+the#character means patterns will become greedy. The same goes for%:
+</p>
+
+<p>
+记住$ {v＃p}和$ {v ## p}之间的区别。翻倍
+＃字符表示模式将变得贪婪。同样适用于％：
+</p>
+
+<p>
+$ version=1.5.9; echo "MAJOR: ${version%%./}, MINOR: ${version#/.}."
+MAJOR: 1, MINOR: 5.9. $ echo "Dash: ${version/./-}, Dashes:
+${version//./-}." Dash: 1-5.9, Dashes: 1-5-9.
+</p>
+
+<p>
+\(版本= 1.5.9; echo“主要：\) {version %%。/}，次要：$ {version＃/。}。”
+主要：1，次要：5.9。 $ echo“ Dash：$ {version <i>.</i>-}，破折号： $ {version
+<i>/.</i>-}。“破折号：1-5.9，破折号：1-5-9。
+</p>
+
+<p>
+Note: Youcannotuse multiple PEs together. If you need to execute
+multiple PEs on a parameter, you will need to use multiple statements:
+</p>
+
+<p>
+注意：您不能一起使用多个PE。如果您需要执行
+一个参数上有多个PE，则需要使用多个语句：
+</p>
+
+<p>
+$ file=\(HOME/image.jpg; file=\){file##//}; echo "${file%./}" image
+</p>
+
+<p>
+$ file = $ HOME / image.jpg; file = $ {file ## * /};回显“ $
+{file％。*}”图像
+</p>
+
+<ul class="org-ul">
+<li>Good Practice: You may be tempted to use external applications such
+assed,awk,cut,perlor others to modify your strings. Be aware that all
+of these require an extra process to be started, which in some cases
+can cause slowdowns. Parameter Expansions are the perfect alternative.</li>
+</ul>
+
+<p>
+-良好做法：您可能会想使用外部应用程序，例如
+协助，修改，削减，请他人修改您的字符串。意识到
+所有这些都需要额外的流程才能启动，在某些情况下
+情况可能会导致速度下降。参数扩展是完美的 替代。
+</p>
+
+<ul class="org-ul">
+<li>In The Manual: Shell Parameter Expansion<sup>1</sup></li>
+</ul>
+
+<p>
+-在手册中：Shell参数扩展^ 1 - In the FAQ: How do I do string
+manipulations in bash?<sup>2</sup> - How can I rename all my /.foo files to /.bar,
+or convert spaces to underscores, or convert upper-case file names to
+lower case?
+</p>
+
+<p>
+-如何将所有* .foo文件重命名为* .bar，或将空格转换为
+下划线，还是将大写文件名转换为小写？ - How can I use parameter
+expansion? How can I get substrings? How can I get a file without its
+extension, or get just a file's extension?
+</p>
+
+<p>
+-如何使用参数扩展？如何获得子字符串？怎么能
+我得到的文件没有扩展名，还是仅文件的扩展名？ - How do I get the effects
+of those nifty Bash Parameter Expansions in older shells?
+</p>
+
+<p>
+-如何获得这些漂亮的Bash参数扩展的效果 较旧的炮弹？ - How do I determine
+whether a variable is already defined? Or a function?
+</p>
+
+<p>
+-如何确定变量是否已定义？或一个 功能？ - Parameter Expansion: Any
+expansion (see earlier definition) of a parameter. Certain operations
+are possible during this expansion that are performed on the value that
+will be expanded.
+</p>
+
+<p>
+-参数扩展：a的任何扩展（请参见前面的定义）
+参数。在扩展过程中某些操作是可能的 对将要扩展的值执行的操作。
+</p>
+
+<p>
+(<sup>1</sup>)
+<a href="http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion">http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion</a>
+(<sup>2</sup>) <a href="http://mywiki.wooledge.org/BashFAQ/100">http://mywiki.wooledge.org/BashFAQ/100</a> (<sup>3</sup>)
+<a href="http://mywiki.wooledge.org/BashFAQ/030">http://mywiki.wooledge.org/BashFAQ/030</a> (<sup>4</sup>)
+<a href="http://mywiki.wooledge.org/BashFAQ/073">http://mywiki.wooledge.org/BashFAQ/073</a> (<sup>5</sup>)
+<a href="http://mywiki.wooledge.org/BashFAQ/074">http://mywiki.wooledge.org/BashFAQ/074</a> (<sup>6</sup>)
+<a href="http://mywiki.wooledge.org/BashFAQ/083">http://mywiki.wooledge.org/BashFAQ/083</a>
+</p>
+
+<p>
+（^ 1）
+[<a href="http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion">http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion</a>](<a href="http://www.gnu.org/software/bash/manual/bashref.html#Shell-%E5%8F%82%E6%95%B0%E6%89%A9%E5%B1%95">http://www.gnu.org/software/bash/manual/bashref.html#Shell-%E5%8F%82%E6%95%B0%E6%89%A9%E5%B1%95</a>
+（^ 2）
+[<a href="http://mywiki.wooledge.org/BashFAQ/100">http://mywiki.wooledge.org/BashFAQ/100</a>](<a href="http://mywiki.wooledge.org/BashFAQ/100">http://mywiki.wooledge.org/BashFAQ/100</a>）
+（^ 3）
+[<a href="http://mywiki.wooledge.org/BashFAQ/030">http://mywiki.wooledge.org/BashFAQ/030</a>](<a href="http://mywiki.wooledge.org/BashFAQ/030">http://mywiki.wooledge.org/BashFAQ/030</a>）
+（^ 4）
+[<a href="http://mywiki.wooledge.org/BashFAQ/073">http://mywiki.wooledge.org/BashFAQ/073</a>](<a href="http://mywiki.wooledge.org/BashFAQ/073">http://mywiki.wooledge.org/BashFAQ/073</a>）
+（^ 5）
+[<a href="http://mywiki.wooledge.org/BashFAQ/074">http://mywiki.wooledge.org/BashFAQ/074</a>](<a href="http://mywiki.wooledge.org/BashFAQ/074">http://mywiki.wooledge.org/BashFAQ/074</a>）
+（^ 6）
+[<a href="http://mywiki.wooledge.org/BashFAQ/083">http://mywiki.wooledge.org/BashFAQ/083</a>](<a href="http://mywiki.wooledge.org/BashFAQ/083">http://mywiki.wooledge.org/BashFAQ/083</a>）
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2020-10-15 Thu 18:16</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

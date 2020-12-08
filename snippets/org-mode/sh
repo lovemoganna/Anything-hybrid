@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sh
+# key: sh_
+# --
+#+BEGIN_SRC shell :results verbatim :exports both
+$1
+#+END_SRC

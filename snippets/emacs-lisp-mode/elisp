@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: elisp
+# key: elisp_
+# --
+;;; init-$1 --- summary  -*-Emacs-lisp-*-
+
+;; Copyright (C) 2020 Mr.Revolt
+
+;; Author: Mr.Revolt
+;; Keywords: $2
+
+;;; Commentary:
+
+;; Introduction
+;; $3
+
+;; ref link
+;; $4
+
+;;; Code:
+
+$6
+
+;;; init-$5 ends here

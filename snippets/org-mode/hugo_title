@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: hugo_title
+# key: title_
+# --
+* $1
+  :PROPERTIES:
+  :EXPORT_FILE_NAME:  $2
+  :END:
+ 
+  #+begin_src toml :front_matter_extra t
+  autoCollapseToc = true
+  #+end_src
+
+  $3
+  <!--more-->
+
+  $4

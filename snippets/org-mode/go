@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: go
+# key:
+# --
+#+BEGIN_SRC go :results org :exports both
+$1
+#+END_SRC

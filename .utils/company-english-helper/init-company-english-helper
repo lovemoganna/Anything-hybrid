@@ -1,0 +1,8 @@
+;; -*-Emacs-lisp-*-
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/utils/company-english-helper"))
+
+;; I bind =SPC c e= command
+(require 'company-english-helper)
+
+(provide 'init-company-english-helper)

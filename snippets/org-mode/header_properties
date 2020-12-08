@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: header_properties
+# key: hp_
+# --
+:PROPERTIES:
+:header-args: :exports results :results output :cache yes :eval no
+:END:
+

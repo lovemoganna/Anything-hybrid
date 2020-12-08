@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: mermaid-common
+# key: mermaid
+# --
+#+name: $1
+#+caption: $2
+#+ATTR_ORG: :widht 20
+#+ATTR_HTML: :width 50 :height 100
+#+header: :theme neutral :background-color #F0F0F0
+#+begin_src mermaid :width 50px :height 100px :file $3.png :output-dir ../../../data/static/images/mermaid/
+$4
+#+end_src
+
